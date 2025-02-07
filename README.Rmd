@@ -20,14 +20,13 @@ library(gt)
 
 This book provides examples of exposure-response analysis with Bayesian methods.
 
-
 ## Install necessary packages <a href="https://genentech.github.io/BayesERtools/"><img src="resources/BayesERtool-logo.png" align="right" height="138" alt="BayesERtools website" /></a>
 
 The examples utilizes [`BayesERtools`](https://genentech.github.io/BayesERtools/) package.
 
-- Tutorial (This page): https://genentech.github.io/BayesERbook/
-- Documentation: https://genentech.github.io/BayesERtools/
-- GitHub repo: https://github.com/genentech/BayesERtools/
+- Tutorial (`BayesERbook`): https://genentech.github.io/BayesERbook/
+- Package documentation: https://genentech.github.io/BayesERtools/
+- GitHub repo of the package: https://github.com/genentech/BayesERtools/
 
 You can install the package as follows:
 

@@ -9,9 +9,10 @@ methods.
 The examples utilizes
 [`BayesERtools`](https://genentech.github.io/BayesERtools/) package.
 
-- Tutorial (This page): <https://genentech.github.io/BayesERbook/>
-- Documentation: <https://genentech.github.io/BayesERtools/>
-- GitHub repo: <https://github.com/genentech/BayesERtools/>
+- Tutorial (`BayesERbook`): <https://genentech.github.io/BayesERbook/>
+- Package documentation: <https://genentech.github.io/BayesERtools/>
+- GitHub repo of the package:
+  <https://github.com/genentech/BayesERtools/>
 
 You can install the package as follows:
 
