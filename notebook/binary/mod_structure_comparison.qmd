@@ -1,0 +1,102 @@
+# Model comparison between linear and E~max~
+
+This page showcase how to compare model structures between linear and E~max~
+logistic regression models
+
+## Setup and load
+
+```{r}
+#| output: FALSE
+#| message: FALSE
+
+library(tidyverse)
+library(BayesERtools)
+library(loo)
+library(here)
+library(gt)
+
+theme_set(theme_bw(base_size = 12))
+```
+
+```{r}
+#| include: FALSE
+# Enable colored outputs
+source(here("R", "cli_color_text.R"))
+```
+
+
+## Load data
+
+```{r}
+data(d_sim_binom_cov)
+
+d_sim_binom_cov_2 <-
+  d_sim_binom_cov |>
+  mutate(
+    AUCss_1000 = AUCss / 1000, BAGE_10 = BAGE / 10,
+    BWT_10 = BWT / 10, BHBA1C_5 = BHBA1C / 5,
+    Dose = glue::glue("{Dose_mg} mg")
+  )
+
+# Grade 2+ hypoglycemia
+df_er_ae_hgly2 <- d_sim_binom_cov_2 |> filter(AETYPE == "hgly2")
+
+var_resp <- "AEFLAG"
+var_exposure <- "AUCss_1000"
+```
+
+## Fit model
+
+::: {.panel-tabset}
+
+### Linear logistic regression
+
+```{r}
+#| label: fig-bin-lin
+#| fig-width: 7
+#| fig-height: 5
+
+set.seed(1234)
+ermod_bin_hgly2 <- dev_ermod_bin(
+  data = df_er_ae_hgly2,
+  var_resp = var_resp,
+  var_exposure = var_exposure
+)
+ermod_bin_hgly2
+plot_er_gof(ermod_bin_hgly2, var_group = "Dose")
+```
+
+### E~max~ logistic regression
+
+```{r}
+#| label: fig-bin-emax
+#| fig-width: 7
+#| fig-height: 5
+
+set.seed(1234)
+ermod_bin_emax_hgly2 <- dev_ermod_bin_emax(
+  data = df_er_ae_hgly2,
+  var_resp = var_resp,
+  var_exposure = var_exposure
+)
+ermod_bin_emax_hgly2
+plot_er_gof(ermod_bin_emax_hgly2, var_group = "Dose")
+```
+
+:::
+
+## Model comparison
+
+You can perform model comparison based on expected log pointwise predictive density (ELPD).
+ELPD is the Bayesian leave-one-out estimate (see ?`loo-glossary`).
+
+Higher ELPD is better, therefore linear logistic regression model appears better than E~max~ model.
+However, `elpd_diff` is small and similar to `se_diff` ([see here](https://stats.stackexchange.com/questions/608881/how-to-interpret-elpd-diff-of-bayesian-loo-estimate-in-bayesian-logistic-regress)),
+therefore we can consider the difference to be not meaningful.
+
+```{r}
+loo_bin_emax_hgly2 <- loo(ermod_bin_emax_hgly2)
+loo_bin_hgly2 <- loo(ermod_bin_hgly2)
+
+loo_compare(list(bin_emax_hgly2 = loo_bin_emax_hgly2, bin_hgly2 = loo_bin_hgly2))
+```

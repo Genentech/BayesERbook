@@ -1,0 +1,27 @@
+---
+format: html
+---
+
+# Welcome {.unnumbered}
+
+{{< include README.md >}}
+
+
+## Session info
+
+```{r, include = FALSE}
+# Load necessary libraries to show in session_info
+
+library(tidyverse)
+library(BayesERtools)
+library(here)
+library(gt)
+library(posterior)
+library(tidybayes)
+library(bayesplot)
+library(loo)
+```
+
+```{r}
+devtools::session_info()
+```

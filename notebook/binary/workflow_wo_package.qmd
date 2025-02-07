@@ -1,0 +1,311 @@
+# Workflow without using `BayesERtools`
+
+This page shows how to perform ER analysis without using `BayesERtools` package
+to help:
+
+- Understand the internal workings of the package
+- Flexibility to customize the analysis
+
+## Setup and load
+
+```{r}
+#| output: FALSE
+#| message: FALSE
+
+library(tidyverse)
+library(here)
+library(gt)
+
+theme_set(theme_bw(base_size = 12))
+```
+
+```{r}
+#| include: FALSE
+# Enable colored outputs
+source(here("R", "cli_color_text.R"))
+```
+
+
+## Data
+
+```{r}
+data(d_sim_binom_cov, package = "BayesERtools")
+
+d_sim_binom_cov_2 <-
+  d_sim_binom_cov |>
+  mutate(
+    AUCss_1000 = AUCss / 1000, BAGE_10 = BAGE / 10,
+    BWT_10 = BWT / 10, BHBA1C_5 = BHBA1C / 5
+  )
+
+# Grade 2+ hypoglycemia
+df_er_ae_hgly2 <- d_sim_binom_cov_2 |> filter(AETYPE == "hgly2")
+
+var_exposure <- "AUCss_1000"
+var_resp <- "AEFLAG"
+var_cov_ae_hgly2 <- c("BAGE_10", "BWT_10", "RACE", "VISC", "BHBA1C_5", "BGLUC")
+```
+
+
+## Basic model development
+
+`dev_ermod_bin()` function can be used to develop basic ER model. (Note that
+this function can also be used for models with covariates, if you already know
+the covariates to be included.)
+
+```{r}
+set.seed(1234)
+
+var_all <- c(var_exposure) # If you have covariates, you can add here
+
+formula_all <-
+  stats::formula(glue::glue(
+    "{var_resp} ~ {paste(var_all, collapse = ' + ')}"
+  ))
+
+ermod_bin <- rstanarm::stan_glm(
+  formula_all,
+  family = stats::binomial(),
+  data = df_er_ae_hgly2,
+  QR = dplyr::if_else(length(var_all) > 1, TRUE, FALSE),
+  refresh = 0, # Suppress output
+)
+
+ermod_bin
+```
+
+Perform simulation for plotting purpose
+
+```{r}
+exposure_range <-
+  range(df_er_ae_hgly2[[var_exposure]])
+
+exposure_to_sim_vec <-
+  seq(exposure_range[1], exposure_range[2], length.out = 51)
+
+data_for_sim <- 
+  tibble(!!var_exposure := exposure_to_sim_vec)
+
+sim_epred_med_qi <-
+  tidybayes::add_epred_draws(data_for_sim, ermod_bin) |>
+  tidybayes::median_qi() |>
+  dplyr::as_tibble()
+```
+
+Observed vs model predicted plot:
+
+```{r}
+#| label: fig-plot-er
+#| fig-width: 7
+#| fig-height: 5
+
+ggplot(data = sim_epred_med_qi, aes(x = .data[[var_exposure]], y = .epred)) +
+  geom_ribbon(aes(ymin = .lower, ymax = .upper), alpha = 0.3) +
+  geom_line() +
+  # Observed data plots
+  geom_jitter(
+    data = df_er_ae_hgly2,
+    aes(x = .data[[var_exposure]], y = .data[[var_resp]]),
+    width = 0, height = 0.05, alpha = 0.5
+  ) +
+  xgxr::xgx_stat_ci(
+    data = df_er_ae_hgly2,
+    aes(x = .data[[var_exposure]], y = .data[[var_resp]]),
+    bins = 4, conf_level = 0.95, distribution = "binomial",
+    geom = c("point"), shape = 0, size = 4
+  ) +
+  xgxr::xgx_stat_ci(
+    data = df_er_ae_hgly2,
+    aes(x = .data[[var_exposure]], y = .data[[var_resp]]),
+    bins = 4, conf_level = 0.95, distribution = "binomial",
+    geom = c("errorbar"), linewidth = 0.5
+  ) +
+  # Figure settings
+  coord_cartesian(ylim = c(-0.05, 1.05)) +
+  scale_y_continuous(
+    breaks = c(0, .5, 1),
+    labels = scales::percent
+  ) +
+  labs(x = var_exposure, y = "Probability of event")
+
+```
+
+MCMC samples can be obtained with `as_draws()` family of functions, such as
+`as_draws_df()`.
+
+```{r}
+draws_df <- posterior::as_draws_df(ermod_bin)
+
+draws_df_summary <-
+  posterior::summarize_draws(draws_df)
+
+draws_df_summary |>
+  gt::gt() |>
+  gt::fmt_number(n_sigfig = 3)
+```
+
+
+## Selection of exposure metrics
+
+First you fit models with all the candidate exposure metrics and then compare
+the models using leave-one-out cross-validation (LOO).
+
+```{r}
+set.seed(1234)
+
+# Run models with all the candidate exposure metrics
+l_mod_exposures <-
+  c("AUCss_1000", "Cmaxss", "Cminss") |>
+  purrr::set_names() |>
+  purrr::map(
+    function(.x) {
+      formula <- stats::formula(glue::glue("{var_resp} ~ {.x}"))
+      
+      mod <- rstanarm::stan_glm(
+        formula,
+        family = stats::binomial(),
+        data = df_er_ae_hgly2,
+        refresh = 0 # Suppress output
+      )
+    },
+    .progress = TRUE
+  )
+
+# Calculate loo (leave-one-out cross-validation) for each model
+# and compare the models
+l_loo_exposures <- purrr::map(l_mod_exposures, loo::loo)
+loo::loo_compare(l_loo_exposures)
+```
+
+
+## Selection of covariates
+
+Selection of covariates are be done with `projpred` package in `BayesERtools`.
+
+### Step 1: Full reference model fit
+
+```{r}
+varnames <- paste(c(var_exposure, var_cov_ae_hgly2), collapse = " + ")
+formula_full <-
+  stats::formula(
+    glue::glue(
+      "{var_resp} ~ {varnames}"
+    )
+  )
+
+# Need to construct call and then evaluate. Directly calling
+# rstanarm::stan_glm with formula_full does not work for the cross-validation
+call_fit_ref <-
+  rlang::call2(rstanarm::stan_glm,
+    formula = formula_full,
+    family = quote(stats::binomial()), data = quote(df_er_ae_hgly2), QR = TRUE,
+    refresh = 0)
+fit_ref <- eval(call_fit_ref)
+
+refm_obj <- projpred::get_refmodel(fit_ref)
+```
+
+### Step 2: Variable selection
+
+The code below shows example of variable selection with K-fold cross-validation
+approach.
+
+```{r}
+# Force exposure metric to be always included first
+search_terms <- projpred::force_search_terms(
+  forced_terms = var_exposure,
+  optional_terms = var_cov_ae_hgly2
+)
+
+cvvs <- projpred::cv_varsel(
+  refm_obj,
+  search_terms = search_terms,
+  cv_method = "kfold",
+  method = "forward",
+  validate_search = TRUE,
+  refit_prj = TRUE # Evaluation often look strange without refit
+)
+
+rk <- projpred::ranking(cvvs)
+
+n_var_select <- projpred::suggest_size(cvvs)
+n_var_select <- max(1, n_var_select) # At least exposure metric should be included
+
+var_selected <- head(rk[["fulldata"]], n_var_select)
+```
+
+#### Output
+
+```{r}
+#| label: fig-covsel
+#| fig-width: 7
+#| fig-height: 5
+
+var_selected
+plot(cvvs, text_angle = 45, show_cv_proportions = FALSE, deltas = TRUE)
+plot(rk) # This only works when cv_method = "kfold" and validate_search = TRUE
+```
+
+
+### Step 3: Final model fit
+
+```{r}
+set.seed(1234)
+
+ermod_bin_cov <- rstanarm::stan_glm(
+  stats::formula(glue::glue(
+    "{var_resp} ~ {paste(var_selected, collapse = ' + ')}"
+  )),
+  family = stats::binomial(),
+  data = df_er_ae_hgly2,
+  QR = dplyr::if_else(length(var_selected) > 1, TRUE, FALSE),
+  refresh = 0, # Suppress output
+)
+
+ermod_bin_cov
+```
+
+## Marginal ER prediction
+
+The example below simulate the marginal ER relationship, i.e. 
+ER relationships for "marginalized", or averaged, response for the population 
+of interest, using the covariate distribution is from the original data.
+
+```{r}
+#| label: fig-marginal-er
+#| fig-width: 7
+#| fig-height: 5
+
+exposure_to_sim <- c(2:6)
+
+data_cov <- df_er_ae_hgly2 |> select(-!!var_exposure)
+
+data_for_sim <- 
+  tibble(!!var_exposure := exposure_to_sim) |>
+  mutate(.id_exposure = row_number()) |>
+  expand_grid(data_cov)
+
+sim_epred_raw <-
+  tidybayes::add_epred_draws(data_for_sim, ermod_bin_cov)
+
+# Calculate marginal expected response for each exposure value and draw
+sim_epred_marg <-
+  sim_epred_raw |>
+  dplyr::ungroup() |>
+  dplyr::summarize(
+    .epred = mean(.epred),
+    .by = c(.id_exposure, !!var_exposure, .draw)
+  )
+
+sim_epred_marg_med_qi <-
+  sim_epred_marg |>
+  dplyr::group_by(.id_exposure, !!sym(var_exposure)) |>
+  tidybayes::median_qi() |>
+  dplyr::as_tibble()
+
+sim_epred_marg_med_qi |>
+  gt::gt() |>
+  gt::fmt_number(n_sigfig = 3) |>
+  gt::fmt_integer(columns = c(".id_exposure"))
+```
+

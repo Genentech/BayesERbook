@@ -1,0 +1,343 @@
+# Basic workflow
+
+In this section, we will show a basic workflow of performing ER analysis
+for binary endpoint using the logistic regression model.
+
+## Setup and load
+
+```{r}
+#| output: FALSE
+#| message: FALSE
+
+library(tidyverse)
+library(BayesERtools)
+library(posterior)
+library(here)
+library(gt)
+
+theme_set(theme_bw(base_size = 12))
+```
+
+```{r}
+#| include: FALSE
+# Enable colored outputs
+source(here("R", "cli_color_text.R"))
+```
+
+
+## Data
+
+We will use an example simulated dataset included in `BayesERtools` package 
+(`d_sim_binom_cov`) for the analysis.
+In this document we use hypoglycemia (hgly2) as an example AE. Another example
+AE is diarrhea (dr2), where you would see fairly flat ER curve.
+
+```{r}
+#| results: hold
+
+data(d_sim_binom_cov)
+
+head(d_sim_binom_cov) |> 
+  gt() |>
+  fmt_number(n_sigfig = 3) |>
+  fmt_integer(columns = c("ID", "AEFLAG", "Dose_mg"))
+
+d_sim_binom_cov_2 <-
+  d_sim_binom_cov |>
+  mutate(
+    AUCss_1000 = AUCss / 1000, BAGE_10 = BAGE / 10,
+    BWT_10 = BWT / 10, BHBA1C_5 = BHBA1C / 5,
+    Dose = glue::glue("{Dose_mg} mg")
+  )
+
+# Grade 2+ hypoglycemia
+df_er_ae_hgly2 <- d_sim_binom_cov_2 |> filter(AETYPE == "hgly2")
+# Grade 2+ diarrhea
+df_er_ae_dr2 <- d_sim_binom_cov_2 |> filter(AETYPE == "dr2")
+```
+
+We also defines variables that is used in the analysis.
+
+```{r}
+var_resp <- "AEFLAG"
+# HbA1c & glucose are only relevant for hyperglycemia
+var_cov_ae_hgly2 <-
+  c("BAGE_10", "BWT_10", "RACE", "VISC", "BHBA1C_5", "BGLUC")
+var_cov_ae_dr2 <-
+  c("BAGE_10", "BWT_10", "RACE", "VISC")
+```
+
+
+## Basic model development
+
+`dev_ermod_bin()` function can be used to develop basic ER model. (Note that
+this function can also be used for models with covariates, if you already know
+the covariates to be included.)
+
+```{r}
+set.seed(1234)
+ermod_bin <- dev_ermod_bin(
+  data = df_er_ae_hgly2,
+  var_resp = var_resp,
+  var_exposure = "AUCss_1000"
+)
+ermod_bin
+```
+
+You can compare the observed data with the model fit using `plot_er_gof()` 
+function.
+
+```{r}
+#| label: fig-plot-er
+#| fig-width: 7
+#| fig-height: 5
+
+# Using `*` instead of `+` so that scale can be
+# applied for both panels (main plot and boxplot)
+plot_er_gof(ermod_bin, var_group = "Dose", show_coef_exp = TRUE) *
+  xgxr::xgx_scale_x_log10()
+```
+
+MCMC samples can be obtained with `as_draws()` family of functions, such as
+`as_draws_df()`.
+
+```{r}
+draws_df <- as_draws_df(ermod_bin)
+
+draws_df_summary <-
+  draws_df |> 
+  summarize_draws(mean, median, sd, ~quantile2(.x, probs = c(0.025, 0.975)), 
+    default_convergence_measures()) 
+
+draws_df_summary |>
+  gt() |>
+  fmt_number(n_sigfig = 3)
+```
+
+
+You can predict the probability of events for a given exposure level with
+`sim_er_new_exp()` function.
+
+Here, the prediction is done for AUCss_1000 of 1, 1.5, 2, 3 (AUCss of 1000, 
+1500, 2000, 3000), and the output is the median and 95% CI of the predicted 
+probability.
+You can set `output_type = "draw"` to get the raw posterior draws.
+
+There are two types of outputs here, `.epred` and `.linpred`, as follows:
+
+- `.epred`: Expected response on the probability scale (% of event)
+- `.linpred`: Expected response on the linear predictor scale (logit scale, 
+  i.e. log-odds)
+  
+See `?BayesERtools::sim_er` for more details.
+
+
+```{r}
+ersim_med_qi <- sim_er_new_exp(
+  ermod_bin,
+  exposure_to_sim_vec = c(1, 1.5, 2, 3),
+  output_type = "median_qi"
+)
+ersim_med_qi |> 
+  gt() |>
+  fmt_number(n_sigfig = 3) |>
+  fmt_integer(columns = c(".row"))
+```
+
+## Selection of exposure metrics
+
+`dev_ermod_bin_exp_sel()` function can be used to select the best exposure
+metric(s) from a list of candidate exposure metrics. In this case, AUCss_1000
+is selected as the best exposure metric, as it had the highest elpd (expected 
+log predictive density).[^1]
+
+[^1]: Some references about elpd: \code{?loo::`loo-glossary`}, [What is the interpretation of ELPD / elpd_loo / elpd_diff?](https://mc-stan.org/loo/articles/online-only/faq.html#elpd_interpretation)
+
+Note that whether you want to select exposure metrics using the statistical
+criteria (e.g. elpd) or pre-specify the exposure metric(s) depends on the
+contexts. Should you choose to pre-specify the exposure metric(s), you can
+skip this step.
+
+```{r}
+set.seed(1234)
+ermod_bin_exp_sel <-
+  dev_ermod_bin_exp_sel(
+    # Use reduced N to make the example run faster
+    data = slice_sample(df_er_ae_hgly2, n = 100),
+    var_resp = var_resp,
+    var_exp_candidates = c("AUCss_1000", "Cmaxss", "Cminss"),
+    # Use reduced iter to make the example run faster
+    iter = 1000
+  )
+ermod_bin_exp_sel
+```
+
+The ER curve for all the evaluated exposure metrics can be generated with 
+`plot_er_exp_sel()` function.
+
+```{r}
+#| label: fig-exp-sel
+#| fig-width: 7
+#| fig-height: 5
+
+plot_er_exp_sel(ermod_bin_exp_sel) +
+  xgxr::xgx_scale_x_log10()
+```
+
+
+## Selection of covariates
+
+`dev_ermod_bin_cov_sel()` function can be used to select the best covariates
+from a list of candidate covariates. In this case, HbA1c (BHBA1C_5) and glucose
+(BGLUC) are selected, in addition to the exposure metric AUCss_1000 as 
+predictors.
+
+```{r}
+#| eval: FALSE
+
+set.seed(1234)
+ermod_bin_cov_sel <-
+  dev_ermod_bin_cov_sel(
+    data = df_er_ae_hgly2,
+    var_resp = var_resp,
+    var_exposure = "AUCss_1000",
+    var_cov_candidate = var_cov_ae_hgly2,
+    verbosity_level = 2
+  )
+```
+
+```{r}
+#| eval: FALSE
+#| include: FALSE
+
+# Save the output in vignettes/data to avoid running it during the build.
+saveRDS(ermod_bin_cov_sel, file = here("output", "ermod_bin_cov_sel.rds"))
+```
+
+```{r}
+#| include: FALSE
+
+ermod_bin_cov_sel <- readRDS(here("output", "ermod_bin_cov_sel.rds"))
+```
+
+```{r}
+ermod_bin_cov_sel
+```
+
+The plot below shows that AUCss_1000, BHBA1C_5, and BGLUC contributes to 
+improving the model performance, and after then the inclusion of no other
+covariates improves the model performance.
+
+```{r}
+#| label: fig-cov-sel
+#| fig-width: 7
+#| fig-height: 5
+
+plot_submod_performance(ermod_bin_cov_sel)
+```
+
+In some cases, you might see a warning message like below. This indicates that
+approximation of leave-one-out cross-validation performance (PSIS-LOO) is not
+reliable.
+
+```
+Warning: In the recalculation of the reference model's PSIS-LOO CV weights for 
+the performance evaluation, ... Pareto k-values are in the interval...`. 
+```
+
+Alternatively to the default `cv_method = "LOO"`, you can use k-fold 
+cross-validation by setting`cv_method = "kfold"` in `dev_ermod_bin_cov_sel()` 
+function. This can take longer time to run, but it can be more reliable in
+the cases where LOO is not reliable. You can also set `validate_search = TRUE`
+to let the function perform the variable selection for each fold separately,
+rather than using the selected variable sequence from the full dataset
+evaluation. 
+
+```{r}
+#| eval: FALSE
+
+set.seed(1234)
+ermod_bin_cov_sel_kfold <-
+  dev_ermod_bin_cov_sel(
+    data = df_er_ae_hgly2,
+    var_resp = var_resp,
+    var_exposure = "AUCss_1000",
+    var_cov_candidate = var_cov_ae_hgly2,
+    cv_method = "kfold",
+    validate_search = TRUE,
+    verbosity_level = 2
+  )
+```
+
+```{r}
+#| eval: FALSE
+#| include: FALSE
+
+# Save the output in vignettes/data to avoid running it during the build.
+saveRDS(ermod_bin_cov_sel_kfold, file = here("output", "ermod_bin_cov_sel_kfold.rds"))
+```
+
+```{r}
+#| include: FALSE
+
+ermod_bin_cov_sel_kfold <- readRDS(here("output", "ermod_bin_cov_sel_kfold.rds"))
+```
+
+Added bonus of using k-fold cv is that you can visualize how often each 
+variable is selected in the model. Here, as you can see (and as expected),
+HbA1c (BHBA1C_5) and glucose (BGLUC) are highly related and they are almost
+interchangeably selected in the 2nd and 3rd positions. Note that the function
+enforces the exposure metric to be included first in the model.
+
+```{r}
+#| label: fig-cov-sel-kfold
+#| fig-width: 7
+#| fig-height: 5
+#| results: hold
+
+ermod_bin_cov_sel_kfold
+plot_submod_performance(ermod_bin_cov_sel_kfold)
+plot_var_ranking(ermod_bin_cov_sel_kfold)
+```
+
+## Marginal ER prediction
+
+You can simulate the marginal ER relationship, i.e. ER relationships for
+"marginalized", or averaged, response for the population of interest,
+using `sim_er_new_exp_marg()` function.
+By default, the covariate distribution is from the original data, but you can
+also supply other distribution with `data_cov` argument.
+
+```{r}
+#| label: fig-marginal-er
+#| fig-width: 7
+#| fig-height: 5
+#| results: hold
+
+ersim_new_exp_marg_med_qi <- sim_er_new_exp_marg(
+  ermod_bin_cov_sel,
+  exposure_to_sim_vec = c(2:6),
+  output_type = "median_qi"
+)
+ersim_new_exp_marg_med_qi
+
+plot_er(ersim_new_exp_marg_med_qi, marginal = TRUE)
+```
+
+## Evaluation of covariate effects
+
+You can visualize the effect of the covariates with `sim_coveff()` and
+`plot_coveff()` functions. You can see that all three predictors have 
+fairly strong effects on the odds ratio of hypoglycemia.
+
+```{r}
+#| label: fig-cov-eff
+#| fig-width: 6
+#| fig-height: 5
+#| results: hold
+
+coveffsim <- sim_coveff(ermod_bin_cov_sel)
+plot_coveff(coveffsim)
+print_coveff(coveffsim)
+```
+

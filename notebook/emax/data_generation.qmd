@@ -1,0 +1,114 @@
+# Data generation
+
+This page shows examples of data generation for Emax model with and without covariates.
+
+## Setup and load
+
+```{r}
+#| output: FALSE
+#| message: FALSE
+
+library(tidyverse)
+library(here)
+
+theme_set(theme_bw(base_size = 12))
+
+set.seed(1234)
+```
+
+## Data generation - No covariate
+
+```{r}
+n <- 20 # number of subjects
+E0 <- 5 # effect at 0 concentration
+Emax <- 10 # maximal effect
+EC50 <- 20 # concentration at half maximal effect
+h <- 2 # Hill coefficient
+
+set.seed(130)
+c.is <- 50 * runif(n) # exposure
+
+set.seed(130)
+eps <- rnorm(n) # residual error
+
+y.is <- E0 + ((Emax * c.is^h) / (c.is^h + EC50^h)) + eps
+
+d_example_emax_nocov <- tibble(Conc = c.is, Y = y.is)
+```
+
+### Check data
+
+```{r}
+#| label: fig-check-data-no-cov
+#| fig-width: 7
+#| fig-height: 5
+
+ggplot(d_example_emax_nocov, aes(Conc, Y)) +
+  geom_point() +
+  geom_smooth(formula = y ~ x, method = "loess", se = F, col = "darkgrey") +
+  scale_x_continuous("Exposure", breaks = c(3, 10, 30, 100))
+
+ggplot(d_example_emax_nocov, aes(Conc, Y)) +
+  geom_point() +
+  geom_smooth(formula = y ~ x, method = "loess", se = F, col = "darkgrey") +
+  scale_x_log10("Exposure", breaks = c(3, 10, 30, 100))
+```
+
+## Data generation - with covariate
+
+Only one covariate (Prognostic factor positive/negative)
+
+1. Prognostic factor = positive (GpA) is more sensitive to the drug
+   - lower Emax in GpA; Emax.GpA = 10; Emax.GpB = 15
+
+```{r}
+Ngp <- 2
+N <- 20 * Ngp
+GPid <- as.factor(rep(c("A", "B"), each = 20))
+
+# Set parameters
+E0 <- 5
+EC50 <- 15
+h <- 2
+beta1 <- .7
+
+# Calc response
+set.seed(12345)
+
+d_example_emax_cov <-
+  tibble(GP = GPid) |>
+  mutate(
+    c.is = 50 * runif(N), eps = rnorm(N)
+  ) |>
+  mutate(
+    Emax.i = ifelse(GP == "A", 10, 15)
+  ) |>
+  mutate(y.is = E0 + ((Emax.i * c.is^h) / (c.is^h + EC50^h)) + eps) |>
+  mutate(Conc = c.is, Y = y.is)
+```
+
+### Check data
+
+```{r}
+#| label: fig-check-data-cov
+#| fig-width: 7
+#| fig-height: 5
+
+ggplot(d_example_emax_cov, aes(Conc, Y)) +
+  geom_point(aes(colour = GP)) +
+  geom_smooth(aes(group = GP, colour = GP), se = F) +
+  scale_x_continuous("Exposure") +
+  theme(legend.position = "top")
+```
+
+## Save data
+
+Only run in an interactive session so that the data is not saved every time
+the document is rendered (by setting `eval: FALSE`).
+
+```{r}
+#| eval: FALSE
+
+write_csv(d_example_emax_nocov, here("data", "d_example_emax_nocov.csv"))
+write_csv(d_example_emax_cov, here("data", "d_example_emax_cov.csv"))
+```

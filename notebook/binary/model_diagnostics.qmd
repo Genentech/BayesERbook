@@ -1,0 +1,249 @@
+# Model diagnostics and performance evaluation
+
+This page showcase the model diagnosis and performance evaluation on the 
+ER model for binary endpoint.
+
+```{r}
+#| output: FALSE
+#| message: FALSE
+
+library(tidyverse)
+library(BayesERtools)
+library(here)
+library(posterior)
+library(tidybayes)
+library(bayesplot)
+library(gt)
+
+theme_set(theme_bw(base_size = 12))
+```
+
+```{r}
+#| include: FALSE
+# Enable colored outputs
+source(here("R", "cli_color_text.R"))
+```
+
+## Load data
+
+```{r}
+data(d_sim_binom_cov)
+
+d_sim_binom_cov_2 <-
+  d_sim_binom_cov |>
+  mutate(
+    AUCss_1000 = AUCss / 1000, BAGE_10 = BAGE / 10,
+    BWT_10 = BWT / 10, BHBA1C_5 = BHBA1C / 5,
+    Dose = glue::glue("{Dose_mg} mg")
+  )
+
+# Grade 2+ hypoglycemia
+df_er_ae_hgly2 <- d_sim_binom_cov_2 |> filter(AETYPE == "hgly2")
+# Grade 2+ diarrhea
+df_er_ae_dr2 <- d_sim_binom_cov_2 |> filter(AETYPE == "dr2")
+
+var_resp <- "AEFLAG"
+var_exposure <- "AUCss_1000"
+```
+
+## Fit models
+
+There is clear trend of E-R for hyperglycemia (95% CI doesn't include 0) 
+while the evidence of E-R is not seen for diarrhea (95% CI includes 0).
+
+::: {.panel-tabset}
+
+### Hyperglycemia
+
+```{r}
+#| label: fig-data-fit-hgly2
+#| fig-width: 7
+#| fig-height: 5
+
+set.seed(1234)
+ermod_bin_hgly2 <- dev_ermod_bin(
+  data = df_er_ae_hgly2,
+  var_resp = var_resp,
+  var_exposure = var_exposure
+)
+plot_er_gof(ermod_bin_hgly2, var_group = "Dose", show_coef_exp = TRUE)
+```
+
+### Diarrhea
+
+```{r}
+#| label: fig-data-fit-dr2
+#| fig-width: 7
+#| fig-height: 5
+
+set.seed(1234)
+ermod_bin_dr2 <- dev_ermod_bin(
+  data = df_er_ae_dr2,
+  var_resp = var_resp,
+  var_exposure = var_exposure
+)
+plot_er_gof(ermod_bin_dr2, var_group = "Dose", show_coef_exp = TRUE)
+```
+
+:::
+
+## Parameter summary
+
+You can see that AUCss effect is much stronger for hyperglycemia than diarrhea.
+
+::: {.panel-tabset}
+
+### Hyperglycemia
+
+```{r}
+ermod_bin_hgly2 |> 
+  summarize_draws(mean, median, sd, ~quantile2(.x, probs = c(0.025, 0.975)),
+    default_convergence_measures()) |>
+  gt() |>
+  fmt_number(n_sigfig = 3)
+```
+
+### Diarrhea
+
+```{r}
+ermod_bin_dr2 |> 
+  summarize_draws(mean, median, sd, ~quantile2(.x, probs = c(0.025, 0.975)),
+    default_convergence_measures()) |>
+  gt() |>
+  fmt_number(n_sigfig = 3)
+```
+
+:::
+
+## Predictive performance evaluation
+
+We can calculate predictive performance metrics such as AUC-ROC with 
+`eval_ermod()` function. Options for evaluation data are:
+
+- `eval_type = "training"`: training data
+- `eval_type = "test"`: test data (supply to `newdata` argument)
+- `eval_type = "kfold"`: k-fold cross-validation
+
+```{r}
+#| eval: FALSE
+
+metrics_hgly2_train <- eval_ermod(ermod_bin_hgly2, eval_type = "training")
+metrics_hgly2_kfold <- eval_ermod(ermod_bin_hgly2, eval_type = "kfold")
+```
+
+```{r}
+#| eval: FALSE
+#| include: FALSE
+
+# Save the output in vignettes/data to avoid running it during the build.
+saveRDS(metrics_hgly2_train, file = here("output", "metrics_hgly2_train.rds"))
+saveRDS(metrics_hgly2_kfold, file = here("output", "metrics_hgly2_kfold.rds"))
+```
+
+```{r}
+#| include: FALSE
+
+metrics_hgly2_train <- readRDS(here("output", "metrics_hgly2_train.rds"))
+metrics_hgly2_kfold <- readRDS(here("output", "metrics_hgly2_kfold.rds"))
+```
+
+```{r}
+metrics_hgly2_train |>
+  gt() |>
+  fmt_number(n_sigfig = 3)
+
+metrics_hgly2_kfold |>
+  gt() |>
+  fmt_number(n_sigfig = 3) |>
+  fmt_integer(columns = c("fold_id"))
+```
+
+## Probability of direction
+
+Although credible intervals are preferred, there is a concept called
+the probability of direction which is somewhat similar to the p-value, in which
+the probability of the effect being far from NULL (usually set to 0) is 
+calculated.
+
+See `?p_direction` and [vignette](https://easystats.github.io/bayestestR/articles/probability_of_direction.html)
+for detail.
+
+::: {.panel-tabset}
+
+### Hyperglycemia
+
+The exposure effect is so clear that none of the MCMC sample is below 0, 
+leading to a "p-value" of 0. 
+Since there were 4000 MCMC samples (`nrow(as_draws_df(ermod_bin_hgly2))`),
+it is expected that the p-value is less than 1/4000 * 2, i.e. < 0.0005 
+(multiplication with 2 corresponds to two-sided test).
+
+kernel
+```{r}
+p_direction(ermod_bin_hgly2, as_p = TRUE, as_num = TRUE)
+1 / length(as_draws(ermod_bin_hgly2)$AUCss_1000) * 2
+```
+
+### Diarrhea
+
+```{r}
+p_direction(ermod_bin_dr2, as_p = TRUE, as_num = TRUE)
+# Below is a direct calculation of this value
+mean(as_draws(ermod_bin_dr2)$AUCss_1000 < 0) * 2
+```
+:::
+
+
+## Diagnostic plots
+
+We use the [`bayesplot` package](https://mc-stan.org/bayesplot/) 
+([Cheat sheet](https://rstudio.github.io/cheatsheets/bayesplot.pdf)) 
+to visualize the model fit.
+
+### Convergence
+
+Good fit results in:
+
+- Parameter distributions from MCMC chains should overlap
+- Trace plots should not show any trend
+- `Rhat` close to 1 (e.g. < 1.1)
+
+```{r}
+#| label: fig-convergence
+#| fig-width: 7
+#| fig-height: 4
+#| results: hold
+
+d_draws_bin_hgly2 <- as_draws_df(ermod_bin_hgly2)
+mcmc_dens_overlay(d_draws_bin_hgly2)
+mcmc_trace(d_draws_bin_hgly2)
+mcmc_rhat(rhat(ermod_bin_hgly2$mod$stanfit))
+```
+
+### Parameter estimates distribution
+
+::: {.panel-tabset}
+
+#### `mcmc_hist`
+
+```{r}
+#| label: fig-mcmc_hist
+#| fig-width: 7
+#| fig-height: 5
+
+mcmc_hist(d_draws_bin_hgly2)
+```
+
+#### Parameter covariance
+
+```{r}
+#| label: fig-mcmc_pairs
+#| fig.width: 7
+#| fig.height: 5
+
+mcmc_pairs(d_draws_bin_hgly2,
+  off_diag_args = list(size = 0.5, alpha = 0.25))
+```
+
+:::
+

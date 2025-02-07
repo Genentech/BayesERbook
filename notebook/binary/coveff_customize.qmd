@@ -1,0 +1,168 @@
+# Customize covariate effect plots
+
+This page showcase how to customize the covariate effect plots.
+
+## Setup and load
+
+```{r}
+#| output: FALSE
+#| message: FALSE
+
+library(tidyverse)
+library(BayesERtools)
+library(here)
+library(gt)
+
+theme_set(theme_bw(base_size = 12))
+```
+
+```{r}
+#| include: FALSE
+# Enable colored outputs
+source(here("R", "cli_color_text.R"))
+```
+
+## Load data
+
+```{r}
+data(d_sim_binom_cov)
+
+d_sim_binom_cov_2 <-
+  d_sim_binom_cov |>
+  mutate(
+    AUCss_1000 = AUCss / 1000, BAGE_10 = BAGE / 10,
+    BWT_10 = BWT / 10, BHBA1C_5 = BHBA1C / 5
+  )
+
+# Grade 2+ hypoglycemia
+df_er_ae_hgly2 <- d_sim_binom_cov_2 |> filter(AETYPE == "hgly2")
+
+var_resp <- "AEFLAG"
+var_exposure <- "AUCss_1000"
+```
+
+## Fit model
+
+```{r}
+set.seed(1234)
+ermod_bin_hgly2_cov <- dev_ermod_bin(
+  data = df_er_ae_hgly2,
+  var_resp = var_resp,
+  var_cov = c("RACE", "BGLUC", "BHBA1C_5"),
+  var_exposure = var_exposure
+)
+```
+
+## Evaluation of covariate effects
+
+By default, the covariate effect plots are generated for 5th and 95th percentiles
+of the continuous covariates and for each level of the categorical covariates
+(in the order of frequency in data).
+
+
+```{r}
+#| label: fig-cov-eff-default
+#| fig-width: 6
+#| fig-height: 5
+
+coveffsim <- sim_coveff(ermod_bin_hgly2_cov)
+plot_coveff(coveffsim)
+```
+
+You can modify the width of the quantile interval using the `qi_width_cov` argument.
+
+```{r}
+#| label: fig-cov-eff-qicov_08
+#| fig-width: 6
+#| fig-height: 5
+
+coveffsim_qicov_08 <- sim_coveff(ermod_bin_hgly2_cov, qi_width_cov = 0.8)
+plot_coveff(coveffsim_qicov_08)
+```
+
+## Further customization
+
+These covariate effect simulation (and plotting) can be customized by providing
+specifications to `sim_coveff()` function.
+
+First, we build the specification for the covariate effects with
+`build_spec_coveff()` function.
+
+
+```{r}
+spec_coveff <- build_spec_coveff(ermod_bin_hgly2_cov)
+spec_coveff |> 
+  gt() |> 
+  fmt_number(n_sigfig = 3)|>
+  fmt_integer(columns = c("value_order", "var_order"))
+```
+
+Let's say we want to customize in a follwoing way:
+
+- Re-calculate percentiles of BGLUC from new distribution (example below uses
+  uniform distribution between 4 and 8) and change the width of the quantile
+  interval to 0.8.
+- Use specific values for BHBA1C (30, 35, 45, 50) and label with the original 
+  scale rather than those devided by 5 (used in the model).
+- Use Asian as the reference level
+- Show the plots in the order of BGLUC, BHBA1C, and then RACE
+
+```{r}
+spec_new_bgluc <- build_spec_coveff_one_variable(
+  "BGLUC", seq(4, 8, by = 0.1),
+  qi_width_cov = 0.8, show_ref_value = TRUE
+)
+
+spec_new_bhba1c <- 
+  tibble(value_cont = c(30, 35, 45, 50) / 5) |> 
+  mutate(
+    value_order = row_number(),
+    value_label = as.character(value_cont * 5),
+    var_name = "BHBA1C_5",
+    var_label = "BHBA1C",
+    value_annot = glue::glue("{value_label}mmol/mol"),
+    is_ref_value = FALSE,
+    show_ref_value = FALSE)
+
+spec_new_race <- 
+  spec_coveff |> 
+  filter(var_name == "RACE") |> 
+  mutate(
+    is_ref_value = c(FALSE, TRUE, FALSE),
+    show_ref_value = c(FALSE, TRUE, FALSE)
+  ) |> 
+  select(-var_order, -is_covariate)
+
+spec_coveff_new_1 <- 
+  replace_spec_coveff(spec_coveff, bind_rows(spec_new_bgluc, spec_new_bhba1c)) |>
+  # spec_new_race is separately provided as we want to change the reference level
+  replace_spec_coveff(spec_new_race, replace_ref_value = TRUE)
+
+d_new_var_order <- 
+  tibble(var_name = c("AUCss_1000", "BGLUC", "BHBA1C_5", "RACE")) |> 
+  mutate(var_order = row_number())
+
+spec_coveff_new <- 
+  spec_coveff_new_1 |> 
+  select(-var_order) |>
+  left_join(d_new_var_order, by = "var_name")
+
+spec_coveff_new |> 
+  gt() |> 
+  fmt_number(n_sigfig = 3)|>
+  fmt_integer(columns = c("value_order", "var_order"))
+```
+
+The customized covariate effect plots can be generated using the `plot_coveff()`
+
+```{r}
+#| label: fig-cov-eff-custom
+#| fig-width: 6
+#| fig-height: 5
+
+coveffsim_spec <- sim_coveff(ermod_bin_hgly2_cov, spec_coveff = spec_coveff_new)
+plot_coveff(coveffsim_spec)
+```
+
+
+

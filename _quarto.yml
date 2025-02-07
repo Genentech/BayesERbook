@@ -1,0 +1,46 @@
+project:
+  type: book
+
+book:
+  title: "Exposure-response analysis with Bayesian approaches"
+  author: "Kenta Yoshida"
+  date: last-modified
+  site-url: https://genentech.github.io/BayesERbook/
+  repo-url: https://github.com/genentech/BayesERbook/
+  repo-branch: main
+  repo-actions: [edit]
+  chapters:
+    - index.qmd
+    - part: "ER for binary endpoint"
+      chapters:
+        - notebook/binary/basic_workflow.qmd
+        - notebook/binary/simulation.qmd
+        - notebook/binary/model_diagnostics.qmd
+        - notebook/binary/mod_structure_comparison.qmd
+        - notebook/binary/coveff_customize.qmd
+        - notebook/binary/workflow_wo_package.qmd
+    - part: "Emax model"
+      chapters:
+        - notebook/emax/basic_workflow.qmd
+        - notebook/emax/model_diagnostics.qmd
+        - notebook/emax/simulation.qmd
+        - notebook/emax/data_generation.qmd
+
+format:
+  html:
+    theme:
+      - sandstone
+      - custom.scss
+    code-fold: show
+    code-summary: "Show the code"
+    code-tools: true
+    toc: true
+    toc_float: true
+  pdf:
+    documentclass: scrreprt
+
+date-format: iso
+
+execute:
+  freeze: true
+

@@ -1,0 +1,141 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "75%"
+)
+
+library(dplyr)
+library(tidyr)
+library(gt)
+```
+
+
+This book provides examples of exposure-response analysis with Bayesian methods.
+
+
+## Install necessary packages <a href="https://genentech.github.io/BayesERtools/"><img src="resources/BayesERtool-logo.png" align="right" height="138" alt="BayesERtools website" /></a>
+
+The examples utilizes [`BayesERtools`](https://genentech.github.io/BayesERtools/) package.
+
+- Tutorial (This page): https://genentech.github.io/BayesERbook/
+- Documentation: https://genentech.github.io/BayesERtools/
+- GitHub repo: https://github.com/genentech/BayesERtools/
+
+You can install the package as follows:
+
+``` r
+# install.packages('BayesERtools') # Once on CRAN
+devtools::install_github("genentech/BayesERtools") # development version
+```
+
+You also need latest version of `rstanemax` (>= 0.1.7) to use E~max~ model.
+
+``` r
+install.packages('rstanemax')
+```
+
+## Model types supported by `BayesERtools`
+
+```{r, echo = FALSE}
+set.seed(1234) # Needed to stablize div id
+# Need to do this to remove CSS from the outputs for it
+# to work in GitLab-flavored md
+remove_css <- function(x) {
+  x <- gsub("<style>.*</style>", "", x)
+  htmltools::HTML(x)
+}
+
+# Define the initial transposed tibble
+tab_mod_raw <- tibble(
+  feature = c("lin_logit", "emax_logit", "linear", "emax"),
+  backend = c("`rstanarm`", "`rstanemax`", "`rstanarm`", "`rstanemax`"),
+  reference =
+    c(
+      "https://mc-stan.org/rstanarm/reference/stan_glm.html",
+      "https://yoshidk6.github.io/rstanemax/reference/stan_emax.html",
+      "https://mc-stan.org/rstanarm/reference/stan_glm.html",
+      "https://yoshidk6.github.io/rstanemax/reference/stan_emax_binary.html"
+    ),
+  `develop model` = c("✅", "✅", "✅", "✅"),
+  `simulate & plot ER` = c("✅", "✅", "✅", "✅"),
+  `exposure metrics selection` = c("✅", "✅", "✅", "✅"),
+  `covariate selection` = c("✅", "❌", "✅", "❌"),
+  `covariate forest plot` = c("✅", "❌", "🟡", "❌")
+)
+
+# Transpose the table for display
+tab_mod <- tab_mod_raw %>%
+  pivot_longer(
+    cols = -feature,
+    names_to = "feature_name", values_to = "value"
+  ) %>%
+  pivot_wider(names_from = feature, values_from = value) |>
+  mutate(.row_id = row_number())
+
+tab_mod |>
+  select(-.row_id) |>
+  gt() |>
+  fmt_markdown() |>
+  fmt_url(
+    columns = !1,
+    rows = 2,
+    label = "🔗",
+    show_underline = FALSE
+  ) |>
+  tab_spanner(
+    label = "Binary endpoint",
+    columns = c(lin_logit, emax_logit)
+  ) |>
+  tab_spanner(
+    label = "Continuous endpoint",
+    columns = c(linear, emax)
+  ) |>
+  cols_label(
+    feature_name = "",
+    lin_logit = "Linear (logit)",
+    emax_logit = md("E<sub/>max</sub> (logit)"),
+    linear = "Linear",
+    emax = md("E<sub/>max</sub>"),
+  ) |>
+  tab_style(
+    style = cell_text(v_align = "top", align = "center"),
+    locations = cells_column_labels()
+  ) |>
+  tab_style(
+    style = cell_text(v_align = "middle", align = "center"),
+    locations = cells_body()
+  ) |>
+  tab_style(
+    style = cell_text(v_align = "middle", align = "right"),
+    locations = cells_body(columns = feature_name)
+  ) |>
+  tab_footnote(
+    footnote = paste(
+      "✅ Available",
+      "🟡 In plan/under development",
+      "❌ Not in a current plan",
+      sep = ", "
+    )
+  ) |>
+  as_raw_html(inline_css = FALSE) |>
+  remove_css()
+```
+
+
+## Important links
+
+- Rendered book: https://github.com/genentech/BayesERbook/
+
+## Note for developer
+
+Run `usethis::use_tidy_style(strict = FALSE)` before committing to ensure that the code is formatted
+appropriately.
+
