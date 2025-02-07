@@ -1,0 +1,634 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Exposure-response analysis with Bayesian approaches",
+    "section": "",
+    "text": "Welcome\nThis book provides examples of exposure-response analysis with Bayesian methods.",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#install-necessary-packages",
+    "href": "index.html#install-necessary-packages",
+    "title": "Exposure-response analysis with Bayesian approaches",
+    "section": "Install necessary packages ",
+    "text": "Install necessary packages \nThe examples utilizes BayesERtools package.\n\nTutorial (This page): https://genentech.github.io/BayesERbook/\nDocumentation: https://genentech.github.io/BayesERtools/\nGitHub repo: https://github.com/genentech/BayesERtools/\n\nYou can install the package as follows:\n# install.packages('BayesERtools') # Once on CRAN\ndevtools::install_github(\"genentech/BayesERtools\") # development version\nYou also need latest version of rstanemax (&gt;= 0.1.7) to use Emax model.\ninstall.packages('rstanemax')",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#model-types-supported-by-bayesertools",
+    "href": "index.html#model-types-supported-by-bayesertools",
+    "title": "Exposure-response analysis with Bayesian approaches",
+    "section": "Model types supported by BayesERtools",
+    "text": "Model types supported by BayesERtools\n\n\n\n\n\n\n\n\n\nBinary endpoint\n\n\n\n\nContinuous endpoint\n\n\n\n\n\nLinear (logit)\n\n\nEmax (logit)\n\n\nLinear\n\n\nEmax\n\n\n\n\n\n\nbackend\n\n\nrstanarm\n\n\nrstanemax\n\n\nrstanarm\n\n\nrstanemax\n\n\n\n\nreference\n\n\n🔗\n\n\n🔗\n\n\n🔗\n\n\n🔗\n\n\n\n\ndevelop model\n\n\n✅\n\n\n✅\n\n\n✅\n\n\n✅\n\n\n\n\nsimulate & plot ER\n\n\n✅\n\n\n✅\n\n\n✅\n\n\n✅\n\n\n\n\nexposure metrics selection\n\n\n✅\n\n\n✅\n\n\n✅\n\n\n✅\n\n\n\n\ncovariate selection\n\n\n✅\n\n\n❌\n\n\n✅\n\n\n❌\n\n\n\n\ncovariate forest plot\n\n\n✅\n\n\n❌\n\n\n🟡\n\n\n❌\n\n\n\n\n\n\n\n✅ Available, 🟡 In plan/under development, ❌ Not in a current plan",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#important-links",
+    "href": "index.html#important-links",
+    "title": "Exposure-response analysis with Bayesian approaches",
+    "section": "Important links",
+    "text": "Important links\n\nRendered book: https://genentech.github.io/BayesERbook/",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#note-for-developer",
+    "href": "index.html#note-for-developer",
+    "title": "Exposure-response analysis with Bayesian approaches",
+    "section": "Note for developer",
+    "text": "Note for developer\nRun usethis::use_tidy_style(strict = FALSE) before committing to ensure that the code is formatted appropriately.",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#session-info",
+    "href": "index.html#session-info",
+    "title": "Exposure-response analysis with Bayesian approaches",
+    "section": "Session info",
+    "text": "Session info\n\n\nShow the code\ndevtools::session_info()\n\n\n─ Session info ───────────────────────────────────────────────────────────────\n setting  value\n version  R version 4.4.1 (2024-06-14)\n os       Ubuntu 22.04.5 LTS\n system   x86_64, linux-gnu\n ui       X11\n language (EN)\n collate  en_US.UTF-8\n ctype    en_US.UTF-8\n tz       Etc/UTC\n date     2025-02-07\n pandoc   3.1.11 @ /usr/lib/rstudio-server/bin/quarto/bin/tools/x86_64/ (via rmarkdown)\n\n─ Packages ───────────────────────────────────────────────────────────────────\n package        * version  date (UTC) lib source\n abind            1.4-8    2024-09-12 [2] RSPM (R 4.4.0)\n arrayhelpers     1.1-0    2020-02-04 [1] RSPM (R 4.4.0)\n backports        1.5.0    2024-05-23 [2] RSPM (R 4.4.0)\n BayesERtools   * 0.1.11   2025-01-30 [1] local\n bayesplot      * 1.11.1   2024-02-15 [2] RSPM (R 4.4.0)\n bayestestR       0.14.0   2024-07-24 [1] RSPM (R 4.4.0)\n cachem           1.1.0    2024-05-16 [2] RSPM (R 4.4.0)\n checkmate        2.3.2    2024-07-29 [2] RSPM (R 4.4.0)\n cli              3.6.3    2024-06-21 [2] RSPM (R 4.4.0)\n coda             0.19-4.1 2024-01-31 [2] RSPM (R 4.4.0)\n colorspace       2.1-1    2024-07-26 [2] RSPM (R 4.4.0)\n devtools         2.4.5    2022-10-11 [1] RSPM (R 4.4.0)\n digest           0.6.37   2024-08-19 [2] RSPM (R 4.4.0)\n distributional   0.5.0    2024-09-17 [2] RSPM (R 4.4.0)\n dplyr          * 1.1.4    2023-11-17 [2] RSPM (R 4.4.0)\n ellipsis         0.3.2    2021-04-29 [1] RSPM (R 4.4.0)\n evaluate         1.0.1    2024-10-10 [2] RSPM (R 4.4.0)\n fansi            1.0.6    2023-12-08 [2] RSPM (R 4.4.0)\n fastmap          1.2.0    2024-05-15 [2] RSPM (R 4.4.0)\n forcats        * 1.0.0    2023-01-29 [2] RSPM (R 4.4.0)\n fs               1.6.4    2024-04-25 [2] RSPM (R 4.4.0)\n generics         0.1.3    2022-07-05 [2] RSPM (R 4.4.0)\n ggdist           3.3.2    2024-03-05 [1] RSPM (R 4.4.0)\n ggplot2        * 3.5.1    2024-04-23 [2] RSPM (R 4.4.0)\n glue             1.8.0    2024-09-30 [2] RSPM (R 4.4.0)\n gt             * 0.11.1   2024-10-04 [1] RSPM (R 4.4.0)\n gtable           0.3.5    2024-04-22 [2] RSPM (R 4.4.0)\n here           * 1.0.1    2020-12-13 [1] RSPM (R 4.4.0)\n hms              1.1.3    2023-03-21 [2] RSPM (R 4.4.0)\n htmltools        0.5.8.1  2024-04-04 [2] RSPM (R 4.4.0)\n htmlwidgets      1.6.4    2023-12-06 [2] RSPM (R 4.4.0)\n httpuv           1.6.15   2024-03-26 [2] RSPM (R 4.4.0)\n insight          0.20.5   2024-10-02 [1] RSPM (R 4.4.0)\n jsonlite         1.8.9    2024-09-20 [2] RSPM (R 4.4.0)\n knitr            1.48     2024-07-07 [2] RSPM (R 4.4.0)\n later            1.3.2    2023-12-06 [2] RSPM (R 4.4.0)\n lattice          0.22-6   2024-03-20 [4] RSPM (R 4.4.1)\n lifecycle        1.0.4    2023-11-07 [2] RSPM (R 4.4.0)\n loo            * 2.8.0    2024-07-03 [2] RSPM (R 4.4.0)\n lubridate      * 1.9.3    2023-09-27 [2] RSPM (R 4.4.0)\n magrittr         2.0.3    2022-03-30 [2] RSPM (R 4.4.0)\n matrixStats      1.4.1    2024-09-08 [2] RSPM (R 4.4.0)\n memoise          2.0.1    2021-11-26 [2] RSPM (R 4.4.0)\n mime             0.12     2021-09-28 [2] RSPM (R 4.4.0)\n miniUI           0.1.1.1  2018-05-18 [2] RSPM (R 4.4.0)\n munsell          0.5.1    2024-04-01 [2] RSPM (R 4.4.0)\n pillar           1.9.0    2023-03-22 [2] RSPM (R 4.4.0)\n pkgbuild         1.4.4    2024-03-17 [2] RSPM (R 4.4.0)\n pkgconfig        2.0.3    2019-09-22 [2] RSPM (R 4.4.0)\n pkgload          1.4.0    2024-06-28 [1] RSPM (R 4.4.0)\n posterior      * 1.6.0    2024-07-03 [2] RSPM (R 4.4.0)\n profvis          0.4.0    2024-09-20 [1] RSPM (R 4.4.0)\n promises         1.3.0    2024-04-05 [2] RSPM (R 4.4.0)\n purrr          * 1.0.2    2023-08-10 [2] RSPM (R 4.4.0)\n R6               2.5.1    2021-08-19 [2] RSPM (R 4.4.0)\n Rcpp             1.0.13   2024-07-17 [2] RSPM (R 4.4.0)\n readr          * 2.1.5    2024-01-10 [2] RSPM (R 4.4.0)\n remotes          2.5.0    2024-03-17 [2] RSPM (R 4.4.0)\n rlang            1.1.4    2024-06-04 [2] RSPM (R 4.4.0)\n rmarkdown        2.28     2024-08-17 [2] RSPM (R 4.4.0)\n rprojroot        2.0.4    2023-11-05 [1] RSPM (R 4.4.0)\n rstudioapi       0.16.0   2024-03-24 [2] RSPM (R 4.4.0)\n scales           1.3.0    2023-11-28 [2] RSPM (R 4.4.0)\n sessioninfo      1.2.2    2021-12-06 [1] RSPM (R 4.4.0)\n shiny            1.9.1    2024-08-01 [2] RSPM (R 4.4.0)\n stringi          1.8.4    2024-05-06 [2] RSPM (R 4.4.0)\n stringr        * 1.5.1    2023-11-14 [2] RSPM (R 4.4.0)\n svUnit           1.0.6    2021-04-19 [1] RSPM (R 4.4.0)\n tensorA          0.36.2.1 2023-12-13 [2] RSPM (R 4.4.0)\n tibble         * 3.2.1    2023-03-20 [2] RSPM (R 4.4.0)\n tidybayes      * 3.0.7    2024-09-15 [1] RSPM (R 4.4.0)\n tidyr          * 1.3.1    2024-01-24 [2] RSPM (R 4.4.0)\n tidyselect       1.2.1    2024-03-11 [2] RSPM (R 4.4.0)\n tidyverse      * 2.0.0    2023-02-22 [2] RSPM (R 4.4.0)\n timechange       0.3.0    2024-01-18 [2] RSPM (R 4.4.0)\n tzdb             0.4.0    2023-05-12 [2] RSPM (R 4.4.0)\n urlchecker       1.0.1    2021-11-30 [1] RSPM (R 4.4.0)\n usethis          3.0.0    2024-07-29 [1] RSPM (R 4.4.0)\n utf8             1.2.4    2023-10-22 [2] RSPM (R 4.4.0)\n vctrs            0.6.5    2023-12-01 [2] RSPM (R 4.4.0)\n withr            3.0.1    2024-07-31 [2] RSPM (R 4.4.0)\n xfun             0.48     2024-10-03 [4] RSPM (R 4.4.1)\n xml2             1.3.6    2023-12-04 [2] RSPM (R 4.4.0)\n xtable           1.8-4    2019-04-21 [2] RSPM (R 4.4.0)\n yaml             2.3.10   2024-07-26 [2] RSPM (R 4.4.0)\n\n [1] /home/yoshidk6/R/x86_64-pc-linux-gnu-library/4.4\n [2] /usr/local/lib/R/site-library\n [3] /usr/lib/R/site-library\n [4] /usr/lib/R/library\n\n──────────────────────────────────────────────────────────────────────────────",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "notebook/binary/basic_workflow.html",
+    "href": "notebook/binary/basic_workflow.html",
+    "title": "1  Basic workflow",
+    "section": "",
+    "text": "1.1 Setup and load\nShow the code\nlibrary(tidyverse)\nlibrary(BayesERtools)\nlibrary(posterior)\nlibrary(here)\nlibrary(gt)\n\ntheme_set(theme_bw(base_size = 12))",
+    "crumbs": [
+      "ER for binary endpoint",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Basic workflow</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/binary/basic_workflow.html#data",
+    "href": "notebook/binary/basic_workflow.html#data",
+    "title": "1  Basic workflow",
+    "section": "1.2 Data",
+    "text": "1.2 Data\nWe will use an example simulated dataset included in BayesERtools package (d_sim_binom_cov) for the analysis. In this document we use hypoglycemia (hgly2) as an example AE. Another example AE is diarrhea (dr2), where you would see fairly flat ER curve.\n\n\nShow the code\ndata(d_sim_binom_cov)\n\nhead(d_sim_binom_cov) |&gt; \n  gt() |&gt;\n  fmt_number(n_sigfig = 3) |&gt;\n  fmt_integer(columns = c(\"ID\", \"AEFLAG\", \"Dose_mg\"))\n\nd_sim_binom_cov_2 &lt;-\n  d_sim_binom_cov |&gt;\n  mutate(\n    AUCss_1000 = AUCss / 1000, BAGE_10 = BAGE / 10,\n    BWT_10 = BWT / 10, BHBA1C_5 = BHBA1C / 5,\n    Dose = glue::glue(\"{Dose_mg} mg\")\n  )\n\n# Grade 2+ hypoglycemia\ndf_er_ae_hgly2 &lt;- d_sim_binom_cov_2 |&gt; filter(AETYPE == \"hgly2\")\n# Grade 2+ diarrhea\ndf_er_ae_dr2 &lt;- d_sim_binom_cov_2 |&gt; filter(AETYPE == \"dr2\")\n\n\n\n\n\n\n\n\nID\nAETYPE\nAEFLAG\nDose_mg\nAUCss\nCmaxss\nCminss\nBAGE\nBWT\nBGLUC\nBHBA1C\nRACE\nVISC\n\n\n\n\n1\nhgly2\n0\n200\n866\n64.3\n10.1\n84.4\n74.1\n4.65\n31.5\nWhite\nNo\n\n\n1\ndr2\n0\n200\n866\n64.3\n10.1\n84.4\n74.1\n4.65\n31.5\nWhite\nNo\n\n\n1\nae_covsel_test\n0\n200\n866\n64.3\n10.1\n84.4\n74.1\n4.65\n31.5\nWhite\nNo\n\n\n2\nhgly2\n0\n200\n1,710\n166\n27.3\n59.1\n88.2\n7.24\n41.9\nWhite\nNo\n\n\n2\ndr2\n0\n200\n1,710\n166\n27.3\n59.1\n88.2\n7.24\n41.9\nWhite\nNo\n\n\n2\nae_covsel_test\n1\n200\n1,710\n166\n27.3\n59.1\n88.2\n7.24\n41.9\nWhite\nNo\n\n\n\n\n\n\n\nWe also defines variables that is used in the analysis.\n\n\nShow the code\nvar_resp &lt;- \"AEFLAG\"\n# HbA1c & glucose are only relevant for hyperglycemia\nvar_cov_ae_hgly2 &lt;-\n  c(\"BAGE_10\", \"BWT_10\", \"RACE\", \"VISC\", \"BHBA1C_5\", \"BGLUC\")\nvar_cov_ae_dr2 &lt;-\n  c(\"BAGE_10\", \"BWT_10\", \"RACE\", \"VISC\")",
+    "crumbs": [
+      "ER for binary endpoint",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Basic workflow</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/binary/basic_workflow.html#basic-model-development",
+    "href": "notebook/binary/basic_workflow.html#basic-model-development",
+    "title": "1  Basic workflow",
+    "section": "1.3 Basic model development",
+    "text": "1.3 Basic model development\ndev_ermod_bin() function can be used to develop basic ER model. (Note that this function can also be used for models with covariates, if you already know the covariates to be included.)\n\n\nShow the code\nset.seed(1234)\nermod_bin &lt;- dev_ermod_bin(\n  data = df_er_ae_hgly2,\n  var_resp = var_resp,\n  var_exposure = \"AUCss_1000\"\n)\nermod_bin\n\n\n── Binary ER model ─────────────────────────────────────────────────────────────\nℹ Use `plot_er()` to visualize ER curve\n\n── Developed model ──\n\nstan_glm\n family:       binomial [logit]\n formula:      AEFLAG ~ AUCss_1000\n observations: 500\n predictors:   2\n------\n            Median MAD_SD\n(Intercept) -2.04   0.23 \nAUCss_1000   0.41   0.08 \n------\n* For help interpreting the printed output see ?print.stanreg\n* For info on the priors used see ?prior_summary.stanreg\n\n\nYou can compare the observed data with the model fit using plot_er_gof() function.\n\n\nShow the code\n# Using `*` instead of `+` so that scale can be\n# applied for both panels (main plot and boxplot)\nplot_er_gof(ermod_bin, var_group = \"Dose\", show_coef_exp = TRUE) *\n  xgxr::xgx_scale_x_log10()\n\n\n\n\n\n\n\n\nFigure 1.1\n\n\n\n\n\nMCMC samples can be obtained with as_draws() family of functions, such as as_draws_df().\n\n\nShow the code\ndraws_df &lt;- as_draws_df(ermod_bin)\n\ndraws_df_summary &lt;-\n  draws_df |&gt; \n  summarize_draws(mean, median, sd, ~quantile2(.x, probs = c(0.025, 0.975)), \n    default_convergence_measures()) \n\ndraws_df_summary |&gt;\n  gt() |&gt;\n  fmt_number(n_sigfig = 3)\n\n\n\n\n\n\n\n\nvariable\nmean\nmedian\nsd\nq2.5\nq97.5\nrhat\ness_bulk\ness_tail\n\n\n\n\n(Intercept)\n−2.05\n−2.04\n0.234\n−2.51\n−1.59\n1.00\n2,230\n1,870\n\n\nAUCss_1000\n0.412\n0.412\n0.0761\n0.265\n0.561\n1.00\n2,150\n2,140\n\n\n\n\n\n\n\nYou can predict the probability of events for a given exposure level with sim_er_new_exp() function.\nHere, the prediction is done for AUCss_1000 of 1, 1.5, 2, 3 (AUCss of 1000, 1500, 2000, 3000), and the output is the median and 95% CI of the predicted probability. You can set output_type = \"draw\" to get the raw posterior draws.\nThere are two types of outputs here, .epred and .linpred, as follows:\n\n.epred: Expected response on the probability scale (% of event)\n.linpred: Expected response on the linear predictor scale (logit scale, i.e. log-odds)\n\nSee ?BayesERtools::sim_er for more details.\n\n\nShow the code\nersim_med_qi &lt;- sim_er_new_exp(\n  ermod_bin,\n  exposure_to_sim_vec = c(1, 1.5, 2, 3),\n  output_type = \"median_qi\"\n)\nersim_med_qi |&gt; \n  gt() |&gt;\n  fmt_number(n_sigfig = 3) |&gt;\n  fmt_integer(columns = c(\".row\"))\n\n\n\n\n\n\n\n\nAUCss_1000\n.row\n.epred\n.epred.lower\n.epred.upper\n.linpred\n.linpred.lower\n.linpred.upper\n.width\n.point\n.interval\n\n\n\n\n1.00\n1\n0.164\n0.122\n0.213\n−1.63\n−1.97\n−1.31\n0.950\nmedian\nqi\n\n\n1.50\n2\n0.194\n0.153\n0.240\n−1.43\n−1.71\n−1.15\n0.950\nmedian\nqi\n\n\n2.00\n3\n0.228\n0.189\n0.270\n−1.22\n−1.46\n−0.993\n0.950\nmedian\nqi\n\n\n3.00\n4\n0.308\n0.266\n0.354\n−0.811\n−1.02\n−0.603\n0.950\nmedian\nqi",
+    "crumbs": [
+      "ER for binary endpoint",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Basic workflow</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/binary/basic_workflow.html#selection-of-exposure-metrics",
+    "href": "notebook/binary/basic_workflow.html#selection-of-exposure-metrics",
+    "title": "1  Basic workflow",
+    "section": "1.4 Selection of exposure metrics",
+    "text": "1.4 Selection of exposure metrics\ndev_ermod_bin_exp_sel() function can be used to select the best exposure metric(s) from a list of candidate exposure metrics. In this case, AUCss_1000 is selected as the best exposure metric, as it had the highest elpd (expected log predictive density).1\nNote that whether you want to select exposure metrics using the statistical criteria (e.g. elpd) or pre-specify the exposure metric(s) depends on the contexts. Should you choose to pre-specify the exposure metric(s), you can skip this step.\n\n\nShow the code\nset.seed(1234)\nermod_bin_exp_sel &lt;-\n  dev_ermod_bin_exp_sel(\n    # Use reduced N to make the example run faster\n    data = slice_sample(df_er_ae_hgly2, n = 100),\n    var_resp = var_resp,\n    var_exp_candidates = c(\"AUCss_1000\", \"Cmaxss\", \"Cminss\"),\n    # Use reduced iter to make the example run faster\n    iter = 1000\n  )\n\nℹ The exposure metric selected was: AUCss_1000\n\n\nShow the code\nermod_bin_exp_sel\n\n\n── Binary ER model & exposure metric selection ─────────────────────────────────\nℹ Use `plot_er_exp_sel()` for ER curve of all exposure metrics\nℹ Use `plot_er()` with `show_orig_data = TRUE` for ER curve of the selected exposure metric\n\n── Exposure metrics comparison ──\n\n           elpd_diff se_diff\nAUCss_1000  0.00      0.00  \nCminss     -0.76      0.70  \nCmaxss     -0.91      0.97  \n\n── Selected model ──\n\nstan_glm\n family:       binomial [logit]\n formula:      AEFLAG ~ AUCss_1000\n observations: 100\n predictors:   2\n------\n            Median MAD_SD\n(Intercept) -1.59   0.45 \nAUCss_1000   0.20   0.15 \n------\n* For help interpreting the printed output see ?print.stanreg\n* For info on the priors used see ?prior_summary.stanreg\n\n\nThe ER curve for all the evaluated exposure metrics can be generated with plot_er_exp_sel() function.\n\n\nShow the code\nplot_er_exp_sel(ermod_bin_exp_sel) +\n  xgxr::xgx_scale_x_log10()\n\n\n\n\n\n\n\n\nFigure 1.2",
+    "crumbs": [
+      "ER for binary endpoint",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Basic workflow</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/binary/basic_workflow.html#selection-of-covariates",
+    "href": "notebook/binary/basic_workflow.html#selection-of-covariates",
+    "title": "1  Basic workflow",
+    "section": "1.5 Selection of covariates",
+    "text": "1.5 Selection of covariates\ndev_ermod_bin_cov_sel() function can be used to select the best covariates from a list of candidate covariates. In this case, HbA1c (BHBA1C_5) and glucose (BGLUC) are selected, in addition to the exposure metric AUCss_1000 as predictors.\n\n\nShow the code\nset.seed(1234)\nermod_bin_cov_sel &lt;-\n  dev_ermod_bin_cov_sel(\n    data = df_er_ae_hgly2,\n    var_resp = var_resp,\n    var_exposure = \"AUCss_1000\",\n    var_cov_candidate = var_cov_ae_hgly2,\n    verbosity_level = 2\n  )\n\n\n\n\nShow the code\nermod_bin_cov_sel\n\n\n── Binary ER model & covariate selection ───────────────────────────────────────\nℹ Use `plot_submod_performance()` to see variable selection performance\nℹ Use `plot_er()` with `marginal = TRUE` to visualize marginal ER curve\n\n── Selected model ──\n\nstan_glm\n family:       binomial [logit]\n formula:      AEFLAG ~ AUCss_1000 + BHBA1C_5 + BGLUC\n observations: 500\n predictors:   4\n------\n            Median MAD_SD\n(Intercept) -11.00   1.12\nAUCss_1000    0.49   0.08\nBHBA1C_5      0.50   0.09\nBGLUC         0.74   0.13\n------\n* For help interpreting the printed output see ?print.stanreg\n* For info on the priors used see ?prior_summary.stanreg\n\n\nThe plot below shows that AUCss_1000, BHBA1C_5, and BGLUC contributes to improving the model performance, and after then the inclusion of no other covariates improves the model performance.\n\n\nShow the code\nplot_submod_performance(ermod_bin_cov_sel)\n\n\n\n\n\n\n\n\nFigure 1.3\n\n\n\n\n\nIn some cases, you might see a warning message like below. This indicates that approximation of leave-one-out cross-validation performance (PSIS-LOO) is not reliable.\nWarning: In the recalculation of the reference model's PSIS-LOO CV weights for \nthe performance evaluation, ... Pareto k-values are in the interval...`. \nAlternatively to the default cv_method = \"LOO\", you can use k-fold cross-validation by settingcv_method = \"kfold\" in dev_ermod_bin_cov_sel() function. This can take longer time to run, but it can be more reliable in the cases where LOO is not reliable. You can also set validate_search = TRUE to let the function perform the variable selection for each fold separately, rather than using the selected variable sequence from the full dataset evaluation.\n\n\nShow the code\nset.seed(1234)\nermod_bin_cov_sel_kfold &lt;-\n  dev_ermod_bin_cov_sel(\n    data = df_er_ae_hgly2,\n    var_resp = var_resp,\n    var_exposure = \"AUCss_1000\",\n    var_cov_candidate = var_cov_ae_hgly2,\n    cv_method = \"kfold\",\n    validate_search = TRUE,\n    verbosity_level = 2\n  )\n\n\nAdded bonus of using k-fold cv is that you can visualize how often each variable is selected in the model. Here, as you can see (and as expected), HbA1c (BHBA1C_5) and glucose (BGLUC) are highly related and they are almost interchangeably selected in the 2nd and 3rd positions. Note that the function enforces the exposure metric to be included first in the model.\n\n\nShow the code\nermod_bin_cov_sel_kfold\n\n\n── Binary ER model & covariate selection ───────────────────────────────────────\nℹ Use `plot_submod_performance()` to see variable selection performance\nℹ Use `plot_var_ranking()` to see variable ranking\nℹ Use `plot_er()` with `marginal = TRUE` to visualize marginal ER curve\n\n── Selected model ──\n\nstan_glm\n family:       binomial [logit]\n formula:      AEFLAG ~ AUCss_1000 + BHBA1C_5 + BGLUC\n observations: 500\n predictors:   4\n------\n            Median MAD_SD\n(Intercept) -10.97   1.20\nAUCss_1000    0.49   0.09\nBHBA1C_5      0.50   0.09\nBGLUC         0.73   0.14\n------\n* For help interpreting the printed output see ?print.stanreg\n* For info on the priors used see ?prior_summary.stanreg\n\n\nShow the code\nplot_submod_performance(ermod_bin_cov_sel_kfold)\nplot_var_ranking(ermod_bin_cov_sel_kfold)\n\n\n\n\n\n\n\n\nFigure 1.4\n\n\n\n\n\n\n\n\n\n\n\nFigure 1.5",
+    "crumbs": [
+      "ER for binary endpoint",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Basic workflow</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/binary/basic_workflow.html#marginal-er-prediction",
+    "href": "notebook/binary/basic_workflow.html#marginal-er-prediction",
+    "title": "1  Basic workflow",
+    "section": "1.6 Marginal ER prediction",
+    "text": "1.6 Marginal ER prediction\nYou can simulate the marginal ER relationship, i.e. ER relationships for “marginalized”, or averaged, response for the population of interest, using sim_er_new_exp_marg() function. By default, the covariate distribution is from the original data, but you can also supply other distribution with data_cov argument.\n\n\nShow the code\nersim_new_exp_marg_med_qi &lt;- sim_er_new_exp_marg(\n  ermod_bin_cov_sel,\n  exposure_to_sim_vec = c(2:6),\n  output_type = \"median_qi\"\n)\nersim_new_exp_marg_med_qi\n\nplot_er(ersim_new_exp_marg_med_qi, marginal = TRUE)\n\n# A tibble: 5 × 14\n  .id_exposure AUCss_1000 .epred .epred.lower .epred.upper .linpred\n                                     \n1            1          2  0.226        0.190        0.263  -1.50  \n2            2          3  0.306        0.266        0.348  -1.01  \n3            3          4  0.399        0.338        0.457  -0.518 \n4            4          5  0.496        0.412        0.583  -0.0288\n5            5          6  0.595        0.482        0.701   0.470 \n# ℹ 8 more variables: .linpred.lower , .linpred.upper ,\n#   .prediction , .prediction.lower , .prediction.upper ,\n#   .width , .point , .interval \n\n\n\n\n\n\n\n\nFigure 1.6",
+    "crumbs": [
+      "ER for binary endpoint",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Basic workflow</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/binary/basic_workflow.html#evaluation-of-covariate-effects",
+    "href": "notebook/binary/basic_workflow.html#evaluation-of-covariate-effects",
+    "title": "1  Basic workflow",
+    "section": "1.7 Evaluation of covariate effects",
+    "text": "1.7 Evaluation of covariate effects\nYou can visualize the effect of the covariates with sim_coveff() and plot_coveff() functions. You can see that all three predictors have fairly strong effects on the odds ratio of hypoglycemia.\n\n\nShow the code\ncoveffsim &lt;- sim_coveff(ermod_bin_cov_sel)\nplot_coveff(coveffsim)\nprint_coveff(coveffsim)\n\n# A tibble: 9 × 5\n  var_label  value_label value_annot `Odds ratio` `95% CI`        \n                                         \n1 AUCss_1000 0.868       5th         0.514        \"[0.427, 0.613]\"\n2 AUCss_1000 2.21        median      1            \" \"             \n3 AUCss_1000 5.30        95th        4.60         \"[3.08, 7.04]\"  \n4 BHBA1C_5   5.75        5th         0.330        \"[0.237, 0.455]\"\n5 BHBA1C_5   7.97        median      1            \" \"             \n6 BHBA1C_5   10.4        95th        3.44         \"[2.41, 4.97]\"  \n7 BGLUC      4.43        5th         0.293        \"[0.198, 0.420]\"\n8 BGLUC      6.10        median      1            \" \"             \n9 BGLUC      7.59        95th        3.00         \"[2.17, 4.25]\"  \n\n\n\n\n\n\n\n\nFigure 1.7",
+    "crumbs": [
+      "ER for binary endpoint",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Basic workflow</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/binary/basic_workflow.html#footnotes",
+    "href": "notebook/binary/basic_workflow.html#footnotes",
+    "title": "1  Basic workflow",
+    "section": "",
+    "text": "Some references about elpd: , What is the interpretation of ELPD / elpd_loo / elpd_diff?↩︎",
+    "crumbs": [
+      "ER for binary endpoint",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Basic workflow</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/binary/simulation.html",
+    "href": "notebook/binary/simulation.html",
+    "title": "2  Simulation",
+    "section": "",
+    "text": "2.1 Load data\nShow the code\ndata(d_sim_binom_cov)\n\nd_sim_binom_cov_2 &lt;-\n  d_sim_binom_cov |&gt;\n  mutate(\n    AUCss_1000 = AUCss / 1000, BAGE_10 = BAGE / 10,\n    BWT_10 = BWT / 10, BHBA1C_5 = BHBA1C / 5\n  )\n\n# Grade 2+ hypoglycemia\ndf_er_ae_hgly2 &lt;- d_sim_binom_cov_2 |&gt; filter(AETYPE == \"hgly2\")\n\nvar_resp &lt;- \"AEFLAG\"\nvar_exposure &lt;- \"AUCss_1000\"",
+    "crumbs": [
+      "ER for binary endpoint",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Simulation</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/binary/simulation.html#fit-model",
+    "href": "notebook/binary/simulation.html#fit-model",
+    "title": "2  Simulation",
+    "section": "2.2 Fit model",
+    "text": "2.2 Fit model\n\n\nShow the code\nset.seed(1234)\nermod_bin_hgly2 &lt;- dev_ermod_bin(\n  data = df_er_ae_hgly2,\n  var_resp = var_resp,\n  var_exposure = var_exposure\n)\nermod_bin_hgly2\n\n\n── Binary ER model ─────────────────────────────────────────────────────────────\nℹ Use `plot_er()` to visualize ER curve\n\n── Developed model ──\n\nstan_glm\n family:       binomial [logit]\n formula:      AEFLAG ~ AUCss_1000\n observations: 500\n predictors:   2\n------\n            Median MAD_SD\n(Intercept) -2.04   0.23 \nAUCss_1000   0.41   0.08 \n------\n* For help interpreting the printed output see ?print.stanreg\n* For info on the priors used see ?prior_summary.stanreg",
+    "crumbs": [
+      "ER for binary endpoint",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Simulation</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/binary/simulation.html#prediction-at-specific-conc",
+    "href": "notebook/binary/simulation.html#prediction-at-specific-conc",
+    "title": "2  Simulation",
+    "section": "2.3 Prediction at specific conc",
+    "text": "2.3 Prediction at specific conc\n\n\nShow the code\nnew_conc_vec &lt;- c(1, 3, 9)\n\n# Sim at specific conc\nd_sim_new_conc &lt;-\n  sim_er_new_exp(ermod_bin_hgly2,\n    exposure_to_sim_vec  = new_conc_vec,\n    output_type = c(\"median_qi\"))\n\nd_sim_new_conc |&gt;\n  select(-starts_with(\".linpred\"), -c(.row, .width, .point, .interval)) |&gt;\n  gt() |&gt;\n  fmt_number(decimals = 2) |&gt;\n  tab_header(\n    title = md(\"Predicted probability of events at specific concentrations\")\n  )\n\n\n\n\n\n\n\n\nPredicted probability of events at specific concentrations\n\n\nAUCss_1000\n.epred\n.epred.lower\n.epred.upper\n\n\n\n\n1.00\n0.16\n0.12\n0.21\n\n\n3.00\n0.31\n0.27\n0.35\n\n\n9.00\n0.84\n0.67\n0.93\n\n\n\n\n\n\n\nShow the code\n# Sim to draw ER curve\nd_sim_curve &lt;-\n  sim_er_curve(ermod_bin_hgly2, output_type = c(\"median_qi\"))\n\nd_sim_curve |&gt;\n  ggplot(aes(x = AUCss_1000, y = .epred)) +\n  # Emax model curve\n  geom_ribbon(aes(y = .epred, ymin = .epred.lower, ymax = .epred.upper),\n    alpha = 0.3, fill = \"deepskyblue\") +\n  geom_line(aes(y = .epred), color = \"deepskyblue\") +\n  # Prediction at the specified doses\n  geom_point(data = d_sim_new_conc, aes(y = .epred), color = \"tomato\", size = 3) +\n  geom_errorbar(data = d_sim_new_conc,\n    aes(y = .epred, ymin = .epred.lower, ymax = .epred.upper),\n    width = 0.03, color = \"tomato\") +\n  coord_cartesian(ylim = c(0, 1)) +\n  scale_y_continuous(\n    breaks = c(0, .5, 1),\n    labels = scales::percent\n  ) +\n  labs(\n    x = \"AUC~ss~ / 1000\", y = \"Probability of event\",\n    title = \"ER model predictions at new exposure levels\",\n    caption = \"Area: 95% credible interval\"\n  ) +\n  theme(axis.title.x = ggtext::element_markdown()) +\n  xgxr::xgx_scale_x_log10()\n\n\n\n\n\n\n\n\nFigure 2.1",
+    "crumbs": [
+      "ER for binary endpoint",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Simulation</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/binary/simulation.html#prediction-for-new-dose",
+    "href": "notebook/binary/simulation.html#prediction-for-new-dose",
+    "title": "2  Simulation",
+    "section": "2.4 Prediction for new dose",
+    "text": "2.4 Prediction for new dose\n\n2.4.1 Prep PK data for simulation\n\n\nShow the code\nset.seed(1234)\n\nd_new_dose_pk &lt;- \n  tibble(Dose_mg = rep(c(100, 200, 400), each = 30)) |&gt; \n  mutate(CL = rlnorm(n(), meanlog = log(100), sdlog = 0.3),\n    AUCss_1000 = Dose_mg / CL,\n    Dose = glue::glue(\"{Dose_mg} mg\"))\n\nd_median_auc &lt;- \n  d_new_dose_pk |&gt; \n  group_by(Dose) |&gt; \n  summarize(AUCss_1000 = median(AUCss_1000))\n\nggplot(d_new_dose_pk, aes(x = AUCss_1000, fill = Dose)) +\n  geom_histogram(position = \"identity\", alpha = 0.5) +\n  labs(\n    x = \"AUC~ss~ / 1000\", y = \"Count\",\n    title = \"Distribution of AUC~ss~ for new doses\"\n  ) +\n  theme(plot.title = ggtext::element_markdown(),\n    axis.title.x = ggtext::element_markdown()) +\n  xgxr::xgx_scale_x_log10()\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\n\n\n\n\n\n\nFigure 2.2\n\n\n\n\n\n\n\n2.4.2 Sim and plot\n\n\nShow the code\nd_sim_new_dose_raw &lt;- \n  sim_er(ermod_bin_hgly2,\n    newdata = d_new_dose_pk)\n\nd_sim_new_dose_per_dose &lt;- \n  d_sim_new_dose_raw |&gt; \n  # Calc per-dose summary probability for each MCMC draws\n  ungroup() |&gt; \n  summarize(prob = mean(.epred), .by = c(Dose, Dose_mg, .draw)) |&gt; \n  # Summarize across MCMC draws\n  group_by(Dose, Dose_mg) |&gt;\n  median_qi() |&gt; \n  ungroup() |&gt; \n  # Add median AUCss\n  left_join(d_median_auc, by = \"Dose\")\n\n\nd_sim_curve |&gt;\n  ggplot(aes(x = AUCss_1000, y = .epred)) +\n  # Emax model curve\n  geom_ribbon(aes(y = .epred, ymin = .epred.lower, ymax = .epred.upper),\n    alpha = 0.3, fill = \"grey\") +\n  geom_line(aes(y = .epred), color = \"grey\") +\n  # Prediction at the specified doses\n  geom_point(data = d_sim_new_dose_per_dose, aes(y = prob, color = Dose), size = 3) +\n  geom_errorbar(data = d_sim_new_dose_per_dose,\n    aes(y = prob, ymin = .lower, ymax = .upper, color = Dose), width = 0.03) +\n  geom_boxplot(data = d_new_dose_pk, \n    aes(x = AUCss_1000, y = -0.1, fill = Dose, color = Dose), width = 0.1, alpha = 0.5,\n    inherit.aes = FALSE) +\n  geom_hline(yintercept = 0, linetype = \"solid\", linewidth = 0.2) +\n  coord_cartesian(ylim = c(-0.15, 1)) +\n  scale_y_continuous(\n    breaks = c(0, .5, 1),\n    labels = scales::percent\n  ) +\n  labs(\n    x = \"AUC~ss~ / 1000\", y = \"Probability of event\",\n    title = \"ER model predictions at new dose levels\",\n    caption = \"Area: 95% credible interval\n    Boxplot: Observed exposure levels\n    Symbols: Predicted mean probability for each dose and 95% CI\"\n  )  +\n  guides(\n    fill = guide_legend(reverse = TRUE),\n    color = guide_legend(reverse = TRUE)\n  ) +\n  theme(axis.title.x = ggtext::element_markdown()) +\n  xgxr::xgx_scale_x_log10()\n\n\n\n\n\n\n\n\nFigure 2.3",
+    "crumbs": [
+      "ER for binary endpoint",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Simulation</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/binary/simulation.html#pk-boxplot-on-er-plot",
+    "href": "notebook/binary/simulation.html#pk-boxplot-on-er-plot",
+    "title": "2  Simulation",
+    "section": "2.5 PK boxplot on ER plot",
+    "text": "2.5 PK boxplot on ER plot\nWhen you use plot_er_gof() function, you can only add boxplot for the data that you used for the model fit.\nSee below the example of adding exposure boxplot to any ER plot.\n\n\nShow the code\nplot_er(ermod_bin_hgly2, show_orig_data = TRUE) +\n  geom_boxplot(data = d_new_dose_pk, \n    aes(x = AUCss_1000, y = -0.2, fill = Dose, color = Dose), width = 0.1, alpha = 0.5,\n    inherit.aes = FALSE) +\n  geom_hline(yintercept = -0.1, linetype = \"solid\", linewidth = 0.2) + \n  coord_cartesian(ylim = c(-0.25, 1)) +\n  xgxr::xgx_scale_x_log10() +\n  guides(\n    fill = guide_legend(reverse = TRUE),\n    color = guide_legend(reverse = TRUE)\n  )\n\n\n\n\n\n\n\n\nFigure 2.4",
+    "crumbs": [
+      "ER for binary endpoint",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Simulation</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/binary/model_diagnostics.html",
+    "href": "notebook/binary/model_diagnostics.html",
+    "title": "3  Model diagnostics and performance evaluation",
+    "section": "",
+    "text": "3.1 Load data\nShow the code\ndata(d_sim_binom_cov)\n\nd_sim_binom_cov_2 &lt;-\n  d_sim_binom_cov |&gt;\n  mutate(\n    AUCss_1000 = AUCss / 1000, BAGE_10 = BAGE / 10,\n    BWT_10 = BWT / 10, BHBA1C_5 = BHBA1C / 5,\n    Dose = glue::glue(\"{Dose_mg} mg\")\n  )\n\n# Grade 2+ hypoglycemia\ndf_er_ae_hgly2 &lt;- d_sim_binom_cov_2 |&gt; filter(AETYPE == \"hgly2\")\n# Grade 2+ diarrhea\ndf_er_ae_dr2 &lt;- d_sim_binom_cov_2 |&gt; filter(AETYPE == \"dr2\")\n\nvar_resp &lt;- \"AEFLAG\"\nvar_exposure &lt;- \"AUCss_1000\"",
+    "crumbs": [
+      "ER for binary endpoint",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Model diagnostics and performance evaluation</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/binary/model_diagnostics.html#fit-models",
+    "href": "notebook/binary/model_diagnostics.html#fit-models",
+    "title": "3  Model diagnostics and performance evaluation",
+    "section": "3.2 Fit models",
+    "text": "3.2 Fit models\nThere is clear trend of E-R for hyperglycemia (95% CI doesn’t include 0) while the evidence of E-R is not seen for diarrhea (95% CI includes 0).\n\nHyperglycemiaDiarrhea\n\n\n\n\nShow the code\nset.seed(1234)\nermod_bin_hgly2 &lt;- dev_ermod_bin(\n  data = df_er_ae_hgly2,\n  var_resp = var_resp,\n  var_exposure = var_exposure\n)\nplot_er_gof(ermod_bin_hgly2, var_group = \"Dose\", show_coef_exp = TRUE)\n\n\n\n\n\n\n\n\nFigure 3.1\n\n\n\n\n\n\n\n\n\nShow the code\nset.seed(1234)\nermod_bin_dr2 &lt;- dev_ermod_bin(\n  data = df_er_ae_dr2,\n  var_resp = var_resp,\n  var_exposure = var_exposure\n)\nplot_er_gof(ermod_bin_dr2, var_group = \"Dose\", show_coef_exp = TRUE)\n\n\n\n\n\n\n\n\nFigure 3.2",
+    "crumbs": [
+      "ER for binary endpoint",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Model diagnostics and performance evaluation</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/binary/model_diagnostics.html#parameter-summary",
+    "href": "notebook/binary/model_diagnostics.html#parameter-summary",
+    "title": "3  Model diagnostics and performance evaluation",
+    "section": "3.3 Parameter summary",
+    "text": "3.3 Parameter summary\nYou can see that AUCss effect is much stronger for hyperglycemia than diarrhea.\n\nHyperglycemiaDiarrhea\n\n\n\n\nShow the code\nermod_bin_hgly2 |&gt; \n  summarize_draws(mean, median, sd, ~quantile2(.x, probs = c(0.025, 0.975)),\n    default_convergence_measures()) |&gt;\n  gt() |&gt;\n  fmt_number(n_sigfig = 3)\n\n\n\n\n\n\n\n\nvariable\nmean\nmedian\nsd\nq2.5\nq97.5\nrhat\ness_bulk\ness_tail\n\n\n\n\n(Intercept)\n−2.05\n−2.04\n0.234\n−2.51\n−1.59\n1.00\n2,230\n1,870\n\n\nAUCss_1000\n0.412\n0.412\n0.0761\n0.265\n0.561\n1.00\n2,150\n2,140\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nermod_bin_dr2 |&gt; \n  summarize_draws(mean, median, sd, ~quantile2(.x, probs = c(0.025, 0.975)),\n    default_convergence_measures()) |&gt;\n  gt() |&gt;\n  fmt_number(n_sigfig = 3)\n\n\n\n\n\n\n\n\nvariable\nmean\nmedian\nsd\nq2.5\nq97.5\nrhat\ness_bulk\ness_tail\n\n\n\n\n(Intercept)\n−2.15\n−2.15\n0.255\n−2.65\n−1.67\n1.00\n2,830\n2,320\n\n\nAUCss_1000\n0.135\n0.134\n0.0832\n−0.0293\n0.300\n1.00\n2,810\n2,570",
+    "crumbs": [
+      "ER for binary endpoint",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Model diagnostics and performance evaluation</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/binary/model_diagnostics.html#predictive-performance-evaluation",
+    "href": "notebook/binary/model_diagnostics.html#predictive-performance-evaluation",
+    "title": "3  Model diagnostics and performance evaluation",
+    "section": "3.4 Predictive performance evaluation",
+    "text": "3.4 Predictive performance evaluation\nWe can calculate predictive performance metrics such as AUC-ROC with eval_ermod() function. Options for evaluation data are:\n\neval_type = \"training\": training data\neval_type = \"test\": test data (supply to newdata argument)\neval_type = \"kfold\": k-fold cross-validation\n\n\n\nShow the code\nmetrics_hgly2_train &lt;- eval_ermod(ermod_bin_hgly2, eval_type = \"training\")\nmetrics_hgly2_kfold &lt;- eval_ermod(ermod_bin_hgly2, eval_type = \"kfold\")\n\n\n\n\nShow the code\nmetrics_hgly2_train |&gt;\n  gt() |&gt;\n  fmt_number(n_sigfig = 3)\n\n\n\n\n\n\n\n\n.metric\n.estimator\n.estimate\n\n\n\n\nroc_auc\nbinary\n0.650\n\n\nmn_log_loss\nbinary\n0.555\n\n\n\n\n\n\n\nShow the code\nmetrics_hgly2_kfold |&gt;\n  gt() |&gt;\n  fmt_number(n_sigfig = 3) |&gt;\n  fmt_integer(columns = c(\"fold_id\"))\n\n\n\n\n\n\n\n\nfold_id\n.metric\n.estimator\n.estimate\n\n\n\n\n1\nroc_auc\nbinary\n0.631\n\n\n2\nroc_auc\nbinary\n0.607\n\n\n3\nroc_auc\nbinary\n0.684\n\n\n4\nroc_auc\nbinary\n0.670\n\n\n5\nroc_auc\nbinary\n0.663\n\n\n1\nmn_log_loss\nbinary\n0.602\n\n\n2\nmn_log_loss\nbinary\n0.572\n\n\n3\nmn_log_loss\nbinary\n0.534\n\n\n4\nmn_log_loss\nbinary\n0.581\n\n\n5\nmn_log_loss\nbinary\n0.500",
+    "crumbs": [
+      "ER for binary endpoint",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Model diagnostics and performance evaluation</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/binary/model_diagnostics.html#probability-of-direction",
+    "href": "notebook/binary/model_diagnostics.html#probability-of-direction",
+    "title": "3  Model diagnostics and performance evaluation",
+    "section": "3.5 Probability of direction",
+    "text": "3.5 Probability of direction\nAlthough credible intervals are preferred, there is a concept called the probability of direction which is somewhat similar to the p-value, in which the probability of the effect being far from NULL (usually set to 0) is calculated.\nSee ?p_direction and vignette for detail.\n\nHyperglycemiaDiarrhea\n\n\nThe exposure effect is so clear that none of the MCMC sample is below 0, leading to a “p-value” of 0. Since there were 4000 MCMC samples (nrow(as_draws_df(ermod_bin_hgly2))), it is expected that the p-value is less than 1/4000 * 2, i.e. &lt; 0.0005 (multiplication with 2 corresponds to two-sided test).\nkernel\n\n\nShow the code\np_direction(ermod_bin_hgly2, as_p = TRUE, as_num = TRUE)\n\n[1] 0\n\n\nShow the code\n1 / length(as_draws(ermod_bin_hgly2)$AUCss_1000) * 2\n\n[1] 5e-04\n\n\n\n\n\n\nShow the code\np_direction(ermod_bin_dr2, as_p = TRUE, as_num = TRUE)\n\n[1] 0.108\n\n\nShow the code\n# Below is a direct calculation of this value\nmean(as_draws(ermod_bin_dr2)$AUCss_1000 &lt; 0) * 2\n\n[1] 0.108",
+    "crumbs": [
+      "ER for binary endpoint",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Model diagnostics and performance evaluation</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/binary/model_diagnostics.html#diagnostic-plots",
+    "href": "notebook/binary/model_diagnostics.html#diagnostic-plots",
+    "title": "3  Model diagnostics and performance evaluation",
+    "section": "3.6 Diagnostic plots",
+    "text": "3.6 Diagnostic plots\nWe use the bayesplot package (Cheat sheet) to visualize the model fit.\n\n3.6.1 Convergence\nGood fit results in:\n\nParameter distributions from MCMC chains should overlap\nTrace plots should not show any trend\nRhat close to 1 (e.g. &lt; 1.1)\n\n\n\nShow the code\nd_draws_bin_hgly2 &lt;- as_draws_df(ermod_bin_hgly2)\nmcmc_dens_overlay(d_draws_bin_hgly2)\nmcmc_trace(d_draws_bin_hgly2)\nmcmc_rhat(rhat(ermod_bin_hgly2$mod$stanfit))\n\n\n\n\n\n\n\n\nFigure 3.3\n\n\n\n\n\n\n\n\n\n\n\nFigure 3.4\n\n\n\n\n\n\n\n\n\n\n\nFigure 3.5\n\n\n\n\n\n\n\n3.6.2 Parameter estimates distribution\n\nmcmc_histParameter covariance\n\n\n\n\nShow the code\nmcmc_hist(d_draws_bin_hgly2)\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\n\n\n\n\n\n\nFigure 3.6\n\n\n\n\n\n\n\n\n\nShow the code\nmcmc_pairs(d_draws_bin_hgly2,\n  off_diag_args = list(size = 0.5, alpha = 0.25))\n\n\n\n\n\n\n\n\nFigure 3.7",
+    "crumbs": [
+      "ER for binary endpoint",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Model diagnostics and performance evaluation</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/binary/mod_structure_comparison.html",
+    "href": "notebook/binary/mod_structure_comparison.html",
+    "title": "4  Model comparison between linear and Emax",
+    "section": "",
+    "text": "4.1 Setup and load\nShow the code\nlibrary(tidyverse)\nlibrary(BayesERtools)\nlibrary(loo)\nlibrary(here)\nlibrary(gt)\n\ntheme_set(theme_bw(base_size = 12))",
+    "crumbs": [
+      "ER for binary endpoint",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Model comparison between linear and E~max~</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/binary/mod_structure_comparison.html#load-data",
+    "href": "notebook/binary/mod_structure_comparison.html#load-data",
+    "title": "4  Model comparison between linear and Emax",
+    "section": "4.2 Load data",
+    "text": "4.2 Load data\n\n\nShow the code\ndata(d_sim_binom_cov)\n\nd_sim_binom_cov_2 &lt;-\n  d_sim_binom_cov |&gt;\n  mutate(\n    AUCss_1000 = AUCss / 1000, BAGE_10 = BAGE / 10,\n    BWT_10 = BWT / 10, BHBA1C_5 = BHBA1C / 5,\n    Dose = glue::glue(\"{Dose_mg} mg\")\n  )\n\n# Grade 2+ hypoglycemia\ndf_er_ae_hgly2 &lt;- d_sim_binom_cov_2 |&gt; filter(AETYPE == \"hgly2\")\n\nvar_resp &lt;- \"AEFLAG\"\nvar_exposure &lt;- \"AUCss_1000\"",
+    "crumbs": [
+      "ER for binary endpoint",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Model comparison between linear and E~max~</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/binary/mod_structure_comparison.html#fit-model",
+    "href": "notebook/binary/mod_structure_comparison.html#fit-model",
+    "title": "4  Model comparison between linear and Emax",
+    "section": "4.3 Fit model",
+    "text": "4.3 Fit model\n\nLinear logistic regressionEmax logistic regression\n\n\n\n\nShow the code\nset.seed(1234)\nermod_bin_hgly2 &lt;- dev_ermod_bin(\n  data = df_er_ae_hgly2,\n  var_resp = var_resp,\n  var_exposure = var_exposure\n)\nermod_bin_hgly2\n\n\n── Binary ER model ─────────────────────────────────────────────────────────────\nℹ Use `plot_er()` to visualize ER curve\n\n── Developed model ──\n\nstan_glm\n family:       binomial [logit]\n formula:      AEFLAG ~ AUCss_1000\n observations: 500\n predictors:   2\n------\n            Median MAD_SD\n(Intercept) -2.04   0.23 \nAUCss_1000   0.41   0.08 \n------\n* For help interpreting the printed output see ?print.stanreg\n* For info on the priors used see ?prior_summary.stanreg\n\n\nShow the code\nplot_er_gof(ermod_bin_hgly2, var_group = \"Dose\")\n\n\n\n\n\n\n\n\nFigure 4.1\n\n\n\n\n\n\n\n\n\nShow the code\nset.seed(1234)\nermod_bin_emax_hgly2 &lt;- dev_ermod_bin_emax(\n  data = df_er_ae_hgly2,\n  var_resp = var_resp,\n  var_exposure = var_exposure\n)\nermod_bin_emax_hgly2\n\n\n── Binary Emax model ───────────────────────────────────────────────────────────\nℹ Use `plot_er()` to visualize ER curve\n\n── Developed model ──\n\n---- Binary Emax model fit with rstanemax ----\n       mean se_mean   sd  2.5%   25%   50%   75% 97.5%   n_eff Rhat\nemax   4.05    0.02 0.91  2.36  3.41  4.02  4.67  5.88 1563.98    1\ne0    -2.39    0.01 0.44 -3.40 -2.62 -2.33 -2.09 -1.68 1033.08    1\nec50   4.77    0.06 2.17  1.44  3.19  4.47  6.06  9.70 1325.28    1\ngamma  1.00     NaN 0.00  1.00  1.00  1.00  1.00  1.00     NaN  NaN\n* Use `extract_stanfit()` function to extract raw stanfit object\n* Use `extract_param()` function to extract posterior draws of key parameters\n* Use `plot()` function to visualize model fit\n* Use `extract_obs_mod_frame()` function to extract raw data \n  in a processed format (useful for plotting)\n\n\nShow the code\nplot_er_gof(ermod_bin_emax_hgly2, var_group = \"Dose\")\n\n\n\n\n\n\n\n\nFigure 4.2",
+    "crumbs": [
+      "ER for binary endpoint",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Model comparison between linear and E~max~</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/binary/mod_structure_comparison.html#model-comparison",
+    "href": "notebook/binary/mod_structure_comparison.html#model-comparison",
+    "title": "4  Model comparison between linear and Emax",
+    "section": "4.4 Model comparison",
+    "text": "4.4 Model comparison\nYou can perform model comparison based on expected log pointwise predictive density (ELPD). ELPD is the Bayesian leave-one-out estimate (see ?loo-glossary).\nHigher ELPD is better, therefore linear logistic regression model appears better than Emax model. However, elpd_diff is small and similar to se_diff (see here), therefore we can consider the difference to be not meaningful.\n\n\nShow the code\nloo_bin_emax_hgly2 &lt;- loo(ermod_bin_emax_hgly2)\nloo_bin_hgly2 &lt;- loo(ermod_bin_hgly2)\n\nloo_compare(list(bin_emax_hgly2 = loo_bin_emax_hgly2, bin_hgly2 = loo_bin_hgly2))\n\n               elpd_diff se_diff\nbin_hgly2       0.0       0.0   \nbin_emax_hgly2 -1.7       1.7",
+    "crumbs": [
+      "ER for binary endpoint",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Model comparison between linear and E~max~</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/binary/coveff_customize.html",
+    "href": "notebook/binary/coveff_customize.html",
+    "title": "5  Customize covariate effect plots",
+    "section": "",
+    "text": "5.1 Setup and load\nShow the code\nlibrary(tidyverse)\nlibrary(BayesERtools)\nlibrary(here)\nlibrary(gt)\n\ntheme_set(theme_bw(base_size = 12))",
+    "crumbs": [
+      "ER for binary endpoint",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Customize covariate effect plots</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/binary/coveff_customize.html#load-data",
+    "href": "notebook/binary/coveff_customize.html#load-data",
+    "title": "5  Customize covariate effect plots",
+    "section": "5.2 Load data",
+    "text": "5.2 Load data\n\n\nShow the code\ndata(d_sim_binom_cov)\n\nd_sim_binom_cov_2 &lt;-\n  d_sim_binom_cov |&gt;\n  mutate(\n    AUCss_1000 = AUCss / 1000, BAGE_10 = BAGE / 10,\n    BWT_10 = BWT / 10, BHBA1C_5 = BHBA1C / 5\n  )\n\n# Grade 2+ hypoglycemia\ndf_er_ae_hgly2 &lt;- d_sim_binom_cov_2 |&gt; filter(AETYPE == \"hgly2\")\n\nvar_resp &lt;- \"AEFLAG\"\nvar_exposure &lt;- \"AUCss_1000\"",
+    "crumbs": [
+      "ER for binary endpoint",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Customize covariate effect plots</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/binary/coveff_customize.html#fit-model",
+    "href": "notebook/binary/coveff_customize.html#fit-model",
+    "title": "5  Customize covariate effect plots",
+    "section": "5.3 Fit model",
+    "text": "5.3 Fit model\n\n\nShow the code\nset.seed(1234)\nermod_bin_hgly2_cov &lt;- dev_ermod_bin(\n  data = df_er_ae_hgly2,\n  var_resp = var_resp,\n  var_cov = c(\"RACE\", \"BGLUC\", \"BHBA1C_5\"),\n  var_exposure = var_exposure\n)",
+    "crumbs": [
+      "ER for binary endpoint",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Customize covariate effect plots</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/binary/coveff_customize.html#evaluation-of-covariate-effects",
+    "href": "notebook/binary/coveff_customize.html#evaluation-of-covariate-effects",
+    "title": "5  Customize covariate effect plots",
+    "section": "5.4 Evaluation of covariate effects",
+    "text": "5.4 Evaluation of covariate effects\nBy default, the covariate effect plots are generated for 5th and 95th percentiles of the continuous covariates and for each level of the categorical covariates (in the order of frequency in data).\n\n\nShow the code\ncoveffsim &lt;- sim_coveff(ermod_bin_hgly2_cov)\nplot_coveff(coveffsim)\n\n\n\n\n\n\n\n\nFigure 5.1\n\n\n\n\n\nYou can modify the width of the quantile interval using the qi_width_cov argument.\n\n\nShow the code\ncoveffsim_qicov_08 &lt;- sim_coveff(ermod_bin_hgly2_cov, qi_width_cov = 0.8)\nplot_coveff(coveffsim_qicov_08)\n\n\n\n\n\n\n\n\nFigure 5.2",
+    "crumbs": [
+      "ER for binary endpoint",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Customize covariate effect plots</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/binary/coveff_customize.html#further-customization",
+    "href": "notebook/binary/coveff_customize.html#further-customization",
+    "title": "5  Customize covariate effect plots",
+    "section": "5.5 Further customization",
+    "text": "5.5 Further customization\nThese covariate effect simulation (and plotting) can be customized by providing specifications to sim_coveff() function.\nFirst, we build the specification for the covariate effects with build_spec_coveff() function.\n\n\nShow the code\nspec_coveff &lt;- build_spec_coveff(ermod_bin_hgly2_cov)\nspec_coveff |&gt; \n  gt() |&gt; \n  fmt_number(n_sigfig = 3)|&gt;\n  fmt_integer(columns = c(\"value_order\", \"var_order\"))\n\n\n\n\n\n\n\n\nvar_order\nvar_name\nvar_label\nvalue_order\nvalue_annot\nvalue_label\nvalue_cont\nvalue_cat\nis_ref_value\nshow_ref_value\nis_covariate\n\n\n\n\n1\nAUCss_1000\nAUCss_1000\n1\n5th\n0.868\n0.868\nNA\nFALSE\nNA\nFALSE\n\n\n1\nAUCss_1000\nAUCss_1000\n2\nmedian\n2.21\n2.21\nNA\nTRUE\nTRUE\nFALSE\n\n\n1\nAUCss_1000\nAUCss_1000\n3\n95th\n5.30\n5.30\nNA\nFALSE\nNA\nFALSE\n\n\n2\nRACE\nRACE\n1\n1st freq\nWhite\nNA\nWhite\nTRUE\nTRUE\nTRUE\n\n\n2\nRACE\nRACE\n2\n2nd freq\nAsian\nNA\nAsian\nFALSE\nNA\nTRUE\n\n\n2\nRACE\nRACE\n3\n3rd freq\nBlack\nNA\nBlack\nFALSE\nNA\nTRUE\n\n\n3\nBGLUC\nBGLUC\n1\n5th\n4.43\n4.43\nNA\nFALSE\nNA\nTRUE\n\n\n3\nBGLUC\nBGLUC\n2\nmedian\n6.10\n6.10\nNA\nTRUE\nTRUE\nTRUE\n\n\n3\nBGLUC\nBGLUC\n3\n95th\n7.59\n7.59\nNA\nFALSE\nNA\nTRUE\n\n\n4\nBHBA1C_5\nBHBA1C_5\n1\n5th\n5.75\n5.75\nNA\nFALSE\nNA\nTRUE\n\n\n4\nBHBA1C_5\nBHBA1C_5\n2\nmedian\n7.97\n7.97\nNA\nTRUE\nTRUE\nTRUE\n\n\n4\nBHBA1C_5\nBHBA1C_5\n3\n95th\n10.4\n10.4\nNA\nFALSE\nNA\nTRUE\n\n\n\n\n\n\n\nLet’s say we want to customize in a follwoing way:\n\nRe-calculate percentiles of BGLUC from new distribution (example below uses uniform distribution between 4 and 8) and change the width of the quantile interval to 0.8.\nUse specific values for BHBA1C (30, 35, 45, 50) and label with the original scale rather than those devided by 5 (used in the model).\nUse Asian as the reference level\nShow the plots in the order of BGLUC, BHBA1C, and then RACE\n\n\n\nShow the code\nspec_new_bgluc &lt;- build_spec_coveff_one_variable(\n  \"BGLUC\", seq(4, 8, by = 0.1),\n  qi_width_cov = 0.8, show_ref_value = TRUE\n)\n\nspec_new_bhba1c &lt;- \n  tibble(value_cont = c(30, 35, 45, 50) / 5) |&gt; \n  mutate(\n    value_order = row_number(),\n    value_label = as.character(value_cont * 5),\n    var_name = \"BHBA1C_5\",\n    var_label = \"BHBA1C\",\n    value_annot = glue::glue(\"{value_label}mmol/mol\"),\n    is_ref_value = FALSE,\n    show_ref_value = FALSE)\n\nspec_new_race &lt;- \n  spec_coveff |&gt; \n  filter(var_name == \"RACE\") |&gt; \n  mutate(\n    is_ref_value = c(FALSE, TRUE, FALSE),\n    show_ref_value = c(FALSE, TRUE, FALSE)\n  ) |&gt; \n  select(-var_order, -is_covariate)\n\nspec_coveff_new_1 &lt;- \n  replace_spec_coveff(spec_coveff, bind_rows(spec_new_bgluc, spec_new_bhba1c)) |&gt;\n  # spec_new_race is separately provided as we want to change the reference level\n  replace_spec_coveff(spec_new_race, replace_ref_value = TRUE)\n\nd_new_var_order &lt;- \n  tibble(var_name = c(\"AUCss_1000\", \"BGLUC\", \"BHBA1C_5\", \"RACE\")) |&gt; \n  mutate(var_order = row_number())\n\nspec_coveff_new &lt;- \n  spec_coveff_new_1 |&gt; \n  select(-var_order) |&gt;\n  left_join(d_new_var_order, by = \"var_name\")\n\nspec_coveff_new |&gt; \n  gt() |&gt; \n  fmt_number(n_sigfig = 3)|&gt;\n  fmt_integer(columns = c(\"value_order\", \"var_order\"))\n\n\n\n\n\n\n\n\nvar_name\nvalue_order\nvalue_annot\nvalue_label\nvalue_cont\nvalue_cat\nis_ref_value\nshow_ref_value\nvar_label\nis_covariate\nvar_order\n\n\n\n\nAUCss_1000\n1\n5th\n0.868\n0.868\nNA\nFALSE\nNA\nAUCss_1000\nFALSE\n1\n\n\nAUCss_1000\n2\nmedian\n2.21\n2.21\nNA\nTRUE\nTRUE\nAUCss_1000\nFALSE\n1\n\n\nAUCss_1000\n3\n95th\n5.30\n5.30\nNA\nFALSE\nNA\nAUCss_1000\nFALSE\n1\n\n\nRACE\n1\n1st freq\nWhite\nNA\nWhite\nFALSE\nFALSE\nRACE\nTRUE\n4\n\n\nRACE\n2\n2nd freq\nAsian\nNA\nAsian\nTRUE\nTRUE\nRACE\nTRUE\n4\n\n\nRACE\n3\n3rd freq\nBlack\nNA\nBlack\nFALSE\nFALSE\nRACE\nTRUE\n4\n\n\nBGLUC\n1\nNA\n6.10\n6.10\nNA\nTRUE\nFALSE\nBGLUC\nTRUE\n2\n\n\nBGLUC\n2\n10th\n4.40\n4.40\nNA\nFALSE\nNA\nBGLUC\nTRUE\n2\n\n\nBGLUC\n3\nmedian\n6.00\n6.00\nNA\nFALSE\nNA\nBGLUC\nTRUE\n2\n\n\nBGLUC\n4\n90th\n7.60\n7.60\nNA\nFALSE\nNA\nBGLUC\nTRUE\n2\n\n\nBHBA1C_5\n1\nNA\n7.97\n7.97\nNA\nTRUE\nFALSE\nBHBA1C\nTRUE\n3\n\n\nBHBA1C_5\n2\n30mmol/mol\n30\n6.00\nNA\nFALSE\nNA\nBHBA1C\nTRUE\n3\n\n\nBHBA1C_5\n3\n35mmol/mol\n35\n7.00\nNA\nFALSE\nNA\nBHBA1C\nTRUE\n3\n\n\nBHBA1C_5\n4\n45mmol/mol\n45\n9.00\nNA\nFALSE\nNA\nBHBA1C\nTRUE\n3\n\n\nBHBA1C_5\n5\n50mmol/mol\n50\n10.0\nNA\nFALSE\nNA\nBHBA1C\nTRUE\n3\n\n\n\n\n\n\n\nThe customized covariate effect plots can be generated using the plot_coveff()\n\n\nShow the code\ncoveffsim_spec &lt;- sim_coveff(ermod_bin_hgly2_cov, spec_coveff = spec_coveff_new)\nplot_coveff(coveffsim_spec)\n\n\n\n\n\n\n\n\nFigure 5.3",
+    "crumbs": [
+      "ER for binary endpoint",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Customize covariate effect plots</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/binary/workflow_wo_package.html",
+    "href": "notebook/binary/workflow_wo_package.html",
+    "title": "6  Workflow without using BayesERtools",
+    "section": "",
+    "text": "6.1 Setup and load\nShow the code\nlibrary(tidyverse)\nlibrary(here)\nlibrary(gt)\n\ntheme_set(theme_bw(base_size = 12))",
+    "crumbs": [
+      "ER for binary endpoint",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Workflow without using `BayesERtools`</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/binary/workflow_wo_package.html#data",
+    "href": "notebook/binary/workflow_wo_package.html#data",
+    "title": "6  Workflow without using BayesERtools",
+    "section": "6.2 Data",
+    "text": "6.2 Data\n\n\nShow the code\ndata(d_sim_binom_cov, package = \"BayesERtools\")\n\nd_sim_binom_cov_2 &lt;-\n  d_sim_binom_cov |&gt;\n  mutate(\n    AUCss_1000 = AUCss / 1000, BAGE_10 = BAGE / 10,\n    BWT_10 = BWT / 10, BHBA1C_5 = BHBA1C / 5\n  )\n\n# Grade 2+ hypoglycemia\ndf_er_ae_hgly2 &lt;- d_sim_binom_cov_2 |&gt; filter(AETYPE == \"hgly2\")\n\nvar_exposure &lt;- \"AUCss_1000\"\nvar_resp &lt;- \"AEFLAG\"\nvar_cov_ae_hgly2 &lt;- c(\"BAGE_10\", \"BWT_10\", \"RACE\", \"VISC\", \"BHBA1C_5\", \"BGLUC\")",
+    "crumbs": [
+      "ER for binary endpoint",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Workflow without using `BayesERtools`</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/binary/workflow_wo_package.html#basic-model-development",
+    "href": "notebook/binary/workflow_wo_package.html#basic-model-development",
+    "title": "6  Workflow without using BayesERtools",
+    "section": "6.3 Basic model development",
+    "text": "6.3 Basic model development\ndev_ermod_bin() function can be used to develop basic ER model. (Note that this function can also be used for models with covariates, if you already know the covariates to be included.)\n\n\nShow the code\nset.seed(1234)\n\nvar_all &lt;- c(var_exposure) # If you have covariates, you can add here\n\nformula_all &lt;-\n  stats::formula(glue::glue(\n    \"{var_resp} ~ {paste(var_all, collapse = ' + ')}\"\n  ))\n\nermod_bin &lt;- rstanarm::stan_glm(\n  formula_all,\n  family = stats::binomial(),\n  data = df_er_ae_hgly2,\n  QR = dplyr::if_else(length(var_all) &gt; 1, TRUE, FALSE),\n  refresh = 0, # Suppress output\n)\n\nermod_bin\n\nstan_glm\n family:       binomial [logit]\n formula:      AEFLAG ~ AUCss_1000\n observations: 500\n predictors:   2\n------\n            Median MAD_SD\n(Intercept) -2.0    0.2  \nAUCss_1000   0.4    0.1  \n\n------\n* For help interpreting the printed output see ?print.stanreg\n* For info on the priors used see ?prior_summary.stanreg\n\n\nPerform simulation for plotting purpose\n\n\nShow the code\nexposure_range &lt;-\n  range(df_er_ae_hgly2[[var_exposure]])\n\nexposure_to_sim_vec &lt;-\n  seq(exposure_range[1], exposure_range[2], length.out = 51)\n\ndata_for_sim &lt;- \n  tibble(!!var_exposure := exposure_to_sim_vec)\n\nsim_epred_med_qi &lt;-\n  tidybayes::add_epred_draws(data_for_sim, ermod_bin) |&gt;\n  tidybayes::median_qi() |&gt;\n  dplyr::as_tibble()\n\n\nObserved vs model predicted plot:\n\n\nShow the code\nggplot(data = sim_epred_med_qi, aes(x = .data[[var_exposure]], y = .epred)) +\n  geom_ribbon(aes(ymin = .lower, ymax = .upper), alpha = 0.3) +\n  geom_line() +\n  # Observed data plots\n  geom_jitter(\n    data = df_er_ae_hgly2,\n    aes(x = .data[[var_exposure]], y = .data[[var_resp]]),\n    width = 0, height = 0.05, alpha = 0.5\n  ) +\n  xgxr::xgx_stat_ci(\n    data = df_er_ae_hgly2,\n    aes(x = .data[[var_exposure]], y = .data[[var_resp]]),\n    bins = 4, conf_level = 0.95, distribution = \"binomial\",\n    geom = c(\"point\"), shape = 0, size = 4\n  ) +\n  xgxr::xgx_stat_ci(\n    data = df_er_ae_hgly2,\n    aes(x = .data[[var_exposure]], y = .data[[var_resp]]),\n    bins = 4, conf_level = 0.95, distribution = \"binomial\",\n    geom = c(\"errorbar\"), linewidth = 0.5\n  ) +\n  # Figure settings\n  coord_cartesian(ylim = c(-0.05, 1.05)) +\n  scale_y_continuous(\n    breaks = c(0, .5, 1),\n    labels = scales::percent\n  ) +\n  labs(x = var_exposure, y = \"Probability of event\")\n\n\n\n\n\n\n\n\nFigure 6.1\n\n\n\n\n\nMCMC samples can be obtained with as_draws() family of functions, such as as_draws_df().\n\n\nShow the code\ndraws_df &lt;- posterior::as_draws_df(ermod_bin)\n\ndraws_df_summary &lt;-\n  posterior::summarize_draws(draws_df)\n\ndraws_df_summary |&gt;\n  gt::gt() |&gt;\n  gt::fmt_number(n_sigfig = 3)\n\n\n\n\n\n\n\n\nvariable\nmean\nmedian\nsd\nmad\nq5\nq95\nrhat\ness_bulk\ness_tail\n\n\n\n\n(Intercept)\n−2.05\n−2.04\n0.234\n0.228\n−2.43\n−1.67\n1.00\n2,230\n1,870\n\n\nAUCss_1000\n0.412\n0.412\n0.0761\n0.0765\n0.288\n0.537\n1.00\n2,150\n2,140",
+    "crumbs": [
+      "ER for binary endpoint",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Workflow without using `BayesERtools`</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/binary/workflow_wo_package.html#selection-of-exposure-metrics",
+    "href": "notebook/binary/workflow_wo_package.html#selection-of-exposure-metrics",
+    "title": "6  Workflow without using BayesERtools",
+    "section": "6.4 Selection of exposure metrics",
+    "text": "6.4 Selection of exposure metrics\nFirst you fit models with all the candidate exposure metrics and then compare the models using leave-one-out cross-validation (LOO).\n\n\nShow the code\nset.seed(1234)\n\n# Run models with all the candidate exposure metrics\nl_mod_exposures &lt;-\n  c(\"AUCss_1000\", \"Cmaxss\", \"Cminss\") |&gt;\n  purrr::set_names() |&gt;\n  purrr::map(\n    function(.x) {\n      formula &lt;- stats::formula(glue::glue(\"{var_resp} ~ {.x}\"))\n      \n      mod &lt;- rstanarm::stan_glm(\n        formula,\n        family = stats::binomial(),\n        data = df_er_ae_hgly2,\n        refresh = 0 # Suppress output\n      )\n    },\n    .progress = TRUE\n  )\n\n# Calculate loo (leave-one-out cross-validation) for each model\n# and compare the models\nl_loo_exposures &lt;- purrr::map(l_mod_exposures, loo::loo)\nloo::loo_compare(l_loo_exposures)\n\n           elpd_diff se_diff\nAUCss_1000  0.0       0.0   \nCminss     -4.4       3.1   \nCmaxss     -5.1       2.9",
+    "crumbs": [
+      "ER for binary endpoint",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Workflow without using `BayesERtools`</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/binary/workflow_wo_package.html#selection-of-covariates",
+    "href": "notebook/binary/workflow_wo_package.html#selection-of-covariates",
+    "title": "6  Workflow without using BayesERtools",
+    "section": "6.5 Selection of covariates",
+    "text": "6.5 Selection of covariates\nSelection of covariates are be done with projpred package in BayesERtools.\n\n6.5.1 Step 1: Full reference model fit\n\n\nShow the code\nvarnames &lt;- paste(c(var_exposure, var_cov_ae_hgly2), collapse = \" + \")\nformula_full &lt;-\n  stats::formula(\n    glue::glue(\n      \"{var_resp} ~ {varnames}\"\n    )\n  )\n\n# Need to construct call and then evaluate. Directly calling\n# rstanarm::stan_glm with formula_full does not work for the cross-validation\ncall_fit_ref &lt;-\n  rlang::call2(rstanarm::stan_glm,\n    formula = formula_full,\n    family = quote(stats::binomial()), data = quote(df_er_ae_hgly2), QR = TRUE,\n    refresh = 0)\nfit_ref &lt;- eval(call_fit_ref)\n\nrefm_obj &lt;- projpred::get_refmodel(fit_ref)\n\n\n\n\n6.5.2 Step 2: Variable selection\nThe code below shows example of variable selection with K-fold cross-validation approach.\n\n\nShow the code\n# Force exposure metric to be always included first\nsearch_terms &lt;- projpred::force_search_terms(\n  forced_terms = var_exposure,\n  optional_terms = var_cov_ae_hgly2\n)\n\ncvvs &lt;- projpred::cv_varsel(\n  refm_obj,\n  search_terms = search_terms,\n  cv_method = \"kfold\",\n  method = \"forward\",\n  validate_search = TRUE,\n  refit_prj = TRUE # Evaluation often look strange without refit\n)\n\n-----\nRunning the search using the full dataset ...\n10% of terms selected\n20% of terms selected\n40% of terms selected\n50% of terms selected\n70% of terms selected\n80% of terms selected\n100% of terms selected\n-----\n-----\nRefitting the reference model K = 5 times (using the fold-wise training data) ...\n\nFitting model 1 out of 5\n\nFitting model 2 out of 5\n\nFitting model 3 out of 5\n\nFitting model 4 out of 5\n\nFitting model 5 out of 5\n\n-----\n-----\nRunning the search and the performance evaluation with `refit_prj = TRUE` for each of the K = 5 CV folds separately ...\n\n  |                                                                            \n  |                                                                      |   0%\n  |                                                                            \n  |==============                                                        |  20%\n  |                                                                            \n  |============================                                          |  40%\n  |                                                                            \n  |==========================================                            |  60%\n  |                                                                            \n  |========================================================              |  80%\n  |                                                                            \n  |======================================================================| 100%\n-----\n\n\nShow the code\nrk &lt;- projpred::ranking(cvvs)\n\nn_var_select &lt;- projpred::suggest_size(cvvs)\nn_var_select &lt;- max(1, n_var_select) # At least exposure metric should be included\n\nvar_selected &lt;- head(rk[[\"fulldata\"]], n_var_select)\n\n\n\n6.5.2.1 Output\n\n\nShow the code\nvar_selected\n\n[1] \"AUCss_1000\" \"BHBA1C_5\"   \"BGLUC\"     \n\n\nShow the code\nplot(cvvs, text_angle = 45, show_cv_proportions = FALSE, deltas = TRUE)\nplot(rk) # This only works when cv_method = \"kfold\" and validate_search = TRUE\n\n\n\n\n\n\n\n\nFigure 6.2\n\n\n\n\n\n\n\n\n\n\n\nFigure 6.3\n\n\n\n\n\n\n\n\n6.5.3 Step 3: Final model fit\n\n\nShow the code\nset.seed(1234)\n\nermod_bin_cov &lt;- rstanarm::stan_glm(\n  stats::formula(glue::glue(\n    \"{var_resp} ~ {paste(var_selected, collapse = ' + ')}\"\n  )),\n  family = stats::binomial(),\n  data = df_er_ae_hgly2,\n  QR = dplyr::if_else(length(var_selected) &gt; 1, TRUE, FALSE),\n  refresh = 0, # Suppress output\n)\n\nermod_bin_cov\n\nstan_glm\n family:       binomial [logit]\n formula:      AEFLAG ~ AUCss_1000 + BHBA1C_5 + BGLUC\n observations: 500\n predictors:   4\n------\n            Median MAD_SD\n(Intercept) -11.0    1.2 \nAUCss_1000    0.5    0.1 \nBHBA1C_5      0.5    0.1 \nBGLUC         0.7    0.1 \n\n------\n* For help interpreting the printed output see ?print.stanreg\n* For info on the priors used see ?prior_summary.stanreg",
+    "crumbs": [
+      "ER for binary endpoint",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Workflow without using `BayesERtools`</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/binary/workflow_wo_package.html#marginal-er-prediction",
+    "href": "notebook/binary/workflow_wo_package.html#marginal-er-prediction",
+    "title": "6  Workflow without using BayesERtools",
+    "section": "6.6 Marginal ER prediction",
+    "text": "6.6 Marginal ER prediction\nThe example below simulate the marginal ER relationship, i.e.  ER relationships for “marginalized”, or averaged, response for the population of interest, using the covariate distribution is from the original data.\n\n\nShow the code\nexposure_to_sim &lt;- c(2:6)\n\ndata_cov &lt;- df_er_ae_hgly2 |&gt; select(-!!var_exposure)\n\ndata_for_sim &lt;- \n  tibble(!!var_exposure := exposure_to_sim) |&gt;\n  mutate(.id_exposure = row_number()) |&gt;\n  expand_grid(data_cov)\n\nsim_epred_raw &lt;-\n  tidybayes::add_epred_draws(data_for_sim, ermod_bin_cov)\n\n# Calculate marginal expected response for each exposure value and draw\nsim_epred_marg &lt;-\n  sim_epred_raw |&gt;\n  dplyr::ungroup() |&gt;\n  dplyr::summarize(\n    .epred = mean(.epred),\n    .by = c(.id_exposure, !!var_exposure, .draw)\n  )\n\nsim_epred_marg_med_qi &lt;-\n  sim_epred_marg |&gt;\n  dplyr::group_by(.id_exposure, !!sym(var_exposure)) |&gt;\n  tidybayes::median_qi() |&gt;\n  dplyr::as_tibble()\n\nsim_epred_marg_med_qi |&gt;\n  gt::gt() |&gt;\n  gt::fmt_number(n_sigfig = 3) |&gt;\n  gt::fmt_integer(columns = c(\".id_exposure\"))\n\n\n\n\n\n\n\n\n.id_exposure\nAUCss_1000\n.epred\n.lower\n.upper\n.width\n.point\n.interval\n\n\n\n\n1\n2.00\n0.228\n0.192\n0.267\n0.950\nmedian\nqi\n\n\n2\n3.00\n0.307\n0.268\n0.347\n0.950\nmedian\nqi\n\n\n3\n4.00\n0.396\n0.341\n0.455\n0.950\nmedian\nqi\n\n\n4\n5.00\n0.491\n0.409\n0.576\n0.950\nmedian\nqi\n\n\n5\n6.00\n0.588\n0.477\n0.692\n0.950\nmedian\nqi",
+    "crumbs": [
+      "ER for binary endpoint",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Workflow without using `BayesERtools`</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/emax/basic_workflow.html",
+    "href": "notebook/emax/basic_workflow.html",
+    "title": "7  Basic workflow",
+    "section": "",
+    "text": "7.1 Setup and load\nShow the code\nlibrary(tidyverse)\nlibrary(BayesERtools)\nlibrary(posterior)\nlibrary(tidybayes)\nlibrary(here)\nlibrary(gt)\n\ntheme_set(theme_bw(base_size = 12))",
+    "crumbs": [
+      "Emax model",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Basic workflow</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/emax/basic_workflow.html#load-data",
+    "href": "notebook/emax/basic_workflow.html#load-data",
+    "title": "7  Basic workflow",
+    "section": "7.2 Load data",
+    "text": "7.2 Load data\n\n\nShow the code\nd_example_emax_nocov &lt;- read_csv(here(\"data\", \"d_example_emax_nocov.csv\"))\n\nd_example_emax_nocov |&gt;\n  head() |&gt;\n  gt() |&gt;\n  fmt_number(decimals = 2)\n\n\n\n\n\n\n\n\nConc\nY\n\n\n\n\n47.51\n15.14\n\n\n12.44\n7.26\n\n\n14.90\n8.78\n\n\n13.62\n7.05\n\n\n29.16\n10.82\n\n\n45.16\n13.27\n\n\n\n\n\n\n\nShow the code\nggplot(d_example_emax_nocov, aes(Conc, Y)) +\n  geom_point() +\n  geom_smooth(formula = y ~ x, method = \"loess\", se = F, col = \"darkgrey\")\n\n\n\n\n\n\n\n\nFigure 7.1",
+    "crumbs": [
+      "Emax model",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Basic workflow</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/emax/basic_workflow.html#sigmoidal-emax-model",
+    "href": "notebook/emax/basic_workflow.html#sigmoidal-emax-model",
+    "title": "7  Basic workflow",
+    "section": "7.3 Sigmoidal Emax model",
+    "text": "7.3 Sigmoidal Emax model\n\n\nShow the code\nset.seed(1234)\n\nermod_sigemax &lt;- dev_ermod_emax(\n  data = d_example_emax_nocov,\n  var_resp = \"Y\",\n  var_exposure = \"Conc\",\n  gamma_fix = NULL\n)\n\nermod_sigemax\n\n\n── Emax model ──────────────────────────────────────────────────────────────────\nℹ Use `plot_er()` to visualize ER curve\n\n── Developed model ──\n\n---- Emax model fit with rstanemax ----\n       mean se_mean   sd  2.5%   25%   50%   75% 97.5%   n_eff Rhat\nemax  15.92    0.24 5.49  8.67 11.64 14.71 19.07 29.38  545.77 1.01\ne0     3.13    0.09 2.00 -2.15  2.25  3.58  4.54  5.62  550.23 1.00\nec50  24.94    0.30 8.63 14.98 19.47 22.51 28.06 48.31  843.12 1.00\ngamma  1.77    0.03 0.77  0.75  1.22  1.62  2.19  3.54  664.61 1.00\nsigma  0.86    0.00 0.16  0.62  0.75  0.84  0.95  1.24 1348.22 1.00\n* Use `extract_stanfit()` function to extract raw stanfit object\n* Use `extract_param()` function to extract posterior draws of key parameters\n* Use `plot()` function to visualize model fit\n* Use `posterior_predict()` or `posterior_predict_quantile()` function to get\n  raw predictions or make predictions on new data\n* Use `extract_obs_mod_frame()` function to extract raw data \n  in a processed format (useful for plotting)",
+    "crumbs": [
+      "Emax model",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Basic workflow</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/emax/basic_workflow.html#observation-vs-model-fit",
+    "href": "notebook/emax/basic_workflow.html#observation-vs-model-fit",
+    "title": "7  Basic workflow",
+    "section": "7.4 Observation vs model fit",
+    "text": "7.4 Observation vs model fit\n\n\nShow the code\nd_sim_ermod_sigemax &lt;-\n  sim_er(ermod_sigemax, output_type = c(\"median_qi\"))\n\nplot_er_gof(d_sim_ermod_sigemax)\n\n\n\n\n\n\n\n\nFigure 7.2",
+    "crumbs": [
+      "Emax model",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Basic workflow</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/emax/basic_workflow.html#parameter-estimates",
+    "href": "notebook/emax/basic_workflow.html#parameter-estimates",
+    "title": "7  Basic workflow",
+    "section": "7.5 Parameter estimates",
+    "text": "7.5 Parameter estimates\n\n\nShow the code\nd_draws_sigemax &lt;- as_draws_df(ermod_sigemax)\n\nd_draws_sigemax_summary &lt;-\n  summarize_draws(d_draws_sigemax)\n\nec50_mean &lt;-\n  d_draws_sigemax_summary |&gt;\n  filter(variable == \"ec50\") |&gt;\n  pull(mean)\n\nd_draws_sigemax_summary |&gt;\n  gt() |&gt;\n  fmt_number(decimals = 2)\n\n\n\n\n\n\n\n\nvariable\nmean\nmedian\nsd\nmad\nq5\nq95\nrhat\ness_bulk\ness_tail\n\n\n\n\nec50\n24.94\n22.51\n8.63\n5.65\n16.17\n42.09\n1.00\n1,111.48\n1,157.42\n\n\nsigma\n0.86\n0.84\n0.16\n0.15\n0.64\n1.15\n1.00\n1,434.70\n1,777.17\n\n\ngamma\n1.77\n1.62\n0.77\n0.68\n0.84\n3.12\n1.00\n593.05\n951.82\n\n\ne0\n3.13\n3.58\n2.00\n1.62\n−0.84\n5.38\n1.00\n675.84\n809.63\n\n\nemax\n15.92\n14.71\n5.49\n5.13\n9.35\n26.51\n1.00\n583.13\n809.81",
+    "crumbs": [
+      "Emax model",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Basic workflow</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/emax/basic_workflow.html#prediction-at-a-certain-concentrations",
+    "href": "notebook/emax/basic_workflow.html#prediction-at-a-certain-concentrations",
+    "title": "7  Basic workflow",
+    "section": "7.6 Prediction at a certain concentrations",
+    "text": "7.6 Prediction at a certain concentrations\n\n\nShow the code\nd_sim_new_conc &lt;-\n  sim_er_new_exp(ermod_sigemax,\n    exposure_to_sim_vec  = c(10, 20, 30, 50),\n    output_type = c(\"median_qi\"))\n\nd_sim_new_conc |&gt;\n  select(-starts_with(\".linpred\"), -c(.row, .width, .point, .interval)) |&gt;\n  gt() |&gt;\n  fmt_number(decimals = 2) |&gt;\n  tab_header(\n    title = md(\"Prediction at specific concentrations\")\n  )\n\n\n\n\n\n\n\n\nPrediction at specific concentrations\n\n\nConc\n.epred\n.epred.lower\n.epred.upper\n.prediction\n.prediction.lower\n.prediction.upper\n\n\n\n\n10.00\n6.57\n5.95\n7.16\n6.56\n4.77\n8.40\n\n\n20.00\n10.04\n9.39\n10.77\n10.04\n8.24\n11.97\n\n\n30.00\n12.38\n11.78\n13.02\n12.38\n10.47\n14.34\n\n\n50.00\n14.76\n13.55\n15.93\n14.75\n12.50\n16.78\n\n\n\n\n\n\n\nShow the code\nd_sim_ermod_sigemax |&gt;\n  ggplot(aes(x = Conc, y = Y)) +\n  # Emax model curve\n  geom_vline(xintercept = ec50_mean, linetype = \"dashed\", color = \"deepskyblue\") +\n  geom_ribbon(aes(y = .epred, ymin = .epred.lower, ymax = .epred.upper),\n    alpha = 0.3, fill = \"deepskyblue\") +\n  geom_line(aes(y = .epred), color = \"deepskyblue\") +\n  # Observed data\n  geom_point(data = d_example_emax_nocov, color = \"grey\") +\n  # Prediction at the specified doses\n  geom_point(data = d_sim_new_conc, aes(y = .epred), color = \"tomato\", size = 3) +\n  geom_errorbar(data = d_sim_new_conc,\n    aes(y = .epred, ymin = .epred.lower, ymax = .epred.upper),\n    width = 1, color = \"tomato\") +\n  coord_cartesian(ylim = c(-1, 17)) +\n  scale_fill_brewer(palette = \"Greys\") +\n  labs(\n    title = \"Sigmoidal E~max~ model predictions at new exposure levels\",\n    caption =\n      \"vertical dashed line: estimated EC~50~ value&lt;br&gt;area: 95% credible interval\") +\n  theme(plot.title = ggtext::element_markdown(),\n    plot.caption = ggtext::element_markdown())\n\n\n\n\n\n\n\n\nFigure 7.3",
+    "crumbs": [
+      "Emax model",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Basic workflow</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/emax/model_diagnostics.html",
+    "href": "notebook/emax/model_diagnostics.html",
+    "title": "8  Model diagnostics & comparison",
+    "section": "",
+    "text": "8.1 Load data\nShow the code\nd_example_emax_nocov &lt;- read_csv(here(\"data\", \"d_example_emax_nocov.csv\"))",
+    "crumbs": [
+      "Emax model",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Model diagnostics & comparison</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/emax/model_diagnostics.html#fit-models",
+    "href": "notebook/emax/model_diagnostics.html#fit-models",
+    "title": "8  Model diagnostics & comparison",
+    "section": "8.2 Fit models",
+    "text": "8.2 Fit models\n\nSigmoidal Emax modelRegular Emax (γ fixed at 1)\n\n\n\n\nShow the code\nset.seed(1234)\n\nermod_sigemax &lt;- dev_ermod_emax(\n  data = d_example_emax_nocov,\n  var_resp = \"Y\",\n  var_exposure = \"Conc\",\n  gamma_fix = NULL\n)\n\nermod_sigemax\n\n\n── Emax model ──────────────────────────────────────────────────────────────────\nℹ Use `plot_er()` to visualize ER curve\n\n── Developed model ──\n\n---- Emax model fit with rstanemax ----\n       mean se_mean   sd  2.5%   25%   50%   75% 97.5%   n_eff Rhat\nemax  15.92    0.24 5.49  8.67 11.64 14.71 19.07 29.38  545.77 1.01\ne0     3.13    0.09 2.00 -2.15  2.25  3.58  4.54  5.62  550.23 1.00\nec50  24.94    0.30 8.63 14.98 19.47 22.51 28.06 48.31  843.12 1.00\ngamma  1.77    0.03 0.77  0.75  1.22  1.62  2.19  3.54  664.61 1.00\nsigma  0.86    0.00 0.16  0.62  0.75  0.84  0.95  1.24 1348.22 1.00\n* Use `extract_stanfit()` function to extract raw stanfit object\n* Use `extract_param()` function to extract posterior draws of key parameters\n* Use `plot()` function to visualize model fit\n* Use `posterior_predict()` or `posterior_predict_quantile()` function to get\n  raw predictions or make predictions on new data\n* Use `extract_obs_mod_frame()` function to extract raw data \n  in a processed format (useful for plotting)\n\n\n\n\nAnother model without sigmoidal component; will be used when we do model comparison.\n\n\nShow the code\nset.seed(1234)\n\nermod_emax &lt;- dev_ermod_emax(\n  data = d_example_emax_nocov,\n  var_resp = \"Y\",\n  var_exposure = \"Conc\",\n  gamma_fix = 1\n)\n\nermod_emax\n\n\n── Emax model ──────────────────────────────────────────────────────────────────\nℹ Use `plot_er()` to visualize ER curve\n\n── Developed model ──\n\n---- Emax model fit with rstanemax ----\n       mean se_mean    sd  2.5%   25%   50%   75% 97.5%   n_eff Rhat\nemax  22.52    0.08  2.46 18.73 20.84 22.17 23.81 28.09  976.89 1.00\ne0     0.98    0.04  1.36 -2.23  0.32  1.18  1.91  2.98  912.27 1.00\nec50  31.28    0.39 11.65 13.08 22.74 29.70 38.10 57.39  875.72 1.00\ngamma  1.00     NaN  0.00  1.00  1.00  1.00  1.00  1.00     NaN  NaN\nsigma  0.89    0.00  0.17  0.63  0.77  0.86  0.98  1.28 1216.16 1.01\n* Use `extract_stanfit()` function to extract raw stanfit object\n* Use `extract_param()` function to extract posterior draws of key parameters\n* Use `plot()` function to visualize model fit\n* Use `posterior_predict()` or `posterior_predict_quantile()` function to get\n  raw predictions or make predictions on new data\n* Use `extract_obs_mod_frame()` function to extract raw data \n  in a processed format (useful for plotting)",
+    "crumbs": [
+      "Emax model",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Model diagnostics & comparison</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/emax/model_diagnostics.html#parameter-summary-table",
+    "href": "notebook/emax/model_diagnostics.html#parameter-summary-table",
+    "title": "8  Model diagnostics & comparison",
+    "section": "8.3 Parameter summary table",
+    "text": "8.3 Parameter summary table\n\nposterior packageHighest density interval\n\n\n\n\nShow the code\nd_draws_sigemax_summary &lt;-\n  summarize_draws(ermod_sigemax)\n\nd_draws_sigemax_summary |&gt;\n  gt() |&gt;\n  fmt_number(decimals = 2)\n\n\n\n\n\n\n\n\nvariable\nmean\nmedian\nsd\nmad\nq5\nq95\nrhat\ness_bulk\ness_tail\n\n\n\n\nec50\n24.94\n22.51\n8.63\n5.65\n16.17\n42.09\n1.00\n1,111.48\n1,157.42\n\n\nsigma\n0.86\n0.84\n0.16\n0.15\n0.64\n1.15\n1.00\n1,434.70\n1,777.17\n\n\ngamma\n1.77\n1.62\n0.77\n0.68\n0.84\n3.12\n1.00\n593.05\n951.82\n\n\ne0\n3.13\n3.58\n2.00\n1.62\n−0.84\n5.38\n1.00\n675.84\n809.63\n\n\nemax\n15.92\n14.71\n5.49\n5.13\n9.35\n26.51\n1.00\n583.13\n809.81\n\n\n\n\n\n\n\n\n\nHere is the example of highest-density continuous interval (HDCI) for the median of ED50. See here for more details.\n\n\nShow the code\n# HDCI of median.ED50\nas_draws_df(ermod_sigemax) |&gt;\n  tidybayes::spread_rvars(ec50) |&gt;\n  tidybayes::median_hdci()\n\n# A tibble: 1 × 6\n   ec50 .lower .upper .width .point .interval\n               \n1  22.5   13.3   43.3   0.95 median hdci",
+    "crumbs": [
+      "Emax model",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Model diagnostics & comparison</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/emax/model_diagnostics.html#fitted-values",
+    "href": "notebook/emax/model_diagnostics.html#fitted-values",
+    "title": "8  Model diagnostics & comparison",
+    "section": "8.4 Fitted values",
+    "text": "8.4 Fitted values\nFitted values without residual errors (i.e. PRED in NONMEM term) can be extracted with sim_er() function. .epred is the expected value prediction. See ?sim_er for detail.\n\n\nShow the code\nsim_er(ermod_sigemax) |&gt; head()\n\n# A tibble: 6 × 7\n# Groups:   Conc, Y, .row [1]\n   Conc     Y  .row .draw    .epred .prediction  .linpred\n              \n1  47.5  15.1     1     1      14.5        14.7      14.5\n2  47.5  15.1     1     2      14.6        16.8      14.6\n3  47.5  15.1     1     3      14.7        13.5      14.7\n4  47.5  15.1     1     4      15.0        15.2      15.0\n5  47.5  15.1     1     5      14.4        13.9      14.4\n6  47.5  15.1     1     6      14.5        14.7      14.5\n\n\nYou can specify output_type = \"median_qi\" to get median and quantile intervals of the prediction.\n\n\nShow the code\nersim_sigemax_med_qi &lt;-\n  sim_er(ermod_sigemax, output_type = \"median_qi\")\n\nersim_sigemax_med_qi |&gt;\n  arrange(.row) |&gt;\n  head() |&gt;\n  gt(rownames_to_stub = TRUE) |&gt;\n  fmt_number(decimals = 2, columns = -.row)\n\n\n\n\n\n\n\n\n\nConc\nY\n.row\n.epred\n.epred.lower\n.epred.upper\n.prediction\n.prediction.lower\n.prediction.upper\n.linpred\n.linpred.lower\n.linpred.upper\n.width\n.point\n.interval\n\n\n\n\n1\n47.51\n15.14\n1\n14.56\n13.47\n15.61\n14.54\n12.55\n16.57\n14.56\n13.47\n15.61\n0.95\nmedian\nqi\n\n\n2\n12.44\n7.26\n2\n7.50\n6.81\n8.11\n7.49\n5.62\n9.30\n7.50\n6.81\n8.11\n0.95\nmedian\nqi\n\n\n3\n14.90\n8.78\n3\n8.40\n7.69\n9.02\n8.36\n6.53\n10.20\n8.40\n7.69\n9.02\n0.95\nmedian\nqi\n\n\n4\n13.62\n7.05\n4\n7.94\n7.24\n8.56\n7.93\n6.10\n9.83\n7.94\n7.24\n8.56\n0.95\nmedian\nqi\n\n\n5\n29.16\n10.82\n5\n12.22\n11.62\n12.87\n12.20\n10.28\n14.04\n12.22\n11.62\n12.87\n0.95\nmedian\nqi\n\n\n6\n45.16\n13.27\n6\n14.36\n13.36\n15.27\n14.34\n12.36\n16.29\n14.36\n13.36\n15.27\n0.95\nmedian\nqi",
+    "crumbs": [
+      "Emax model",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Model diagnostics & comparison</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/emax/model_diagnostics.html#diagnostic-plots",
+    "href": "notebook/emax/model_diagnostics.html#diagnostic-plots",
+    "title": "8  Model diagnostics & comparison",
+    "section": "8.5 Diagnostic plots",
+    "text": "8.5 Diagnostic plots\nWe use the bayesplot package (Cheat sheet) to visualize the model fit.\n\n8.5.1 Convergence\nGood fit results in:\n\nParameter distributions from MCMC chains should overlap\nTrace plots should not show any trend\nRhat close to 1 (e.g. &lt; 1.1)\n\n\n\nShow the code\nd_draws_sigemax &lt;- as_draws_df(ermod_sigemax)\nmcmc_dens_overlay(d_draws_sigemax)\nmcmc_trace(d_draws_sigemax)\nmcmc_rhat(rhat(ermod_sigemax$mod$stanfit))\n\n\n\n\n\n\n\n\nFigure 8.1\n\n\n\n\n\n\n\n\n\n\n\nFigure 8.2\n\n\n\n\n\n\n\n\n\n\n\nFigure 8.3\n\n\n\n\n\n\n\n8.5.2 Parameter estimates distribution\n\nmcmc_histParameter covariance\n\n\n\n\nShow the code\nmcmc_hist(d_draws_sigemax)\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\n\n\n\n\n\n\nFigure 8.4\n\n\n\n\n\n\n\n\n\nShow the code\nmcmc_pairs(d_draws_sigemax,\n  off_diag_args = list(size = 0.5, alpha = 0.25))\n\n\n\n\n\n\n\n\nFigure 8.5\n\n\n\n\n\n\n\n\n\n\n8.5.3 GOF plots\n\nObs & Pred vs predictorObs vs predResidualsQ-Q plot of residuals\n\n\n\n\nShow the code\nplot_er(ermod_sigemax, show_orig_data = TRUE)\n\n\n\n\n\n\n\n\nFigure 8.6\n\n\n\n\n\n\n\n\n\nShow the code\n# Preparation for diagnostic plots\nersim_sigemax_med_qi &lt;- sim_er(ermod_sigemax, output_type = \"median_qi\")\n\nersim_sigemax_med_qi |&gt;\n  ggplot(aes(.epred, Y)) +\n  geom_abline(linetype = 2, color = \"grey\") +\n  geom_point() +\n  geom_errorbarh(aes(xmin = .epred.lower, xmax = .epred.upper), height = 0) +\n  labs(title = \"Observed vs Predicted\",\n    x = \"Predicted\",\n    y = \"Observed\",\n    caption = \"Symbol: median and 95% credible interval\")\n\n\n\n\n\n\n\n\nFigure 8.7\n\n\n\n\n\n\n\n\n\nShow the code\nersim_sigemax_w_resid &lt;-\n  sim_er(ermod_sigemax) |&gt;\n  mutate(.residual = Y - .epred) # Add residuals for plotting\nersim_sigemax_w_resid_med_qi &lt;- median_qi(ersim_sigemax_w_resid)\n\nersim_sigemax_w_resid_med_qi |&gt;\n  ggplot(aes(x = .epred, y = .residual)) +\n  xlab(\"Predicted (linear)\") +\n  ylab(\"Residuals\") +\n  geom_point() +\n  geom_errorbar(aes(ymin = .residual.lower, ymax = .residual.upper), width = 0) +\n  geom_hline(aes(yintercept = 2), lty = 2, colour = \"grey70\") +\n  geom_hline(aes(yintercept = -2), lty = 2, colour = \"grey70\")\n\n\n\n\n\n\n\n\nFigure 8.8\n\n\n\n\n\n\n\n\n\nShow the code\nersim_sigemax_w_resid_med_qi |&gt;\n  ggplot(aes(sample = .residual)) +\n  geom_qq() +\n  geom_qq_line(colour = \"steelblue\", lty = 2, alpha = 0.4) +\n  coord_equal() +\n  xlab(\"Theoretical\") +\n  ylab(\"Sample\")\n\n\n\n\n\n\n\n\nFigure 8.9",
+    "crumbs": [
+      "Emax model",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Model diagnostics & comparison</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/emax/model_diagnostics.html#model-comparison",
+    "href": "notebook/emax/model_diagnostics.html#model-comparison",
+    "title": "8  Model diagnostics & comparison",
+    "section": "8.6 Model comparison",
+    "text": "8.6 Model comparison\nYou can perform model comparison based on expected log pointwise predictive density (ELPD). ELPD is the Bayesian leave-one-out estimate (see ?loo-glossary).\nHigher ELPD is better, therefore Emax model with γ fixed to be 1 appears better. However, elpd_diff is tiny and smaller than se_diff (see here), therefore we can consider the difference to be not meaningful.\n\n\nShow the code\nloo_sigemax &lt;- loo(ermod_sigemax)\nloo_emax &lt;- loo(ermod_emax)\n\nloo_compare(list(sigemax = loo_sigemax, emax = loo_emax))\n\n        elpd_diff se_diff\nemax     0.0       0.0   \nsigemax -0.3       0.8",
+    "crumbs": [
+      "Emax model",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Model diagnostics & comparison</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/emax/simulation.html",
+    "href": "notebook/emax/simulation.html",
+    "title": "9  Simulation from fitted model",
+    "section": "",
+    "text": "9.1 Load data\nShow the code\nd_example_emax_nocov &lt;- read_csv(here(\"data\", \"d_example_emax_nocov.csv\"))",
+    "crumbs": [
+      "Emax model",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Simulation from fitted model</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/emax/simulation.html#fit-models",
+    "href": "notebook/emax/simulation.html#fit-models",
+    "title": "9  Simulation from fitted model",
+    "section": "9.2 Fit models",
+    "text": "9.2 Fit models\n\nSigmoidal Emax modelRegular Emax (h fixed at 1)\n\n\n\n\nShow the code\nset.seed(1234)\n\nermod_sigemax &lt;- dev_ermod_emax(\n  data = d_example_emax_nocov,\n  var_resp = \"Y\",\n  var_exposure = \"Conc\",\n  gamma_fix = NULL\n)\n\nermod_sigemax\n\n\n── Emax model ──────────────────────────────────────────────────────────────────\nℹ Use `plot_er()` to visualize ER curve\n\n── Developed model ──\n\n---- Emax model fit with rstanemax ----\n       mean se_mean   sd  2.5%   25%   50%   75% 97.5%   n_eff Rhat\nemax  15.92    0.24 5.49  8.67 11.64 14.71 19.07 29.38  545.77 1.01\ne0     3.13    0.09 2.00 -2.15  2.25  3.58  4.54  5.62  550.23 1.00\nec50  24.94    0.30 8.63 14.98 19.47 22.51 28.06 48.31  843.12 1.00\ngamma  1.77    0.03 0.77  0.75  1.22  1.62  2.19  3.54  664.61 1.00\nsigma  0.86    0.00 0.16  0.62  0.75  0.84  0.95  1.24 1348.22 1.00\n* Use `extract_stanfit()` function to extract raw stanfit object\n* Use `extract_param()` function to extract posterior draws of key parameters\n* Use `plot()` function to visualize model fit\n* Use `posterior_predict()` or `posterior_predict_quantile()` function to get\n  raw predictions or make predictions on new data\n* Use `extract_obs_mod_frame()` function to extract raw data \n  in a processed format (useful for plotting)\n\n\n\n\nAnother model without sigmoidal component; will be used when we do model comparison.\n\n\nShow the code\nset.seed(1234)\n\nermod_emax &lt;- dev_ermod_emax(\n  data = d_example_emax_nocov,\n  var_resp = \"Y\",\n  var_exposure = \"Conc\",\n  gamma_fix = 1\n)\n\nermod_emax\n\n\n── Emax model ──────────────────────────────────────────────────────────────────\nℹ Use `plot_er()` to visualize ER curve\n\n── Developed model ──\n\n---- Emax model fit with rstanemax ----\n       mean se_mean    sd  2.5%   25%   50%   75% 97.5%   n_eff Rhat\nemax  22.52    0.08  2.46 18.73 20.84 22.17 23.81 28.09  976.89 1.00\ne0     0.98    0.04  1.36 -2.23  0.32  1.18  1.91  2.98  912.27 1.00\nec50  31.28    0.39 11.65 13.08 22.74 29.70 38.10 57.39  875.72 1.00\ngamma  1.00     NaN  0.00  1.00  1.00  1.00  1.00  1.00     NaN  NaN\nsigma  0.89    0.00  0.17  0.63  0.77  0.86  0.98  1.28 1216.16 1.01\n* Use `extract_stanfit()` function to extract raw stanfit object\n* Use `extract_param()` function to extract posterior draws of key parameters\n* Use `plot()` function to visualize model fit\n* Use `posterior_predict()` or `posterior_predict_quantile()` function to get\n  raw predictions or make predictions on new data\n* Use `extract_obs_mod_frame()` function to extract raw data \n  in a processed format (useful for plotting)",
+    "crumbs": [
+      "Emax model",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Simulation from fitted model</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/emax/data_generation.html",
+    "href": "notebook/emax/data_generation.html",
+    "title": "10  Data generation",
+    "section": "",
+    "text": "10.1 Setup and load\nShow the code\nlibrary(tidyverse)\nlibrary(here)\n\ntheme_set(theme_bw(base_size = 12))\n\nset.seed(1234)",
+    "crumbs": [
+      "Emax model",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Data generation</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/emax/data_generation.html#data-generation---no-covariate",
+    "href": "notebook/emax/data_generation.html#data-generation---no-covariate",
+    "title": "10  Data generation",
+    "section": "10.2 Data generation - No covariate",
+    "text": "10.2 Data generation - No covariate\n\n\nShow the code\nn &lt;- 20 # number of subjects\nE0 &lt;- 5 # effect at 0 concentration\nEmax &lt;- 10 # maximal effect\nEC50 &lt;- 20 # concentration at half maximal effect\nh &lt;- 2 # Hill coefficient\n\nset.seed(130)\nc.is &lt;- 50 * runif(n) # exposure\n\nset.seed(130)\neps &lt;- rnorm(n) # residual error\n\ny.is &lt;- E0 + ((Emax * c.is^h) / (c.is^h + EC50^h)) + eps\n\nd_example_emax_nocov &lt;- tibble(Conc = c.is, Y = y.is)\n\n\n\n10.2.1 Check data\n\n\nShow the code\nggplot(d_example_emax_nocov, aes(Conc, Y)) +\n  geom_point() +\n  geom_smooth(formula = y ~ x, method = \"loess\", se = F, col = \"darkgrey\") +\n  scale_x_continuous(\"Exposure\", breaks = c(3, 10, 30, 100))\n\nggplot(d_example_emax_nocov, aes(Conc, Y)) +\n  geom_point() +\n  geom_smooth(formula = y ~ x, method = \"loess\", se = F, col = \"darkgrey\") +\n  scale_x_log10(\"Exposure\", breaks = c(3, 10, 30, 100))\n\n\n\n\n\n\n\n\nFigure 10.1\n\n\n\n\n\n\n\n\n\n\n\nFigure 10.2",
+    "crumbs": [
+      "Emax model",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Data generation</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/emax/data_generation.html#data-generation---with-covariate",
+    "href": "notebook/emax/data_generation.html#data-generation---with-covariate",
+    "title": "10  Data generation",
+    "section": "10.3 Data generation - with covariate",
+    "text": "10.3 Data generation - with covariate\nOnly one covariate (Prognostic factor positive/negative)\n\nPrognostic factor = positive (GpA) is more sensitive to the drug\n\nlower Emax in GpA; Emax.GpA = 10; Emax.GpB = 15\n\n\n\n\nShow the code\nNgp &lt;- 2\nN &lt;- 20 * Ngp\nGPid &lt;- as.factor(rep(c(\"A\", \"B\"), each = 20))\n\n# Set parameters\nE0 &lt;- 5\nEC50 &lt;- 15\nh &lt;- 2\nbeta1 &lt;- .7\n\n# Calc response\nset.seed(12345)\n\nd_example_emax_cov &lt;-\n  tibble(GP = GPid) |&gt;\n  mutate(\n    c.is = 50 * runif(N), eps = rnorm(N)\n  ) |&gt;\n  mutate(\n    Emax.i = ifelse(GP == \"A\", 10, 15)\n  ) |&gt;\n  mutate(y.is = E0 + ((Emax.i * c.is^h) / (c.is^h + EC50^h)) + eps) |&gt;\n  mutate(Conc = c.is, Y = y.is)\n\n\n\n10.3.1 Check data\n\n\nShow the code\nggplot(d_example_emax_cov, aes(Conc, Y)) +\n  geom_point(aes(colour = GP)) +\n  geom_smooth(aes(group = GP, colour = GP), se = F) +\n  scale_x_continuous(\"Exposure\") +\n  theme(legend.position = \"top\")\n\n\n`geom_smooth()` using method = 'loess' and formula = 'y ~ x'\n\n\n\n\n\n\n\n\nFigure 10.3",
+    "crumbs": [
+      "Emax model",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Data generation</span>"
+    ]
+  },
+  {
+    "objectID": "notebook/emax/data_generation.html#save-data",
+    "href": "notebook/emax/data_generation.html#save-data",
+    "title": "10  Data generation",
+    "section": "10.4 Save data",
+    "text": "10.4 Save data\nOnly run in an interactive session so that the data is not saved every time the document is rendered (by setting eval: FALSE).\n\n\nShow the code\nwrite_csv(d_example_emax_nocov, here(\"data\", \"d_example_emax_nocov.csv\"))\nwrite_csv(d_example_emax_cov, here(\"data\", \"d_example_emax_cov.csv\"))",
+    "crumbs": [
+      "Emax model",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Data generation</span>"
+    ]
+  }
+]
