@@ -64,7 +64,7 @@
     "href": "notebook/binary/basic_workflow.html",
     "title": "1  Basic workflow",
     "section": "",
-    "text": "1.1 Setup and load\nShow the code\nlibrary(tidyverse)\nlibrary(BayesERtools)\nlibrary(posterior)\nlibrary(here)\nlibrary(gt)\n\ntheme_set(theme_bw(base_size = 12))",
+    "text": "1.1 Setup and load\nIn this section, we will show a basic workflow of performing ER analysis for binary endpoint using the logistic regression model.\nShow the code\nlibrary(tidyverse)\nlibrary(BayesERtools)\nlibrary(posterior)\nlibrary(here)\nlibrary(gt)\n\ntheme_set(theme_bw(base_size = 12))",
     "crumbs": [
       "ER for binary endpoint",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Basic workflow</span>"
@@ -152,7 +152,7 @@
     "href": "notebook/binary/simulation.html",
     "title": "2  Simulation",
     "section": "",
-    "text": "2.1 Load data\nShow the code\ndata(d_sim_binom_cov)\n\nd_sim_binom_cov_2 &lt;-\n  d_sim_binom_cov |&gt;\n  mutate(\n    AUCss_1000 = AUCss / 1000, BAGE_10 = BAGE / 10,\n    BWT_10 = BWT / 10, BHBA1C_5 = BHBA1C / 5\n  )\n\n# Grade 2+ hypoglycemia\ndf_er_ae_hgly2 &lt;- d_sim_binom_cov_2 |&gt; filter(AETYPE == \"hgly2\")\n\nvar_resp &lt;- \"AEFLAG\"\nvar_exposure &lt;- \"AUCss_1000\"",
+    "text": "2.1 Load data\nThis page showcase the model simulation using the ER model for binary endpoint.\nShow the code\ndata(d_sim_binom_cov)\n\nd_sim_binom_cov_2 &lt;-\n  d_sim_binom_cov |&gt;\n  mutate(\n    AUCss_1000 = AUCss / 1000, BAGE_10 = BAGE / 10,\n    BWT_10 = BWT / 10, BHBA1C_5 = BHBA1C / 5\n  )\n\n# Grade 2+ hypoglycemia\ndf_er_ae_hgly2 &lt;- d_sim_binom_cov_2 |&gt; filter(AETYPE == \"hgly2\")\n\nvar_resp &lt;- \"AEFLAG\"\nvar_exposure &lt;- \"AUCss_1000\"",
     "crumbs": [
       "ER for binary endpoint",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Simulation</span>"
@@ -207,7 +207,7 @@
     "href": "notebook/binary/model_diagnostics.html",
     "title": "3  Model diagnostics and performance evaluation",
     "section": "",
-    "text": "3.1 Load data\nShow the code\ndata(d_sim_binom_cov)\n\nd_sim_binom_cov_2 &lt;-\n  d_sim_binom_cov |&gt;\n  mutate(\n    AUCss_1000 = AUCss / 1000, BAGE_10 = BAGE / 10,\n    BWT_10 = BWT / 10, BHBA1C_5 = BHBA1C / 5,\n    Dose = glue::glue(\"{Dose_mg} mg\")\n  )\n\n# Grade 2+ hypoglycemia\ndf_er_ae_hgly2 &lt;- d_sim_binom_cov_2 |&gt; filter(AETYPE == \"hgly2\")\n# Grade 2+ diarrhea\ndf_er_ae_dr2 &lt;- d_sim_binom_cov_2 |&gt; filter(AETYPE == \"dr2\")\n\nvar_resp &lt;- \"AEFLAG\"\nvar_exposure &lt;- \"AUCss_1000\"",
+    "text": "3.1 Load data\nThis page showcase the model diagnosis and performance evaluation on the ER model for binary endpoint.\nShow the code\ndata(d_sim_binom_cov)\n\nd_sim_binom_cov_2 &lt;-\n  d_sim_binom_cov |&gt;\n  mutate(\n    AUCss_1000 = AUCss / 1000, BAGE_10 = BAGE / 10,\n    BWT_10 = BWT / 10, BHBA1C_5 = BHBA1C / 5,\n    Dose = glue::glue(\"{Dose_mg} mg\")\n  )\n\n# Grade 2+ hypoglycemia\ndf_er_ae_hgly2 &lt;- d_sim_binom_cov_2 |&gt; filter(AETYPE == \"hgly2\")\n# Grade 2+ diarrhea\ndf_er_ae_dr2 &lt;- d_sim_binom_cov_2 |&gt; filter(AETYPE == \"dr2\")\n\nvar_resp &lt;- \"AEFLAG\"\nvar_exposure &lt;- \"AUCss_1000\"",
     "crumbs": [
       "ER for binary endpoint",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Model diagnostics and performance evaluation</span>"
@@ -273,7 +273,7 @@
     "href": "notebook/binary/mod_structure_comparison.html",
     "title": "4  Model comparison between linear and Emax",
     "section": "",
-    "text": "4.1 Setup and load\nShow the code\nlibrary(tidyverse)\nlibrary(BayesERtools)\nlibrary(loo)\nlibrary(here)\nlibrary(gt)\n\ntheme_set(theme_bw(base_size = 12))",
+    "text": "4.1 Setup and load\nThis page showcase how to compare model structures between linear and Emax logistic regression models\nShow the code\nlibrary(tidyverse)\nlibrary(BayesERtools)\nlibrary(loo)\nlibrary(here)\nlibrary(gt)\n\ntheme_set(theme_bw(base_size = 12))",
     "crumbs": [
       "ER for binary endpoint",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Model comparison between linear and E~max~</span>"
@@ -317,7 +317,7 @@
     "href": "notebook/binary/coveff_customize.html",
     "title": "5  Customize covariate effect plots",
     "section": "",
-    "text": "5.1 Setup and load\nShow the code\nlibrary(tidyverse)\nlibrary(BayesERtools)\nlibrary(here)\nlibrary(gt)\n\ntheme_set(theme_bw(base_size = 12))",
+    "text": "5.1 Setup and load\nThis page showcase how to customize the covariate effect plots.\nShow the code\nlibrary(tidyverse)\nlibrary(BayesERtools)\nlibrary(here)\nlibrary(gt)\n\ntheme_set(theme_bw(base_size = 12))",
     "crumbs": [
       "ER for binary endpoint",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Customize covariate effect plots</span>"
@@ -372,7 +372,7 @@
     "href": "notebook/binary/workflow_wo_package.html",
     "title": "6  Workflow without using BayesERtools",
     "section": "",
-    "text": "6.1 Setup and load\nShow the code\nlibrary(tidyverse)\nlibrary(here)\nlibrary(gt)\n\ntheme_set(theme_bw(base_size = 12))",
+    "text": "6.1 Setup and load\nThis page shows how to perform ER analysis without using BayesERtools package to help:\nShow the code\nlibrary(tidyverse)\nlibrary(here)\nlibrary(gt)\n\ntheme_set(theme_bw(base_size = 12))",
     "crumbs": [
       "ER for binary endpoint",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Workflow without using `BayesERtools`</span>"
@@ -438,7 +438,7 @@
     "href": "notebook/emax/basic_workflow.html",
     "title": "7  Basic workflow",
     "section": "",
-    "text": "7.1 Setup and load\nShow the code\nlibrary(tidyverse)\nlibrary(BayesERtools)\nlibrary(posterior)\nlibrary(tidybayes)\nlibrary(here)\nlibrary(gt)\n\ntheme_set(theme_bw(base_size = 12))",
+    "text": "7.1 Setup and load\nIn this section, we will show a basic workflow for performing an Emax model analysis for continuous endpoint.\nShow the code\nlibrary(tidyverse)\nlibrary(BayesERtools)\nlibrary(posterior)\nlibrary(tidybayes)\nlibrary(here)\nlibrary(gt)\n\ntheme_set(theme_bw(base_size = 12))",
     "crumbs": [
       "Emax model",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Basic workflow</span>"
@@ -504,7 +504,7 @@
     "href": "notebook/emax/model_diagnostics.html",
     "title": "8  Model diagnostics & comparison",
     "section": "",
-    "text": "8.1 Load data\nShow the code\nd_example_emax_nocov &lt;- read_csv(here(\"data\", \"d_example_emax_nocov.csv\"))",
+    "text": "8.1 Load data\nThis page showcase the model diagnosis and comparison for the Emax model\nShow the code\nd_example_emax_nocov &lt;- read_csv(here(\"data\", \"d_example_emax_nocov.csv\"))",
     "crumbs": [
       "Emax model",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Model diagnostics & comparison</span>"
@@ -570,7 +570,7 @@
     "href": "notebook/emax/simulation.html",
     "title": "9  Simulation from fitted model",
     "section": "",
-    "text": "9.1 Load data\nShow the code\nd_example_emax_nocov &lt;- read_csv(here(\"data\", \"d_example_emax_nocov.csv\"))",
+    "text": "9.1 Load data\nThis page showcase the model simulation using the Emax model with no covariate.\nShow the code\nd_example_emax_nocov &lt;- read_csv(here(\"data\", \"d_example_emax_nocov.csv\"))",
     "crumbs": [
       "Emax model",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Simulation from fitted model</span>"
@@ -592,7 +592,7 @@
     "href": "notebook/emax/data_generation.html",
     "title": "10  Data generation",
     "section": "",
-    "text": "10.1 Setup and load\nShow the code\nlibrary(tidyverse)\nlibrary(here)\n\ntheme_set(theme_bw(base_size = 12))\n\nset.seed(1234)",
+    "text": "10.1 Setup and load\nThis page shows examples of data generation for Emax model with and without covariates.\nShow the code\nlibrary(tidyverse)\nlibrary(here)\n\ntheme_set(theme_bw(base_size = 12))\n\nset.seed(1234)",
     "crumbs": [
       "Emax model",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Data generation</span>"
