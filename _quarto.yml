@@ -3,7 +3,9 @@ project:
 
 book:
   title: "Exposure-response analysis with Bayesian approaches"
-  author: "Kenta Yoshida"
+  author:
+    - name: Kenta Yoshida
+    - name: François Mercier
   date: last-modified
   site-url: https://genentech.github.io/BayesERbook/
   repo-url: https://github.com/genentech/BayesERbook/
@@ -36,8 +38,6 @@ format:
     code-tools: true
     toc: true
     toc_float: true
-  pdf:
-    documentclass: scrreprt
 
 date-format: iso
 

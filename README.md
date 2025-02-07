@@ -95,7 +95,7 @@ install.packages('rstanemax')
 
 ## Important links
 
-- Rendered book: <https://github.com/genentech/BayesERbook/>
+- Rendered book: <https://genentech.github.io/BayesERbook/>
 
 ## Note for developer
 

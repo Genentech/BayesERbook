@@ -1,0 +1,17 @@
+{
+  "hash": "dd04ac6c0ba111a23cafe61fe93ebbcc",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Data generation\n\nThis page shows examples of data generation for Emax model with and without covariates.\n\n## Setup and load\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\nlibrary(here)\n\ntheme_set(theme_bw(base_size = 12))\n\nset.seed(1234)\n```\n:::\n\n\n\n\n## Data generation - No covariate\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nn <- 20 # number of subjects\nE0 <- 5 # effect at 0 concentration\nEmax <- 10 # maximal effect\nEC50 <- 20 # concentration at half maximal effect\nh <- 2 # Hill coefficient\n\nset.seed(130)\nc.is <- 50 * runif(n) # exposure\n\nset.seed(130)\neps <- rnorm(n) # residual error\n\ny.is <- E0 + ((Emax * c.is^h) / (c.is^h + EC50^h)) + eps\n\nd_example_emax_nocov <- tibble(Conc = c.is, Y = y.is)\n```\n:::\n\n\n\n\n### Check data\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nggplot(d_example_emax_nocov, aes(Conc, Y)) +\n  geom_point() +\n  geom_smooth(formula = y ~ x, method = \"loess\", se = F, col = \"darkgrey\") +\n  scale_x_continuous(\"Exposure\", breaks = c(3, 10, 30, 100))\n\nggplot(d_example_emax_nocov, aes(Conc, Y)) +\n  geom_point() +\n  geom_smooth(formula = y ~ x, method = \"loess\", se = F, col = \"darkgrey\") +\n  scale_x_log10(\"Exposure\", breaks = c(3, 10, 30, 100))\n```\n\n::: {.cell-output-display}\n![](data_generation_files/figure-html/fig-check-data-no-cov-1.png){#fig-check-data-no-cov-1 width=672}\n:::\n\n::: {.cell-output-display}\n![](data_generation_files/figure-html/fig-check-data-no-cov-2.png){#fig-check-data-no-cov-2 width=672}\n:::\n:::\n\n\n\n\n## Data generation - with covariate\n\nOnly one covariate (Prognostic factor positive/negative)\n\n1. Prognostic factor = positive (GpA) is more sensitive to the drug\n   - lower Emax in GpA; Emax.GpA = 10; Emax.GpB = 15\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nNgp <- 2\nN <- 20 * Ngp\nGPid <- as.factor(rep(c(\"A\", \"B\"), each = 20))\n\n# Set parameters\nE0 <- 5\nEC50 <- 15\nh <- 2\nbeta1 <- .7\n\n# Calc response\nset.seed(12345)\n\nd_example_emax_cov <-\n  tibble(GP = GPid) |>\n  mutate(\n    c.is = 50 * runif(N), eps = rnorm(N)\n  ) |>\n  mutate(\n    Emax.i = ifelse(GP == \"A\", 10, 15)\n  ) |>\n  mutate(y.is = E0 + ((Emax.i * c.is^h) / (c.is^h + EC50^h)) + eps) |>\n  mutate(Conc = c.is, Y = y.is)\n```\n:::\n\n\n\n\n### Check data\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nggplot(d_example_emax_cov, aes(Conc, Y)) +\n  geom_point(aes(colour = GP)) +\n  geom_smooth(aes(group = GP, colour = GP), se = F) +\n  scale_x_continuous(\"Exposure\") +\n  theme(legend.position = \"top\")\n```\n\n::: {.cell-output .cell-output-stderr}\n\n```\n`geom_smooth()` using method = 'loess' and formula = 'y ~ x'\n```\n\n\n:::\n\n::: {.cell-output-display}\n![](data_generation_files/figure-html/fig-check-data-cov-1.png){#fig-check-data-cov width=672}\n:::\n:::\n\n\n\n\n## Save data\n\nOnly run in an interactive session so that the data is not saved every time\nthe document is rendered (by setting `eval: FALSE`).\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nwrite_csv(d_example_emax_nocov, here(\"data\", \"d_example_emax_nocov.csv\"))\nwrite_csv(d_example_emax_cov, here(\"data\", \"d_example_emax_cov.csv\"))\n```\n:::\n",
+    "supporting": [
+      "data_generation_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
