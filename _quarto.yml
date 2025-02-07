@@ -2,7 +2,7 @@ project:
   type: book
 
 book:
-  title: "Exposure-response analysis with Bayesian approaches"
+  title: "BayesERbook: Exposure-response analysis with Bayesian approaches"
   author:
     - name: Kenta Yoshida
     - name: François Mercier
