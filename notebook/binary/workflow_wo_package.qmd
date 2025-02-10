@@ -83,7 +83,7 @@ exposure_range <-
 exposure_to_sim_vec <-
   seq(exposure_range[1], exposure_range[2], length.out = 51)
 
-data_for_sim <- 
+data_for_sim <-
   tibble(!!var_exposure := exposure_to_sim_vec)
 
 sim_epred_med_qi <-
@@ -127,7 +127,6 @@ ggplot(data = sim_epred_med_qi, aes(x = .data[[var_exposure]], y = .epred)) +
     labels = scales::percent
   ) +
   labs(x = var_exposure, y = "Probability of event")
-
 ```
 
 MCMC samples can be obtained with `as_draws()` family of functions, such as
@@ -160,7 +159,7 @@ l_mod_exposures <-
   purrr::map(
     function(.x) {
       formula <- stats::formula(glue::glue("{var_resp} ~ {.x}"))
-      
+
       mod <- rstanarm::stan_glm(
         formula,
         family = stats::binomial(),
@@ -280,7 +279,7 @@ exposure_to_sim <- c(2:6)
 
 data_cov <- df_er_ae_hgly2 |> select(-!!var_exposure)
 
-data_for_sim <- 
+data_for_sim <-
   tibble(!!var_exposure := exposure_to_sim) |>
   mutate(.id_exposure = row_number()) |>
   expand_grid(data_cov)

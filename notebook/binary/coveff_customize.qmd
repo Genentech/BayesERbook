@@ -91,9 +91,9 @@ First, we build the specification for the covariate effects with
 
 ```{r}
 spec_coveff <- build_spec_coveff(ermod_bin_hgly2_cov)
-spec_coveff |> 
-  gt() |> 
-  fmt_number(n_sigfig = 3)|>
+spec_coveff |>
+  gt() |>
+  fmt_number(n_sigfig = 3) |>
   fmt_integer(columns = c("value_order", "var_order"))
 ```
 
@@ -113,8 +113,8 @@ spec_new_bgluc <- build_spec_coveff_one_variable(
   qi_width_cov = 0.8, show_ref_value = TRUE
 )
 
-spec_new_bhba1c <- 
-  tibble(value_cont = c(30, 35, 45, 50) / 5) |> 
+spec_new_bhba1c <-
+  tibble(value_cont = c(30, 35, 45, 50) / 5) |>
   mutate(
     value_order = row_number(),
     value_label = as.character(value_cont * 5),
@@ -124,32 +124,32 @@ spec_new_bhba1c <-
     is_ref_value = FALSE,
     show_ref_value = FALSE)
 
-spec_new_race <- 
-  spec_coveff |> 
-  filter(var_name == "RACE") |> 
+spec_new_race <-
+  spec_coveff |>
+  filter(var_name == "RACE") |>
   mutate(
     is_ref_value = c(FALSE, TRUE, FALSE),
     show_ref_value = c(FALSE, TRUE, FALSE)
-  ) |> 
+  ) |>
   select(-var_order, -is_covariate)
 
-spec_coveff_new_1 <- 
+spec_coveff_new_1 <-
   replace_spec_coveff(spec_coveff, bind_rows(spec_new_bgluc, spec_new_bhba1c)) |>
   # spec_new_race is separately provided as we want to change the reference level
   replace_spec_coveff(spec_new_race, replace_ref_value = TRUE)
 
-d_new_var_order <- 
-  tibble(var_name = c("AUCss_1000", "BGLUC", "BHBA1C_5", "RACE")) |> 
+d_new_var_order <-
+  tibble(var_name = c("AUCss_1000", "BGLUC", "BHBA1C_5", "RACE")) |>
   mutate(var_order = row_number())
 
-spec_coveff_new <- 
-  spec_coveff_new_1 |> 
+spec_coveff_new <-
+  spec_coveff_new_1 |>
   select(-var_order) |>
   left_join(d_new_var_order, by = "var_name")
 
-spec_coveff_new |> 
-  gt() |> 
-  fmt_number(n_sigfig = 3)|>
+spec_coveff_new |>
+  gt() |>
+  fmt_number(n_sigfig = 3) |>
   fmt_integer(columns = c("value_order", "var_order"))
 ```
 
