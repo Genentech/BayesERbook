@@ -2332,9 +2332,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb9-103"><a href="#cb9-103" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-106"><a href="#cb9-106" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb9-107"><a href="#cb9-107" aria-hidden="true" tabindex="-1"></a>spec_coveff <span class="ot">&lt;-</span> <span class="fu">build_spec_coveff</span>(ermod_bin_hgly2_cov)</span>
-<span id="cb9-108"><a href="#cb9-108" aria-hidden="true" tabindex="-1"></a>spec_coveff <span class="sc">|&gt;</span> </span>
-<span id="cb9-109"><a href="#cb9-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb9-110"><a href="#cb9-110" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">n_sigfig =</span> <span class="dv">3</span>)<span class="sc">|&gt;</span></span>
+<span id="cb9-108"><a href="#cb9-108" aria-hidden="true" tabindex="-1"></a>spec_coveff <span class="sc">|&gt;</span></span>
+<span id="cb9-109"><a href="#cb9-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb9-110"><a href="#cb9-110" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">n_sigfig =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
 <span id="cb9-111"><a href="#cb9-111" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_integer</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"value_order"</span>, <span class="st">"var_order"</span>))</span>
 <span id="cb9-112"><a href="#cb9-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb9-113"><a href="#cb9-113" aria-hidden="true" tabindex="-1"></a></span>
@@ -2354,8 +2354,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb9-129"><a href="#cb9-129" aria-hidden="true" tabindex="-1"></a>  <span class="at">qi_width_cov =</span> <span class="fl">0.8</span>, <span class="at">show_ref_value =</span> <span class="cn">TRUE</span></span>
 <span id="cb9-130"><a href="#cb9-130" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb9-131"><a href="#cb9-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-132"><a href="#cb9-132" aria-hidden="true" tabindex="-1"></a>spec_new_bhba1c <span class="ot">&lt;-</span> </span>
-<span id="cb9-133"><a href="#cb9-133" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">value_cont =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">35</span>, <span class="dv">45</span>, <span class="dv">50</span>) <span class="sc">/</span> <span class="dv">5</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb9-132"><a href="#cb9-132" aria-hidden="true" tabindex="-1"></a>spec_new_bhba1c <span class="ot">&lt;-</span></span>
+<span id="cb9-133"><a href="#cb9-133" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">value_cont =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">35</span>, <span class="dv">45</span>, <span class="dv">50</span>) <span class="sc">/</span> <span class="dv">5</span>) <span class="sc">|&gt;</span></span>
 <span id="cb9-134"><a href="#cb9-134" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb9-135"><a href="#cb9-135" aria-hidden="true" tabindex="-1"></a>    <span class="at">value_order =</span> <span class="fu">row_number</span>(),</span>
 <span id="cb9-136"><a href="#cb9-136" aria-hidden="true" tabindex="-1"></a>    <span class="at">value_label =</span> <span class="fu">as.character</span>(value_cont <span class="sc">*</span> <span class="dv">5</span>),</span>
@@ -2365,32 +2365,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb9-140"><a href="#cb9-140" aria-hidden="true" tabindex="-1"></a>    <span class="at">is_ref_value =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb9-141"><a href="#cb9-141" aria-hidden="true" tabindex="-1"></a>    <span class="at">show_ref_value =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb9-142"><a href="#cb9-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-143"><a href="#cb9-143" aria-hidden="true" tabindex="-1"></a>spec_new_race <span class="ot">&lt;-</span> </span>
-<span id="cb9-144"><a href="#cb9-144" aria-hidden="true" tabindex="-1"></a>  spec_coveff <span class="sc">|&gt;</span> </span>
-<span id="cb9-145"><a href="#cb9-145" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(var_name <span class="sc">==</span> <span class="st">"RACE"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb9-143"><a href="#cb9-143" aria-hidden="true" tabindex="-1"></a>spec_new_race <span class="ot">&lt;-</span></span>
+<span id="cb9-144"><a href="#cb9-144" aria-hidden="true" tabindex="-1"></a>  spec_coveff <span class="sc">|&gt;</span></span>
+<span id="cb9-145"><a href="#cb9-145" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(var_name <span class="sc">==</span> <span class="st">"RACE"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb9-146"><a href="#cb9-146" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb9-147"><a href="#cb9-147" aria-hidden="true" tabindex="-1"></a>    <span class="at">is_ref_value =</span> <span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>),</span>
 <span id="cb9-148"><a href="#cb9-148" aria-hidden="true" tabindex="-1"></a>    <span class="at">show_ref_value =</span> <span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)</span>
-<span id="cb9-149"><a href="#cb9-149" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb9-149"><a href="#cb9-149" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
 <span id="cb9-150"><a href="#cb9-150" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>var_order, <span class="sc">-</span>is_covariate)</span>
 <span id="cb9-151"><a href="#cb9-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-152"><a href="#cb9-152" aria-hidden="true" tabindex="-1"></a>spec_coveff_new_1 <span class="ot">&lt;-</span> </span>
+<span id="cb9-152"><a href="#cb9-152" aria-hidden="true" tabindex="-1"></a>spec_coveff_new_1 <span class="ot">&lt;-</span></span>
 <span id="cb9-153"><a href="#cb9-153" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replace_spec_coveff</span>(spec_coveff, <span class="fu">bind_rows</span>(spec_new_bgluc, spec_new_bhba1c)) <span class="sc">|&gt;</span></span>
 <span id="cb9-154"><a href="#cb9-154" aria-hidden="true" tabindex="-1"></a>  <span class="co"># spec_new_race is separately provided as we want to change the reference level</span></span>
 <span id="cb9-155"><a href="#cb9-155" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replace_spec_coveff</span>(spec_new_race, <span class="at">replace_ref_value =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb9-156"><a href="#cb9-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-157"><a href="#cb9-157" aria-hidden="true" tabindex="-1"></a>d_new_var_order <span class="ot">&lt;-</span> </span>
-<span id="cb9-158"><a href="#cb9-158" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">var_name =</span> <span class="fu">c</span>(<span class="st">"AUCss_1000"</span>, <span class="st">"BGLUC"</span>, <span class="st">"BHBA1C_5"</span>, <span class="st">"RACE"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb9-157"><a href="#cb9-157" aria-hidden="true" tabindex="-1"></a>d_new_var_order <span class="ot">&lt;-</span></span>
+<span id="cb9-158"><a href="#cb9-158" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">var_name =</span> <span class="fu">c</span>(<span class="st">"AUCss_1000"</span>, <span class="st">"BGLUC"</span>, <span class="st">"BHBA1C_5"</span>, <span class="st">"RACE"</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb9-159"><a href="#cb9-159" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">var_order =</span> <span class="fu">row_number</span>())</span>
 <span id="cb9-160"><a href="#cb9-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-161"><a href="#cb9-161" aria-hidden="true" tabindex="-1"></a>spec_coveff_new <span class="ot">&lt;-</span> </span>
-<span id="cb9-162"><a href="#cb9-162" aria-hidden="true" tabindex="-1"></a>  spec_coveff_new_1 <span class="sc">|&gt;</span> </span>
+<span id="cb9-161"><a href="#cb9-161" aria-hidden="true" tabindex="-1"></a>spec_coveff_new <span class="ot">&lt;-</span></span>
+<span id="cb9-162"><a href="#cb9-162" aria-hidden="true" tabindex="-1"></a>  spec_coveff_new_1 <span class="sc">|&gt;</span></span>
 <span id="cb9-163"><a href="#cb9-163" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>var_order) <span class="sc">|&gt;</span></span>
 <span id="cb9-164"><a href="#cb9-164" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(d_new_var_order, <span class="at">by =</span> <span class="st">"var_name"</span>)</span>
 <span id="cb9-165"><a href="#cb9-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-166"><a href="#cb9-166" aria-hidden="true" tabindex="-1"></a>spec_coveff_new <span class="sc">|&gt;</span> </span>
-<span id="cb9-167"><a href="#cb9-167" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb9-168"><a href="#cb9-168" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">n_sigfig =</span> <span class="dv">3</span>)<span class="sc">|&gt;</span></span>
+<span id="cb9-166"><a href="#cb9-166" aria-hidden="true" tabindex="-1"></a>spec_coveff_new <span class="sc">|&gt;</span></span>
+<span id="cb9-167"><a href="#cb9-167" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb9-168"><a href="#cb9-168" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">n_sigfig =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
 <span id="cb9-169"><a href="#cb9-169" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_integer</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"value_order"</span>, <span class="st">"var_order"</span>))</span>
 <span id="cb9-170"><a href="#cb9-170" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb9-171"><a href="#cb9-171" aria-hidden="true" tabindex="-1"></a></span>

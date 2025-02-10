@@ -2833,7 +2833,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(d_sim_binom_cov)</span>
 <span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-46"><a href="#cb20-46" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(d_sim_binom_cov) <span class="sc">|&gt;</span> </span>
+<span id="cb20-46"><a href="#cb20-46" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(d_sim_binom_cov) <span class="sc">|&gt;</span></span>
 <span id="cb20-47"><a href="#cb20-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
 <span id="cb20-48"><a href="#cb20-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">n_sigfig =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
 <span id="cb20-49"><a href="#cb20-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_integer</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"ID"</span>, <span class="st">"AEFLAG"</span>, <span class="st">"Dose_mg"</span>))</span>
@@ -2901,9 +2901,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb20-119"><a href="#cb20-119" aria-hidden="true" tabindex="-1"></a>draws_df <span class="ot">&lt;-</span> <span class="fu">as_draws_df</span>(ermod_bin)</span>
 <span id="cb20-120"><a href="#cb20-120" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-121"><a href="#cb20-121" aria-hidden="true" tabindex="-1"></a>draws_df_summary <span class="ot">&lt;-</span></span>
-<span id="cb20-122"><a href="#cb20-122" aria-hidden="true" tabindex="-1"></a>  draws_df <span class="sc">|&gt;</span> </span>
-<span id="cb20-123"><a href="#cb20-123" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_draws</span>(mean, median, sd, <span class="sc">~</span><span class="fu">quantile2</span>(.x, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>)), </span>
-<span id="cb20-124"><a href="#cb20-124" aria-hidden="true" tabindex="-1"></a>    <span class="fu">default_convergence_measures</span>()) </span>
+<span id="cb20-122"><a href="#cb20-122" aria-hidden="true" tabindex="-1"></a>  draws_df <span class="sc">|&gt;</span></span>
+<span id="cb20-123"><a href="#cb20-123" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_draws</span>(mean, median, sd, <span class="sc">~</span> <span class="fu">quantile2</span>(.x, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>)),</span>
+<span id="cb20-124"><a href="#cb20-124" aria-hidden="true" tabindex="-1"></a>    <span class="fu">default_convergence_measures</span>())</span>
 <span id="cb20-125"><a href="#cb20-125" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-126"><a href="#cb20-126" aria-hidden="true" tabindex="-1"></a>draws_df_summary <span class="sc">|&gt;</span></span>
 <span id="cb20-127"><a href="#cb20-127" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
@@ -2934,7 +2934,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb20-154"><a href="#cb20-154" aria-hidden="true" tabindex="-1"></a>  <span class="at">exposure_to_sim_vec =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
 <span id="cb20-155"><a href="#cb20-155" aria-hidden="true" tabindex="-1"></a>  <span class="at">output_type =</span> <span class="st">"median_qi"</span></span>
 <span id="cb20-156"><a href="#cb20-156" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb20-157"><a href="#cb20-157" aria-hidden="true" tabindex="-1"></a>ersim_med_qi <span class="sc">|&gt;</span> </span>
+<span id="cb20-157"><a href="#cb20-157" aria-hidden="true" tabindex="-1"></a>ersim_med_qi <span class="sc">|&gt;</span></span>
 <span id="cb20-158"><a href="#cb20-158" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
 <span id="cb20-159"><a href="#cb20-159" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">n_sigfig =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
 <span id="cb20-160"><a href="#cb20-160" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_integer</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">".row"</span>))</span>
