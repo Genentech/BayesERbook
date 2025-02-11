@@ -17,15 +17,8 @@ The examples utilizes
 You can install the package as follows:
 
 ``` r
-# install.packages('BayesERtools') # Once on CRAN
-devtools::install_github("genentech/BayesERtools") # development version
-```
-
-You also need latest version of `rstanemax` (\>= 0.1.7) to use
-E<sub>max</sub> model.
-
-``` r
-install.packages('rstanemax')
+install.packages('BayesERtools')
+# devtools::install_github("genentech/BayesERtools") # development version
 ```
 
 ## Model types supported by `BayesERtools`
@@ -93,10 +86,6 @@ install.packages('rstanemax')
   </tfoot>
 </table>
 </div>
-
-## Important links
-
-- Rendered book: <https://genentech.github.io/BayesERbook/>
 
 ## Note for developer
 
