@@ -37,7 +37,7 @@ AE is diarrhea (dr2), where you would see fairly flat ER curve.
 
 data(d_sim_binom_cov)
 
-head(d_sim_binom_cov) |> 
+head(d_sim_binom_cov) |>
   gt() |>
   fmt_number(n_sigfig = 3) |>
   fmt_integer(columns = c("ID", "AEFLAG", "Dose_mg"))
@@ -105,9 +105,9 @@ MCMC samples can be obtained with `as_draws()` family of functions, such as
 draws_df <- as_draws_df(ermod_bin)
 
 draws_df_summary <-
-  draws_df |> 
-  summarize_draws(mean, median, sd, ~quantile2(.x, probs = c(0.025, 0.975)), 
-    default_convergence_measures()) 
+  draws_df |>
+  summarize_draws(mean, median, sd, ~ quantile2(.x, probs = c(0.025, 0.975)),
+    default_convergence_measures())
 
 draws_df_summary |>
   gt() |>
@@ -138,7 +138,7 @@ ersim_med_qi <- sim_er_new_exp(
   exposure_to_sim_vec = c(1, 1.5, 2, 3),
   output_type = "median_qi"
 )
-ersim_med_qi |> 
+ersim_med_qi |>
   gt() |>
   fmt_number(n_sigfig = 3) |>
   fmt_integer(columns = c(".row"))

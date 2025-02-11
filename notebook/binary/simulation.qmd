@@ -122,15 +122,15 @@ d_sim_curve |>
 
 set.seed(1234)
 
-d_new_dose_pk <- 
-  tibble(Dose_mg = rep(c(100, 200, 400), each = 30)) |> 
+d_new_dose_pk <-
+  tibble(Dose_mg = rep(c(100, 200, 400), each = 30)) |>
   mutate(CL = rlnorm(n(), meanlog = log(100), sdlog = 0.3),
     AUCss_1000 = Dose_mg / CL,
     Dose = glue::glue("{Dose_mg} mg"))
 
-d_median_auc <- 
-  d_new_dose_pk |> 
-  group_by(Dose) |> 
+d_median_auc <-
+  d_new_dose_pk |>
+  group_by(Dose) |>
   summarize(AUCss_1000 = median(AUCss_1000))
 
 ggplot(d_new_dose_pk, aes(x = AUCss_1000, fill = Dose)) +
@@ -142,7 +142,6 @@ ggplot(d_new_dose_pk, aes(x = AUCss_1000, fill = Dose)) +
   theme(plot.title = ggtext::element_markdown(),
     axis.title.x = ggtext::element_markdown()) +
   xgxr::xgx_scale_x_log10()
-
 ```
 
 ### Sim and plot
@@ -152,19 +151,19 @@ ggplot(d_new_dose_pk, aes(x = AUCss_1000, fill = Dose)) +
 #| fig-width: 7
 #| fig-height: 5
 
-d_sim_new_dose_raw <- 
+d_sim_new_dose_raw <-
   sim_er(ermod_bin_hgly2,
     newdata = d_new_dose_pk)
 
-d_sim_new_dose_per_dose <- 
-  d_sim_new_dose_raw |> 
+d_sim_new_dose_per_dose <-
+  d_sim_new_dose_raw |>
   # Calc per-dose summary probability for each MCMC draws
-  ungroup() |> 
-  summarize(prob = mean(.epred), .by = c(Dose, Dose_mg, .draw)) |> 
+  ungroup() |>
+  summarize(prob = mean(.epred), .by = c(Dose, Dose_mg, .draw)) |>
   # Summarize across MCMC draws
   group_by(Dose, Dose_mg) |>
-  median_qi() |> 
-  ungroup() |> 
+  median_qi() |>
+  ungroup() |>
   # Add median AUCss
   left_join(d_median_auc, by = "Dose")
 
@@ -179,7 +178,7 @@ d_sim_curve |>
   geom_point(data = d_sim_new_dose_per_dose, aes(y = prob, color = Dose), size = 3) +
   geom_errorbar(data = d_sim_new_dose_per_dose,
     aes(y = prob, ymin = .lower, ymax = .upper, color = Dose), width = 0.03) +
-  geom_boxplot(data = d_new_dose_pk, 
+  geom_boxplot(data = d_new_dose_pk,
     aes(x = AUCss_1000, y = -0.1, fill = Dose, color = Dose), width = 0.1, alpha = 0.5,
     inherit.aes = FALSE) +
   geom_hline(yintercept = 0, linetype = "solid", linewidth = 0.2) +
@@ -201,7 +200,6 @@ d_sim_curve |>
   ) +
   theme(axis.title.x = ggtext::element_markdown()) +
   xgxr::xgx_scale_x_log10()
-
 ```
 
 ## PK boxplot on ER plot
@@ -217,10 +215,10 @@ See below the example of adding exposure boxplot to any ER plot.
 #| fig-height: 5
 
 plot_er(ermod_bin_hgly2, show_orig_data = TRUE) +
-  geom_boxplot(data = d_new_dose_pk, 
+  geom_boxplot(data = d_new_dose_pk,
     aes(x = AUCss_1000, y = -0.2, fill = Dose, color = Dose), width = 0.1, alpha = 0.5,
     inherit.aes = FALSE) +
-  geom_hline(yintercept = -0.1, linetype = "solid", linewidth = 0.2) + 
+  geom_hline(yintercept = -0.1, linetype = "solid", linewidth = 0.2) +
   coord_cartesian(ylim = c(-0.25, 1)) +
   xgxr::xgx_scale_x_log10() +
   guides(

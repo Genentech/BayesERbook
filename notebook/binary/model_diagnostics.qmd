@@ -96,8 +96,8 @@ You can see that AUCss effect is much stronger for hyperglycemia than diarrhea.
 ### Hyperglycemia
 
 ```{r}
-ermod_bin_hgly2 |> 
-  summarize_draws(mean, median, sd, ~quantile2(.x, probs = c(0.025, 0.975)),
+ermod_bin_hgly2 |>
+  summarize_draws(mean, median, sd, ~ quantile2(.x, probs = c(0.025, 0.975)),
     default_convergence_measures()) |>
   gt() |>
   fmt_number(n_sigfig = 3)
@@ -106,8 +106,8 @@ ermod_bin_hgly2 |>
 ### Diarrhea
 
 ```{r}
-ermod_bin_dr2 |> 
-  summarize_draws(mean, median, sd, ~quantile2(.x, probs = c(0.025, 0.975)),
+ermod_bin_dr2 |>
+  summarize_draws(mean, median, sd, ~ quantile2(.x, probs = c(0.025, 0.975)),
     default_convergence_measures()) |>
   gt() |>
   fmt_number(n_sigfig = 3)
