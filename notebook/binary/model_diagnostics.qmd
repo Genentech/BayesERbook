@@ -180,14 +180,14 @@ it is expected that the p-value is less than 1/4000 * 2, i.e. < 0.0005
 
 kernel
 ```{r}
-p_direction(ermod_bin_hgly2, as_p = TRUE, as_num = TRUE)
+bayestestR::p_direction(ermod_bin_hgly2, as_p = TRUE, as_num = TRUE)
 1 / length(as_draws(ermod_bin_hgly2)$AUCss_1000) * 2
 ```
 
 ### Diarrhea
 
 ```{r}
-p_direction(ermod_bin_dr2, as_p = TRUE, as_num = TRUE)
+bayestestR::p_direction(ermod_bin_dr2, as_p = TRUE, as_num = TRUE)
 # Below is a direct calculation of this value
 mean(as_draws(ermod_bin_dr2)$AUCss_1000 < 0) * 2
 ```
