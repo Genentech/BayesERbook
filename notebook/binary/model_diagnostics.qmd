@@ -178,7 +178,6 @@ Since there were 4000 MCMC samples (`nrow(as_draws_df(ermod_bin_hgly2))`),
 it is expected that the p-value is less than 1/4000 * 2, i.e. < 0.0005 
 (multiplication with 2 corresponds to two-sided test).
 
-kernel
 ```{r}
 bayestestR::p_direction(ermod_bin_hgly2, as_p = TRUE, as_num = TRUE)
 1 / length(as_draws(ermod_bin_hgly2)$AUCss_1000) * 2
