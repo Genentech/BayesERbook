@@ -572,7 +572,7 @@ Linear
  purrr          * 1.0.2      2023-08-10 [2] RSPM (R 4.4.0)
  QuickJSR         1.4.0      2024-10-01 [2] RSPM (R 4.4.0)
  R6               2.5.1      2021-08-19 [2] RSPM (R 4.4.0)
- Rcpp             1.0.13     2024-07-17 [2] RSPM (R 4.4.0)
+ Rcpp           * 1.0.13     2024-07-17 [2] RSPM (R 4.4.0)
  RcppParallel     5.1.9      2024-08-19 [2] RSPM (R 4.4.0)
  readr          * 2.1.5      2024-01-10 [2] RSPM (R 4.4.0)
  remotes          2.5.0      2024-03-17 [2] RSPM (R 4.4.0)
@@ -582,6 +582,7 @@ Linear
  rprojroot        2.0.4      2023-11-05 [1] RSPM (R 4.4.0)
  rstan            2.32.6     2024-03-05 [2] RSPM (R 4.4.0)
  rstanarm         2.32.1     2024-01-18 [2] RSPM (R 4.4.0)
+ rstanemax      * 0.1.9      2025-02-17 [1] Github (yoshidk6/rstanemax@896b748)
  rstantools       2.4.0      2024-01-31 [1] RSPM (R 4.4.0)
  rstudioapi       0.16.0     2024-03-24 [2] RSPM (R 4.4.0)
  scales           1.3.0      2023-11-28 [2] RSPM (R 4.4.0)
@@ -1126,17 +1127,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="in">library(BayesERtools)</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="in">library(here)</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="in">library(gt)</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="in">library(posterior)</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidybayes)</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="in">library(bayesplot)</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="in">library(loo)</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">session_info</span>()</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="in">library(rstanemax)</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="in">library(here)</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="in">library(gt)</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="in">library(posterior)</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidybayes)</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="in">library(bayesplot)</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="in">library(loo)</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">session_info</span>()</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
