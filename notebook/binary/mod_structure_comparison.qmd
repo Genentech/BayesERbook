@@ -100,3 +100,38 @@ loo_bin_hgly2 <- loo(ermod_bin_hgly2)
 
 loo_compare(list(bin_emax_hgly2 = loo_bin_emax_hgly2, bin_hgly2 = loo_bin_hgly2))
 ```
+
+Sometimes, `loo()` shows warnings on Pareto k estimates, which indicates problems
+in approximation of ELPD.
+Starting from `BayesERtools` 0.2.2, ELPD can also be evaluated with k-fold cross-validation.
+While it tends to be slower than loo (especially the E~max~ models), 
+this will not face the challenge on approximation as written above.
+
+```{r}
+#| eval: FALSE
+set.seed(1234)
+
+kfold_bin_emax_hgly2 <- kfold(ermod_bin_emax_hgly2)
+kfold_bin_hgly2 <- kfold(ermod_bin_hgly2)
+
+cmp_bin_kfold <- loo_compare(list(bin_emax_hgly2 = kfold_bin_emax_hgly2, bin_hgly2 = kfold_bin_hgly2))
+```
+
+```{r}
+#| eval: FALSE
+#| include: FALSE
+
+# Save the output in vignettes/data to avoid running it during the build.
+saveRDS(cmp_bin_kfold, file = here("output", "cmp_bin_kfold.rds"))
+```
+
+```{r}
+#| include: FALSE
+
+cmp_bin_kfold <- readRDS(here("output", "cmp_bin_kfold.rds"))
+```
+
+```{r}
+cmp_bin_kfold
+```
+
