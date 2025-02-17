@@ -14,6 +14,7 @@ format: html
 
 library(tidyverse)
 library(BayesERtools)
+library(rstanemax)
 library(here)
 library(gt)
 library(posterior)
