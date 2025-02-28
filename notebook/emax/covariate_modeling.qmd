@@ -1,6 +1,6 @@
 # Covariate modeling
 
-This chapter uses the brms package to develop and evaluate Bayesian E~max~ regression models with and without covariates. It discusses models for continuous response data and binary response data. 
+The [brms](https://paulbuerkner.com/brms/) package provides a flexible framework for specifying multilevel regression models, using Stan as the back end. It is typically used for models within the generalized linear mixed model (GLMM) specification, but can accommodate nonlinear models such as E~max~. This chapter uses the brms package to develop and evaluate Bayesian E~max~ regression models with and without covariates. Models for continuous and binary response data are discussed. 
 
 ```{r}
 #| output: FALSE
@@ -11,7 +11,6 @@ library(brms)
 library(posterior)
 library(tidybayes)
 library(here)
-library(gt)
 
 theme_set(theme_bw(base_size = 12))
 ```
@@ -24,7 +23,7 @@ source(here("R", "cli_color_text.R"))
 
 ## Load data
 
-Two simulated data sets are used in this chapter. Both data sets include three continuous-valued covariates in addition to the exposure variable. In one data set the response is continuous, in the other it is binary-valued. 
+Two simulated data sets are used in this chapter. Both data sets include three continuous-valued covariates in addition to the exposure variable. In one data set the response is continuous, in the other it is binary-valued. The data sets are loaded as shown below:
 
 ```{r}
 #| message: FALSE
@@ -33,7 +32,9 @@ d_example_emax_3cov <- read_csv(here("data", "d_example_emax_3cov.csv"))
 d_example_emax_bin_3cov <- read_csv(here("data", "d_example_emax_bin_3cov.csv"))
 ```
 
-## E~max~ models in brms
+## Building models in brms
+
+This section shows how to build simple E~max~ models in brms without adding covariates. The extension to covariate modeling is discussed in the next section. 
 
 ### Continuous response data
 
