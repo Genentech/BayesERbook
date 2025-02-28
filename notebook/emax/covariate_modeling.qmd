@@ -60,8 +60,7 @@ d_example_emax_3cov |>
   ggplot(aes(value, response)) + 
   geom_point() + 
   geom_smooth(formula = y ~ x, method = "loess") + 
-  facet_wrap(~ variable, scales = "free_x") + 
-  theme_bw()
+  facet_wrap(~ variable, scales = "free_x")
 ```
 
 Initially we will build a model that does not consider the covariates. To specify a regular E~max~ model in brms, use `brmsformula()` to describe the exposure-response relationship, setting `nl = TRUE` to ensure that brms interprets the input as a non-linear model:
@@ -120,6 +119,17 @@ When this code is executed a Stan model is compiled and run, and detailed inform
 continuous_base_fit
 ```
 
+The data can be visualized in many different ways. A simple example is shown below, using `epred_draws()` to extract model predictions as a function of exposure:
+
+```{r}
+continuous_base_fit |> 
+  epred_draws(newdata = tibble(exposure = seq(0, 50000, 1000))) |> 
+  summarize(response = mean(.epred), .groups = "drop") |> 
+  ggplot(mapping = aes(exposure, response)) + 
+  geom_path() + 
+  geom_point(data = d_example_emax_3cov)
+```
+
 ### Binary response data
 
 The data set with binary response data is identical to the continuous data apart from the `response` variable, which is now 0 or 1 for each subject:
@@ -144,8 +154,7 @@ d_example_emax_bin_3cov |>
   mutate(response = factor(response)) |> 
   ggplot(aes(response, value)) + 
   geom_violin(draw_quantiles = .5) + 
-  facet_wrap(~ variable, scales = "free_y") + 
-  theme_bw()
+  facet_wrap(~ variable, scales = "free_y")
 ```
 
 To adapt the brms model to be appropriate for binary responses, the measurement model is adjusted. As in logistic regression, binary responses are assumed to be Bernoulli distributed, with a logit link function:
@@ -177,6 +186,17 @@ Again, inspect the model fit object to see the results:
 
 ```{r}
 binary_base_fit
+```
+
+The predictions of the fitted model are visualized below:
+
+```{r}
+binary_base_fit |> 
+  epred_draws(newdata = tibble(exposure = seq(0, 50000, 1000))) |> 
+  summarize(response = mean(.epred), .groups = "drop") |> 
+  ggplot(mapping = aes(exposure, response)) + 
+  geom_path() + 
+  geom_jitter(data = d_example_emax_bin_3cov, width = 0, height = .05)
 ```
 
 ## Adding covariates
