@@ -1,0 +1,240 @@
+# Covariate modeling
+
+This chapter uses the brms package to develop and evaluate Bayesian E~max~ regression models with and without covariates. It discusses models for continuous response data and binary response data. 
+
+```{r}
+#| output: FALSE
+#| message: FALSE
+
+library(tidyverse)
+library(brms)
+library(posterior)
+library(tidybayes)
+library(here)
+library(gt)
+
+theme_set(theme_bw(base_size = 12))
+```
+
+```{r}
+#| include: FALSE
+# Enable colored outputs
+source(here("R", "cli_color_text.R"))
+```
+
+## Load data
+
+Two simulated data sets are used in this chapter. Both data sets include three continuous-valued covariates in addition to the exposure variable. In one data set the response is continuous, in the other it is binary-valued. 
+
+```{r}
+#| message: FALSE
+
+d_example_emax_3cov <- read_csv(here("data", "d_example_emax_3cov.csv"))
+d_example_emax_bin_3cov <- read_csv(here("data", "d_example_emax_bin_3cov.csv"))
+```
+
+## E~max~ models in brms
+
+### Continuous response data
+
+Consider the continuous response data first. In addition to an `exposure` column and a `response` column, there are three continuous covariates that may be related to the response:
+
+```{r}
+d_example_emax_3cov
+```
+
+To examine the structure of the data set, create an exploratory visualization:
+
+```{r}
+#| label: show-continuous-emax-data
+#| fig-height: 8
+#| fig-width: 8
+
+d_example_emax_3cov |> 
+  pivot_longer(
+    cols = c(exposure, cov_a, cov_b, cov_c), 
+    names_to = "variable",
+    values_to = "value"
+  ) |> 
+  ggplot(aes(value, response)) + 
+  geom_point() + 
+  geom_smooth(formula = y ~ x, method = "loess") + 
+  facet_wrap(~ variable, scales = "free_x") + 
+  theme_bw()
+```
+
+Initially we will build a model that does not consider the covariates. To specify a regular E~max~ model in brms, use `brmsformula()` to describe the exposure-response relationship, setting `nl = TRUE` to ensure that brms interprets the input as a non-linear model:
+
+```{r}
+#| label: simple-continuous-emax-model
+base_model <- brmsformula(
+  response ~ e0 + emax * exposure / (ec50 + exposure),
+  e0 ~ 1,
+  emax ~ 1,
+  ec50 ~ 1,
+  nl = TRUE
+) 
+```
+
+In this specification, the first formula indicates that the exposure-response relationship is an E~max~ function. The later formulas indicate that `e0`, `emax`, and `ec50` are model parameters.
+
+Assumptions must also be specified for the distribution of measurement errors. For simplicity, this example assumes errors are normally distributed. Use the `brmsfamily()` function to specify this:
+
+```{r}
+#| label: gaussian-error-model
+gaussian_measurement <- brmsfamily(
+  family = "gaussian", 
+  link = "identity"
+)
+```
+
+Parameter priors for `e0`, `emax`, and `ec50` must also be specified. In brms the default is to place an improper flat prior on regression parameters. For this example a weakly-informative prior is used. The `prior()` function is used for this, using the `nlpar` argument to specify the name of a non-linear parameter, and using `lb` and `ub` to impose lower and upper bounds if required:
+
+```{r}
+parameter_prior <- c(
+  prior(normal(0, 5), nlpar = "e0"),
+  prior(normal(0, 5), nlpar = "emax"),
+  prior(normal(2000, 500), nlpar = "ec50", lb = 0)
+)
+```
+
+These three components are then passed to `brm()` to estimate model parameters:
+
+```{r}
+#| label: run-continuous-emax-model
+#| cache: true
+#| message: false
+#| results: hide
+continuous_base_fit <- brm(
+  formula = base_model, 
+  family = gaussian_measurement, 
+  data = d_example_emax_3cov, 
+  prior = parameter_prior
+) 
+```
+
+When this code is executed a Stan model is compiled and run, and detailed information on the sampling is printed during the run. At the end, inspect the brms model object to obtain a summary of the model, the sampling, and the parameter estimates:
+
+```{r}
+continuous_base_fit
+```
+
+### Binary response data
+
+The data set with binary response data is identical to the continuous data apart from the `response` variable, which is now 0 or 1 for each subject:
+
+```{r}
+d_example_emax_bin_3cov
+```
+
+To examine the structure of the data set, create an exploratory visualization:
+
+```{r}
+#| label: show-binary-emax-data
+#| fig-height: 8
+#| fig-width: 8
+
+d_example_emax_bin_3cov |> 
+  pivot_longer(
+    cols = c(exposure, cov_a, cov_b, cov_c), 
+    names_to = "variable",
+    values_to = "value"
+  ) |> 
+  mutate(response = factor(response)) |> 
+  ggplot(aes(response, value)) + 
+  geom_violin(draw_quantiles = .5) + 
+  facet_wrap(~ variable, scales = "free_y") + 
+  theme_bw()
+```
+
+To adapt the brms model to be appropriate for binary responses, the measurement model is adjusted. As in logistic regression, binary responses are assumed to be Bernoulli distributed, with a logit link function:
+
+```{r}
+#| label: bernoulli-error-model
+bernoulli_measurement <- brmsfamily(
+  family = "bernoulli", 
+  link = "logit"
+)
+```
+
+This is the only modification required: the `parameter_prior` and `base_model` are both unchanged. To estimate parameters, call `brm()` for the binary data set using the `bernoulli_measurement` family:
+
+```{r}
+#| label: run-binary-emax-model
+#| cache: true
+#| message: false
+#| results: hide
+binary_base_fit <- brm(
+  formula = base_model, 
+  family = bernoulli_measurement, 
+  data = d_example_emax_bin_3cov, 
+  prior = parameter_prior
+) 
+```
+
+Again, inspect the model fit object to see the results:
+
+```{r}
+binary_base_fit
+```
+
+## Adding covariates
+
+In the brms framework, the E~max~ function is treated as a structural model and covariates can be placed on any parameter. As an example, the model specified here sets `cov_a`, `cov_b`, and `cov_c` as covariates on the baseline response:
+
+```{r}
+full_model <- brmsformula(
+  response ~ e0 + emax * exposure / (ec50 + exposure), # structural model
+  e0   ~ 1 + cov_a + cov_b + cov_c, # covariate model for baseline
+  emax ~ 1,                         # covariate model for max response
+  ec50 ~ 1,                         # covariate model for EC50
+  nl = TRUE
+)
+```
+
+### Continuous response data
+
+To apply this model to the continuous data, pass the `full_model` along with `parameter_prior` and `gaussian_measurement` to `brm()`:
+
+```{r}
+#| label: run-continuous-emax-model-with-covariates
+#| cache: true
+#| message: false
+#| results: hide
+continuous_full_fit <- brm(
+  formula = full_model, 
+  family = gaussian_measurement, 
+  data = d_example_emax_3cov, 
+  prior = parameter_prior
+) 
+```
+
+Printing the `continuous_full_fit` object provides summary information about the regression coefficients for the covariates and other parameters:
+
+```{r}
+continuous_full_fit
+```
+
+### Binary response data
+
+The same approach can be used when the response variable is binary. As before, the only difference from the continuous model is the use of the `bernoulli_measurement` model:
+
+```{r}
+#| label: run-binary-emax-model-with-covariates
+#| cache: true
+#| message: false
+#| results: hide
+binary_full_fit <- brm(
+  formula = full_model, 
+  family = bernoulli_measurement, 
+  data = d_example_emax_bin_3cov, 
+  prior = parameter_prior
+) 
+```
+
+Results for this model are shown below: 
+
+```{r}
+binary_full_fit
+```
+
