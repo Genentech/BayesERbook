@@ -322,4 +322,32 @@ binary_full_fit |>
   theme(legend.position = "bottom")
 ```
 
+## Model comparison
+
+The brms package provides a flexible interface for model comparison using LOO-CV and WAIC, using the [loo](http://mc-stan.org/loo/) package internally. One workflow for calling this interface is illustrated in this section, using the two continuous-response E~max~ models as the example case. The first step is to use `add_criterion()` to run the LOO-CV procedure, and store the results internally within the brmsfit object:
+
+```{r}
+continuous_full_fit <- add_criterion(continuous_full_fit, "loo")
+continuous_base_fit <- add_criterion(continuous_base_fit, "loo")
+```
+
+If necessary, the stored criterion results can be extracted from a model object as shown below:
+
+```{r}
+continuous_full_fit$criteria$loo
+```
+
+To compare two models that contain stored criterion results, use `loo_compare()`:
+
+```{r}
+continuous_loo_compare <- loo_compare(continuous_full_fit, continuous_base_fit)
+continuous_loo_compare
+```
+
+By default the printed output shows the most important columns, but the return value from `loo_compare()` contains additional information relevant to the model comparison. To view all columns, call the print method with `simplify = FALSE`:
+
+```{r}
+print(continuous_loo_compare, simplify = FALSE)
+```
+
 
