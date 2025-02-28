@@ -102,7 +102,6 @@ These three components are then passed to `brm()` to estimate model parameters:
 
 ```{r}
 #| label: run-continuous-emax-model
-#| cache: true
 #| message: false
 #| results: hide
 continuous_base_fit <- brm(
@@ -171,7 +170,6 @@ This is the only modification required: the `parameter_prior` and `base_model` a
 
 ```{r}
 #| label: run-binary-emax-model
-#| cache: true
 #| message: false
 #| results: hide
 binary_base_fit <- brm(
@@ -219,7 +217,6 @@ To apply this model to the continuous data, pass the `full_model` along with `pa
 
 ```{r}
 #| label: run-continuous-emax-model-with-covariates
-#| cache: true
 #| message: false
 #| results: hide
 continuous_full_fit <- brm(
@@ -272,7 +269,6 @@ The same approach can be used when the response variable is binary. As before, t
 
 ```{r}
 #| label: run-binary-emax-model-with-covariates
-#| cache: true
 #| message: false
 #| results: hide
 binary_full_fit <- brm(
