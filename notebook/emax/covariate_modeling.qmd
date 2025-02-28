@@ -236,6 +236,36 @@ Printing the `continuous_full_fit` object provides summary information about the
 continuous_full_fit
 ```
 
+Extending the data visualization used earlier, the model predictions can be plotted as a function of both `exposure` and `cov_a`:
+
+```{r}
+continuous_full_fit |> 
+  epred_draws(newdata = expand_grid(
+    exposure = seq(0, 50000, 1000),
+    cov_a = c(2, 5, 8), 
+    cov_b = 5,
+    cov_c = 5
+  )) |> 
+  summarize(response = mean(.epred), .groups = "drop") |> 
+  ggplot(mapping = aes(exposure, response)) + 
+  geom_path() + 
+  geom_point(
+    data = d_example_emax_3cov |> 
+      mutate(
+        cov_a_raw = cov_a,
+        cov_a = case_when(
+          cov_a < 3.5 ~ 2,
+          cov_a >= 3.5 & cov_a < 6.5 ~ 5,
+          cov_a >= 6.5 ~ 8
+        )
+      ),
+    mapping = aes(color = cov_a_raw)
+  ) + 
+  facet_wrap(~cov_a) +
+  labs(color = "cov_a") + 
+  theme(legend.position = "bottom")
+```
+
 ### Binary response data
 
 The same approach can be used when the response variable is binary. As before, the only difference from the continuous model is the use of the `bernoulli_measurement` model:
@@ -258,4 +288,38 @@ Results for this model are shown below:
 ```{r}
 binary_full_fit
 ```
+
+The data visualization for this model is shown below:
+
+
+```{r}
+binary_full_fit |> 
+  epred_draws(newdata = expand_grid(
+    exposure = seq(0, 50000, 1000),
+    cov_a = c(2, 5, 8), 
+    cov_b = 5,
+    cov_c = 5
+  )) |> 
+  summarize(response = mean(.epred), .groups = "drop") |> 
+  ggplot(mapping = aes(exposure, response)) + 
+  geom_path() +
+  geom_jitter(
+    data = d_example_emax_bin_3cov |> 
+      mutate(
+        cov_a_raw = cov_a,
+        cov_a = case_when(
+          cov_a < 3.5 ~ 2,
+          cov_a >= 3.5 & cov_a < 6.5 ~ 5,
+          cov_a >= 6.5 ~ 8
+        )
+      ),
+    mapping = aes(color = cov_a_raw),
+    width = 0,
+    height = .05
+  ) + 
+  facet_wrap(~cov_a) +
+  labs(color = "cov_a") + 
+  theme(legend.position = "bottom")
+```
+
 
