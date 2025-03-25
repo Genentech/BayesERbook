@@ -50,7 +50,9 @@ d_example_emax_3cov |>
   facet_wrap(~ variable, scales = "free_x")
 ```
 
-Initially we will build a model that does not consider the covariates. To specify a regular E~max~ model in brms, use `brmsformula()` to describe the exposure-response relationship, setting `nl = TRUE` to ensure that brms interprets the input as a non-linear model:
+### Hyperbolic E~max~ models
+
+Initially we will build a hypoberbolic E~max~ model in which we fix $\gamma = 1$. To specify a regular E~max~ model in brms, use `brmsformula()` to describe the exposure-response relationship, setting `nl = TRUE` to ensure that brms interprets the input as a non-linear model:
 
 ```{r}
 #| label: simple-continuous-emax-model
@@ -115,6 +117,56 @@ continuous_base_fit |>
   geom_path() + 
   geom_point(data = d_example_emax_3cov)
 ```
+
+
+### Sigmoidal E~max~ models
+
+The generalization to sigmoidal E~max~ models is as follows. First, the `gamma` parameter needs to be incorporated in the model specification:
+
+```{r}
+#| label: sigmoidal-continuous-emax-model
+sigmoidal_model <- brmsformula(
+  response ~ e0 + emax * exposure^gamma / (ec50^gamma + exposure^gamma),
+  e0 ~ 1,
+  emax ~ 1,
+  ec50 ~ 1,
+  gamma ~ 1,
+  nl = TRUE
+) 
+```
+
+Because `gamma` is a model parameter, a prior for it must be specified. 
+
+```{r}
+sigmoidal_parameter_prior <- c(
+  prior(normal(0, 1.5), nlpar = "e0"),
+  prior(normal(0, 1.5), nlpar = "emax"),
+  prior(normal(2000, 500), nlpar = "ec50", lb = 0),
+  prior(lognormal(0, 0.25), nlpar = "gamma", lb = 0)
+)
+```
+
+Next call `brm()`
+
+```{r}
+#| label: run-sigmoidal-continuous-emax-model
+#| message: false
+#| results: hide
+sigmoidal_model_fit <- brm(
+  formula = sigmoidal_model, 
+  family = gaussian_measurement, 
+  data = d_example_emax_3cov, 
+  prior = sigmoidal_parameter_prior
+) 
+```
+
+Model fit
+
+```{r}
+sigmoidal_model_fit
+```
+
+Clear from inspection that there is no need for a sigmoidal model here: the posterior mean for `gamma` is `r round(summary(sigmoidal_model_fit)$fixed[4, 1], 2)` with 95% credible interval from `r round(summary(sigmoidal_model_fit)$fixed[4, 3], 2)` to `r round(summary(sigmoidal_model_fit)$fixed[4, 4], 2)`. However, if an explicit model comparison is required, cross-validation methods such as LOO-CV can be used to compare `sigmoidal_model_fit` to `continuous_base_fit`. This is discussed in the next chapter.
 
 ## Binary E~max~ models 
 
