@@ -26,6 +26,7 @@ book:
         - notebook/emax/basic_workflow.qmd
         - notebook/emax/model_diagnostics.qmd
         - notebook/emax/simulation.qmd
+        - notebook/emax/basic_workflow_brms.qmd
         - notebook/emax/covariate_modeling.qmd
         - notebook/emax/data_generation.qmd
 
