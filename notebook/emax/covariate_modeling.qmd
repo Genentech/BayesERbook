@@ -209,7 +209,6 @@ binary_full_fit
 
 The data visualization for this model is shown below:
 
-
 ```{r}
 binary_full_fit |> 
   epred_draws(newdata = expand_grid(
@@ -242,6 +241,38 @@ binary_full_fit |>
   facet_wrap(~cov_a) +
   labs(color = "cov_a") + 
   theme(legend.position = "bottom")
+```
+
+## Covariates on other parameters
+
+The previous two examples illustrate covariates placed on the intercept parameter `e0`. It is possible to define covariate models on any parameter within the E~max~ model. 
+
+```{r}
+other_covariates <- brmsformula(
+  response ~ e0 + emax * exposure / (ec50 + exposure), # structural model
+  e0   ~ 1 + cov_a,   # covariate model for baseline
+  emax ~ 1 + cov_b,   # covariate model for max response
+  ec50 ~ 1,           # covariate model for EC50
+  nl = TRUE
+)
+```
+
+```{r}
+#| label: run-other-covariates-emax-model
+#| message: false
+#| results: hide
+other_covariates_fit <- brm(
+  formula = other_covariates, 
+  family = gaussian_measurement, 
+  data = d_example_emax_3cov, 
+  prior = parameter_prior
+) 
+```
+
+Printing the `other_covariates_fit` object provides summary information:
+
+```{r}
+other_covariates_fit
 ```
 
 ## Model comparison
