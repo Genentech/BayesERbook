@@ -75,6 +75,27 @@ binary_base_fit <- brm(
 ) 
 ```
 
+
+To examine the structure of the data set, create an exploratory visualization:
+
+```{r}
+#| label: show-continuous-emax-data
+#| fig-height: 8
+#| fig-width: 8
+
+d_example_emax_3cov |> 
+  pivot_longer(
+    cols = c(exposure, cov_a, cov_b, cov_c), 
+    names_to = "variable",
+    values_to = "value"
+  ) |> 
+  ggplot(aes(value, response)) + 
+  geom_point() + 
+  geom_smooth(formula = y ~ x, method = "loess") + 
+  facet_wrap(~ variable, scales = "free_x")
+```
+
+
 ## Adding covariates
 
 In the brms framework, the E~max~ function is treated as a structural model and covariates can be placed on any parameter. As an example, the model specified here sets `cov_a`, `cov_b`, and `cov_c` as covariates on the baseline response:
@@ -121,9 +142,13 @@ continuous_full_fit |>
     cov_b = 5,
     cov_c = 5
   )) |> 
-  summarize(response = mean(.epred), .groups = "drop") |> 
-  ggplot(mapping = aes(exposure, response)) + 
+  median_qi() |> 
+  ggplot(mapping = aes(exposure, .epred)) + 
   geom_path() + 
+  geom_ribbon(
+    mapping = aes(ymin = .lower, ymax = .upper), 
+    alpha = 0.3
+  ) +
   geom_point(
     data = d_example_emax_3cov |> 
       mutate(
@@ -134,7 +159,7 @@ continuous_full_fit |>
           cov_a >= 6.5 ~ 8
         )
       ),
-    mapping = aes(color = cov_a_raw)
+    mapping = aes(y = response, color = cov_a_raw)
   ) + 
   facet_wrap(~cov_a) +
   labs(color = "cov_a") + 
@@ -142,6 +167,25 @@ continuous_full_fit |>
 ```
 
 ### Binary response data
+
+To examine the structure of the data set, create an exploratory visualization:
+
+```{r}
+#| label: show-binary-emax-data
+#| fig-height: 8
+#| fig-width: 8
+
+d_example_emax_bin_3cov |> 
+  pivot_longer(
+    cols = c(exposure, cov_a, cov_b, cov_c), 
+    names_to = "variable",
+    values_to = "value"
+  ) |> 
+  mutate(response = factor(response)) |> 
+  ggplot(aes(response, value)) + 
+  geom_violin(draw_quantiles = .5) + 
+  facet_wrap(~ variable, scales = "free_y")
+```
 
 The same approach can be used when the response variable is binary. As before, the only difference from the continuous model is the use of the `bernoulli_measurement` model:
 
@@ -174,9 +218,13 @@ binary_full_fit |>
     cov_b = 5,
     cov_c = 5
   )) |> 
-  summarize(response = mean(.epred), .groups = "drop") |> 
-  ggplot(mapping = aes(exposure, response)) + 
+  median_qi() |> 
+  ggplot(mapping = aes(exposure, .epred)) + 
   geom_path() +
+  geom_ribbon(
+    mapping = aes(ymin = .lower, ymax = .upper), 
+    alpha = 0.3
+  ) +
   geom_jitter(
     data = d_example_emax_bin_3cov |> 
       mutate(
@@ -187,7 +235,7 @@ binary_full_fit |>
           cov_a >= 6.5 ~ 8
         )
       ),
-    mapping = aes(color = cov_a_raw),
+    mapping = aes(y = response, color = cov_a_raw),
     width = 0,
     height = .05
   ) + 

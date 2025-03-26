@@ -112,12 +112,12 @@ The data can be visualized in many different ways. A simple example is shown bel
 ```{r}
 continuous_base_fit |> 
   epred_draws(newdata = tibble(exposure = seq(0, 50000, 1000))) |> 
-  summarize(response = mean(.epred), .groups = "drop") |> 
-  ggplot(mapping = aes(exposure, response)) + 
+  median_qi() |> 
+  ggplot(mapping = aes(exposure, .epred)) + 
   geom_path() + 
-  geom_point(data = d_example_emax_3cov)
+  geom_ribbon(aes(ymin = .lower, ymax = .upper), alpha = 0.3) +
+  geom_point(data = d_example_emax_3cov, mapping = aes(y = response))
 ```
-
 
 ### Sigmoidal E~max~ models
 
@@ -232,9 +232,18 @@ The predictions of the fitted model are visualized below:
 ```{r}
 binary_base_fit |> 
   epred_draws(newdata = tibble(exposure = seq(0, 50000, 1000))) |> 
-  summarize(response = mean(.epred), .groups = "drop") |> 
-  ggplot(mapping = aes(exposure, response)) + 
+  median_qi() |> 
+  ggplot(mapping = aes(exposure, .epred)) + 
   geom_path() + 
-  geom_jitter(data = d_example_emax_bin_3cov, width = 0, height = .05)
+  geom_ribbon(
+    mapping = aes(ymin = .lower, ymax = .upper), 
+    alpha = 0.3
+  ) +
+  geom_jitter(
+    data = d_example_emax_bin_3cov,
+    mapping = aes(y = response), 
+    width = 0, 
+    height = .05
+  )
 ```
 
