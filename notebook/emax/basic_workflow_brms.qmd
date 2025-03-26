@@ -31,7 +31,7 @@ d_example_emax_3cov <- read_csv(here("data", "d_example_emax_3cov.csv"))
 d_example_emax_3cov
 ```
 
-To examine the structure of the data set, create an exploratory visualization:
+In this chapter only the `exposure` and `response` columns are used. A simple exploratory visualization of the exposure-response relationship is shown below:
 
 ```{r}
 #| label: show-continuous-emax-data
@@ -39,15 +39,9 @@ To examine the structure of the data set, create an exploratory visualization:
 #| fig-width: 8
 
 d_example_emax_3cov |> 
-  pivot_longer(
-    cols = c(exposure, cov_a, cov_b, cov_c), 
-    names_to = "variable",
-    values_to = "value"
-  ) |> 
-  ggplot(aes(value, response)) + 
+  ggplot(aes(exposure, response)) + 
   geom_point() + 
-  geom_smooth(formula = y ~ x, method = "loess") + 
-  facet_wrap(~ variable, scales = "free_x")
+  geom_smooth(formula = y ~ x, method = "loess")
 ```
 
 ### Hyperbolic E~max~ models
@@ -178,7 +172,7 @@ d_example_emax_bin_3cov <- read_csv(here("data", "d_example_emax_bin_3cov.csv"))
 d_example_emax_bin_3cov
 ```
 
-To examine the structure of the data set, create an exploratory visualization:
+The exposure-response relationship is illustrated by plotting the difference in exposure between responders and non-responders:
 
 ```{r}
 #| label: show-binary-emax-data
@@ -186,15 +180,9 @@ To examine the structure of the data set, create an exploratory visualization:
 #| fig-width: 8
 
 d_example_emax_bin_3cov |> 
-  pivot_longer(
-    cols = c(exposure, cov_a, cov_b, cov_c), 
-    names_to = "variable",
-    values_to = "value"
-  ) |> 
   mutate(response = factor(response)) |> 
-  ggplot(aes(response, value)) + 
-  geom_violin(draw_quantiles = .5) + 
-  facet_wrap(~ variable, scales = "free_y")
+  ggplot(aes(response, exposure)) + 
+  geom_violin(draw_quantiles = .5)
 ```
 
 To adapt the brms model to be appropriate for binary responses, the measurement model is adjusted. As in logistic regression, binary responses are assumed to be Bernoulli distributed, with a logit link function:
