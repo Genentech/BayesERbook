@@ -113,7 +113,7 @@ hyperbolic_model_fit |>
   geom_point(data = d_example_emax_3cov, mapping = aes(y = response))
 ```
 
-### Sigmoidal E~max~ models
+## Sigmoidal E~max~ models
 
 It is often necessary to consider sigmoidal E~max~ models, in which the Hill coefficient `gamma` is estimated from data. To do so within in the brms framework, the first step is to incorporate the `gamma` parameter in the model specification:
 
