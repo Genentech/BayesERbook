@@ -141,9 +141,9 @@ make_continuous_data <- function(seed = 123) {
     ec50   = 4000, 
     e0     = 5,
     gamma  = 1,
-    sigma  = .6,
-    coef_a = .3,
-    coef_b = .2,
+    sigma  = .5,
+    coef_a = .5,
+    coef_b = 0,
     coef_c = 0
   )
 
@@ -225,7 +225,7 @@ make_binary_data <- function(seed = 123) {
     ec50   = 8000, 
     e0     = -3,
     gamma  = 1,
-    coef_a = .2,
+    coef_a = .35,
     coef_b = 0,
     coef_c = 0
   )
