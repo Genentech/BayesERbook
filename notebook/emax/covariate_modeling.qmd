@@ -21,6 +21,20 @@ theme_set(theme_bw(base_size = 12))
 source(here("R", "cli_color_text.R"))
 ```
 
+```{r}
+#| include: false
+if (require(cmdstanr)) {
+  # prefer cmdstanr and cache binaries
+  options(
+    brms.backend = "cmdstanr", 
+    cmdstanr_write_stan_file_dir = here("_brms-cache")
+  )
+  dir.create(here("_brms-cache"), FALSE)
+} else {
+  rstan::rstan_options(auto_write = TRUE)
+}
+```
+
 ## Continuous response with covariates
 
 The simulated data set contains three continuous covariates (`cov_a`, `cov_b`, and `cov_c`) that may be related to `response`. The univariate relationships between each covariate and the response are shown below, along with the relationship between `exposure` and `reponse`: 

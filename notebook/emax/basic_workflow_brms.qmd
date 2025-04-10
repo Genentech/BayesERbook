@@ -21,6 +21,20 @@ theme_set(theme_bw(base_size = 12))
 source(here("R", "cli_color_text.R"))
 ```
 
+```{r}
+#| include: false
+if (require(cmdstanr)) {
+  # prefer cmdstanr and cache binaries
+  options(
+    brms.backend = "cmdstanr", 
+    cmdstanr_write_stan_file_dir = here("_brms-cache")
+  )
+  dir.create(here("_brms-cache"), FALSE)
+} else {
+  rstan::rstan_options(auto_write = TRUE)
+}
+```
+
 ## Hyperbolic E~max~ models
 
 This section shows how to build a standard E~max~ model for continuous response data using brms. To build the model a simulated data set is used:
