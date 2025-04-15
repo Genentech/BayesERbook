@@ -22,7 +22,6 @@ source(here("R", "cli_color_text.R"))
 ```
 
 ```{r}
-#| include: false
 if (require(cmdstanr)) {
   # prefer cmdstanr and cache binaries
   options(
@@ -115,7 +114,7 @@ After the sampling is complete the user can inspect the brms model object to obt
 hyperbolic_model_fit
 ```
 
-The data can be visualized in many different ways. A simple example is shown below, using `epred_draws()` to extract model predictions as a function of exposure, and `median_qi()` to calculate a 95% interval around the model predictions:
+The data can be visualized in many different ways. A simple example is shown below, using `epred_draws()` from `tidybayes` package to extract model predictions as a function of exposure, and `median_qi()` to calculate a 95% interval around the model predictions:
 
 ```{r}
 hyperbolic_model_fit |> 
@@ -211,7 +210,11 @@ bernoulli_measurement <- brmsfamily(
 )
 ```
 
-This is the only respect in which the binary model differs from its continuous counterpart. The model formula and prior specification is the same as for the original model at the start of the chapter:
+This is the only respect in which the binary model differs from its continuous counterpart. The model formula and prior specification is the same as for the original model at the start of the chapter.
+
+Note that as the modeling is perfomed on logit scale, normal(0, 1.5) priors are
+considered as a good starting point for e0 and emax:  
+https://discourse.mc-stan.org/t/default-priors-for-logistic-regression-coefficients-in-brms/13742/2
 
 ```{r}
 binary_model <- brmsformula(

@@ -22,7 +22,6 @@ source(here("R", "cli_color_text.R"))
 ```
 
 ```{r}
-#| include: false
 if (require(cmdstanr)) {
   # prefer cmdstanr and cache binaries
   options(
@@ -109,7 +108,14 @@ continuous_covariate_fit
 Extending the data visualization used earlier, the model predictions can be plotted as a function of both `exposure` and `cov_a`:
 
 ```{r}
-continuous_covariate_fit |> 
+cov_a_map <- 
+  tibble(
+    cov_a = c(2, 5, 8),
+    cov_a_group = c("2 (<3.5)", "5 (3.5~6.5)", "8 (≥6.5)")
+  )
+
+sim_exposure_cov_a <- 
+  continuous_covariate_fit |> 
   epred_draws(newdata = expand_grid(
     exposure = seq(0, 50000, 1000),
     cov_a = c(2, 5, 8), 
@@ -117,6 +123,21 @@ continuous_covariate_fit |>
     cov_c = 5
   )) |> 
   median_qi() |> 
+  left_join(cov_a_map, by = join_by(cov_a))
+
+d_for_plot <- 
+  d_example_emax_3cov |> 
+  mutate(
+    cov_a_raw = cov_a,
+    cov_a = case_when(
+      cov_a < 3.5 ~ 2,
+      cov_a >= 3.5 & cov_a < 6.5 ~ 5,
+      cov_a >= 6.5 ~ 8
+    )
+  ) |> 
+  left_join(cov_a_map, by = join_by(cov_a))
+
+sim_exposure_cov_a |> 
   ggplot(mapping = aes(exposure, .epred)) + 
   geom_path() + 
   geom_ribbon(
@@ -124,18 +145,10 @@ continuous_covariate_fit |>
     alpha = 0.3
   ) +
   geom_point(
-    data = d_example_emax_3cov |> 
-      mutate(
-        cov_a_raw = cov_a,
-        cov_a = case_when(
-          cov_a < 3.5 ~ 2,
-          cov_a >= 3.5 & cov_a < 6.5 ~ 5,
-          cov_a >= 6.5 ~ 8
-        )
-      ),
+    data = d_for_plot,
     mapping = aes(y = response, color = cov_a_raw)
   ) + 
-  facet_wrap(~cov_a) +
+  facet_wrap(~cov_a_group, labeller = label_both) +
   labs(color = "cov_a") + 
   theme(legend.position = "bottom")
 ```
@@ -196,7 +209,14 @@ binary_covariate_fit
 The data visualization for this model is shown below:
 
 ```{r}
-binary_covariate_fit |> 
+cov_a_map <- 
+  tibble(
+    cov_a = c(2, 5, 8),
+    cov_a_group = c("2 (<3.5)", "5 (3.5~6.5)", "8 (≥6.5)")
+  )
+
+sim_exposure_cov_a <- 
+  binary_covariate_fit |> 
   epred_draws(newdata = expand_grid(
     exposure = seq(0, 50000, 1000),
     cov_a = c(2, 5, 8), 
@@ -204,27 +224,34 @@ binary_covariate_fit |>
     cov_c = 5
   )) |> 
   median_qi() |> 
+  left_join(cov_a_map, by = join_by(cov_a))
+
+d_for_plot <- 
+  d_example_emax_bin_3cov |> 
+  mutate(
+    cov_a_raw = cov_a,
+    cov_a = case_when(
+      cov_a < 3.5 ~ 2,
+      cov_a >= 3.5 & cov_a < 6.5 ~ 5,
+      cov_a >= 6.5 ~ 8
+    )
+  ) |> 
+  left_join(cov_a_map, by = join_by(cov_a))
+
+sim_exposure_cov_a |> 
   ggplot(mapping = aes(exposure, .epred)) + 
-  geom_path() +
+  geom_path() + 
   geom_ribbon(
     mapping = aes(ymin = .lower, ymax = .upper), 
     alpha = 0.3
   ) +
   geom_jitter(
-    data = d_example_emax_bin_3cov |> 
-      mutate(
-        cov_a_raw = cov_a,
-        cov_a = case_when(
-          cov_a < 3.5 ~ 2,
-          cov_a >= 3.5 & cov_a < 6.5 ~ 5,
-          cov_a >= 6.5 ~ 8
-        )
-      ),
+    data = d_for_plot,
     mapping = aes(y = response, color = cov_a_raw),
     width = 0,
     height = .05
   ) + 
-  facet_wrap(~cov_a) +
+  facet_wrap(~cov_a_group, labeller = label_both) +
   labs(color = "cov_a") + 
   theme(legend.position = "bottom")
 ```
