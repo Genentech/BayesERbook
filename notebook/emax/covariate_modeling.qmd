@@ -85,6 +85,8 @@ parameter_prior <- c(
 )
 ```
 
+When interpreting the prior, it is important to remember that there are covariates on `e0`: the `normal(0, 1.5)` prior is applied to all regression coefficients. That means that this prior is applied independently to `e0_Intercept`, `e0_cov_a`, `e0_cov_b`, and `e0_cov_c`. 
+
 To apply this model to the continuous data, pass all three of these to `brm()`:
 
 ```{r}
