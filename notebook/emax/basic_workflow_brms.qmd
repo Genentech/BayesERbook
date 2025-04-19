@@ -1,0 +1,273 @@
+# Basic workflow with brms
+
+The [brms](https://paulbuerkner.com/brms/) package provides a flexible framework for specifying multilevel regression models, using Stan as the back end. It is typically used for models within the generalized linear mixed model (GLMM) specification, but can accommodate nonlinear models such as E~max~. This chapter uses the brms package to develop and evaluate Bayesian E~max~ regression models. Models for continuous and binary response data are discussed, and in the next chapter these are extended to discuss covariate modeling.
+
+```{r}
+#| output: FALSE
+#| message: FALSE
+
+library(tidyverse)
+library(brms)
+library(posterior)
+library(tidybayes)
+library(here)
+
+theme_set(theme_bw(base_size = 12))
+```
+
+```{r}
+#| include: FALSE
+# Enable colored outputs
+source(here("R", "cli_color_text.R"))
+```
+
+```{r}
+if (require(cmdstanr)) {
+  # prefer cmdstanr and cache binaries
+  options(
+    brms.backend = "cmdstanr", 
+    cmdstanr_write_stan_file_dir = here("_brms-cache")
+  )
+  dir.create(here("_brms-cache"), FALSE)
+} else {
+  rstan::rstan_options(auto_write = TRUE)
+}
+```
+
+## Hyperbolic E~max~ models
+
+This section shows how to build a standard E~max~ model for continuous response data using brms. To build the model a simulated data set is used:
+
+```{r}
+#| message: FALSE
+d_example_emax_3cov <- read_csv(here("data", "d_example_emax_3cov.csv"))
+d_example_emax_3cov
+```
+
+In this chapter only the `exposure` and `response` columns are used. A simple exploratory visualization of the exposure-response relationship is shown below:
+
+```{r}
+#| label: show-continuous-emax-data
+#| fig-height: 8
+#| fig-width: 8
+
+d_example_emax_3cov |> 
+  ggplot(aes(exposure, response)) + 
+  geom_point() + 
+  geom_smooth(formula = y ~ x, method = "loess")
+```
+
+The model considered in this section is a hyperbolic E~max~ model, in which the Hill coefficient is fixed to unity (i.e. `gamma = 1`). The model construction takes place in stages. First, use `brmsformula()` to describe the exposure-response relationship, setting `nl = TRUE` to ensure that brms interprets the input as a non-linear model:
+
+```{r}
+#| label: simple-continuous-emax-model
+hyperbolic_model <- brmsformula(
+  response ~ e0 + emax * exposure / (ec50 + exposure),
+  e0 ~ 1,
+  emax ~ 1,
+  ec50 ~ 1,
+  nl = TRUE
+) 
+```
+
+In this specification, the first formula indicates that the exposure-response relationship is an E~max~ function. The later formulas indicate that `e0`, `emax`, and `ec50` are model parameters.
+
+In the second stage, assumptions must also be specified for the distribution of measurement errors. For simplicity, this example assumes errors are normally distributed. Use the `brmsfamily()` function to specify this:
+
+```{r}
+#| label: gaussian-error-model
+gaussian_measurement <- brmsfamily(
+  family = "gaussian", 
+  link = "identity"
+)
+```
+
+In the third stage, parameter priors for `e0`, `emax`, and `ec50` must also be specified. In brms the default is to place an improper flat prior on regression parameters. For this example a weakly-informative prior is used. The `prior()` function is used for this, using the `nlpar` argument to specify the name of a non-linear parameter, and using `lb` and `ub` to impose lower and upper bounds if required:
+
+```{r}
+hyperbolic_model_prior <- c(
+  prior(normal(0, 1.5), nlpar = "e0"),
+  prior(normal(0, 1.5), nlpar = "emax"),
+  prior(normal(2000, 500), nlpar = "ec50", lb = 0)
+)
+```
+
+These three components provide the complete specification of the model. They are passed to `brm()` along with the data to estimate model parameters:
+
+```{r}
+#| label: run-continuous-emax-model
+#| message: false
+#| results: hide
+hyperbolic_model_fit <- brm(
+  formula = hyperbolic_model, 
+  family = gaussian_measurement, 
+  data = d_example_emax_3cov, 
+  prior = hyperbolic_model_prior
+) 
+```
+
+When this code is executed a Stan model is compiled and run, and detailed information on the sampling is printed during the run. 
+
+After the sampling is complete the user can inspect the brms model object to obtain a summary of the model, the sampling, and the parameter estimates:
+
+```{r}
+hyperbolic_model_fit
+```
+
+The data can be visualized in many different ways. A simple example is shown below, using `epred_draws()` from `tidybayes` package to extract model predictions as a function of exposure, and `median_qi()` to calculate a 95% interval around the model predictions:
+
+```{r}
+hyperbolic_model_fit |> 
+  epred_draws(newdata = tibble(exposure = seq(0, 50000, 1000))) |> 
+  median_qi() |> 
+  ggplot(mapping = aes(exposure, .epred)) + 
+  geom_path() + 
+  geom_ribbon(aes(ymin = .lower, ymax = .upper), alpha = 0.3) +
+  geom_point(data = d_example_emax_3cov, mapping = aes(y = response))
+```
+
+## Sigmoidal E~max~ models
+
+It is often necessary to consider sigmoidal E~max~ models, in which the Hill coefficient `gamma` is estimated from data. To do so within in the brms framework, the first step is to incorporate the `gamma` parameter in the model specification:
+
+```{r}
+#| label: sigmoidal-continuous-emax-model
+sigmoidal_model <- brmsformula(
+  response ~ e0 + emax * exposure^gamma / (ec50^gamma + exposure^gamma),
+  e0 ~ 1,
+  emax ~ 1,
+  ec50 ~ 1,
+  gamma ~ 1,
+  nl = TRUE
+) 
+```
+
+Next, because `gamma` is now a model parameter, a prior for it must be specified. The prior specification may now look like this: 
+
+```{r}
+sigmoidal_model_prior <- c(
+  prior(normal(0, 1.5), nlpar = "e0"),
+  prior(normal(0, 1.5), nlpar = "emax"),
+  prior(normal(2000, 500), nlpar = "ec50", lb = 0),
+  prior(lognormal(0, 0.25), nlpar = "gamma", lb = 0)
+)
+```
+
+No changes to the measurement model are required: like the hyperbolic E~max~ model, it is typical to fit the sigmoidal E~max~ model to continuous responses by assuming measurement errors are described by independent normal variates. 
+
+To fit the model, call `brm()`:
+
+```{r}
+#| label: run-sigmoidal-continuous-emax-model
+#| message: false
+#| results: hide
+sigmoidal_model_fit <- brm(
+  formula = sigmoidal_model, 
+  family = gaussian_measurement, 
+  data = d_example_emax_3cov, 
+  prior = sigmoidal_model_prior
+) 
+```
+
+Once the sampling is complete, printing the model object displays estimated model parameters, 95% credible intervals for those parameters, and diagnostic information about the sampling: 
+
+```{r}
+sigmoidal_model_fit
+```
+
+In this instance it is clear from inspection that a sigmoidal model is unnecessary: the posterior mean for `gamma` is `r round(summary(sigmoidal_model_fit)$fixed[4, 1], 2)` with 95% credible interval from `r round(summary(sigmoidal_model_fit)$fixed[4, 3], 2)` to `r round(summary(sigmoidal_model_fit)$fixed[4, 4], 2)`. A hyperbolic model is the more natural choice here. If explicit model comparison is required, cross-validation methods such as LOO-CV can be used to compare the performance of different brms models estimated from the same data. This is discussed in the next chapter.
+
+## Binary E~max~ models 
+
+Now consider the case where the response is binary. Again, a simulated data set is used, identical to the previous example except that the `response` variable is now 0 or 1 for each subject:
+
+```{r}
+#| message: FALSE
+d_example_emax_bin_3cov <- read_csv(here("data", "d_example_emax_bin_3cov.csv"))
+d_example_emax_bin_3cov
+```
+
+The exposure-response relationship is illustrated by plotting the difference in exposure between responders and non-responders:
+
+```{r}
+#| label: show-binary-emax-data
+#| fig-height: 8
+#| fig-width: 8
+
+d_example_emax_bin_3cov |> 
+  mutate(response = factor(response)) |> 
+  ggplot(aes(response, exposure)) + 
+  geom_violin(draw_quantiles = .5)
+```
+
+To adapt the brms model to be appropriate for binary responses, the measurement model is adjusted. As in logistic regression, binary responses are assumed to be Bernoulli distributed, with a logit link function:
+
+```{r}
+#| label: bernoulli-error-model
+bernoulli_measurement <- brmsfamily(
+  family = "bernoulli", 
+  link = "logit"
+)
+```
+
+This is the only respect in which the binary model differs from its continuous counterpart. The model formula and prior specification is the same as for the original model at the start of the chapter.
+
+Note that as the modeling is perfomed on logit scale, normal(0, 1.5) priors are
+considered as a good starting point for e0 and emax. There is a good [discussion of these priors](https://discourse.mc-stan.org/t/default-priors-for-logistic-regression-coefficients-in-brms/13742/2) on the Stan website. 
+
+```{r}
+binary_model <- brmsformula(
+  response ~ e0 + emax * exposure / (ec50 + exposure),
+  e0 ~ 1,
+  emax ~ 1,
+  ec50 ~ 1,
+  nl = TRUE
+) 
+
+binary_model_prior <- c(
+  prior(normal(0, 1.5), nlpar = "e0"),
+  prior(normal(0, 1.5), nlpar = "emax"),
+  prior(normal(2000, 500), nlpar = "ec50", lb = 0)
+)
+```
+
+To estimate parameters, call `brm()` for the binary data set using the `bernoulli_measurement` family:
+
+```{r}
+#| label: run-binary-emax-model
+#| message: false
+#| results: hide
+binary_base_fit <- brm(
+  formula = binary_model, 
+  family = bernoulli_measurement, 
+  data = d_example_emax_bin_3cov, 
+  prior = binary_model_prior
+) 
+```
+
+Again, inspect the model fit object to see the results:
+
+```{r}
+binary_base_fit
+```
+
+The predictions of the fitted model are visualized below:
+
+```{r}
+binary_base_fit |> 
+  epred_draws(newdata = tibble(exposure = seq(0, 50000, 1000))) |> 
+  median_qi() |> 
+  ggplot(mapping = aes(exposure, .epred)) + 
+  geom_path() + 
+  geom_ribbon(
+    mapping = aes(ymin = .lower, ymax = .upper), 
+    alpha = 0.3
+  ) +
+  geom_jitter(
+    data = d_example_emax_bin_3cov,
+    mapping = aes(y = response), 
+    width = 0, 
+    height = .05
+  )
+```
+

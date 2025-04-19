@@ -101,6 +101,197 @@ ggplot(d_example_emax_cov, aes(Conc, Y)) +
   theme(legend.position = "top")
 ```
 
+## Data generation - multiple covariates
+
+Convenience functions used to generate the data sets. For the purposes of this data set exposures are assumed to be log-normally distributed (with slight truncation) and scale linearly with exposure. Continuous covariates are all bounded between 0 and 10. 
+
+```{r}
+#| label: convenience-functions
+
+emax_fn <- function(exposure, emax, ec50, e0, gamma = 1) {
+  e0 + emax * (exposure ^ gamma) / (ec50 ^ gamma + exposure ^ gamma)
+}
+
+generate_exposure <- function(dose, n, meanlog = 4, sdlog = 0.5) {
+  dose * qlnorm(
+    p = runif(n, min = .01, max = .99), 
+    meanlog = meanlog,
+    sdlog = sdlog
+  )
+}
+
+generate_covariate <- function(n) {
+  rbeta(n, 2, 2) * 10
+}
+```
+
+### Continuous response
+
+Define a function `make_continuous_data()` that simulates exposure-response data for a study with three dosing groups, continuous Emax response, and three continuous covariates:
+
+```{r}
+#| label: make-continuous-data-function
+
+make_continuous_data <- function(seed = 123) {
+  
+  set.seed(seed)
+  
+  par <- list(
+    emax   = 10, 
+    ec50   = 4000, 
+    e0     = 5,
+    gamma  = 1,
+    sigma  = .5,
+    coef_a = .5,
+    coef_b = 0,
+    coef_c = 0
+  )
+
+  make_data <- function(dose, n, par) {
+    tibble(
+      dose = dose, 
+      exposure = generate_exposure(max(dose, .01), n = n), 
+      cov_a = generate_covariate(n = n),
+      cov_b = generate_covariate(n = n),
+      cov_c = generate_covariate(n = n),
+      response = emax_fn(
+        exposure,
+        emax = par$emax, 
+        ec50 = par$ec50, 
+        e0 = par$e0, 
+        gamma = par$gamma
+      ) + 
+        par$coef_a * cov_a + 
+        par$coef_b * cov_b + 
+        par$coef_c * cov_c + 
+        rnorm(n, 0, par$sigma)
+    )
+  }
+  
+  dat <- bind_rows(
+    make_data(dose = 100, n = 100, par = par),  
+    make_data(dose = 200, n = 100, par = par),
+    make_data(dose = 300, n = 100, par = par)
+  ) 
+  
+  return(dat)
+}
+```
+
+Call the function to generate the data set:
+
+```{r}
+#| label: create-data-d-example-emax-3cov
+
+d_example_emax_3cov <- make_continuous_data()
+d_example_emax_3cov
+```
+
+### Check data
+
+Scatter plots and loess regressions of `response` against the four relevant predictors: `exposure`, `cov_a`, `cov_b`, and `cov_c`:
+
+```{r}
+#| label: fig-check-continuous-emax-data
+#| fig-height: 8
+#| fig-width: 8
+
+d_example_emax_3cov |> 
+  pivot_longer(
+    cols = c(exposure, cov_a, cov_b, cov_c), 
+    names_to = "variable",
+    values_to = "value"
+  ) |> 
+  ggplot(aes(value, response)) + 
+  geom_point() + 
+  geom_smooth(formula = y ~ x, method = "loess") + 
+  facet_wrap(~ variable, scales = "free_x") + 
+  theme_bw()
+```
+
+### Binary response
+
+Define a function `make_binary_data()` that simulates exposure-response data for a study with three dosing groups, binary Emax response, and three continuous covariates:
+
+```{r}
+#| label: make-binary-data-function
+
+make_binary_data <- function(seed = 123) {
+  
+  set.seed(seed)
+  
+  par <- list(
+    emax   = 5, 
+    ec50   = 8000, 
+    e0     = -3,
+    gamma  = 1,
+    coef_a = .35,
+    coef_b = 0,
+    coef_c = 0
+  )
+  
+  make_data <- function(dose, n, par) {
+    tibble(
+      dose = dose, 
+      exposure = generate_exposure(max(dose, .01), n = n), 
+      cov_a = generate_covariate(n = n),
+      cov_b = generate_covariate(n = n),
+      cov_c = generate_covariate(n = n),
+      pred = emax_fn( # non-linear predictor
+        exposure,
+        emax = par$emax, 
+        ec50 = par$ec50, 
+        e0 = par$e0, 
+        gamma = par$gamma
+      ) + 
+        par$coef_a * cov_a + 
+        par$coef_b * cov_b + 
+        par$coef_c * cov_c,
+      prob = 1 / (1 + exp(-pred)), # response probability
+      response = as.numeric(runif(n) < prob) # binary response
+    ) |> 
+      select(-pred, -prob)
+  }
+  
+  dat <- bind_rows(
+    make_data(dose = 100, n = 100, par = par),  
+    make_data(dose = 200, n = 100, par = par),
+    make_data(dose = 300, n = 100, par = par)
+  ) 
+  
+  return(dat)
+}
+```
+
+```{r}
+#| label: create-data-d-example-emax-bin-3cov
+
+d_example_emax_bin_3cov <- make_binary_data()
+d_example_emax_bin_3cov
+```
+
+### Check data
+
+Violin plots showing the distribution of the four relevant predictors `exposure`, `cov_a`, `cov_b`, and `cov_c` stratified by whether the `response` is 0 or 1:
+
+```{r}
+#| label: fig-check-binary-emax-data
+#| fig-height: 8
+#| fig-width: 8
+
+d_example_emax_bin_3cov |> 
+  pivot_longer(
+    cols = c(exposure, cov_a, cov_b, cov_c), 
+    names_to = "variable",
+    values_to = "value"
+  ) |> 
+  mutate(response = factor(response)) |> 
+  ggplot(aes(response, value)) + 
+  geom_violin(draw_quantiles = .5) + 
+  facet_wrap(~ variable, scales = "free_y") + 
+  theme_bw()
+```
+
 ## Save data
 
 Only run in an interactive session so that the data is not saved every time
@@ -111,4 +302,6 @@ the document is rendered (by setting `eval: FALSE`).
 
 write_csv(d_example_emax_nocov, here("data", "d_example_emax_nocov.csv"))
 write_csv(d_example_emax_cov, here("data", "d_example_emax_cov.csv"))
+write_csv(d_example_emax_3cov, here("data", "d_example_emax_3cov.csv"))
+write_csv(d_example_emax_bin_3cov, here("data", "d_example_emax_bin_3cov.csv"))
 ```
