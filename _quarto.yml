@@ -5,6 +5,7 @@ book:
   title: "BayesERbook: Exposure-response analysis with Bayesian approaches"
   author:
     - name: Kenta Yoshida
+    - name: Danielle Navarro
     - name: François Mercier
   date: last-modified
   site-url: https://genentech.github.io/BayesERbook/
