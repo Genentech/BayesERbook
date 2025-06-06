@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.43">
+<meta name="generator" content="quarto-1.7.31">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -21,8 +21,9 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -66,15 +67,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../">
 <link href="../../notebook/emax/simulation.html" rel="next">
 <link href="../../notebook/emax/basic_workflow.html" rel="prev">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-ea6ab78c2a32561d4c1b86b329006741.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-259b723fa4e0873cffa7869d0db9a921.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -106,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -235,12 +237,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Covariate modeling with brms</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../notebook/emax/data_generation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data generation</span></span></a>
-  </div>
-</li>
       </ul>
   </li>
     </ul>
@@ -310,8 +306,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>d_example_emax_nocov <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"d_example_emax_nocov.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>d_sim_emax</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<pre class="r-output"><code><span style="color: #555555;"># A tibble: 300 × 9</span>
+    dose exposure response_1 response_2 cnt_a cnt_b cnt_c bin_d bin_e
+   <span style="color: #555555; font-style: italic;"><dbl></dbl></span>    <span style="color: #555555; font-style: italic;"><dbl></dbl></span>      <span style="color: #555555; font-style: italic;"><dbl></dbl></span>      <span style="color: #555555; font-style: italic;"><dbl></dbl></span> <span style="color: #555555; font-style: italic;"><dbl></dbl></span> <span style="color: #555555; font-style: italic;"><dbl></dbl></span> <span style="color: #555555; font-style: italic;"><dbl></dbl></span> <span style="color: #555555; font-style: italic;"><dbl></dbl></span> <span style="color: #555555; font-style: italic;"><dbl></dbl></span>
+<span style="color: #555555;"> 1</span>   100    <span style="text-decoration: underline;">4</span>151.       12.8          1  5.71  2.33  7.83     0     1
+<span style="color: #555555;"> 2</span>   100    <span style="text-decoration: underline;">8</span>067.       14.6          1  4.92  4.66  6.74     1     1
+<span style="color: #555555;"> 3</span>   100    <span style="text-decoration: underline;">4</span>878.       12.8          1  4.88  4.21  4.68     1     1
+<span style="color: #555555;"> 4</span>   100    <span style="text-decoration: underline;">9</span>713.       16.6          1  8.42  6.56  1.29     0     1
+<span style="color: #555555;"> 5</span>   100   <span style="text-decoration: underline;">11</span>491.       14.4          0  4.37  3.96  3.55     0     1
+<span style="color: #555555;"> 6</span>   100    <span style="text-decoration: underline;">2</span>452.       12.6          1  8.69  7.60  3.64     0     0
+<span style="color: #555555;"> 7</span>   100    <span style="text-decoration: underline;">5</span>652.       14.8          1  6.61  3.95  5.13     0     0
+<span style="color: #555555;"> 8</span>   100    <span style="text-decoration: underline;">9</span>939.       15.2          1  5.35  7.77  8.29     0     1
+<span style="color: #555555;"> 9</span>   100    <span style="text-decoration: underline;">5</span>817.       14.6          0  5.61  2.24  9.60     0     1
+<span style="color: #555555;">10</span>   100    <span style="text-decoration: underline;">5</span>176.       13.7          1  6.06  1.79  8.74     0     1
+<span style="color: #555555;"># ℹ 290 more rows</span>
+</code></pre>
 </div>
 </section>
 <section id="fit-models" class="level2" data-number="8.2">
@@ -326,9 +337,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ermod_sigemax <span class="ot">&lt;-</span> <span class="fu">dev_ermod_emax</span>(</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> d_example_emax_nocov,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_resp =</span> <span class="st">"Y"</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_exposure =</span> <span class="st">"Conc"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> d_sim_emax,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_resp =</span> <span class="st">"response_1"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_exposure =</span> <span class="st">"exposure"</span>,</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">gamma_fix =</span> <span class="cn">NULL</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
@@ -341,12 +352,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ── <span style="font-weight: bold;">Developed model</span> ──
 
 ---- Emax model fit with rstanemax ----
-       mean se_mean   sd  2.5%   25%   50%   75% 97.5%   n_eff Rhat
-emax  15.92    0.24 5.49  8.67 11.64 14.71 19.07 29.38  545.77 1.01
-e0     3.13    0.09 2.00 -2.15  2.25  3.58  4.54  5.62  550.23 1.00
-ec50  24.94    0.30 8.63 14.98 19.47 22.51 28.06 48.31  843.12 1.00
-gamma  1.77    0.03 0.77  0.75  1.22  1.62  2.19  3.54  664.61 1.00
-sigma  0.86    0.00 0.16  0.62  0.75  0.84  0.95  1.24 1348.22 1.00
+         mean se_mean      sd   2.5%     25%     50%     75%    97.5%   n_eff
+emax    11.59    0.31    5.89   4.82    7.34   10.10   14.24    27.50  368.24
+e0       6.68    0.20    4.08  -3.67    4.78    7.68    9.71    11.48  436.14
+ec50  5254.72  193.00 4475.71 801.17 2974.18 4673.97 6385.68 15736.00  537.81
+gamma    1.06    0.02    0.50   0.32    0.70    0.97    1.33     2.26  543.20
+sigma    1.27    0.00    0.05   1.18    1.24    1.27    1.31     1.39 1375.87
+      Rhat
+emax  1.01
+e0    1.01
+ec50  1.00
+gamma 1.01
+sigma 1.00
 * Use `extract_stanfit()` function to extract raw stanfit object
 * Use `extract_param()` function to extract posterior draws of key parameters
 * Use `plot()` function to visualize model fit
@@ -365,9 +382,9 @@ sigma  0.86    0.00 0.16  0.62  0.75  0.84  0.95  1.24 1348.22 1.00
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>ermod_emax <span class="ot">&lt;-</span> <span class="fu">dev_ermod_emax</span>(</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> d_example_emax_nocov,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_resp =</span> <span class="st">"Y"</span>,</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_exposure =</span> <span class="st">"Conc"</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> d_sim_emax,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_resp =</span> <span class="st">"response_1"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_exposure =</span> <span class="st">"exposure"</span>,</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">gamma_fix =</span> <span class="dv">1</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
@@ -380,12 +397,18 @@ sigma  0.86    0.00 0.16  0.62  0.75  0.84  0.95  1.24 1348.22 1.00
 ── <span style="font-weight: bold;">Developed model</span> ──
 
 ---- Emax model fit with rstanemax ----
-       mean se_mean    sd  2.5%   25%   50%   75% 97.5%   n_eff Rhat
-emax  22.52    0.08  2.46 18.73 20.84 22.17 23.81 28.09  976.89 1.00
-e0     0.98    0.04  1.36 -2.23  0.32  1.18  1.91  2.98  912.27 1.00
-ec50  31.28    0.39 11.65 13.08 22.74 29.70 38.10 57.39  875.72 1.00
-gamma  1.00     NaN  0.00  1.00  1.00  1.00  1.00  1.00     NaN  NaN
-sigma  0.89    0.00  0.17  0.63  0.77  0.86  0.98  1.28 1216.16 1.01
+         mean se_mean      sd    2.5%     25%     50%     75%   97.5%   n_eff
+emax    10.11    0.07    1.71    7.93    8.98    9.72   10.81   14.42  564.00
+e0       7.32    0.08    2.00    2.41    6.41    7.66    8.70   10.13  572.38
+ec50  4341.84   62.80 1871.39 1704.41 3062.61 3994.85 5323.78 9061.88  887.87
+gamma    1.00     NaN    0.00    1.00    1.00    1.00    1.00    1.00     NaN
+sigma    1.28    0.00    0.05    1.18    1.24    1.27    1.31    1.39 1440.04
+      Rhat
+emax  1.01
+e0    1.01
+ec50  1.00
+gamma  NaN
+sigma 1.00
 * Use `extract_stanfit()` function to extract raw stanfit object
 * Use `extract_param()` function to extract posterior draws of key parameters
 * Use `plot()` function to visualize model fit
@@ -416,6 +439,8 @@ sigma  0.89    0.00  0.17  0.63  0.77  0.86  0.98  1.28 1216.16 1.01
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">decimals =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
+<pre class="r-output"><code>
+```{=html}
 <div id="mqnnknajtw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#mqnnknajtw table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -884,68 +909,70 @@ sigma  0.89    0.00  0.17  0.63  0.77  0.86  0.98  1.28 1216.16 1.01
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_left" headers="variable">ec50</td>
-<td class="gt_row gt_right" headers="mean">24.94</td>
-<td class="gt_row gt_right" headers="median">22.51</td>
-<td class="gt_row gt_right" headers="sd">8.63</td>
-<td class="gt_row gt_right" headers="mad">5.65</td>
-<td class="gt_row gt_right" headers="q5">16.17</td>
-<td class="gt_row gt_right" headers="q95">42.09</td>
-<td class="gt_row gt_right" headers="rhat">1.00</td>
-<td class="gt_row gt_right" headers="ess_bulk">1,111.48</td>
-<td class="gt_row gt_right" headers="ess_tail">1,157.42</td>
+<td class="gt_row gt_right" headers="mean">5,254.72</td>
+<td class="gt_row gt_right" headers="median">4,673.97</td>
+<td class="gt_row gt_right" headers="sd">4,475.71</td>
+<td class="gt_row gt_right" headers="mad">2,534.11</td>
+<td class="gt_row gt_right" headers="q5">1,125.57</td>
+<td class="gt_row gt_right" headers="q95">9,837.30</td>
+<td class="gt_row gt_right" headers="rhat">1.01</td>
+<td class="gt_row gt_right" headers="ess_bulk">614.40</td>
+<td class="gt_row gt_right" headers="ess_tail">541.30</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="variable">sigma</td>
-<td class="gt_row gt_right" headers="mean">0.86</td>
-<td class="gt_row gt_right" headers="median">0.84</td>
-<td class="gt_row gt_right" headers="sd">0.16</td>
-<td class="gt_row gt_right" headers="mad">0.15</td>
-<td class="gt_row gt_right" headers="q5">0.64</td>
-<td class="gt_row gt_right" headers="q95">1.15</td>
+<td class="gt_row gt_right" headers="mean">1.27</td>
+<td class="gt_row gt_right" headers="median">1.27</td>
+<td class="gt_row gt_right" headers="sd">0.05</td>
+<td class="gt_row gt_right" headers="mad">0.05</td>
+<td class="gt_row gt_right" headers="q5">1.19</td>
+<td class="gt_row gt_right" headers="q95">1.36</td>
 <td class="gt_row gt_right" headers="rhat">1.00</td>
-<td class="gt_row gt_right" headers="ess_bulk">1,434.70</td>
-<td class="gt_row gt_right" headers="ess_tail">1,777.17</td>
+<td class="gt_row gt_right" headers="ess_bulk">1,379.24</td>
+<td class="gt_row gt_right" headers="ess_tail">1,505.63</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="variable">gamma</td>
-<td class="gt_row gt_right" headers="mean">1.77</td>
-<td class="gt_row gt_right" headers="median">1.62</td>
-<td class="gt_row gt_right" headers="sd">0.77</td>
-<td class="gt_row gt_right" headers="mad">0.68</td>
-<td class="gt_row gt_right" headers="q5">0.84</td>
-<td class="gt_row gt_right" headers="q95">3.12</td>
-<td class="gt_row gt_right" headers="rhat">1.00</td>
-<td class="gt_row gt_right" headers="ess_bulk">593.05</td>
-<td class="gt_row gt_right" headers="ess_tail">951.82</td>
+<td class="gt_row gt_right" headers="mean">1.06</td>
+<td class="gt_row gt_right" headers="median">0.97</td>
+<td class="gt_row gt_right" headers="sd">0.50</td>
+<td class="gt_row gt_right" headers="mad">0.45</td>
+<td class="gt_row gt_right" headers="q5">0.40</td>
+<td class="gt_row gt_right" headers="q95">2.04</td>
+<td class="gt_row gt_right" headers="rhat">1.01</td>
+<td class="gt_row gt_right" headers="ess_bulk">459.99</td>
+<td class="gt_row gt_right" headers="ess_tail">555.58</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="variable">e0</td>
-<td class="gt_row gt_right" headers="mean">3.13</td>
-<td class="gt_row gt_right" headers="median">3.58</td>
-<td class="gt_row gt_right" headers="sd">2.00</td>
-<td class="gt_row gt_right" headers="mad">1.62</td>
-<td class="gt_row gt_right" headers="q5">−0.84</td>
-<td class="gt_row gt_right" headers="q95">5.38</td>
-<td class="gt_row gt_right" headers="rhat">1.00</td>
-<td class="gt_row gt_right" headers="ess_bulk">675.84</td>
-<td class="gt_row gt_right" headers="ess_tail">809.63</td>
+<td class="gt_row gt_right" headers="mean">6.68</td>
+<td class="gt_row gt_right" headers="median">7.68</td>
+<td class="gt_row gt_right" headers="sd">4.08</td>
+<td class="gt_row gt_right" headers="mad">3.42</td>
+<td class="gt_row gt_right" headers="q5">−1.45</td>
+<td class="gt_row gt_right" headers="q95">11.20</td>
+<td class="gt_row gt_right" headers="rhat">1.01</td>
+<td class="gt_row gt_right" headers="ess_bulk">480.68</td>
+<td class="gt_row gt_right" headers="ess_tail">788.66</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="variable">emax</td>
-<td class="gt_row gt_right" headers="mean">15.92</td>
-<td class="gt_row gt_right" headers="median">14.71</td>
-<td class="gt_row gt_right" headers="sd">5.49</td>
-<td class="gt_row gt_right" headers="mad">5.13</td>
-<td class="gt_row gt_right" headers="q5">9.35</td>
-<td class="gt_row gt_right" headers="q95">26.51</td>
-<td class="gt_row gt_right" headers="rhat">1.00</td>
-<td class="gt_row gt_right" headers="ess_bulk">583.13</td>
-<td class="gt_row gt_right" headers="ess_tail">809.81</td>
+<td class="gt_row gt_right" headers="mean">11.59</td>
+<td class="gt_row gt_right" headers="median">10.10</td>
+<td class="gt_row gt_right" headers="sd">5.89</td>
+<td class="gt_row gt_right" headers="mad">4.79</td>
+<td class="gt_row gt_right" headers="q5">5.20</td>
+<td class="gt_row gt_right" headers="q95">23.06</td>
+<td class="gt_row gt_right" headers="rhat">1.01</td>
+<td class="gt_row gt_right" headers="ess_bulk">429.41</td>
+<td class="gt_row gt_right" headers="ess_tail">533.51</td>
 </tr>
 </tbody>
 </table>
 
 </div>
+```
+</code></pre>
 </div>
 </div>
 </div>
@@ -962,7 +989,7 @@ sigma  0.89    0.00  0.17  0.63  0.77  0.86  0.98  1.28 1216.16 1.01
 <pre class="r-output"><code><span style="color: #555555;"># A tibble: 1 × 6</span>
    ec50 .lower .upper .width .point .interval
   <span style="color: #555555; font-style: italic;"><dbl></dbl></span>  <span style="color: #555555; font-style: italic;"><dbl></dbl></span>  <span style="color: #555555; font-style: italic;"><dbl></dbl></span>  <span style="color: #555555; font-style: italic;"><dbl></dbl></span> <span style="color: #555555; font-style: italic;"><chr></chr></span>  <span style="color: #555555; font-style: italic;"><chr></chr></span>    
-<span style="color: #555555;">1</span>  22.5   13.3   43.3   0.95 median hdci     
+<span style="color: #555555;">1</span> <span style="text-decoration: underline;">4</span>674.   251.  <span style="text-decoration: underline;">9</span>974.   0.95 median hdci     
 </code></pre>
 </div>
 </div>
@@ -977,16 +1004,19 @@ sigma  0.89    0.00  0.17  0.63  0.77  0.86  0.98  1.28 1216.16 1.01
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sim_er</span>(ermod_sigemax) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<pre class="r-output"><code><span style="color: #555555;"># A tibble: 6 × 7</span>
-<span style="color: #555555;"># Groups:   Conc, Y, .row [1]</span>
-   Conc     Y  .row .draw    .epred .prediction  .linpred
-  <span style="color: #555555; font-style: italic;"><dbl></dbl></span> <span style="color: #555555; font-style: italic;"><dbl></dbl></span> <span style="color: #555555; font-style: italic;"><int></int></span> <span style="color: #555555; font-style: italic;"><int></int></span> <span style="color: #555555; font-style: italic;"><dbl[1d]></dbl[1d]></span>       <span style="color: #555555; font-style: italic;"><dbl></dbl></span> <span style="color: #555555; font-style: italic;"><dbl[1d]></dbl[1d]></span>
-<span style="color: #555555;">1</span>  47.5  15.1     1     1      14.5        14.7      14.5
-<span style="color: #555555;">2</span>  47.5  15.1     1     2      14.6        16.8      14.6
-<span style="color: #555555;">3</span>  47.5  15.1     1     3      14.7        13.5      14.7
-<span style="color: #555555;">4</span>  47.5  15.1     1     4      15.0        15.2      15.0
-<span style="color: #555555;">5</span>  47.5  15.1     1     5      14.4        13.9      14.4
-<span style="color: #555555;">6</span>  47.5  15.1     1     6      14.5        14.7      14.5
+<pre class="r-output"><code><span style="color: #555555;"># A tibble: 6 × 16</span>
+<span style="color: #555555;"># Groups:   dose, exposure, response_1, response_2, cnt_a, cnt_b, cnt_c, bin_d,
+#   bin_e, .row [1]</span>
+   dose exposure response_1 response_2 cnt_a cnt_b cnt_c bin_d bin_e  .row
+  <span style="color: #555555; font-style: italic;"><dbl></dbl></span>    <span style="color: #555555; font-style: italic;"><dbl></dbl></span>      <span style="color: #555555; font-style: italic;"><dbl></dbl></span>      <span style="color: #555555; font-style: italic;"><dbl></dbl></span> <span style="color: #555555; font-style: italic;"><dbl></dbl></span> <span style="color: #555555; font-style: italic;"><dbl></dbl></span> <span style="color: #555555; font-style: italic;"><dbl></dbl></span> <span style="color: #555555; font-style: italic;"><dbl></dbl></span> <span style="color: #555555; font-style: italic;"><dbl></dbl></span> <span style="color: #555555; font-style: italic;"><int></int></span>
+<span style="color: #555555;">1</span>   100    <span style="text-decoration: underline;">4</span>151.       12.8          1  5.71  2.33  7.83     0     1     1
+<span style="color: #555555;">2</span>   100    <span style="text-decoration: underline;">4</span>151.       12.8          1  5.71  2.33  7.83     0     1     1
+<span style="color: #555555;">3</span>   100    <span style="text-decoration: underline;">4</span>151.       12.8          1  5.71  2.33  7.83     0     1     1
+<span style="color: #555555;">4</span>   100    <span style="text-decoration: underline;">4</span>151.       12.8          1  5.71  2.33  7.83     0     1     1
+<span style="color: #555555;">5</span>   100    <span style="text-decoration: underline;">4</span>151.       12.8          1  5.71  2.33  7.83     0     1     1
+<span style="color: #555555;">6</span>   100    <span style="text-decoration: underline;">4</span>151.       12.8          1  5.71  2.33  7.83     0     1     1
+<span style="color: #555555;"># ℹ 6 more variables: .chain <int>, .iteration <int>, .draw <int>,</int></int></int></span>
+<span style="color: #555555;">#   .epred <dbl>, .linpred <dbl>, .prediction <dbl></dbl></dbl></dbl></span>
 </code></pre>
 </div>
 <p>You can specify <code>output_type = "median_qi"</code> to get median and quantile intervals of the prediction.</p>
@@ -1003,23 +1033,25 @@ sigma  0.89    0.00  0.17  0.63  0.77  0.86  0.98  1.28 1216.16 1.01
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">decimals =</span> <span class="dv">2</span>, <span class="at">columns =</span> <span class="sc">-</span>.row)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="ryhoflhdhn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ryhoflhdhn table {
+<pre class="r-output"><code>
+```{=html}
+<div id="oslyshlwzm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#oslyshlwzm table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ryhoflhdhn thead, #ryhoflhdhn tbody, #ryhoflhdhn tfoot, #ryhoflhdhn tr, #ryhoflhdhn td, #ryhoflhdhn th {
+#oslyshlwzm thead, #oslyshlwzm tbody, #oslyshlwzm tfoot, #oslyshlwzm tr, #oslyshlwzm td, #oslyshlwzm th {
   border-style: none;
 }
 
-#ryhoflhdhn p {
+#oslyshlwzm p {
   margin: 0;
   padding: 0;
 }
 
-#ryhoflhdhn .gt_table {
+#oslyshlwzm .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1045,12 +1077,12 @@ sigma  0.89    0.00  0.17  0.63  0.77  0.86  0.98  1.28 1216.16 1.01
   border-left-color: #D3D3D3;
 }
 
-#ryhoflhdhn .gt_caption {
+#oslyshlwzm .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ryhoflhdhn .gt_title {
+#oslyshlwzm .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1062,7 +1094,7 @@ sigma  0.89    0.00  0.17  0.63  0.77  0.86  0.98  1.28 1216.16 1.01
   border-bottom-width: 0;
 }
 
-#ryhoflhdhn .gt_subtitle {
+#oslyshlwzm .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1074,7 +1106,7 @@ sigma  0.89    0.00  0.17  0.63  0.77  0.86  0.98  1.28 1216.16 1.01
   border-top-width: 0;
 }
 
-#ryhoflhdhn .gt_heading {
+#oslyshlwzm .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1086,13 +1118,13 @@ sigma  0.89    0.00  0.17  0.63  0.77  0.86  0.98  1.28 1216.16 1.01
   border-right-color: #D3D3D3;
 }
 
-#ryhoflhdhn .gt_bottom_border {
+#oslyshlwzm .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ryhoflhdhn .gt_col_headings {
+#oslyshlwzm .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1107,7 +1139,7 @@ sigma  0.89    0.00  0.17  0.63  0.77  0.86  0.98  1.28 1216.16 1.01
   border-right-color: #D3D3D3;
 }
 
-#ryhoflhdhn .gt_col_heading {
+#oslyshlwzm .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1127,7 +1159,7 @@ sigma  0.89    0.00  0.17  0.63  0.77  0.86  0.98  1.28 1216.16 1.01
   overflow-x: hidden;
 }
 
-#ryhoflhdhn .gt_column_spanner_outer {
+#oslyshlwzm .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1139,15 +1171,15 @@ sigma  0.89    0.00  0.17  0.63  0.77  0.86  0.98  1.28 1216.16 1.01
   padding-right: 4px;
 }
 
-#ryhoflhdhn .gt_column_spanner_outer:first-child {
+#oslyshlwzm .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ryhoflhdhn .gt_column_spanner_outer:last-child {
+#oslyshlwzm .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ryhoflhdhn .gt_column_spanner {
+#oslyshlwzm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1159,11 +1191,11 @@ sigma  0.89    0.00  0.17  0.63  0.77  0.86  0.98  1.28 1216.16 1.01
   width: 100%;
 }
 
-#ryhoflhdhn .gt_spanner_row {
+#oslyshlwzm .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ryhoflhdhn .gt_group_heading {
+#oslyshlwzm .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1189,7 +1221,7 @@ sigma  0.89    0.00  0.17  0.63  0.77  0.86  0.98  1.28 1216.16 1.01
   text-align: left;
 }
 
-#ryhoflhdhn .gt_empty_group_heading {
+#oslyshlwzm .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1204,15 +1236,15 @@ sigma  0.89    0.00  0.17  0.63  0.77  0.86  0.98  1.28 1216.16 1.01
   vertical-align: middle;
 }
 
-#ryhoflhdhn .gt_from_md > :first-child {
+#oslyshlwzm .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ryhoflhdhn .gt_from_md > :last-child {
+#oslyshlwzm .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ryhoflhdhn .gt_row {
+#oslyshlwzm .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1231,7 +1263,7 @@ sigma  0.89    0.00  0.17  0.63  0.77  0.86  0.98  1.28 1216.16 1.01
   overflow-x: hidden;
 }
 
-#ryhoflhdhn .gt_stub {
+#oslyshlwzm .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1244,7 +1276,7 @@ sigma  0.89    0.00  0.17  0.63  0.77  0.86  0.98  1.28 1216.16 1.01
   padding-right: 5px;
 }
 
-#ryhoflhdhn .gt_stub_row_group {
+#oslyshlwzm .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1258,15 +1290,15 @@ sigma  0.89    0.00  0.17  0.63  0.77  0.86  0.98  1.28 1216.16 1.01
   vertical-align: top;
 }
 
-#ryhoflhdhn .gt_row_group_first td {
+#oslyshlwzm .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ryhoflhdhn .gt_row_group_first th {
+#oslyshlwzm .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ryhoflhdhn .gt_summary_row {
+#oslyshlwzm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1276,16 +1308,16 @@ sigma  0.89    0.00  0.17  0.63  0.77  0.86  0.98  1.28 1216.16 1.01
   padding-right: 5px;
 }
 
-#ryhoflhdhn .gt_first_summary_row {
+#oslyshlwzm .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ryhoflhdhn .gt_first_summary_row.thick {
+#oslyshlwzm .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ryhoflhdhn .gt_last_summary_row {
+#oslyshlwzm .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1295,7 +1327,7 @@ sigma  0.89    0.00  0.17  0.63  0.77  0.86  0.98  1.28 1216.16 1.01
   border-bottom-color: #D3D3D3;
 }
 
-#ryhoflhdhn .gt_grand_summary_row {
+#oslyshlwzm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1305,7 +1337,7 @@ sigma  0.89    0.00  0.17  0.63  0.77  0.86  0.98  1.28 1216.16 1.01
   padding-right: 5px;
 }
 
-#ryhoflhdhn .gt_first_grand_summary_row {
+#oslyshlwzm .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1315,7 +1347,7 @@ sigma  0.89    0.00  0.17  0.63  0.77  0.86  0.98  1.28 1216.16 1.01
   border-top-color: #D3D3D3;
 }
 
-#ryhoflhdhn .gt_last_grand_summary_row_top {
+#oslyshlwzm .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1325,11 +1357,11 @@ sigma  0.89    0.00  0.17  0.63  0.77  0.86  0.98  1.28 1216.16 1.01
   border-bottom-color: #D3D3D3;
 }
 
-#ryhoflhdhn .gt_striped {
+#oslyshlwzm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ryhoflhdhn .gt_table_body {
+#oslyshlwzm .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1338,7 +1370,7 @@ sigma  0.89    0.00  0.17  0.63  0.77  0.86  0.98  1.28 1216.16 1.01
   border-bottom-color: #D3D3D3;
 }
 
-#ryhoflhdhn .gt_footnotes {
+#oslyshlwzm .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1352,7 +1384,7 @@ sigma  0.89    0.00  0.17  0.63  0.77  0.86  0.98  1.28 1216.16 1.01
   border-right-color: #D3D3D3;
 }
 
-#ryhoflhdhn .gt_footnote {
+#oslyshlwzm .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1361,7 +1393,7 @@ sigma  0.89    0.00  0.17  0.63  0.77  0.86  0.98  1.28 1216.16 1.01
   padding-right: 5px;
 }
 
-#ryhoflhdhn .gt_sourcenotes {
+#oslyshlwzm .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1375,7 +1407,7 @@ sigma  0.89    0.00  0.17  0.63  0.77  0.86  0.98  1.28 1216.16 1.01
   border-right-color: #D3D3D3;
 }
 
-#ryhoflhdhn .gt_sourcenote {
+#oslyshlwzm .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1383,72 +1415,72 @@ sigma  0.89    0.00  0.17  0.63  0.77  0.86  0.98  1.28 1216.16 1.01
   padding-right: 5px;
 }
 
-#ryhoflhdhn .gt_left {
+#oslyshlwzm .gt_left {
   text-align: left;
 }
 
-#ryhoflhdhn .gt_center {
+#oslyshlwzm .gt_center {
   text-align: center;
 }
 
-#ryhoflhdhn .gt_right {
+#oslyshlwzm .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ryhoflhdhn .gt_font_normal {
+#oslyshlwzm .gt_font_normal {
   font-weight: normal;
 }
 
-#ryhoflhdhn .gt_font_bold {
+#oslyshlwzm .gt_font_bold {
   font-weight: bold;
 }
 
-#ryhoflhdhn .gt_font_italic {
+#oslyshlwzm .gt_font_italic {
   font-style: italic;
 }
 
-#ryhoflhdhn .gt_super {
+#oslyshlwzm .gt_super {
   font-size: 65%;
 }
 
-#ryhoflhdhn .gt_footnote_marks {
+#oslyshlwzm .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ryhoflhdhn .gt_asterisk {
+#oslyshlwzm .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ryhoflhdhn .gt_indent_1 {
+#oslyshlwzm .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ryhoflhdhn .gt_indent_2 {
+#oslyshlwzm .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ryhoflhdhn .gt_indent_3 {
+#oslyshlwzm .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ryhoflhdhn .gt_indent_4 {
+#oslyshlwzm .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ryhoflhdhn .gt_indent_5 {
+#oslyshlwzm .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ryhoflhdhn .katex-display {
+#oslyshlwzm .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ryhoflhdhn div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#oslyshlwzm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1457,18 +1489,25 @@ sigma  0.89    0.00  0.17  0.63  0.77  0.86  0.98  1.28 1216.16 1.01
 <thead>
 <tr class="gt_col_headings header">
 <th id="a::stub" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"></th>
-<th id="Conc" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Conc</th>
-<th id="Y" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Y</th>
+<th id="dose" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">dose</th>
+<th id="exposure" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">exposure</th>
+<th id="response_1" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">response_1</th>
+<th id="response_2" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">response_2</th>
+<th id="cnt_a" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">cnt_a</th>
+<th id="cnt_b" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">cnt_b</th>
+<th id="cnt_c" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">cnt_c</th>
+<th id="bin_d" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">bin_d</th>
+<th id="bin_e" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">bin_e</th>
 <th id="a.row" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">.row</th>
 <th id="a.epred" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">.epred</th>
 <th id="a.epred.lower" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">.epred.lower</th>
 <th id="a.epred.upper" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">.epred.upper</th>
-<th id="a.prediction" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">.prediction</th>
-<th id="a.prediction.lower" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">.prediction.lower</th>
-<th id="a.prediction.upper" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">.prediction.upper</th>
 <th id="a.linpred" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">.linpred</th>
 <th id="a.linpred.lower" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">.linpred.lower</th>
 <th id="a.linpred.upper" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">.linpred.upper</th>
+<th id="a.prediction" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">.prediction</th>
+<th id="a.prediction.lower" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">.prediction.lower</th>
+<th id="a.prediction.upper" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">.prediction.upper</th>
 <th id="a.width" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">.width</th>
 <th id="a.point" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">.point</th>
 <th id="a.interval" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">.interval</th>
@@ -1477,108 +1516,150 @@ sigma  0.89    0.00  0.17  0.63  0.77  0.86  0.98  1.28 1216.16 1.01
 <tbody class="gt_table_body">
 <tr class="odd">
 <td id="stub_1_1" class="gt_row gt_right gt_stub" data-quarto-table-cell-role="th" scope="row">1</td>
-<td class="gt_row gt_right" headers="stub_1_1 Conc">47.51</td>
-<td class="gt_row gt_right" headers="stub_1_1 Y">15.14</td>
+<td class="gt_row gt_right" headers="stub_1_1 dose">100.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 exposure">4,151.15</td>
+<td class="gt_row gt_right" headers="stub_1_1 response_1">12.80</td>
+<td class="gt_row gt_right" headers="stub_1_1 response_2">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 cnt_a">5.71</td>
+<td class="gt_row gt_right" headers="stub_1_1 cnt_b">2.33</td>
+<td class="gt_row gt_right" headers="stub_1_1 cnt_c">7.83</td>
+<td class="gt_row gt_right" headers="stub_1_1 bin_d">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_1 bin_e">1.00</td>
 <td class="gt_row gt_right" headers="stub_1_1 .row">1</td>
-<td class="gt_row gt_right" headers="stub_1_1 .epred">14.56</td>
-<td class="gt_row gt_right" headers="stub_1_1 .epred.lower">13.47</td>
-<td class="gt_row gt_right" headers="stub_1_1 .epred.upper">15.61</td>
-<td class="gt_row gt_right" headers="stub_1_1 .prediction">14.54</td>
-<td class="gt_row gt_right" headers="stub_1_1 .prediction.lower">12.55</td>
-<td class="gt_row gt_right" headers="stub_1_1 .prediction.upper">16.57</td>
-<td class="gt_row gt_right" headers="stub_1_1 .linpred">14.56</td>
-<td class="gt_row gt_right" headers="stub_1_1 .linpred.lower">13.47</td>
-<td class="gt_row gt_right" headers="stub_1_1 .linpred.upper">15.61</td>
+<td class="gt_row gt_right" headers="stub_1_1 .epred">12.62</td>
+<td class="gt_row gt_right" headers="stub_1_1 .epred.lower">12.33</td>
+<td class="gt_row gt_right" headers="stub_1_1 .epred.upper">12.92</td>
+<td class="gt_row gt_right" headers="stub_1_1 .linpred">12.62</td>
+<td class="gt_row gt_right" headers="stub_1_1 .linpred.lower">12.33</td>
+<td class="gt_row gt_right" headers="stub_1_1 .linpred.upper">12.92</td>
+<td class="gt_row gt_right" headers="stub_1_1 .prediction">12.63</td>
+<td class="gt_row gt_right" headers="stub_1_1 .prediction.lower">10.03</td>
+<td class="gt_row gt_right" headers="stub_1_1 .prediction.upper">15.29</td>
 <td class="gt_row gt_right" headers="stub_1_1 .width">0.95</td>
 <td class="gt_row gt_left" headers="stub_1_1 .point">median</td>
 <td class="gt_row gt_left" headers="stub_1_1 .interval">qi</td>
 </tr>
 <tr class="even">
 <td id="stub_1_2" class="gt_row gt_right gt_stub" data-quarto-table-cell-role="th" scope="row">2</td>
-<td class="gt_row gt_right" headers="stub_1_2 Conc">12.44</td>
-<td class="gt_row gt_right" headers="stub_1_2 Y">7.26</td>
+<td class="gt_row gt_right" headers="stub_1_2 dose">100.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 exposure">8,067.26</td>
+<td class="gt_row gt_right" headers="stub_1_2 response_1">14.58</td>
+<td class="gt_row gt_right" headers="stub_1_2 response_2">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 cnt_a">4.92</td>
+<td class="gt_row gt_right" headers="stub_1_2 cnt_b">4.66</td>
+<td class="gt_row gt_right" headers="stub_1_2 cnt_c">6.74</td>
+<td class="gt_row gt_right" headers="stub_1_2 bin_d">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_2 bin_e">1.00</td>
 <td class="gt_row gt_right" headers="stub_1_2 .row">2</td>
-<td class="gt_row gt_right" headers="stub_1_2 .epred">7.50</td>
-<td class="gt_row gt_right" headers="stub_1_2 .epred.lower">6.81</td>
-<td class="gt_row gt_right" headers="stub_1_2 .epred.upper">8.11</td>
-<td class="gt_row gt_right" headers="stub_1_2 .prediction">7.49</td>
-<td class="gt_row gt_right" headers="stub_1_2 .prediction.lower">5.62</td>
-<td class="gt_row gt_right" headers="stub_1_2 .prediction.upper">9.30</td>
-<td class="gt_row gt_right" headers="stub_1_2 .linpred">7.50</td>
-<td class="gt_row gt_right" headers="stub_1_2 .linpred.lower">6.81</td>
-<td class="gt_row gt_right" headers="stub_1_2 .linpred.upper">8.11</td>
+<td class="gt_row gt_right" headers="stub_1_2 .epred">14.14</td>
+<td class="gt_row gt_right" headers="stub_1_2 .epred.lower">13.93</td>
+<td class="gt_row gt_right" headers="stub_1_2 .epred.upper">14.35</td>
+<td class="gt_row gt_right" headers="stub_1_2 .linpred">14.14</td>
+<td class="gt_row gt_right" headers="stub_1_2 .linpred.lower">13.93</td>
+<td class="gt_row gt_right" headers="stub_1_2 .linpred.upper">14.35</td>
+<td class="gt_row gt_right" headers="stub_1_2 .prediction">14.14</td>
+<td class="gt_row gt_right" headers="stub_1_2 .prediction.lower">11.69</td>
+<td class="gt_row gt_right" headers="stub_1_2 .prediction.upper">16.69</td>
 <td class="gt_row gt_right" headers="stub_1_2 .width">0.95</td>
 <td class="gt_row gt_left" headers="stub_1_2 .point">median</td>
 <td class="gt_row gt_left" headers="stub_1_2 .interval">qi</td>
 </tr>
 <tr class="odd">
 <td id="stub_1_3" class="gt_row gt_right gt_stub" data-quarto-table-cell-role="th" scope="row">3</td>
-<td class="gt_row gt_right" headers="stub_1_3 Conc">14.90</td>
-<td class="gt_row gt_right" headers="stub_1_3 Y">8.78</td>
+<td class="gt_row gt_right" headers="stub_1_3 dose">100.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 exposure">4,877.67</td>
+<td class="gt_row gt_right" headers="stub_1_3 response_1">12.76</td>
+<td class="gt_row gt_right" headers="stub_1_3 response_2">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 cnt_a">4.88</td>
+<td class="gt_row gt_right" headers="stub_1_3 cnt_b">4.21</td>
+<td class="gt_row gt_right" headers="stub_1_3 cnt_c">4.68</td>
+<td class="gt_row gt_right" headers="stub_1_3 bin_d">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 bin_e">1.00</td>
 <td class="gt_row gt_right" headers="stub_1_3 .row">3</td>
-<td class="gt_row gt_right" headers="stub_1_3 .epred">8.40</td>
-<td class="gt_row gt_right" headers="stub_1_3 .epred.lower">7.69</td>
-<td class="gt_row gt_right" headers="stub_1_3 .epred.upper">9.02</td>
-<td class="gt_row gt_right" headers="stub_1_3 .prediction">8.36</td>
-<td class="gt_row gt_right" headers="stub_1_3 .prediction.lower">6.53</td>
-<td class="gt_row gt_right" headers="stub_1_3 .prediction.upper">10.20</td>
-<td class="gt_row gt_right" headers="stub_1_3 .linpred">8.40</td>
-<td class="gt_row gt_right" headers="stub_1_3 .linpred.lower">7.69</td>
-<td class="gt_row gt_right" headers="stub_1_3 .linpred.upper">9.02</td>
+<td class="gt_row gt_right" headers="stub_1_3 .epred">13.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 .epred.lower">12.73</td>
+<td class="gt_row gt_right" headers="stub_1_3 .epred.upper">13.24</td>
+<td class="gt_row gt_right" headers="stub_1_3 .linpred">13.00</td>
+<td class="gt_row gt_right" headers="stub_1_3 .linpred.lower">12.73</td>
+<td class="gt_row gt_right" headers="stub_1_3 .linpred.upper">13.24</td>
+<td class="gt_row gt_right" headers="stub_1_3 .prediction">12.98</td>
+<td class="gt_row gt_right" headers="stub_1_3 .prediction.lower">10.52</td>
+<td class="gt_row gt_right" headers="stub_1_3 .prediction.upper">15.51</td>
 <td class="gt_row gt_right" headers="stub_1_3 .width">0.95</td>
 <td class="gt_row gt_left" headers="stub_1_3 .point">median</td>
 <td class="gt_row gt_left" headers="stub_1_3 .interval">qi</td>
 </tr>
 <tr class="even">
 <td id="stub_1_4" class="gt_row gt_right gt_stub" data-quarto-table-cell-role="th" scope="row">4</td>
-<td class="gt_row gt_right" headers="stub_1_4 Conc">13.62</td>
-<td class="gt_row gt_right" headers="stub_1_4 Y">7.05</td>
+<td class="gt_row gt_right" headers="stub_1_4 dose">100.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 exposure">9,712.93</td>
+<td class="gt_row gt_right" headers="stub_1_4 response_1">16.55</td>
+<td class="gt_row gt_right" headers="stub_1_4 response_2">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 cnt_a">8.42</td>
+<td class="gt_row gt_right" headers="stub_1_4 cnt_b">6.56</td>
+<td class="gt_row gt_right" headers="stub_1_4 cnt_c">1.29</td>
+<td class="gt_row gt_right" headers="stub_1_4 bin_d">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_4 bin_e">1.00</td>
 <td class="gt_row gt_right" headers="stub_1_4 .row">4</td>
-<td class="gt_row gt_right" headers="stub_1_4 .epred">7.94</td>
-<td class="gt_row gt_right" headers="stub_1_4 .epred.lower">7.24</td>
-<td class="gt_row gt_right" headers="stub_1_4 .epred.upper">8.56</td>
-<td class="gt_row gt_right" headers="stub_1_4 .prediction">7.93</td>
-<td class="gt_row gt_right" headers="stub_1_4 .prediction.lower">6.10</td>
-<td class="gt_row gt_right" headers="stub_1_4 .prediction.upper">9.83</td>
-<td class="gt_row gt_right" headers="stub_1_4 .linpred">7.94</td>
-<td class="gt_row gt_right" headers="stub_1_4 .linpred.lower">7.24</td>
-<td class="gt_row gt_right" headers="stub_1_4 .linpred.upper">8.56</td>
+<td class="gt_row gt_right" headers="stub_1_4 .epred">14.53</td>
+<td class="gt_row gt_right" headers="stub_1_4 .epred.lower">14.31</td>
+<td class="gt_row gt_right" headers="stub_1_4 .epred.upper">14.74</td>
+<td class="gt_row gt_right" headers="stub_1_4 .linpred">14.53</td>
+<td class="gt_row gt_right" headers="stub_1_4 .linpred.lower">14.31</td>
+<td class="gt_row gt_right" headers="stub_1_4 .linpred.upper">14.74</td>
+<td class="gt_row gt_right" headers="stub_1_4 .prediction">14.51</td>
+<td class="gt_row gt_right" headers="stub_1_4 .prediction.lower">12.07</td>
+<td class="gt_row gt_right" headers="stub_1_4 .prediction.upper">17.07</td>
 <td class="gt_row gt_right" headers="stub_1_4 .width">0.95</td>
 <td class="gt_row gt_left" headers="stub_1_4 .point">median</td>
 <td class="gt_row gt_left" headers="stub_1_4 .interval">qi</td>
 </tr>
 <tr class="odd">
 <td id="stub_1_5" class="gt_row gt_right gt_stub" data-quarto-table-cell-role="th" scope="row">5</td>
-<td class="gt_row gt_right" headers="stub_1_5 Conc">29.16</td>
-<td class="gt_row gt_right" headers="stub_1_5 Y">10.82</td>
+<td class="gt_row gt_right" headers="stub_1_5 dose">100.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 exposure">11,490.74</td>
+<td class="gt_row gt_right" headers="stub_1_5 response_1">14.41</td>
+<td class="gt_row gt_right" headers="stub_1_5 response_2">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 cnt_a">4.37</td>
+<td class="gt_row gt_right" headers="stub_1_5 cnt_b">3.96</td>
+<td class="gt_row gt_right" headers="stub_1_5 cnt_c">3.55</td>
+<td class="gt_row gt_right" headers="stub_1_5 bin_d">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_5 bin_e">1.00</td>
 <td class="gt_row gt_right" headers="stub_1_5 .row">5</td>
-<td class="gt_row gt_right" headers="stub_1_5 .epred">12.22</td>
-<td class="gt_row gt_right" headers="stub_1_5 .epred.lower">11.62</td>
-<td class="gt_row gt_right" headers="stub_1_5 .epred.upper">12.87</td>
-<td class="gt_row gt_right" headers="stub_1_5 .prediction">12.20</td>
-<td class="gt_row gt_right" headers="stub_1_5 .prediction.lower">10.28</td>
-<td class="gt_row gt_right" headers="stub_1_5 .prediction.upper">14.04</td>
-<td class="gt_row gt_right" headers="stub_1_5 .linpred">12.22</td>
-<td class="gt_row gt_right" headers="stub_1_5 .linpred.lower">11.62</td>
-<td class="gt_row gt_right" headers="stub_1_5 .linpred.upper">12.87</td>
+<td class="gt_row gt_right" headers="stub_1_5 .epred">14.86</td>
+<td class="gt_row gt_right" headers="stub_1_5 .epred.lower">14.64</td>
+<td class="gt_row gt_right" headers="stub_1_5 .epred.upper">15.08</td>
+<td class="gt_row gt_right" headers="stub_1_5 .linpred">14.86</td>
+<td class="gt_row gt_right" headers="stub_1_5 .linpred.lower">14.64</td>
+<td class="gt_row gt_right" headers="stub_1_5 .linpred.upper">15.08</td>
+<td class="gt_row gt_right" headers="stub_1_5 .prediction">14.87</td>
+<td class="gt_row gt_right" headers="stub_1_5 .prediction.lower">12.36</td>
+<td class="gt_row gt_right" headers="stub_1_5 .prediction.upper">17.37</td>
 <td class="gt_row gt_right" headers="stub_1_5 .width">0.95</td>
 <td class="gt_row gt_left" headers="stub_1_5 .point">median</td>
 <td class="gt_row gt_left" headers="stub_1_5 .interval">qi</td>
 </tr>
 <tr class="even">
 <td id="stub_1_6" class="gt_row gt_right gt_stub" data-quarto-table-cell-role="th" scope="row">6</td>
-<td class="gt_row gt_right" headers="stub_1_6 Conc">45.16</td>
-<td class="gt_row gt_right" headers="stub_1_6 Y">13.27</td>
+<td class="gt_row gt_right" headers="stub_1_6 dose">100.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 exposure">2,451.55</td>
+<td class="gt_row gt_right" headers="stub_1_6 response_1">12.60</td>
+<td class="gt_row gt_right" headers="stub_1_6 response_2">1.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 cnt_a">8.69</td>
+<td class="gt_row gt_right" headers="stub_1_6 cnt_b">7.60</td>
+<td class="gt_row gt_right" headers="stub_1_6 cnt_c">3.64</td>
+<td class="gt_row gt_right" headers="stub_1_6 bin_d">0.00</td>
+<td class="gt_row gt_right" headers="stub_1_6 bin_e">0.00</td>
 <td class="gt_row gt_right" headers="stub_1_6 .row">6</td>
-<td class="gt_row gt_right" headers="stub_1_6 .epred">14.36</td>
-<td class="gt_row gt_right" headers="stub_1_6 .epred.lower">13.36</td>
-<td class="gt_row gt_right" headers="stub_1_6 .epred.upper">15.27</td>
-<td class="gt_row gt_right" headers="stub_1_6 .prediction">14.34</td>
-<td class="gt_row gt_right" headers="stub_1_6 .prediction.lower">12.36</td>
-<td class="gt_row gt_right" headers="stub_1_6 .prediction.upper">16.29</td>
-<td class="gt_row gt_right" headers="stub_1_6 .linpred">14.36</td>
-<td class="gt_row gt_right" headers="stub_1_6 .linpred.lower">13.36</td>
-<td class="gt_row gt_right" headers="stub_1_6 .linpred.upper">15.27</td>
+<td class="gt_row gt_right" headers="stub_1_6 .epred">11.48</td>
+<td class="gt_row gt_right" headers="stub_1_6 .epred.lower">10.87</td>
+<td class="gt_row gt_right" headers="stub_1_6 .epred.upper">12.07</td>
+<td class="gt_row gt_right" headers="stub_1_6 .linpred">11.48</td>
+<td class="gt_row gt_right" headers="stub_1_6 .linpred.lower">10.87</td>
+<td class="gt_row gt_right" headers="stub_1_6 .linpred.upper">12.07</td>
+<td class="gt_row gt_right" headers="stub_1_6 .prediction">11.47</td>
+<td class="gt_row gt_right" headers="stub_1_6 .prediction.lower">8.86</td>
+<td class="gt_row gt_right" headers="stub_1_6 .prediction.upper">14.00</td>
 <td class="gt_row gt_right" headers="stub_1_6 .width">0.95</td>
 <td class="gt_row gt_left" headers="stub_1_6 .point">median</td>
 <td class="gt_row gt_left" headers="stub_1_6 .interval">qi</td>
@@ -1587,6 +1668,8 @@ sigma  0.89    0.00  0.17  0.63  0.77  0.86  0.98  1.28 1216.16 1.01
 </table>
 
 </div>
+```
+</code></pre>
 </div>
 </div>
 </section>
@@ -1731,7 +1814,7 @@ Figure&nbsp;8.6
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>ersim_sigemax_med_qi <span class="ot">&lt;-</span> <span class="fu">sim_er</span>(ermod_sigemax, <span class="at">output_type =</span> <span class="st">"median_qi"</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>ersim_sigemax_med_qi <span class="sc">|&gt;</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(.epred, Y)) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> .epred, <span class="at">y =</span> response_1)) <span class="sc">+</span></span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">linetype =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">"grey"</span>) <span class="sc">+</span></span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbarh</span>(<span class="fu">aes</span>(<span class="at">xmin =</span> .epred.lower, <span class="at">xmax =</span> .epred.upper), <span class="at">height =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
@@ -1760,7 +1843,7 @@ Figure&nbsp;8.7
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ersim_sigemax_w_resid <span class="ot">&lt;-</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sim_er</span>(ermod_sigemax) <span class="sc">|&gt;</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">.residual =</span> Y <span class="sc">-</span> .epred) <span class="co"># Add residuals for plotting</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">.residual =</span> response_1 <span class="sc">-</span> .epred) <span class="co"># Add residuals for plotting</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>ersim_sigemax_w_resid_med_qi <span class="ot">&lt;-</span> <span class="fu">median_qi</span>(ersim_sigemax_w_resid)</span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>ersim_sigemax_w_resid_med_qi <span class="sc">|&gt;</span></span>
@@ -1830,7 +1913,7 @@ Figure&nbsp;8.9
 </details>
 <pre class="r-output"><code>        elpd_diff se_diff
 emax     0.0       0.0   
-sigemax -0.3       0.8   
+sigemax -0.9       0.4   
 </code></pre>
 </div>
 
@@ -1841,287 +1924,293 @@ sigemax -0.3       0.8
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-  const viewSource = window.document.getElementById('quarto-view-source') ||
-                     window.document.getElementById('quarto-code-tools-source');
-  if (viewSource) {
-    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-    viewSource.addEventListener("click", function(e) {
-      if (sourceUrl) {
-        // rstudio viewer pane
-        if (/\bcapabilities=\b/.test(window.location)) {
-          window.open(sourceUrl);
-        } else {
-          window.location.href = sourceUrl;
-        }
-      } else {
-        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-        modal.show();
-      }
-      return false;
-    });
-  }
-  function toggleCodeHandler(show) {
-    return function(e) {
-      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-      for (let i=0; i<detailsSrc.length; i++) {
-        const details = detailsSrc[i].parentElement;
-        if (show) {
-          details.open = true;
-        } else {
-          details.removeAttribute("open");
-        }
-      }
-      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-      const fromCls = show ? "hidden" : "unhidden";
-      const toCls = show ? "unhidden" : "hidden";
-      for (let i=0; i<cellCodeDivs.length; i++) {
-        const codeDiv = cellCodeDivs[i];
-        if (codeDiv.classList.contains(fromCls)) {
-          codeDiv.classList.remove(fromCls);
-          codeDiv.classList.add(toCls);
-        } 
-      }
-      return false;
-    }
-  }
-  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-  if (hideAllCode) {
-    hideAllCode.addEventListener("click", toggleCodeHandler(false));
-  }
-  const showAllCode = window.document.getElementById("quarto-show-all-code");
-  if (showAllCode) {
-    showAllCode.addEventListener("click", toggleCodeHandler(true));
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/genentech\.github\.io\/BayesERbook\/");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
       }
+      return false;
     }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
         }
-        return container.innerHTML
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/genentech\.github\.io\/BayesERbook\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -2129,185 +2218,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../../notebook/emax/basic_workflow.html" class="pagination-link" aria-label="Basic workflow">
@@ -2350,247 +2415,246 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: FALSE</span></span>
-<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>d_example_emax_nocov <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"d_example_emax_nocov.csv"</span>))</span>
-<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fit models</span></span>
-<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset}</span>
-<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a><span class="fu">### Sigmoidal E~max~ model</span></span>
-<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-50"><a href="#cb17-50" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb17-51"><a href="#cb17-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-52"><a href="#cb17-52" aria-hidden="true" tabindex="-1"></a>ermod_sigemax <span class="ot">&lt;-</span> <span class="fu">dev_ermod_emax</span>(</span>
-<span id="cb17-53"><a href="#cb17-53" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> d_example_emax_nocov,</span>
-<span id="cb17-54"><a href="#cb17-54" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_resp =</span> <span class="st">"Y"</span>,</span>
-<span id="cb17-55"><a href="#cb17-55" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_exposure =</span> <span class="st">"Conc"</span>,</span>
-<span id="cb17-56"><a href="#cb17-56" aria-hidden="true" tabindex="-1"></a>  <span class="at">gamma_fix =</span> <span class="cn">NULL</span></span>
-<span id="cb17-57"><a href="#cb17-57" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb17-58"><a href="#cb17-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-59"><a href="#cb17-59" aria-hidden="true" tabindex="-1"></a>ermod_sigemax</span>
-<span id="cb17-60"><a href="#cb17-60" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-61"><a href="#cb17-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-62"><a href="#cb17-62" aria-hidden="true" tabindex="-1"></a><span class="fu">### Regular E~max~ (γ fixed at 1)</span></span>
-<span id="cb17-63"><a href="#cb17-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-64"><a href="#cb17-64" aria-hidden="true" tabindex="-1"></a>Another model without sigmoidal component; will be used when we do</span>
-<span id="cb17-65"><a href="#cb17-65" aria-hidden="true" tabindex="-1"></a>model comparison.</span>
-<span id="cb17-66"><a href="#cb17-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-69"><a href="#cb17-69" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-70"><a href="#cb17-70" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb17-71"><a href="#cb17-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-72"><a href="#cb17-72" aria-hidden="true" tabindex="-1"></a>ermod_emax <span class="ot">&lt;-</span> <span class="fu">dev_ermod_emax</span>(</span>
-<span id="cb17-73"><a href="#cb17-73" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> d_example_emax_nocov,</span>
-<span id="cb17-74"><a href="#cb17-74" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_resp =</span> <span class="st">"Y"</span>,</span>
-<span id="cb17-75"><a href="#cb17-75" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_exposure =</span> <span class="st">"Conc"</span>,</span>
-<span id="cb17-76"><a href="#cb17-76" aria-hidden="true" tabindex="-1"></a>  <span class="at">gamma_fix =</span> <span class="dv">1</span></span>
-<span id="cb17-77"><a href="#cb17-77" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb17-78"><a href="#cb17-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-79"><a href="#cb17-79" aria-hidden="true" tabindex="-1"></a>ermod_emax</span>
-<span id="cb17-80"><a href="#cb17-80" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-81"><a href="#cb17-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-82"><a href="#cb17-82" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb17-83"><a href="#cb17-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-84"><a href="#cb17-84" aria-hidden="true" tabindex="-1"></a><span class="fu">## Parameter summary table</span></span>
-<span id="cb17-85"><a href="#cb17-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-86"><a href="#cb17-86" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset}</span>
-<span id="cb17-87"><a href="#cb17-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-88"><a href="#cb17-88" aria-hidden="true" tabindex="-1"></a><span class="fu">### `posterior` package</span></span>
-<span id="cb17-89"><a href="#cb17-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-92"><a href="#cb17-92" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-93"><a href="#cb17-93" aria-hidden="true" tabindex="-1"></a>d_draws_sigemax_summary <span class="ot">&lt;-</span></span>
-<span id="cb17-94"><a href="#cb17-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_draws</span>(ermod_sigemax)</span>
-<span id="cb17-95"><a href="#cb17-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-96"><a href="#cb17-96" aria-hidden="true" tabindex="-1"></a>d_draws_sigemax_summary <span class="sc">|&gt;</span></span>
-<span id="cb17-97"><a href="#cb17-97" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb17-98"><a href="#cb17-98" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">decimals =</span> <span class="dv">2</span>)</span>
-<span id="cb17-99"><a href="#cb17-99" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-100"><a href="#cb17-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-101"><a href="#cb17-101" aria-hidden="true" tabindex="-1"></a><span class="fu">### Highest density interval</span></span>
-<span id="cb17-102"><a href="#cb17-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-103"><a href="#cb17-103" aria-hidden="true" tabindex="-1"></a>Here is the example of highest-density continuous interval (HDCI) for the median of <span class="in">`ED50`</span>.</span>
-<span id="cb17-104"><a href="#cb17-104" aria-hidden="true" tabindex="-1"></a>See <span class="co">[</span><span class="ot">here</span><span class="co">](https://mjskay.github.io/ggdist/reference/point_interval.html)</span> for more details.</span>
-<span id="cb17-105"><a href="#cb17-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-108"><a href="#cb17-108" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-109"><a href="#cb17-109" aria-hidden="true" tabindex="-1"></a><span class="co"># HDCI of median.ED50</span></span>
-<span id="cb17-110"><a href="#cb17-110" aria-hidden="true" tabindex="-1"></a><span class="fu">as_draws_df</span>(ermod_sigemax) <span class="sc">|&gt;</span></span>
-<span id="cb17-111"><a href="#cb17-111" aria-hidden="true" tabindex="-1"></a>  tidybayes<span class="sc">::</span><span class="fu">spread_rvars</span>(ec50) <span class="sc">|&gt;</span></span>
-<span id="cb17-112"><a href="#cb17-112" aria-hidden="true" tabindex="-1"></a>  tidybayes<span class="sc">::</span><span class="fu">median_hdci</span>()</span>
-<span id="cb17-113"><a href="#cb17-113" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-114"><a href="#cb17-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-115"><a href="#cb17-115" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>d_sim_emax</span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fit models</span></span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset}</span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a><span class="fu">### Sigmoidal E~max~ model</span></span>
+<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb17-50"><a href="#cb17-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-51"><a href="#cb17-51" aria-hidden="true" tabindex="-1"></a>ermod_sigemax <span class="ot">&lt;-</span> <span class="fu">dev_ermod_emax</span>(</span>
+<span id="cb17-52"><a href="#cb17-52" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> d_sim_emax,</span>
+<span id="cb17-53"><a href="#cb17-53" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_resp =</span> <span class="st">"response_1"</span>,</span>
+<span id="cb17-54"><a href="#cb17-54" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_exposure =</span> <span class="st">"exposure"</span>,</span>
+<span id="cb17-55"><a href="#cb17-55" aria-hidden="true" tabindex="-1"></a>  <span class="at">gamma_fix =</span> <span class="cn">NULL</span></span>
+<span id="cb17-56"><a href="#cb17-56" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-57"><a href="#cb17-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-58"><a href="#cb17-58" aria-hidden="true" tabindex="-1"></a>ermod_sigemax</span>
+<span id="cb17-59"><a href="#cb17-59" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-60"><a href="#cb17-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-61"><a href="#cb17-61" aria-hidden="true" tabindex="-1"></a><span class="fu">### Regular E~max~ (γ fixed at 1)</span></span>
+<span id="cb17-62"><a href="#cb17-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-63"><a href="#cb17-63" aria-hidden="true" tabindex="-1"></a>Another model without sigmoidal component; will be used when we do</span>
+<span id="cb17-64"><a href="#cb17-64" aria-hidden="true" tabindex="-1"></a>model comparison.</span>
+<span id="cb17-65"><a href="#cb17-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-68"><a href="#cb17-68" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-69"><a href="#cb17-69" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb17-70"><a href="#cb17-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-71"><a href="#cb17-71" aria-hidden="true" tabindex="-1"></a>ermod_emax <span class="ot">&lt;-</span> <span class="fu">dev_ermod_emax</span>(</span>
+<span id="cb17-72"><a href="#cb17-72" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> d_sim_emax,</span>
+<span id="cb17-73"><a href="#cb17-73" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_resp =</span> <span class="st">"response_1"</span>,</span>
+<span id="cb17-74"><a href="#cb17-74" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_exposure =</span> <span class="st">"exposure"</span>,</span>
+<span id="cb17-75"><a href="#cb17-75" aria-hidden="true" tabindex="-1"></a>  <span class="at">gamma_fix =</span> <span class="dv">1</span></span>
+<span id="cb17-76"><a href="#cb17-76" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-77"><a href="#cb17-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-78"><a href="#cb17-78" aria-hidden="true" tabindex="-1"></a>ermod_emax</span>
+<span id="cb17-79"><a href="#cb17-79" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-80"><a href="#cb17-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-81"><a href="#cb17-81" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb17-82"><a href="#cb17-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-83"><a href="#cb17-83" aria-hidden="true" tabindex="-1"></a><span class="fu">## Parameter summary table</span></span>
+<span id="cb17-84"><a href="#cb17-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-85"><a href="#cb17-85" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset}</span>
+<span id="cb17-86"><a href="#cb17-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-87"><a href="#cb17-87" aria-hidden="true" tabindex="-1"></a><span class="fu">### `posterior` package</span></span>
+<span id="cb17-88"><a href="#cb17-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-91"><a href="#cb17-91" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-92"><a href="#cb17-92" aria-hidden="true" tabindex="-1"></a>d_draws_sigemax_summary <span class="ot">&lt;-</span></span>
+<span id="cb17-93"><a href="#cb17-93" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_draws</span>(ermod_sigemax)</span>
+<span id="cb17-94"><a href="#cb17-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-95"><a href="#cb17-95" aria-hidden="true" tabindex="-1"></a>d_draws_sigemax_summary <span class="sc">|&gt;</span></span>
+<span id="cb17-96"><a href="#cb17-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb17-97"><a href="#cb17-97" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">decimals =</span> <span class="dv">2</span>)</span>
+<span id="cb17-98"><a href="#cb17-98" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-99"><a href="#cb17-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-100"><a href="#cb17-100" aria-hidden="true" tabindex="-1"></a><span class="fu">### Highest density interval</span></span>
+<span id="cb17-101"><a href="#cb17-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-102"><a href="#cb17-102" aria-hidden="true" tabindex="-1"></a>Here is the example of highest-density continuous interval (HDCI) for the median of <span class="in">`ED50`</span>.</span>
+<span id="cb17-103"><a href="#cb17-103" aria-hidden="true" tabindex="-1"></a>See <span class="co">[</span><span class="ot">here</span><span class="co">](https://mjskay.github.io/ggdist/reference/point_interval.html)</span> for more details.</span>
+<span id="cb17-104"><a href="#cb17-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-107"><a href="#cb17-107" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-108"><a href="#cb17-108" aria-hidden="true" tabindex="-1"></a><span class="co"># HDCI of median.ED50</span></span>
+<span id="cb17-109"><a href="#cb17-109" aria-hidden="true" tabindex="-1"></a><span class="fu">as_draws_df</span>(ermod_sigemax) <span class="sc">|&gt;</span></span>
+<span id="cb17-110"><a href="#cb17-110" aria-hidden="true" tabindex="-1"></a>  tidybayes<span class="sc">::</span><span class="fu">spread_rvars</span>(ec50) <span class="sc">|&gt;</span></span>
+<span id="cb17-111"><a href="#cb17-111" aria-hidden="true" tabindex="-1"></a>  tidybayes<span class="sc">::</span><span class="fu">median_hdci</span>()</span>
+<span id="cb17-112"><a href="#cb17-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-113"><a href="#cb17-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-114"><a href="#cb17-114" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb17-115"><a href="#cb17-115" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-116"><a href="#cb17-116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-117"><a href="#cb17-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-118"><a href="#cb17-118" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fitted values</span></span>
-<span id="cb17-119"><a href="#cb17-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-120"><a href="#cb17-120" aria-hidden="true" tabindex="-1"></a>Fitted values without residual errors (i.e. PRED in NONMEM term) can be</span>
-<span id="cb17-121"><a href="#cb17-121" aria-hidden="true" tabindex="-1"></a>extracted with <span class="in">`sim_er()`</span> function. <span class="in">`.epred`</span> is the expected value prediction.</span>
-<span id="cb17-122"><a href="#cb17-122" aria-hidden="true" tabindex="-1"></a>See <span class="in">`?sim_er`</span> for detail.</span>
-<span id="cb17-123"><a href="#cb17-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-126"><a href="#cb17-126" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-127"><a href="#cb17-127" aria-hidden="true" tabindex="-1"></a><span class="fu">sim_er</span>(ermod_sigemax) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span>
-<span id="cb17-128"><a href="#cb17-128" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-129"><a href="#cb17-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-130"><a href="#cb17-130" aria-hidden="true" tabindex="-1"></a>You can specify <span class="in">`output_type = "median_qi"`</span> to get median and quantile</span>
-<span id="cb17-131"><a href="#cb17-131" aria-hidden="true" tabindex="-1"></a>intervals of the prediction.</span>
-<span id="cb17-132"><a href="#cb17-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-135"><a href="#cb17-135" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-136"><a href="#cb17-136" aria-hidden="true" tabindex="-1"></a>ersim_sigemax_med_qi <span class="ot">&lt;-</span></span>
-<span id="cb17-137"><a href="#cb17-137" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sim_er</span>(ermod_sigemax, <span class="at">output_type =</span> <span class="st">"median_qi"</span>)</span>
-<span id="cb17-138"><a href="#cb17-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-139"><a href="#cb17-139" aria-hidden="true" tabindex="-1"></a>ersim_sigemax_med_qi <span class="sc">|&gt;</span></span>
-<span id="cb17-140"><a href="#cb17-140" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(.row) <span class="sc">|&gt;</span></span>
-<span id="cb17-141"><a href="#cb17-141" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">|&gt;</span></span>
-<span id="cb17-142"><a href="#cb17-142" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(<span class="at">rownames_to_stub =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb17-143"><a href="#cb17-143" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">decimals =</span> <span class="dv">2</span>, <span class="at">columns =</span> <span class="sc">-</span>.row)</span>
-<span id="cb17-144"><a href="#cb17-144" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-117"><a href="#cb17-117" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fitted values</span></span>
+<span id="cb17-118"><a href="#cb17-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-119"><a href="#cb17-119" aria-hidden="true" tabindex="-1"></a>Fitted values without residual errors (i.e. PRED in NONMEM term) can be</span>
+<span id="cb17-120"><a href="#cb17-120" aria-hidden="true" tabindex="-1"></a>extracted with <span class="in">`sim_er()`</span> function. <span class="in">`.epred`</span> is the expected value prediction.</span>
+<span id="cb17-121"><a href="#cb17-121" aria-hidden="true" tabindex="-1"></a>See <span class="in">`?sim_er`</span> for detail.</span>
+<span id="cb17-122"><a href="#cb17-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-125"><a href="#cb17-125" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-126"><a href="#cb17-126" aria-hidden="true" tabindex="-1"></a><span class="fu">sim_er</span>(ermod_sigemax) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span>
+<span id="cb17-127"><a href="#cb17-127" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-128"><a href="#cb17-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-129"><a href="#cb17-129" aria-hidden="true" tabindex="-1"></a>You can specify <span class="in">`output_type = "median_qi"`</span> to get median and quantile</span>
+<span id="cb17-130"><a href="#cb17-130" aria-hidden="true" tabindex="-1"></a>intervals of the prediction.</span>
+<span id="cb17-131"><a href="#cb17-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-134"><a href="#cb17-134" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-135"><a href="#cb17-135" aria-hidden="true" tabindex="-1"></a>ersim_sigemax_med_qi <span class="ot">&lt;-</span></span>
+<span id="cb17-136"><a href="#cb17-136" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sim_er</span>(ermod_sigemax, <span class="at">output_type =</span> <span class="st">"median_qi"</span>)</span>
+<span id="cb17-137"><a href="#cb17-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-138"><a href="#cb17-138" aria-hidden="true" tabindex="-1"></a>ersim_sigemax_med_qi <span class="sc">|&gt;</span></span>
+<span id="cb17-139"><a href="#cb17-139" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(.row) <span class="sc">|&gt;</span></span>
+<span id="cb17-140"><a href="#cb17-140" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">|&gt;</span></span>
+<span id="cb17-141"><a href="#cb17-141" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(<span class="at">rownames_to_stub =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb17-142"><a href="#cb17-142" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">decimals =</span> <span class="dv">2</span>, <span class="at">columns =</span> <span class="sc">-</span>.row)</span>
+<span id="cb17-143"><a href="#cb17-143" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-144"><a href="#cb17-144" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-145"><a href="#cb17-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-146"><a href="#cb17-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-147"><a href="#cb17-147" aria-hidden="true" tabindex="-1"></a><span class="fu">## Diagnostic plots</span></span>
-<span id="cb17-148"><a href="#cb17-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-149"><a href="#cb17-149" aria-hidden="true" tabindex="-1"></a>We use the <span class="co">[</span><span class="ot">`bayesplot` package</span><span class="co">](https://mc-stan.org/bayesplot/)</span> </span>
-<span id="cb17-150"><a href="#cb17-150" aria-hidden="true" tabindex="-1"></a>(<span class="co">[</span><span class="ot">Cheat sheet</span><span class="co">](https://rstudio.github.io/cheatsheets/bayesplot.pdf)</span>) </span>
-<span id="cb17-151"><a href="#cb17-151" aria-hidden="true" tabindex="-1"></a>to visualize the model fit.</span>
-<span id="cb17-152"><a href="#cb17-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-153"><a href="#cb17-153" aria-hidden="true" tabindex="-1"></a><span class="fu">### Convergence</span></span>
-<span id="cb17-154"><a href="#cb17-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-155"><a href="#cb17-155" aria-hidden="true" tabindex="-1"></a>Good fit results in:</span>
-<span id="cb17-156"><a href="#cb17-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-157"><a href="#cb17-157" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Parameter distributions from MCMC chains should overlap</span>
-<span id="cb17-158"><a href="#cb17-158" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Trace plots should not show any trend</span>
-<span id="cb17-159"><a href="#cb17-159" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`Rhat`</span> close to 1 (e.g. &lt; 1.1)</span>
-<span id="cb17-160"><a href="#cb17-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-163"><a href="#cb17-163" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-164"><a href="#cb17-164" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-convergence</span></span>
-<span id="cb17-165"><a href="#cb17-165" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 7</span></span>
-<span id="cb17-166"><a href="#cb17-166" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
-<span id="cb17-167"><a href="#cb17-167" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-168"><a href="#cb17-168" aria-hidden="true" tabindex="-1"></a>d_draws_sigemax <span class="ot">&lt;-</span> <span class="fu">as_draws_df</span>(ermod_sigemax)</span>
-<span id="cb17-169"><a href="#cb17-169" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_dens_overlay</span>(d_draws_sigemax)</span>
-<span id="cb17-170"><a href="#cb17-170" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_trace</span>(d_draws_sigemax)</span>
-<span id="cb17-171"><a href="#cb17-171" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_rhat</span>(<span class="fu">rhat</span>(ermod_sigemax<span class="sc">$</span>mod<span class="sc">$</span>stanfit))</span>
-<span id="cb17-172"><a href="#cb17-172" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-173"><a href="#cb17-173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-174"><a href="#cb17-174" aria-hidden="true" tabindex="-1"></a><span class="fu">### Parameter estimates distribution</span></span>
-<span id="cb17-175"><a href="#cb17-175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-176"><a href="#cb17-176" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset}</span>
-<span id="cb17-177"><a href="#cb17-177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-178"><a href="#cb17-178" aria-hidden="true" tabindex="-1"></a><span class="fu">#### `mcmc_hist`</span></span>
-<span id="cb17-179"><a href="#cb17-179" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-182"><a href="#cb17-182" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-183"><a href="#cb17-183" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-mcmc_hist</span></span>
-<span id="cb17-184"><a href="#cb17-184" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 7</span></span>
-<span id="cb17-185"><a href="#cb17-185" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
-<span id="cb17-186"><a href="#cb17-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-187"><a href="#cb17-187" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_hist</span>(d_draws_sigemax)</span>
-<span id="cb17-188"><a href="#cb17-188" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-189"><a href="#cb17-189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-190"><a href="#cb17-190" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Parameter covariance</span></span>
-<span id="cb17-191"><a href="#cb17-191" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-194"><a href="#cb17-194" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-195"><a href="#cb17-195" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-mcmc_pairs</span></span>
-<span id="cb17-196"><a href="#cb17-196" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.width: 7</span></span>
-<span id="cb17-197"><a href="#cb17-197" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.height: 5</span></span>
-<span id="cb17-198"><a href="#cb17-198" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-199"><a href="#cb17-199" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_pairs</span>(d_draws_sigemax,</span>
-<span id="cb17-200"><a href="#cb17-200" aria-hidden="true" tabindex="-1"></a>  <span class="at">off_diag_args =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">alpha =</span> <span class="fl">0.25</span>))</span>
-<span id="cb17-201"><a href="#cb17-201" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-202"><a href="#cb17-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-203"><a href="#cb17-203" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb17-204"><a href="#cb17-204" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-205"><a href="#cb17-205" aria-hidden="true" tabindex="-1"></a><span class="fu">### GOF plots</span></span>
-<span id="cb17-206"><a href="#cb17-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-207"><a href="#cb17-207" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset}</span>
-<span id="cb17-208"><a href="#cb17-208" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-209"><a href="#cb17-209" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Obs &amp; Pred vs predictor</span></span>
-<span id="cb17-210"><a href="#cb17-210" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-213"><a href="#cb17-213" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-214"><a href="#cb17-214" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-idv_vs_pred</span></span>
-<span id="cb17-215"><a href="#cb17-215" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 7</span></span>
-<span id="cb17-216"><a href="#cb17-216" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
-<span id="cb17-217"><a href="#cb17-217" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-218"><a href="#cb17-218" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_er</span>(ermod_sigemax, <span class="at">show_orig_data =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb17-219"><a href="#cb17-219" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-220"><a href="#cb17-220" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-221"><a href="#cb17-221" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Obs vs pred</span></span>
-<span id="cb17-222"><a href="#cb17-222" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-225"><a href="#cb17-225" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-226"><a href="#cb17-226" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-obs_vs_pred</span></span>
-<span id="cb17-227"><a href="#cb17-227" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.width: 6</span></span>
-<span id="cb17-228"><a href="#cb17-228" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.height: 6</span></span>
-<span id="cb17-229"><a href="#cb17-229" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-230"><a href="#cb17-230" aria-hidden="true" tabindex="-1"></a><span class="co"># Preparation for diagnostic plots</span></span>
-<span id="cb17-231"><a href="#cb17-231" aria-hidden="true" tabindex="-1"></a>ersim_sigemax_med_qi <span class="ot">&lt;-</span> <span class="fu">sim_er</span>(ermod_sigemax, <span class="at">output_type =</span> <span class="st">"median_qi"</span>)</span>
-<span id="cb17-232"><a href="#cb17-232" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-233"><a href="#cb17-233" aria-hidden="true" tabindex="-1"></a>ersim_sigemax_med_qi <span class="sc">|&gt;</span></span>
-<span id="cb17-234"><a href="#cb17-234" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(.epred, Y)) <span class="sc">+</span></span>
-<span id="cb17-235"><a href="#cb17-235" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">linetype =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">"grey"</span>) <span class="sc">+</span></span>
-<span id="cb17-236"><a href="#cb17-236" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb17-237"><a href="#cb17-237" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbarh</span>(<span class="fu">aes</span>(<span class="at">xmin =</span> .epred.lower, <span class="at">xmax =</span> .epred.upper), <span class="at">height =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb17-238"><a href="#cb17-238" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Observed vs Predicted"</span>,</span>
-<span id="cb17-239"><a href="#cb17-239" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Predicted"</span>,</span>
-<span id="cb17-240"><a href="#cb17-240" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Observed"</span>,</span>
-<span id="cb17-241"><a href="#cb17-241" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Symbol: median and 95% credible interval"</span>)</span>
-<span id="cb17-242"><a href="#cb17-242" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-243"><a href="#cb17-243" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-244"><a href="#cb17-244" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Residuals</span></span>
-<span id="cb17-245"><a href="#cb17-245" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-248"><a href="#cb17-248" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-249"><a href="#cb17-249" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-residuals</span></span>
-<span id="cb17-250"><a href="#cb17-250" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 7</span></span>
-<span id="cb17-251"><a href="#cb17-251" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
-<span id="cb17-252"><a href="#cb17-252" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-253"><a href="#cb17-253" aria-hidden="true" tabindex="-1"></a>ersim_sigemax_w_resid <span class="ot">&lt;-</span></span>
-<span id="cb17-254"><a href="#cb17-254" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sim_er</span>(ermod_sigemax) <span class="sc">|&gt;</span></span>
-<span id="cb17-255"><a href="#cb17-255" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">.residual =</span> Y <span class="sc">-</span> .epred) <span class="co"># Add residuals for plotting</span></span>
-<span id="cb17-256"><a href="#cb17-256" aria-hidden="true" tabindex="-1"></a>ersim_sigemax_w_resid_med_qi <span class="ot">&lt;-</span> <span class="fu">median_qi</span>(ersim_sigemax_w_resid)</span>
-<span id="cb17-257"><a href="#cb17-257" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-258"><a href="#cb17-258" aria-hidden="true" tabindex="-1"></a>ersim_sigemax_w_resid_med_qi <span class="sc">|&gt;</span></span>
-<span id="cb17-259"><a href="#cb17-259" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> .epred, <span class="at">y =</span> .residual)) <span class="sc">+</span></span>
-<span id="cb17-260"><a href="#cb17-260" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Predicted (linear)"</span>) <span class="sc">+</span></span>
-<span id="cb17-261"><a href="#cb17-261" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Residuals"</span>) <span class="sc">+</span></span>
-<span id="cb17-262"><a href="#cb17-262" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb17-263"><a href="#cb17-263" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> .residual.lower, <span class="at">ymax =</span> .residual.upper), <span class="at">width =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb17-264"><a href="#cb17-264" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> <span class="dv">2</span>), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">colour =</span> <span class="st">"grey70"</span>) <span class="sc">+</span></span>
-<span id="cb17-265"><a href="#cb17-265" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> <span class="sc">-</span><span class="dv">2</span>), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">colour =</span> <span class="st">"grey70"</span>)</span>
-<span id="cb17-266"><a href="#cb17-266" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-267"><a href="#cb17-267" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-268"><a href="#cb17-268" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Q-Q plot of residuals</span></span>
-<span id="cb17-269"><a href="#cb17-269" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-272"><a href="#cb17-272" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-273"><a href="#cb17-273" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-qq</span></span>
-<span id="cb17-274"><a href="#cb17-274" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 7</span></span>
-<span id="cb17-275"><a href="#cb17-275" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
-<span id="cb17-276"><a href="#cb17-276" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-277"><a href="#cb17-277" aria-hidden="true" tabindex="-1"></a>ersim_sigemax_w_resid_med_qi <span class="sc">|&gt;</span></span>
-<span id="cb17-278"><a href="#cb17-278" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">sample =</span> .residual)) <span class="sc">+</span></span>
-<span id="cb17-279"><a href="#cb17-279" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq</span>() <span class="sc">+</span></span>
-<span id="cb17-280"><a href="#cb17-280" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq_line</span>(<span class="at">colour =</span> <span class="st">"steelblue"</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
-<span id="cb17-281"><a href="#cb17-281" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>() <span class="sc">+</span></span>
-<span id="cb17-282"><a href="#cb17-282" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Theoretical"</span>) <span class="sc">+</span></span>
-<span id="cb17-283"><a href="#cb17-283" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Sample"</span>)</span>
-<span id="cb17-284"><a href="#cb17-284" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-285"><a href="#cb17-285" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-286"><a href="#cb17-286" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb17-287"><a href="#cb17-287" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-288"><a href="#cb17-288" aria-hidden="true" tabindex="-1"></a><span class="fu">## Model comparison</span></span>
-<span id="cb17-289"><a href="#cb17-289" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-290"><a href="#cb17-290" aria-hidden="true" tabindex="-1"></a>You can perform model comparison based on expected log pointwise predictive density (ELPD).</span>
-<span id="cb17-291"><a href="#cb17-291" aria-hidden="true" tabindex="-1"></a>ELPD is the Bayesian leave-one-out estimate (see ?<span class="in">`loo-glossary`</span>).</span>
-<span id="cb17-292"><a href="#cb17-292" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-293"><a href="#cb17-293" aria-hidden="true" tabindex="-1"></a>Higher ELPD is better, therefore E~max~ model with <span class="in">`γ`</span> fixed to be 1 appears better.</span>
-<span id="cb17-294"><a href="#cb17-294" aria-hidden="true" tabindex="-1"></a>However, <span class="in">`elpd_diff`</span> is tiny and smaller than <span class="in">`se_diff`</span> (<span class="co">[</span><span class="ot">see here</span><span class="co">](https://stats.stackexchange.com/questions/608881/how-to-interpret-elpd-diff-of-bayesian-loo-estimate-in-bayesian-logistic-regress)</span>),</span>
-<span id="cb17-295"><a href="#cb17-295" aria-hidden="true" tabindex="-1"></a>therefore we can consider the difference to be not meaningful.</span>
+<span id="cb17-146"><a href="#cb17-146" aria-hidden="true" tabindex="-1"></a><span class="fu">## Diagnostic plots</span></span>
+<span id="cb17-147"><a href="#cb17-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-148"><a href="#cb17-148" aria-hidden="true" tabindex="-1"></a>We use the <span class="co">[</span><span class="ot">`bayesplot` package</span><span class="co">](https://mc-stan.org/bayesplot/)</span> </span>
+<span id="cb17-149"><a href="#cb17-149" aria-hidden="true" tabindex="-1"></a>(<span class="co">[</span><span class="ot">Cheat sheet</span><span class="co">](https://rstudio.github.io/cheatsheets/bayesplot.pdf)</span>) </span>
+<span id="cb17-150"><a href="#cb17-150" aria-hidden="true" tabindex="-1"></a>to visualize the model fit.</span>
+<span id="cb17-151"><a href="#cb17-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-152"><a href="#cb17-152" aria-hidden="true" tabindex="-1"></a><span class="fu">### Convergence</span></span>
+<span id="cb17-153"><a href="#cb17-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-154"><a href="#cb17-154" aria-hidden="true" tabindex="-1"></a>Good fit results in:</span>
+<span id="cb17-155"><a href="#cb17-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-156"><a href="#cb17-156" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Parameter distributions from MCMC chains should overlap</span>
+<span id="cb17-157"><a href="#cb17-157" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Trace plots should not show any trend</span>
+<span id="cb17-158"><a href="#cb17-158" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`Rhat`</span> close to 1 (e.g. &lt; 1.1)</span>
+<span id="cb17-159"><a href="#cb17-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-162"><a href="#cb17-162" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-163"><a href="#cb17-163" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-convergence</span></span>
+<span id="cb17-164"><a href="#cb17-164" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 7</span></span>
+<span id="cb17-165"><a href="#cb17-165" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
+<span id="cb17-166"><a href="#cb17-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-167"><a href="#cb17-167" aria-hidden="true" tabindex="-1"></a>d_draws_sigemax <span class="ot">&lt;-</span> <span class="fu">as_draws_df</span>(ermod_sigemax)</span>
+<span id="cb17-168"><a href="#cb17-168" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_dens_overlay</span>(d_draws_sigemax)</span>
+<span id="cb17-169"><a href="#cb17-169" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_trace</span>(d_draws_sigemax)</span>
+<span id="cb17-170"><a href="#cb17-170" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_rhat</span>(<span class="fu">rhat</span>(ermod_sigemax<span class="sc">$</span>mod<span class="sc">$</span>stanfit))</span>
+<span id="cb17-171"><a href="#cb17-171" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-172"><a href="#cb17-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-173"><a href="#cb17-173" aria-hidden="true" tabindex="-1"></a><span class="fu">### Parameter estimates distribution</span></span>
+<span id="cb17-174"><a href="#cb17-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-175"><a href="#cb17-175" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset}</span>
+<span id="cb17-176"><a href="#cb17-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-177"><a href="#cb17-177" aria-hidden="true" tabindex="-1"></a><span class="fu">#### `mcmc_hist`</span></span>
+<span id="cb17-178"><a href="#cb17-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-181"><a href="#cb17-181" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-182"><a href="#cb17-182" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-mcmc_hist</span></span>
+<span id="cb17-183"><a href="#cb17-183" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 7</span></span>
+<span id="cb17-184"><a href="#cb17-184" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
+<span id="cb17-185"><a href="#cb17-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-186"><a href="#cb17-186" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_hist</span>(d_draws_sigemax)</span>
+<span id="cb17-187"><a href="#cb17-187" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-188"><a href="#cb17-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-189"><a href="#cb17-189" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Parameter covariance</span></span>
+<span id="cb17-190"><a href="#cb17-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-193"><a href="#cb17-193" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-194"><a href="#cb17-194" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-mcmc_pairs</span></span>
+<span id="cb17-195"><a href="#cb17-195" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.width: 7</span></span>
+<span id="cb17-196"><a href="#cb17-196" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.height: 5</span></span>
+<span id="cb17-197"><a href="#cb17-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-198"><a href="#cb17-198" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_pairs</span>(d_draws_sigemax,</span>
+<span id="cb17-199"><a href="#cb17-199" aria-hidden="true" tabindex="-1"></a>  <span class="at">off_diag_args =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">alpha =</span> <span class="fl">0.25</span>))</span>
+<span id="cb17-200"><a href="#cb17-200" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-201"><a href="#cb17-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-202"><a href="#cb17-202" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb17-203"><a href="#cb17-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-204"><a href="#cb17-204" aria-hidden="true" tabindex="-1"></a><span class="fu">### GOF plots</span></span>
+<span id="cb17-205"><a href="#cb17-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-206"><a href="#cb17-206" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset}</span>
+<span id="cb17-207"><a href="#cb17-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-208"><a href="#cb17-208" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Obs &amp; Pred vs predictor</span></span>
+<span id="cb17-209"><a href="#cb17-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-212"><a href="#cb17-212" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-213"><a href="#cb17-213" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-idv_vs_pred</span></span>
+<span id="cb17-214"><a href="#cb17-214" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 7</span></span>
+<span id="cb17-215"><a href="#cb17-215" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
+<span id="cb17-216"><a href="#cb17-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-217"><a href="#cb17-217" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_er</span>(ermod_sigemax, <span class="at">show_orig_data =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-218"><a href="#cb17-218" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-219"><a href="#cb17-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-220"><a href="#cb17-220" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Obs vs pred</span></span>
+<span id="cb17-221"><a href="#cb17-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-224"><a href="#cb17-224" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-225"><a href="#cb17-225" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-obs_vs_pred</span></span>
+<span id="cb17-226"><a href="#cb17-226" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.width: 6</span></span>
+<span id="cb17-227"><a href="#cb17-227" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.height: 6</span></span>
+<span id="cb17-228"><a href="#cb17-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-229"><a href="#cb17-229" aria-hidden="true" tabindex="-1"></a><span class="co"># Preparation for diagnostic plots</span></span>
+<span id="cb17-230"><a href="#cb17-230" aria-hidden="true" tabindex="-1"></a>ersim_sigemax_med_qi <span class="ot">&lt;-</span> <span class="fu">sim_er</span>(ermod_sigemax, <span class="at">output_type =</span> <span class="st">"median_qi"</span>)</span>
+<span id="cb17-231"><a href="#cb17-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-232"><a href="#cb17-232" aria-hidden="true" tabindex="-1"></a>ersim_sigemax_med_qi <span class="sc">|&gt;</span></span>
+<span id="cb17-233"><a href="#cb17-233" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> .epred, <span class="at">y =</span> response_1)) <span class="sc">+</span></span>
+<span id="cb17-234"><a href="#cb17-234" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">linetype =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">"grey"</span>) <span class="sc">+</span></span>
+<span id="cb17-235"><a href="#cb17-235" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb17-236"><a href="#cb17-236" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbarh</span>(<span class="fu">aes</span>(<span class="at">xmin =</span> .epred.lower, <span class="at">xmax =</span> .epred.upper), <span class="at">height =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb17-237"><a href="#cb17-237" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Observed vs Predicted"</span>,</span>
+<span id="cb17-238"><a href="#cb17-238" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Predicted"</span>,</span>
+<span id="cb17-239"><a href="#cb17-239" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Observed"</span>,</span>
+<span id="cb17-240"><a href="#cb17-240" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Symbol: median and 95% credible interval"</span>)</span>
+<span id="cb17-241"><a href="#cb17-241" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-242"><a href="#cb17-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-243"><a href="#cb17-243" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Residuals</span></span>
+<span id="cb17-244"><a href="#cb17-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-247"><a href="#cb17-247" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-248"><a href="#cb17-248" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-residuals</span></span>
+<span id="cb17-249"><a href="#cb17-249" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 7</span></span>
+<span id="cb17-250"><a href="#cb17-250" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
+<span id="cb17-251"><a href="#cb17-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-252"><a href="#cb17-252" aria-hidden="true" tabindex="-1"></a>ersim_sigemax_w_resid <span class="ot">&lt;-</span></span>
+<span id="cb17-253"><a href="#cb17-253" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sim_er</span>(ermod_sigemax) <span class="sc">|&gt;</span></span>
+<span id="cb17-254"><a href="#cb17-254" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">.residual =</span> response_1 <span class="sc">-</span> .epred) <span class="co"># Add residuals for plotting</span></span>
+<span id="cb17-255"><a href="#cb17-255" aria-hidden="true" tabindex="-1"></a>ersim_sigemax_w_resid_med_qi <span class="ot">&lt;-</span> <span class="fu">median_qi</span>(ersim_sigemax_w_resid)</span>
+<span id="cb17-256"><a href="#cb17-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-257"><a href="#cb17-257" aria-hidden="true" tabindex="-1"></a>ersim_sigemax_w_resid_med_qi <span class="sc">|&gt;</span></span>
+<span id="cb17-258"><a href="#cb17-258" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> .epred, <span class="at">y =</span> .residual)) <span class="sc">+</span></span>
+<span id="cb17-259"><a href="#cb17-259" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Predicted (linear)"</span>) <span class="sc">+</span></span>
+<span id="cb17-260"><a href="#cb17-260" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Residuals"</span>) <span class="sc">+</span></span>
+<span id="cb17-261"><a href="#cb17-261" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb17-262"><a href="#cb17-262" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> .residual.lower, <span class="at">ymax =</span> .residual.upper), <span class="at">width =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb17-263"><a href="#cb17-263" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> <span class="dv">2</span>), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">colour =</span> <span class="st">"grey70"</span>) <span class="sc">+</span></span>
+<span id="cb17-264"><a href="#cb17-264" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> <span class="sc">-</span><span class="dv">2</span>), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">colour =</span> <span class="st">"grey70"</span>)</span>
+<span id="cb17-265"><a href="#cb17-265" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-266"><a href="#cb17-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-267"><a href="#cb17-267" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Q-Q plot of residuals</span></span>
+<span id="cb17-268"><a href="#cb17-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-271"><a href="#cb17-271" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-272"><a href="#cb17-272" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-qq</span></span>
+<span id="cb17-273"><a href="#cb17-273" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 7</span></span>
+<span id="cb17-274"><a href="#cb17-274" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
+<span id="cb17-275"><a href="#cb17-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-276"><a href="#cb17-276" aria-hidden="true" tabindex="-1"></a>ersim_sigemax_w_resid_med_qi <span class="sc">|&gt;</span></span>
+<span id="cb17-277"><a href="#cb17-277" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">sample =</span> .residual)) <span class="sc">+</span></span>
+<span id="cb17-278"><a href="#cb17-278" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq</span>() <span class="sc">+</span></span>
+<span id="cb17-279"><a href="#cb17-279" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq_line</span>(<span class="at">colour =</span> <span class="st">"steelblue"</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb17-280"><a href="#cb17-280" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>() <span class="sc">+</span></span>
+<span id="cb17-281"><a href="#cb17-281" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Theoretical"</span>) <span class="sc">+</span></span>
+<span id="cb17-282"><a href="#cb17-282" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Sample"</span>)</span>
+<span id="cb17-283"><a href="#cb17-283" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-284"><a href="#cb17-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-285"><a href="#cb17-285" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb17-286"><a href="#cb17-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-287"><a href="#cb17-287" aria-hidden="true" tabindex="-1"></a><span class="fu">## Model comparison</span></span>
+<span id="cb17-288"><a href="#cb17-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-289"><a href="#cb17-289" aria-hidden="true" tabindex="-1"></a>You can perform model comparison based on expected log pointwise predictive density (ELPD).</span>
+<span id="cb17-290"><a href="#cb17-290" aria-hidden="true" tabindex="-1"></a>ELPD is the Bayesian leave-one-out estimate (see ?<span class="in">`loo-glossary`</span>).</span>
+<span id="cb17-291"><a href="#cb17-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-292"><a href="#cb17-292" aria-hidden="true" tabindex="-1"></a>Higher ELPD is better, therefore E~max~ model with <span class="in">`γ`</span> fixed to be 1 appears better.</span>
+<span id="cb17-293"><a href="#cb17-293" aria-hidden="true" tabindex="-1"></a>However, <span class="in">`elpd_diff`</span> is tiny and smaller than <span class="in">`se_diff`</span> (<span class="co">[</span><span class="ot">see here</span><span class="co">](https://stats.stackexchange.com/questions/608881/how-to-interpret-elpd-diff-of-bayesian-loo-estimate-in-bayesian-logistic-regress)</span>),</span>
+<span id="cb17-294"><a href="#cb17-294" aria-hidden="true" tabindex="-1"></a>therefore we can consider the difference to be not meaningful.</span>
+<span id="cb17-295"><a href="#cb17-295" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-296"><a href="#cb17-296" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-297"><a href="#cb17-297" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-300"><a href="#cb17-300" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-301"><a href="#cb17-301" aria-hidden="true" tabindex="-1"></a>loo_sigemax <span class="ot">&lt;-</span> <span class="fu">loo</span>(ermod_sigemax)</span>
-<span id="cb17-302"><a href="#cb17-302" aria-hidden="true" tabindex="-1"></a>loo_emax <span class="ot">&lt;-</span> <span class="fu">loo</span>(ermod_emax)</span>
-<span id="cb17-303"><a href="#cb17-303" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-304"><a href="#cb17-304" aria-hidden="true" tabindex="-1"></a><span class="fu">loo_compare</span>(<span class="fu">list</span>(<span class="at">sigemax =</span> loo_sigemax, <span class="at">emax =</span> loo_emax))</span>
-<span id="cb17-305"><a href="#cb17-305" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-299"><a href="#cb17-299" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-300"><a href="#cb17-300" aria-hidden="true" tabindex="-1"></a>loo_sigemax <span class="ot">&lt;-</span> <span class="fu">loo</span>(ermod_sigemax)</span>
+<span id="cb17-301"><a href="#cb17-301" aria-hidden="true" tabindex="-1"></a>loo_emax <span class="ot">&lt;-</span> <span class="fu">loo</span>(ermod_emax)</span>
+<span id="cb17-302"><a href="#cb17-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-303"><a href="#cb17-303" aria-hidden="true" tabindex="-1"></a><span class="fu">loo_compare</span>(<span class="fu">list</span>(<span class="at">sigemax =</span> loo_sigemax, <span class="at">emax =</span> loo_emax))</span>
+<span id="cb17-304"><a href="#cb17-304" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
