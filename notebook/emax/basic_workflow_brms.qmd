@@ -11,6 +11,7 @@ library(brms)
 library(posterior)
 library(tidybayes)
 library(here)
+library(BayesERtools)
 
 theme_set(theme_bw(base_size = 12))
 ```
@@ -40,19 +41,18 @@ This section shows how to build a standard E~max~ model for continuous response 
 
 ```{r}
 #| message: FALSE
-d_example_emax_3cov <- read_csv(here("data", "d_example_emax_3cov.csv"))
-d_example_emax_3cov
+d_sim_emax
 ```
 
-In this chapter only the `exposure` and `response` columns are used. A simple exploratory visualization of the exposure-response relationship is shown below:
+In this chapter only the `exposure`, `response_1`, and `response_2` columns are used. A simple exploratory visualization of the exposure-response relationship for the continuous outcome `response_1` is shown below:
 
 ```{r}
 #| label: show-continuous-emax-data
 #| fig-height: 8
 #| fig-width: 8
 
-d_example_emax_3cov |> 
-  ggplot(aes(exposure, response)) + 
+d_sim_emax |> 
+  ggplot(aes(exposure, response_1)) + 
   geom_point() + 
   geom_smooth(formula = y ~ x, method = "loess")
 ```
@@ -62,7 +62,7 @@ The model considered in this section is a hyperbolic E~max~ model, in which the 
 ```{r}
 #| label: simple-continuous-emax-model
 hyperbolic_model <- brmsformula(
-  response ~ e0 + emax * exposure / (ec50 + exposure),
+  response_1 ~ e0 + emax * exposure / (ec50 + exposure),
   e0 ~ 1,
   emax ~ 1,
   ec50 ~ 1,
@@ -101,7 +101,7 @@ These three components provide the complete specification of the model. They are
 hyperbolic_model_fit <- brm(
   formula = hyperbolic_model, 
   family = gaussian_measurement, 
-  data = d_example_emax_3cov, 
+  data = d_sim_emax, 
   prior = hyperbolic_model_prior
 ) 
 ```
@@ -123,7 +123,7 @@ hyperbolic_model_fit |>
   ggplot(mapping = aes(exposure, .epred)) + 
   geom_path() + 
   geom_ribbon(aes(ymin = .lower, ymax = .upper), alpha = 0.3) +
-  geom_point(data = d_example_emax_3cov, mapping = aes(y = response))
+  geom_point(data = d_sim_emax, mapping = aes(y = response_1))
 ```
 
 ## Sigmoidal E~max~ models
@@ -133,7 +133,7 @@ It is often necessary to consider sigmoidal E~max~ models, in which the Hill coe
 ```{r}
 #| label: sigmoidal-continuous-emax-model
 sigmoidal_model <- brmsformula(
-  response ~ e0 + emax * exposure^gamma / (ec50^gamma + exposure^gamma),
+  response_1 ~ e0 + emax * exposure^gamma / (ec50^gamma + exposure^gamma),
   e0 ~ 1,
   emax ~ 1,
   ec50 ~ 1,
@@ -164,7 +164,7 @@ To fit the model, call `brm()`:
 sigmoidal_model_fit <- brm(
   formula = sigmoidal_model, 
   family = gaussian_measurement, 
-  data = d_example_emax_3cov, 
+  data = d_sim_emax, 
   prior = sigmoidal_model_prior
 ) 
 ```
@@ -179,12 +179,11 @@ In this instance it is clear from inspection that a sigmoidal model is unnecessa
 
 ## Binary E~max~ models 
 
-Now consider the case where the response is binary. Again, a simulated data set is used, identical to the previous example except that the `response` variable is now 0 or 1 for each subject:
+Now consider the case where the response is binary. Again, the imulated data set `d_sim_emax` is used. For this analysis the `response_2` variable is used, a binary outcome that is 0 or 1 for each subject:
 
 ```{r}
 #| message: FALSE
-d_example_emax_bin_3cov <- read_csv(here("data", "d_example_emax_bin_3cov.csv"))
-d_example_emax_bin_3cov
+d_sim_emax
 ```
 
 The exposure-response relationship is illustrated by plotting the difference in exposure between responders and non-responders:
@@ -194,9 +193,9 @@ The exposure-response relationship is illustrated by plotting the difference in 
 #| fig-height: 8
 #| fig-width: 8
 
-d_example_emax_bin_3cov |> 
-  mutate(response = factor(response)) |> 
-  ggplot(aes(response, exposure)) + 
+d_sim_emax |> 
+  mutate(response_2 = factor(response_2)) |> 
+  ggplot(aes(response_2, exposure)) + 
   geom_violin(draw_quantiles = .5)
 ```
 
@@ -217,7 +216,7 @@ considered as a good starting point for e0 and emax. There is a good [discussion
 
 ```{r}
 binary_model <- brmsformula(
-  response ~ e0 + emax * exposure / (ec50 + exposure),
+  response_2 ~ e0 + emax * exposure / (ec50 + exposure),
   e0 ~ 1,
   emax ~ 1,
   ec50 ~ 1,
@@ -240,7 +239,7 @@ To estimate parameters, call `brm()` for the binary data set using the `bernoull
 binary_base_fit <- brm(
   formula = binary_model, 
   family = bernoulli_measurement, 
-  data = d_example_emax_bin_3cov, 
+  data = d_sim_emax, 
   prior = binary_model_prior
 ) 
 ```
@@ -264,8 +263,8 @@ binary_base_fit |>
     alpha = 0.3
   ) +
   geom_jitter(
-    data = d_example_emax_bin_3cov,
-    mapping = aes(y = response), 
+    data = d_sim_emax,
+    mapping = aes(y = response_2), 
     width = 0, 
     height = .05
   )

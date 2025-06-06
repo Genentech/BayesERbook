@@ -25,23 +25,27 @@ theme_set(theme_bw(base_size = 12))
 source(here("R", "cli_color_text.R"))
 ```
 
-
 ## Load data
+
+The data for the example is included in the BayesERtools package, which contains a simulated data set `d_sim_emax`. The analysis uses the `exposure` variable to predict the continuous outcome `response_1`. The data are illustrated below:
 
 ```{r}
 #| label: fig-data-look
 #| message: FALSE
 
-d_example_emax_nocov <- read_csv(here("data", "d_example_emax_nocov.csv"))
-
-d_example_emax_nocov |>
+d_sim_emax |>
   head() |>
   gt() |>
   fmt_number(decimals = 2)
 
-ggplot(d_example_emax_nocov, aes(Conc, Y)) +
+ggplot(d_sim_emax, aes(exposure, response_1)) +
   geom_point() +
-  geom_smooth(formula = y ~ x, method = "loess", se = F, col = "darkgrey")
+  geom_smooth(
+    formula = y ~ x, 
+    method = "loess", 
+    se = FALSE, 
+    col = "darkgrey"
+  )
 ```
 
 ## Sigmoidal E~max~ model
@@ -50,13 +54,14 @@ ggplot(d_example_emax_nocov, aes(Conc, Y)) +
 set.seed(1234)
 
 ermod_sigemax <- dev_ermod_emax(
-  data = d_example_emax_nocov,
-  var_resp = "Y",
-  var_exposure = "Conc",
+  data = d_sim_emax,
+  var_resp = "response_1",
+  var_exposure = "exposure",
   gamma_fix = NULL
 )
 
 ermod_sigemax
+
 ```
 
 ## Observation vs model fit
@@ -90,7 +95,6 @@ d_draws_sigemax_summary |>
   fmt_number(decimals = 2)
 ```
 
-
 ## Prediction at a certain concentrations
 
 ```{r}
@@ -100,7 +104,7 @@ d_draws_sigemax_summary |>
 
 d_sim_new_conc <-
   sim_er_new_exp(ermod_sigemax,
-    exposure_to_sim_vec  = c(10, 20, 30, 50),
+    exposure_to_sim_vec  = c(5000, 15000, 25000, 35000),
     output_type = c("median_qi"))
 
 d_sim_new_conc |>
@@ -112,25 +116,61 @@ d_sim_new_conc |>
   )
 
 d_sim_ermod_sigemax |>
-  ggplot(aes(x = Conc, y = Y)) +
+  ggplot(aes(x = exposure, y = response_1)) +
   # Emax model curve
-  geom_vline(xintercept = ec50_mean, linetype = "dashed", color = "deepskyblue") +
-  geom_ribbon(aes(y = .epred, ymin = .epred.lower, ymax = .epred.upper),
-    alpha = 0.3, fill = "deepskyblue") +
-  geom_line(aes(y = .epred), color = "deepskyblue") +
+  geom_vline(
+    xintercept = ec50_mean, 
+    linetype = "dashed", 
+    color = "deepskyblue"
+  ) +
+  geom_ribbon(
+    mapping = aes(
+      y = .epred, 
+      ymin = .epred.lower, 
+      ymax = .epred.upper
+    ),
+    alpha = 0.3, 
+    fill = "deepskyblue"
+  ) +
+  geom_line(
+    mapping = aes(y = .epred), 
+    color = "deepskyblue"
+  ) +
   # Observed data
-  geom_point(data = d_example_emax_nocov, color = "grey") +
+  geom_point(
+    data = d_sim_emax, 
+    color = "grey"
+  ) +
   # Prediction at the specified doses
-  geom_point(data = d_sim_new_conc, aes(y = .epred), color = "tomato", size = 3) +
-  geom_errorbar(data = d_sim_new_conc,
-    aes(y = .epred, ymin = .epred.lower, ymax = .epred.upper),
-    width = 1, color = "tomato") +
-  coord_cartesian(ylim = c(-1, 17)) +
+  geom_point(
+    data = d_sim_new_conc, 
+    mapping = aes(y = .epred), 
+    color = "tomato", 
+    size = 3
+  ) +
+  geom_errorbar(
+    data = d_sim_new_conc,
+    mapping = aes(
+      y = .epred, 
+      ymin = .epred.lower, 
+      ymax = .epred.upper
+    ),
+    width = 1, 
+    color = "tomato"
+  ) +
+  coord_cartesian(ylim = c(7, 21)) +
   scale_fill_brewer(palette = "Greys") +
   labs(
     title = "Sigmoidal E~max~ model predictions at new exposure levels",
-    caption =
-      "vertical dashed line: estimated EC~50~ value<br>area: 95% credible interval") +
-  theme(plot.title = ggtext::element_markdown(),
-    plot.caption = ggtext::element_markdown())
+    caption = paste(
+      "vertical dashed line: estimated EC~50~ value",
+      "area: 95% credible interval", 
+      sep = "<br>"
+    )
+  ) +
+  theme(
+    plot.title = ggtext::element_markdown(),
+    plot.caption = ggtext::element_markdown()
+  )
 ```
+

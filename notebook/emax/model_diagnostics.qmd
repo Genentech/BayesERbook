@@ -28,8 +28,7 @@ source(here("R", "cli_color_text.R"))
 
 ```{r}
 #| message: FALSE
-
-d_example_emax_nocov <- read_csv(here("data", "d_example_emax_nocov.csv"))
+d_sim_emax
 ```
 
 ## Fit models
@@ -42,9 +41,9 @@ d_example_emax_nocov <- read_csv(here("data", "d_example_emax_nocov.csv"))
 set.seed(1234)
 
 ermod_sigemax <- dev_ermod_emax(
-  data = d_example_emax_nocov,
-  var_resp = "Y",
-  var_exposure = "Conc",
+  data = d_sim_emax,
+  var_resp = "response_1",
+  var_exposure = "exposure",
   gamma_fix = NULL
 )
 
@@ -60,9 +59,9 @@ model comparison.
 set.seed(1234)
 
 ermod_emax <- dev_ermod_emax(
-  data = d_example_emax_nocov,
-  var_resp = "Y",
-  var_exposure = "Conc",
+  data = d_sim_emax,
+  var_resp = "response_1",
+  var_exposure = "exposure",
   gamma_fix = 1
 )
 
@@ -203,7 +202,7 @@ plot_er(ermod_sigemax, show_orig_data = TRUE)
 ersim_sigemax_med_qi <- sim_er(ermod_sigemax, output_type = "median_qi")
 
 ersim_sigemax_med_qi |>
-  ggplot(aes(.epred, Y)) +
+  ggplot(aes(x = .epred, y = response_1)) +
   geom_abline(linetype = 2, color = "grey") +
   geom_point() +
   geom_errorbarh(aes(xmin = .epred.lower, xmax = .epred.upper), height = 0) +
@@ -222,7 +221,7 @@ ersim_sigemax_med_qi |>
 
 ersim_sigemax_w_resid <-
   sim_er(ermod_sigemax) |>
-  mutate(.residual = Y - .epred) # Add residuals for plotting
+  mutate(.residual = response_1 - .epred) # Add residuals for plotting
 ersim_sigemax_w_resid_med_qi <- median_qi(ersim_sigemax_w_resid)
 
 ersim_sigemax_w_resid_med_qi |>

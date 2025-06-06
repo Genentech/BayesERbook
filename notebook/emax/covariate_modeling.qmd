@@ -11,6 +11,7 @@ library(brms)
 library(posterior)
 library(tidybayes)
 library(here)
+library(BayesERtools)
 
 theme_set(theme_bw(base_size = 12))
 ```
@@ -36,7 +37,7 @@ if (require(cmdstanr)) {
 
 ## Continuous response with covariates
 
-The simulated data set contains three continuous covariates (`cov_a`, `cov_b`, and `cov_c`) that may be related to `response`. The univariate relationships between each covariate and the response are shown below, along with the relationship between `exposure` and `reponse`: 
+The simulated data set contains three continuous covariates (`cnt_a`, `cnt_b`, and `cnt_c`) that may be related to the continuous oucome `response_1`. The univariate relationships between each covariate and the response are shown below, along with the relationship between `exposure` and `reponse_1`: 
 
 ```{r}
 #| label: show-continuous-emax-data
@@ -44,26 +45,24 @@ The simulated data set contains three continuous covariates (`cov_a`, `cov_b`, a
 #| fig-width: 8
 #| message: false
 
-d_example_emax_3cov <- read_csv(here("data", "d_example_emax_3cov.csv"))
-
-d_example_emax_3cov |> 
+d_sim_emax |> 
   pivot_longer(
-    cols = c(exposure, cov_a, cov_b, cov_c), 
+    cols = c(exposure, cnt_a, cnt_b, cnt_c), 
     names_to = "variable",
     values_to = "value"
   ) |> 
-  ggplot(aes(value, response)) + 
+  ggplot(aes(value, response_1)) + 
   geom_point() + 
   geom_smooth(formula = y ~ x, method = "loess") + 
   facet_wrap(~ variable, scales = "free_x")
 ```
 
-In the brms framework, the E~max~ function is treated as a structural model and covariates can be placed on any parameter when the model is specified using `brmsformula()`. As an example, the model specified here sets `cov_a`, `cov_b`, and `cov_c` as covariates on the baseline response:
+In the brms framework, the E~max~ function is treated as a structural model and covariates can be placed on any parameter when the model is specified using `brmsformula()`. As an example, the model specified here sets `cnt_a`, `cnt_b`, and `cnt_c` as covariates on the baseline response:
 
 ```{r}
-covariate_model <- brmsformula(
-  response ~ e0 + emax * exposure / (ec50 + exposure), # structural model
-  e0   ~ 1 + cov_a + cov_b + cov_c, # covariate model for baseline
+covariate_model_1 <- brmsformula(
+  response_1 ~ e0 + emax * exposure / (ec50 + exposure), # structural model
+  e0   ~ 1 + cnt_a + cnt_b + cnt_c, # covariate model for baseline
   emax ~ 1,                         # covariate model for max response
   ec50 ~ 1,                         # covariate model for EC50
   nl = TRUE
@@ -85,7 +84,7 @@ parameter_prior <- c(
 )
 ```
 
-When interpreting the prior, it is important to remember that there are covariates on `e0`: the `normal(0, 1.5)` prior is applied to all regression coefficients. That means that this prior is applied independently to `e0_Intercept`, `e0_cov_a`, `e0_cov_b`, and `e0_cov_c`. 
+When interpreting the prior, it is important to remember that there are covariates on `e0`: the `normal(0, 1.5)` prior is applied to all regression coefficients. That means that this prior is applied independently to `e0_Intercept`, `e0_cnt_a`, `e0_cnt_b`, and `e0_cnt_c`. 
 
 To apply this model to the continuous data, pass all three of these to `brm()`:
 
@@ -94,9 +93,9 @@ To apply this model to the continuous data, pass all three of these to `brm()`:
 #| message: false
 #| results: hide
 continuous_covariate_fit <- brm(
-  formula = covariate_model, 
+  formula = covariate_model_1, 
   family = gaussian_measurement, 
-  data = d_example_emax_3cov, 
+  data = d_sim_emax, 
   prior = parameter_prior
 ) 
 ```
@@ -107,39 +106,39 @@ Printing the `continuous_covariate_fit` object provides summary information abou
 continuous_covariate_fit
 ```
 
-Extending the data visualization used earlier, the model predictions can be plotted as a function of both `exposure` and `cov_a`:
+Extending the data visualization used earlier, the model predictions can be plotted as a function of both `exposure` and `cnt_a`:
 
 ```{r}
-cov_a_map <- 
+cnt_a_map <- 
   tibble(
-    cov_a = c(2, 5, 8),
-    cov_a_group = c("2 (<3.5)", "5 (3.5~6.5)", "8 (≥6.5)")
+    cnt_a = c(2, 5, 8),
+    cnt_a_group = c("2 (<3.5)", "5 (3.5~6.5)", "8 (≥6.5)")
   )
 
-sim_exposure_cov_a <- 
+sim_exposure_cnt_a <- 
   continuous_covariate_fit |> 
   epred_draws(newdata = expand_grid(
     exposure = seq(0, 50000, 1000),
-    cov_a = c(2, 5, 8), 
-    cov_b = 5,
-    cov_c = 5
+    cnt_a = c(2, 5, 8), 
+    cnt_b = 5,
+    cnt_c = 5
   )) |> 
   median_qi() |> 
-  left_join(cov_a_map, by = join_by(cov_a))
+  left_join(cnt_a_map, by = join_by(cnt_a))
 
 d_for_plot <- 
-  d_example_emax_3cov |> 
+  d_sim_emax |> 
   mutate(
-    cov_a_raw = cov_a,
-    cov_a = case_when(
-      cov_a < 3.5 ~ 2,
-      cov_a >= 3.5 & cov_a < 6.5 ~ 5,
-      cov_a >= 6.5 ~ 8
+    cnt_a_raw = cnt_a,
+    cnt_a = case_when(
+      cnt_a < 3.5 ~ 2,
+      cnt_a >= 3.5 & cnt_a < 6.5 ~ 5,
+      cnt_a >= 6.5 ~ 8
     )
   ) |> 
-  left_join(cov_a_map, by = join_by(cov_a))
+  left_join(cnt_a_map, by = join_by(cnt_a))
 
-sim_exposure_cov_a |> 
+sim_exposure_cnt_a |> 
   ggplot(mapping = aes(exposure, .epred)) + 
   geom_path() + 
   geom_ribbon(
@@ -148,16 +147,16 @@ sim_exposure_cov_a |>
   ) +
   geom_point(
     data = d_for_plot,
-    mapping = aes(y = response, color = cov_a_raw)
+    mapping = aes(y = response_1, color = cnt_a_raw)
   ) + 
-  facet_wrap(~cov_a_group, labeller = label_both) +
-  labs(color = "cov_a") + 
+  facet_wrap(~cnt_a_group, labeller = label_both) +
+  labs(color = "cnt_a") + 
   theme(legend.position = "bottom")
 ```
 
 ## Binary response with covariates
 
-Building a covariate model for binary response data follows the same process as for continuous response data. As before, exploratory visualizations are helpful in illustrating the relationships between covariates and the response:
+Building a covariate model for binary response data follows the same process as for continuous response data. As before, exploratory visualizations are helpful in illustrating the relationships between covariates and the binary `response_2` variable:
 
 ```{r}
 #| label: show-binary-emax-data
@@ -165,21 +164,19 @@ Building a covariate model for binary response data follows the same process as 
 #| fig-width: 8
 #| message: false
 
-d_example_emax_bin_3cov <- read_csv(here("data", "d_example_emax_bin_3cov.csv"))
-
-d_example_emax_bin_3cov |> 
+d_sim_emax |> 
   pivot_longer(
-    cols = c(exposure, cov_a, cov_b, cov_c), 
+    cols = c(exposure, cnt_a, cnt_b, cnt_c), 
     names_to = "variable",
     values_to = "value"
   ) |> 
-  mutate(response = factor(response)) |> 
-  ggplot(aes(response, value)) + 
+  mutate(response_2 = factor(response_2)) |> 
+  ggplot(aes(response_2, value)) + 
   geom_violin(draw_quantiles = .5) + 
   facet_wrap(~ variable, scales = "free_y")
 ```
 
-As in the previous chapter, the only difference between the binary model and the continuous model is the use of the `bernoulli_measurement` model:
+As in the previous chapter, the primary difference between the binary model and the continuous model is the use of the `bernoulli_measurement` model:
 
 ```{r}
 bernoulli_measurement <- brmsfamily(
@@ -188,16 +185,28 @@ bernoulli_measurement <- brmsfamily(
 )
 ```
 
-The `parameter_prior` and `covariate_model` are the same as before. All three are passed to `brm()`, as shown below: 
+The actal models specification `covariate_model_2` differs only in that it indicates that the binary outcome `response_2` is used
+
+```{r}
+covariate_model_2 <- brmsformula(
+  response_2 ~ e0 + emax * exposure / (ec50 + exposure), # structural model
+  e0   ~ 1 + cnt_a + cnt_b + cnt_c, # covariate model for baseline
+  emax ~ 1,                         # covariate model for max response
+  ec50 ~ 1,                         # covariate model for EC50
+  nl = TRUE
+)
+```
+
+The `parameter_prior` is the same as before. All three are passed to `brm()`, as shown below: 
 
 ```{r}
 #| label: run-binary-emax-model-with-covariates
 #| message: false
 #| results: hide
 binary_covariate_fit <- brm(
-  formula = covariate_model, 
+  formula = covariate_model_2, 
   family = bernoulli_measurement, 
-  data = d_example_emax_bin_3cov, 
+  data = d_sim_emax, 
   prior = parameter_prior
 ) 
 ```
@@ -211,36 +220,36 @@ binary_covariate_fit
 The data visualization for this model is shown below:
 
 ```{r}
-cov_a_map <- 
+cnt_a_map <- 
   tibble(
-    cov_a = c(2, 5, 8),
-    cov_a_group = c("2 (<3.5)", "5 (3.5~6.5)", "8 (≥6.5)")
+    cnt_a = c(2, 5, 8),
+    cnt_a_group = c("2 (<3.5)", "5 (3.5~6.5)", "8 (≥6.5)")
   )
 
-sim_exposure_cov_a <- 
+sim_exposure_cnt_a <- 
   binary_covariate_fit |> 
   epred_draws(newdata = expand_grid(
     exposure = seq(0, 50000, 1000),
-    cov_a = c(2, 5, 8), 
-    cov_b = 5,
-    cov_c = 5
+    cnt_a = c(2, 5, 8), 
+    cnt_b = 5,
+    cnt_c = 5
   )) |> 
   median_qi() |> 
-  left_join(cov_a_map, by = join_by(cov_a))
+  left_join(cnt_a_map, by = join_by(cnt_a))
 
 d_for_plot <- 
-  d_example_emax_bin_3cov |> 
+  d_sim_emax |> 
   mutate(
-    cov_a_raw = cov_a,
-    cov_a = case_when(
-      cov_a < 3.5 ~ 2,
-      cov_a >= 3.5 & cov_a < 6.5 ~ 5,
-      cov_a >= 6.5 ~ 8
+    cnt_a_raw = cnt_a,
+    cnt_a = case_when(
+      cnt_a < 3.5 ~ 2,
+      cnt_a >= 3.5 & cnt_a < 6.5 ~ 5,
+      cnt_a >= 6.5 ~ 8
     )
   ) |> 
-  left_join(cov_a_map, by = join_by(cov_a))
+  left_join(cnt_a_map, by = join_by(cnt_a))
 
-sim_exposure_cov_a |> 
+sim_exposure_cnt_a |> 
   ggplot(mapping = aes(exposure, .epred)) + 
   geom_path() + 
   geom_ribbon(
@@ -249,24 +258,24 @@ sim_exposure_cov_a |>
   ) +
   geom_jitter(
     data = d_for_plot,
-    mapping = aes(y = response, color = cov_a_raw),
+    mapping = aes(y = response_2, color = cnt_a_raw),
     width = 0,
     height = .05
   ) + 
-  facet_wrap(~cov_a_group, labeller = label_both) +
-  labs(color = "cov_a") + 
+  facet_wrap(~cnt_a_group, labeller = label_both) +
+  labs(color = "cnt_a") + 
   theme(legend.position = "bottom")
 ```
 
 ## Setting covariates on other parameters
 
-The previous two examples illustrate covariates placed on the intercept parameter `e0`. It is possible to define covariate models on any parameter within the E~max~ model. 
+The previous two examples illustrate covariates placed on the intercept parameter `e0`. It is possible to define covariate models on any parameter within the E~max~ model. Returning to the continuous outcome `response_1`, the model is specified as follows:
 
 ```{r}
 other_covariates <- brmsformula(
-  response ~ e0 + emax * exposure / (ec50 + exposure), # structural model
-  e0   ~ 1 + cov_a,   # covariate model for baseline
-  emax ~ 1 + cov_b,   # covariate model for max response
+  response_1 ~ e0 + emax * exposure / (ec50 + exposure), # structural model
+  e0   ~ 1 + cnt_a,   # covariate model for baseline
+  emax ~ 1 + cnt_b,   # covariate model for max response
   ec50 ~ 1,           # covariate model for EC50
   nl = TRUE
 )
@@ -279,7 +288,7 @@ other_covariates <- brmsformula(
 other_covariates_fit <- brm(
   formula = other_covariates, 
   family = gaussian_measurement, 
-  data = d_example_emax_3cov, 
+  data = d_sim_emax, 
   prior = parameter_prior
 ) 
 ```
@@ -297,7 +306,7 @@ The brms package provides a flexible interface for model comparison using LOO-CV
 ```{r}
 # no covariates
 base_model <- brmsformula(
-  response ~ e0 + emax * exposure / (ec50 + exposure),
+  response_1 ~ e0 + emax * exposure / (ec50 + exposure),
   e0   ~ 1,
   emax ~ 1,
   ec50 ~ 1,
@@ -305,18 +314,18 @@ base_model <- brmsformula(
 )
 
 # one predictor on e0
-cov_a_model <- brmsformula(
-  response ~ e0 + emax * exposure / (ec50 + exposure),
-  e0   ~ 1 + cov_a,
+cnt_a_model <- brmsformula(
+  response_1 ~ e0 + emax * exposure / (ec50 + exposure),
+  e0   ~ 1 + cnt_a,
   emax ~ 1,
   ec50 ~ 1,
   nl = TRUE
 )
 
 # three predictors on e0
-cov_abc_model <- brmsformula(
-  response ~ e0 + emax * exposure / (ec50 + exposure),
-  e0   ~ 1 + cov_a + cov_b + cov_c,
+cnt_abc_model <- brmsformula(
+  response_1 ~ e0 + emax * exposure / (ec50 + exposure),
+  e0   ~ 1 + cnt_a + cnt_b + cnt_c,
   emax ~ 1,
   ec50 ~ 1,
   nl = TRUE
@@ -331,23 +340,23 @@ In addition to calling `brm()` to estimate regression coefficients, the `add_cri
 base_fit <- base_model |> 
   brm(  
     family = gaussian_measurement, 
-    data = d_example_emax_3cov, 
+    data = d_sim_emax, 
     prior = parameter_prior
   ) |> 
   add_criterion("loo")
   
-cov_a_fit <- cov_a_model |> 
+cnt_a_fit <- cnt_a_model |> 
   brm(
     family = gaussian_measurement, 
-    data = d_example_emax_3cov, 
+    data = d_sim_emax, 
     prior = parameter_prior
   ) |> 
   add_criterion("loo")
 
-cov_abc_fit <- cov_abc_model |> 
+cnt_abc_fit <- cnt_abc_model |> 
   brm(
     family = gaussian_measurement, 
-    data = d_example_emax_3cov, 
+    data = d_sim_emax, 
     prior = parameter_prior
   ) |> 
   add_criterion("loo")
@@ -358,14 +367,14 @@ To compare models that have LOO criteria information added, use `loo_compare()`:
 ```{r}
 model_comparison <- loo_compare(
   base_fit,
-  cov_a_fit,
-  cov_abc_fit
+  cnt_a_fit,
+  cnt_abc_fit
 )
 
 model_comparison
 ```
 
-In this example, `cov_a_fit` model outperforms the other two models. 
+In this example, `cnt_a_fit` model outperforms the other two models. 
 
 By default the printed output shows the most important columns, but the return value from `loo_compare()` contains additional information relevant to the model comparison. To view all columns, call the print method with `simplify = FALSE`:
 
