@@ -21,6 +21,32 @@ install.packages('BayesERtools')
 # devtools::install_github("genentech/BayesERtools") # development version
 ```
 
+## Quick Example
+
+``` r
+library(BayesERtools)
+
+# Data
+data(d_sim_binom_cov)
+df_er_ae_hgly2 <- 
+  d_sim_binom_cov |> 
+  mutate(AUCss_1000 = AUCss / 1000) |> 
+  filter(AETYPE == "hgly2")
+
+# Fit a model
+ermod <- dev_ermod_bin(
+  data = df_er_ae_hgly2,
+  var_resp = "AEFLAG",
+  var_exposure = "AUCss_1000"
+)
+
+# Goodness-of-fit plot
+plot_er_gof(ermod, var_group = "Dose_mg", show_coef_exp = TRUE) *
+  xgxr::xgx_scale_x_log10(guide = ggplot2::guide_axis(minor.ticks = TRUE))
+```
+
+<img src="man/figures/README-quick-ex-1.png" width="75%" />
+
 ## Model types supported by `BayesERtools`
 
 <div id="pzveloiefp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">

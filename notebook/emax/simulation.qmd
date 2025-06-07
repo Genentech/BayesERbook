@@ -95,13 +95,13 @@ ersim_sigemax_med_qi <-
   calc_ersim_med_qi(qi_width = c(0.5, 0.95))
 
 ggplot(
-  data = ersim_sigemax_med_qi, 
+  data = ersim_sigemax_med_qi,
   mapping = aes(x = exposure, y = .epred)
 ) +
   geom_ribbon(
     data = ersim_sigemax_med_qi |> filter(.width == 0.95),
     mapping = aes(ymin = .epred.lower, ymax = .epred.upper),
-    fill = "yellow3", 
+    fill = "yellow3",
     alpha = 0.5
   ) +
   geom_ribbon(
@@ -110,11 +110,11 @@ ggplot(
     fill = "orange1"
   ) +
   geom_line(
-    data = ersim_sigemax_med_qi |> filter(.width == 0.5), 
+    data = ersim_sigemax_med_qi |> filter(.width == 0.5),
     col = "darkred"
   ) +
   geom_point(
-    data = d_sim_emax, 
+    data = d_sim_emax,
     mapping = aes(y = response_1)
   ) +
   coord_cartesian(ylim = c(5, 22)) +
@@ -139,13 +139,13 @@ This represents uncertainty in the model parameters plus the residual error.
 #| fig-height: 5
 
 ggplot(
-  data = ersim_sigemax_med_qi, 
+  data = ersim_sigemax_med_qi,
   mapping = aes(x = exposure, y = .prediction)
 ) +
   geom_ribbon(
     data = ersim_sigemax_med_qi |> filter(.width == 0.95),
     mapping = aes(ymin = .prediction.lower, ymax = .prediction.upper),
-    fill = "yellow3", 
+    fill = "yellow3",
     alpha = 0.5
   ) +
   geom_ribbon(
@@ -154,11 +154,11 @@ ggplot(
     fill = "orange1"
   ) +
   geom_line(
-    data = ersim_sigemax_med_qi |> filter(.width == 0.5), 
+    data = ersim_sigemax_med_qi |> filter(.width == 0.5),
     col = "darkred"
   ) +
   geom_point(
-    data = d_sim_emax, 
+    data = d_sim_emax,
     mapping = aes(y = response_1)
   ) +
   coord_cartesian(ylim = c(5, 22)) +
@@ -188,31 +188,31 @@ ersim_emax_med_qi <-
   calc_ersim_med_qi(qi_width = c(0.5, 0.95))
 
 ggplot(
-  data = ersim_sigemax_med_qi, 
+  data = ersim_sigemax_med_qi,
   mapping = aes(x = exposure, y = .epred)
 ) +
   geom_ribbon(
     data = ersim_sigemax_med_qi |> filter(.width == 0.95),
     mapping = aes(ymin = .epred.lower, ymax = .epred.upper),
-    fill = "orange1", 
+    fill = "orange1",
     alpha = 0.5
   ) +
   geom_line(
-    data = ersim_sigemax_med_qi |> filter(.width == 0.95), 
+    data = ersim_sigemax_med_qi |> filter(.width == 0.95),
     col = "darkred"
   ) +
   geom_ribbon(
     data = ersim_emax_med_qi |> filter(.width == 0.95),
     mapping = aes(ymin = .epred.lower, ymax = .epred.upper),
-    fill = "turquoise3", 
+    fill = "turquoise3",
     alpha = 0.5
   ) +
   geom_line(
-    data = ersim_emax_med_qi |> filter(.width == 0.95), 
+    data = ersim_emax_med_qi |> filter(.width == 0.95),
     col = "steelblue3"
   ) +
   geom_point(
-    data = d_sim_emax, 
+    data = d_sim_emax,
     mapping = aes(y = response_1)
   ) +
   coord_cartesian(ylim = c(5, 22)) +

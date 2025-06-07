@@ -15,6 +15,8 @@ knitr::opts_chunk$set(
 library(dplyr)
 library(tidyr)
 library(gt)
+
+ggplot2::theme_set(ggplot2::theme_bw(base_size = 12))
 ```
 
 
@@ -34,6 +36,31 @@ You can install the package as follows:
 install.packages('BayesERtools')
 # devtools::install_github("genentech/BayesERtools") # development version
 ```
+
+## Quick Example
+
+```{r quick-ex, fig.width = 6, fig.height = 4.5, dpi = 150}
+library(BayesERtools)
+
+# Data
+data(d_sim_binom_cov)
+df_er_ae_hgly2 <- 
+  d_sim_binom_cov |> 
+  mutate(AUCss_1000 = AUCss / 1000) |> 
+  filter(AETYPE == "hgly2")
+
+# Fit a model
+ermod <- dev_ermod_bin(
+  data = df_er_ae_hgly2,
+  var_resp = "AEFLAG",
+  var_exposure = "AUCss_1000"
+)
+
+# Goodness-of-fit plot
+plot_er_gof(ermod, var_group = "Dose_mg", show_coef_exp = TRUE) *
+  xgxr::xgx_scale_x_log10(guide = ggplot2::guide_axis(minor.ticks = TRUE))
+```
+
 
 ## Model types supported by `BayesERtools`
 
