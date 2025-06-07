@@ -26,7 +26,7 @@ source(here("R", "cli_color_text.R"))
 if (require(cmdstanr)) {
   # prefer cmdstanr and cache binaries
   options(
-    brms.backend = "cmdstanr", 
+    brms.backend = "cmdstanr",
     cmdstanr_write_stan_file_dir = here("_brms-cache")
   )
   dir.create(here("_brms-cache"), FALSE)
@@ -45,16 +45,16 @@ The simulated data set contains three continuous covariates (`cnt_a`, `cnt_b`, a
 #| fig-width: 8
 #| message: false
 
-d_sim_emax |> 
+d_sim_emax |>
   pivot_longer(
-    cols = c(exposure, cnt_a, cnt_b, cnt_c), 
+    cols = c(exposure, cnt_a, cnt_b, cnt_c),
     names_to = "variable",
     values_to = "value"
-  ) |> 
-  ggplot(aes(value, response_1)) + 
-  geom_point() + 
-  geom_smooth(formula = y ~ x, method = "loess") + 
-  facet_wrap(~ variable, scales = "free_x")
+  ) |>
+  ggplot(aes(value, response_1)) +
+  geom_point() +
+  geom_smooth(formula = y ~ x, method = "loess") +
+  facet_wrap(~variable, scales = "free_x")
 ```
 
 In the brms framework, the E~max~ function is treated as a structural model and covariates can be placed on any parameter when the model is specified using `brmsformula()`. As an example, the model specified here sets `cnt_a`, `cnt_b`, and `cnt_c` as covariates on the baseline response:
@@ -73,7 +73,7 @@ The measurement model and parameter prior are specified using `brmsfamily()` and
 
 ```{r}
 gaussian_measurement <- brmsfamily(
-  family = "gaussian", 
+  family = "gaussian",
   link = "identity"
 )
 
@@ -93,11 +93,11 @@ To apply this model to the continuous data, pass all three of these to `brm()`:
 #| message: false
 #| results: hide
 continuous_covariate_fit <- brm(
-  formula = covariate_model_1, 
-  family = gaussian_measurement, 
-  data = d_sim_emax, 
+  formula = covariate_model_1,
+  family = gaussian_measurement,
+  data = d_sim_emax,
   prior = parameter_prior
-) 
+)
 ```
 
 Printing the `continuous_covariate_fit` object provides summary information about the regression coefficients for the covariates and other parameters:
@@ -109,25 +109,25 @@ continuous_covariate_fit
 Extending the data visualization used earlier, the model predictions can be plotted as a function of both `exposure` and `cnt_a`:
 
 ```{r}
-cnt_a_map <- 
+cnt_a_map <-
   tibble(
     cnt_a = c(2, 5, 8),
     cnt_a_group = c("2 (<3.5)", "5 (3.5~6.5)", "8 (≥6.5)")
   )
 
-sim_exposure_cnt_a <- 
-  continuous_covariate_fit |> 
+sim_exposure_cnt_a <-
+  continuous_covariate_fit |>
   epred_draws(newdata = expand_grid(
     exposure = seq(0, 50000, 1000),
-    cnt_a = c(2, 5, 8), 
+    cnt_a = c(2, 5, 8),
     cnt_b = 5,
     cnt_c = 5
-  )) |> 
-  median_qi() |> 
+  )) |>
+  median_qi() |>
   left_join(cnt_a_map, by = join_by(cnt_a))
 
-d_for_plot <- 
-  d_sim_emax |> 
+d_for_plot <-
+  d_sim_emax |>
   mutate(
     cnt_a_raw = cnt_a,
     cnt_a = case_when(
@@ -135,22 +135,22 @@ d_for_plot <-
       cnt_a >= 3.5 & cnt_a < 6.5 ~ 5,
       cnt_a >= 6.5 ~ 8
     )
-  ) |> 
+  ) |>
   left_join(cnt_a_map, by = join_by(cnt_a))
 
-sim_exposure_cnt_a |> 
-  ggplot(mapping = aes(exposure, .epred)) + 
-  geom_path() + 
+sim_exposure_cnt_a |>
+  ggplot(mapping = aes(exposure, .epred)) +
+  geom_path() +
   geom_ribbon(
-    mapping = aes(ymin = .lower, ymax = .upper), 
+    mapping = aes(ymin = .lower, ymax = .upper),
     alpha = 0.3
   ) +
   geom_point(
     data = d_for_plot,
     mapping = aes(y = response_1, color = cnt_a_raw)
-  ) + 
+  ) +
   facet_wrap(~cnt_a_group, labeller = label_both) +
-  labs(color = "cnt_a") + 
+  labs(color = "cnt_a") +
   theme(legend.position = "bottom")
 ```
 
@@ -164,23 +164,23 @@ Building a covariate model for binary response data follows the same process as 
 #| fig-width: 8
 #| message: false
 
-d_sim_emax |> 
+d_sim_emax |>
   pivot_longer(
-    cols = c(exposure, cnt_a, cnt_b, cnt_c), 
+    cols = c(exposure, cnt_a, cnt_b, cnt_c),
     names_to = "variable",
     values_to = "value"
-  ) |> 
-  mutate(response_2 = factor(response_2)) |> 
-  ggplot(aes(response_2, value)) + 
-  geom_violin(draw_quantiles = .5) + 
-  facet_wrap(~ variable, scales = "free_y")
+  ) |>
+  mutate(response_2 = factor(response_2)) |>
+  ggplot(aes(response_2, value)) +
+  geom_violin(draw_quantiles = .5) +
+  facet_wrap(~variable, scales = "free_y")
 ```
 
 As in the previous chapter, the primary difference between the binary model and the continuous model is the use of the `bernoulli_measurement` model:
 
 ```{r}
 bernoulli_measurement <- brmsfamily(
-  family = "bernoulli", 
+  family = "bernoulli",
   link = "logit"
 )
 ```
@@ -204,11 +204,11 @@ The `parameter_prior` is the same as before. All three are passed to `brm()`, as
 #| message: false
 #| results: hide
 binary_covariate_fit <- brm(
-  formula = covariate_model_2, 
-  family = bernoulli_measurement, 
-  data = d_sim_emax, 
+  formula = covariate_model_2,
+  family = bernoulli_measurement,
+  data = d_sim_emax,
   prior = parameter_prior
-) 
+)
 ```
 
 After the sampling finishes, printing the model fit object shows parameter estimates and details about the behavior of the sampler:
@@ -220,25 +220,25 @@ binary_covariate_fit
 The data visualization for this model is shown below:
 
 ```{r}
-cnt_a_map <- 
+cnt_a_map <-
   tibble(
     cnt_a = c(2, 5, 8),
     cnt_a_group = c("2 (<3.5)", "5 (3.5~6.5)", "8 (≥6.5)")
   )
 
-sim_exposure_cnt_a <- 
-  binary_covariate_fit |> 
+sim_exposure_cnt_a <-
+  binary_covariate_fit |>
   epred_draws(newdata = expand_grid(
     exposure = seq(0, 50000, 1000),
-    cnt_a = c(2, 5, 8), 
+    cnt_a = c(2, 5, 8),
     cnt_b = 5,
     cnt_c = 5
-  )) |> 
-  median_qi() |> 
+  )) |>
+  median_qi() |>
   left_join(cnt_a_map, by = join_by(cnt_a))
 
-d_for_plot <- 
-  d_sim_emax |> 
+d_for_plot <-
+  d_sim_emax |>
   mutate(
     cnt_a_raw = cnt_a,
     cnt_a = case_when(
@@ -246,14 +246,14 @@ d_for_plot <-
       cnt_a >= 3.5 & cnt_a < 6.5 ~ 5,
       cnt_a >= 6.5 ~ 8
     )
-  ) |> 
+  ) |>
   left_join(cnt_a_map, by = join_by(cnt_a))
 
-sim_exposure_cnt_a |> 
-  ggplot(mapping = aes(exposure, .epred)) + 
-  geom_path() + 
+sim_exposure_cnt_a |>
+  ggplot(mapping = aes(exposure, .epred)) +
+  geom_path() +
   geom_ribbon(
-    mapping = aes(ymin = .lower, ymax = .upper), 
+    mapping = aes(ymin = .lower, ymax = .upper),
     alpha = 0.3
   ) +
   geom_jitter(
@@ -261,9 +261,9 @@ sim_exposure_cnt_a |>
     mapping = aes(y = response_2, color = cnt_a_raw),
     width = 0,
     height = .05
-  ) + 
+  ) +
   facet_wrap(~cnt_a_group, labeller = label_both) +
-  labs(color = "cnt_a") + 
+  labs(color = "cnt_a") +
   theme(legend.position = "bottom")
 ```
 
@@ -286,11 +286,11 @@ other_covariates <- brmsformula(
 #| message: false
 #| results: hide
 other_covariates_fit <- brm(
-  formula = other_covariates, 
-  family = gaussian_measurement, 
-  data = d_sim_emax, 
+  formula = other_covariates,
+  family = gaussian_measurement,
+  data = d_sim_emax,
   prior = parameter_prior
-) 
+)
 ```
 
 Printing the `other_covariates_fit` object provides summary information:
@@ -337,28 +337,28 @@ In addition to calling `brm()` to estimate regression coefficients, the `add_cri
 ```{r}
 #| results: hide
 #| message: false
-base_fit <- base_model |> 
-  brm(  
-    family = gaussian_measurement, 
-    data = d_sim_emax, 
-    prior = parameter_prior
-  ) |> 
-  add_criterion("loo")
-  
-cnt_a_fit <- cnt_a_model |> 
+base_fit <- base_model |>
   brm(
-    family = gaussian_measurement, 
-    data = d_sim_emax, 
+    family = gaussian_measurement,
+    data = d_sim_emax,
     prior = parameter_prior
-  ) |> 
+  ) |>
   add_criterion("loo")
 
-cnt_abc_fit <- cnt_abc_model |> 
+cnt_a_fit <- cnt_a_model |>
   brm(
-    family = gaussian_measurement, 
-    data = d_sim_emax, 
+    family = gaussian_measurement,
+    data = d_sim_emax,
     prior = parameter_prior
-  ) |> 
+  ) |>
+  add_criterion("loo")
+
+cnt_abc_fit <- cnt_abc_model |>
+  brm(
+    family = gaussian_measurement,
+    data = d_sim_emax,
+    prior = parameter_prior
+  ) |>
   add_criterion("loo")
 ```
 

@@ -41,9 +41,9 @@ d_sim_emax |>
 ggplot(d_sim_emax, aes(exposure, response_1)) +
   geom_point() +
   geom_smooth(
-    formula = y ~ x, 
-    method = "loess", 
-    se = FALSE, 
+    formula = y ~ x,
+    method = "loess",
+    se = FALSE,
     col = "darkgrey"
   )
 ```
@@ -61,7 +61,6 @@ ermod_sigemax <- dev_ermod_emax(
 )
 
 ermod_sigemax
-
 ```
 
 ## Observation vs model fit
@@ -119,43 +118,43 @@ d_sim_ermod_sigemax |>
   ggplot(aes(x = exposure, y = response_1)) +
   # Emax model curve
   geom_vline(
-    xintercept = ec50_mean, 
-    linetype = "dashed", 
+    xintercept = ec50_mean,
+    linetype = "dashed",
     color = "deepskyblue"
   ) +
   geom_ribbon(
     mapping = aes(
-      y = .epred, 
-      ymin = .epred.lower, 
+      y = .epred,
+      ymin = .epred.lower,
       ymax = .epred.upper
     ),
-    alpha = 0.3, 
+    alpha = 0.3,
     fill = "deepskyblue"
   ) +
   geom_line(
-    mapping = aes(y = .epred), 
+    mapping = aes(y = .epred),
     color = "deepskyblue"
   ) +
   # Observed data
   geom_point(
-    data = d_sim_emax, 
+    data = d_sim_emax,
     color = "grey"
   ) +
   # Prediction at the specified doses
   geom_point(
-    data = d_sim_new_conc, 
-    mapping = aes(y = .epred), 
-    color = "tomato", 
+    data = d_sim_new_conc,
+    mapping = aes(y = .epred),
+    color = "tomato",
     size = 3
   ) +
   geom_errorbar(
     data = d_sim_new_conc,
     mapping = aes(
-      y = .epred, 
-      ymin = .epred.lower, 
+      y = .epred,
+      ymin = .epred.lower,
       ymax = .epred.upper
     ),
-    width = 1, 
+    width = 1,
     color = "tomato"
   ) +
   coord_cartesian(ylim = c(7, 21)) +
@@ -164,7 +163,7 @@ d_sim_ermod_sigemax |>
     title = "Sigmoidal E~max~ model predictions at new exposure levels",
     caption = paste(
       "vertical dashed line: estimated EC~50~ value",
-      "area: 95% credible interval", 
+      "area: 95% credible interval",
       sep = "<br>"
     )
   ) +
