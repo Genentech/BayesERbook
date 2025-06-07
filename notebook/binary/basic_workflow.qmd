@@ -95,7 +95,7 @@ function.
 # Using `*` instead of `+` so that scale can be
 # applied for both panels (main plot and boxplot)
 plot_er_gof(ermod_bin, var_group = "Dose", show_coef_exp = TRUE) *
-  xgxr::xgx_scale_x_log10()
+  xgxr::xgx_scale_x_log10(guide = ggplot2::guide_axis(minor.ticks = TRUE))
 ```
 
 MCMC samples can be obtained with `as_draws()` family of functions, such as
@@ -181,7 +181,7 @@ The ER curve for all the evaluated exposure metrics can be generated with
 #| fig-height: 5
 
 plot_er_exp_sel(ermod_bin_exp_sel) +
-  xgxr::xgx_scale_x_log10()
+  xgxr::xgx_scale_x_log10(guide = ggplot2::guide_axis(minor.ticks = TRUE))
 ```
 
 

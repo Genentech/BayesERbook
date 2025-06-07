@@ -108,7 +108,7 @@ d_sim_curve |>
     caption = "Area: 95% credible interval"
   ) +
   theme(axis.title.x = ggtext::element_markdown()) +
-  xgxr::xgx_scale_x_log10()
+  xgxr::xgx_scale_x_log10(guide = ggplot2::guide_axis(minor.ticks = TRUE))
 ```
 
 ## Prediction for new dose
@@ -141,7 +141,7 @@ ggplot(d_new_dose_pk, aes(x = AUCss_1000, fill = Dose)) +
   ) +
   theme(plot.title = ggtext::element_markdown(),
     axis.title.x = ggtext::element_markdown()) +
-  xgxr::xgx_scale_x_log10()
+  xgxr::xgx_scale_x_log10(guide = ggplot2::guide_axis(minor.ticks = TRUE))
 ```
 
 ### Sim and plot
@@ -199,7 +199,7 @@ d_sim_curve |>
     color = guide_legend(reverse = TRUE)
   ) +
   theme(axis.title.x = ggtext::element_markdown()) +
-  xgxr::xgx_scale_x_log10()
+  xgxr::xgx_scale_x_log10(guide = ggplot2::guide_axis(minor.ticks = TRUE))
 ```
 
 ## PK boxplot on ER plot
@@ -220,7 +220,7 @@ plot_er(ermod_bin_hgly2, show_orig_data = TRUE) +
     inherit.aes = FALSE) +
   geom_hline(yintercept = -0.1, linetype = "solid", linewidth = 0.2) +
   coord_cartesian(ylim = c(-0.25, 1)) +
-  xgxr::xgx_scale_x_log10() +
+  xgxr::xgx_scale_x_log10(guide = ggplot2::guide_axis(minor.ticks = TRUE)) +
   guides(
     fill = guide_legend(reverse = TRUE),
     color = guide_legend(reverse = TRUE)
