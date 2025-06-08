@@ -9,7 +9,7 @@
 <meta name="author" content="Kenta Yoshida">
 <meta name="author" content="Danielle Navarro">
 <meta name="author" content="François Mercier">
-<meta name="dcterms.date" content="2025-06-07">
+<meta name="dcterms.date" content="2025-06-08">
 
 <title>BayesERbook: Exposure-response analysis with Bayesian approaches</title>
 <style>
@@ -255,6 +255,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome</a>
   <ul class="collapse">
   <li><a href="#install-necessary-packages" id="toc-install-necessary-packages" class="nav-link" data-scroll-target="#install-necessary-packages">Install necessary packages </a><a href="https://genentech.github.io/BayesERtools/" class="nav-link" data-scroll-target="https\://genentech.github.io/BayesERtools/"><img src="resources/BayesERtool-logo.png" align="right" height="138" alt="BayesERtools website"></a></li>
+  <li><a href="#quick-example" id="toc-quick-example" class="nav-link" data-scroll-target="#quick-example">Quick Example</a></li>
   <li><a href="#model-types-supported-by-bayesertools" id="toc-model-types-supported-by-bayesertools" class="nav-link" data-scroll-target="#model-types-supported-by-bayesertools">Model types supported by <code>BayesERtools</code></a></li>
   <li><a href="#note-for-developer" id="toc-note-for-developer" class="nav-link" data-scroll-target="#note-for-developer">Note for developer</a></li>
   <li><a href="#session-info" id="toc-session-info" class="nav-link" data-scroll-target="#session-info">Session info</a></li>
@@ -286,7 +287,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-06-07</p>
+      <p class="date">2025-06-08</p>
     </div>
   </div>
   
@@ -313,6 +314,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>You can install the package as follows:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'BayesERtools'</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># devtools::install_github("genentech/BayesERtools") # development version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="quick-example" class="level2">
+<h2 class="anchored" data-anchor-id="quick-example">Quick Example</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BayesERtools)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Data</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(d_sim_binom_cov)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>df_er_ae_hgly2 <span class="ot">&lt;-</span> </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  d_sim_binom_cov <span class="sc">|&gt;</span> </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">AUCss_1000 =</span> AUCss <span class="sc">/</span> <span class="dv">1000</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(AETYPE <span class="sc">==</span> <span class="st">"hgly2"</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a model</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>ermod <span class="ot">&lt;-</span> <span class="fu">dev_ermod_bin</span>(</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> df_er_ae_hgly2,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_resp =</span> <span class="st">"AEFLAG"</span>,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_exposure =</span> <span class="st">"AUCss_1000"</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Goodness-of-fit plot</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_er_gof</span>(ermod, <span class="at">var_group =</span> <span class="st">"Dose_mg"</span>, <span class="at">show_coef_exp =</span> <span class="cn">TRUE</span>) <span class="sc">*</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  xgxr<span class="sc">::</span><span class="fu">xgx_scale_x_log10</span>(<span class="at">guide =</span> ggplot2<span class="sc">::</span><span class="fu">guide_axis</span>(<span class="at">minor.ticks =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="man/figures/README-quick-ex-1.png" width="75%"></p>
 </section>
 <section id="model-types-supported-by-bayesertools" class="level2">
 <h2 class="anchored" data-anchor-id="model-types-supported-by-bayesertools">Model types supported by <code>BayesERtools</code></h2>
@@ -490,151 +514,143 @@ Linear
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">session_info</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">session_info</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>─ Session info ───────────────────────────────────────────────────────────────
  setting  value
- version  R version 4.5.0 (2025-04-11)
- os       Ubuntu 24.04.2 LTS
- system   x86_64, linux-gnu
+ version  R version 4.3.3 (2024-02-29)
+ os       macOS Sonoma 14.7.5
+ system   aarch64, darwin20
  ui       X11
  language (EN)
  collate  en_US.UTF-8
  ctype    en_US.UTF-8
- tz       Australia/Sydney
- date     2025-06-05
- pandoc   3.1.3 @ /usr/bin/ (via rmarkdown)
- quarto   1.5.52 @ /opt/quarto/bin/quarto
+ tz       Europe/Athens
+ date     2025-06-08
+ pandoc   3.4 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/aarch64/ (via rmarkdown)
 
 ─ Packages ───────────────────────────────────────────────────────────────────
  package        * version    date (UTC) lib source
- abind            1.4-8      2024-09-12 [1] RSPM
- arrayhelpers     1.1-0      2020-02-04 [1] RSPM
- backports        1.5.0      2024-05-23 [1] RSPM
- base64enc        0.1-3      2015-07-28 [1] RSPM
- BayesERtools   * 0.2.1.1001 2025-06-05 [1] local
- bayesplot      * 1.12.0     2025-04-10 [1] RSPM
- boot             1.3-31     2024-08-28 [4] CRAN (R 4.4.2)
- cachem           1.1.0      2024-05-16 [1] RSPM
- checkmate        2.3.2      2024-07-29 [1] RSPM
- cli              3.6.5      2025-04-23 [1] RSPM
- coda             0.19-4.1   2024-01-31 [1] RSPM
- codetools        0.2-20     2024-03-31 [4] CRAN (R 4.4.0)
- colorspace       2.1-1      2024-07-26 [1] RSPM
- colourpicker     1.3.0      2023-08-21 [1] RSPM
- crosstalk        1.2.1      2023-11-23 [1] RSPM
- curl             6.2.2      2025-03-24 [1] RSPM
- devtools         2.4.5      2022-10-11 [1] RSPM
- digest           0.6.37     2024-08-19 [1] RSPM
- distributional   0.5.0      2024-09-17 [1] RSPM
- dplyr          * 1.1.4      2023-11-17 [1] RSPM
- DT               0.33       2024-04-04 [1] RSPM
- dygraphs         1.1.1.6    2018-07-11 [1] RSPM
- ellipsis         0.3.2      2021-04-29 [1] RSPM
- evaluate         1.0.3      2025-01-10 [1] RSPM
- farver           2.1.2      2024-05-13 [1] RSPM
- fastmap          1.2.0      2024-05-15 [1] RSPM
- forcats        * 1.0.0      2023-01-29 [1] RSPM
- fs               1.6.6      2025-04-12 [1] RSPM
- generics         0.1.4      2025-05-09 [1] RSPM
- ggdist           3.3.3      2025-04-23 [1] RSPM
- ggplot2        * 3.5.2      2025-04-09 [1] RSPM
- glue             1.8.0      2024-09-30 [1] RSPM
- gridExtra        2.3        2017-09-09 [1] RSPM
- gt             * 1.0.0      2025-04-05 [1] RSPM
- gtable           0.3.6      2024-10-25 [1] RSPM
- gtools           3.9.5      2023-11-20 [1] RSPM
- here           * 1.0.1      2020-12-13 [1] RSPM
- hms              1.1.3      2023-03-21 [1] RSPM
- htmltools        0.5.8.1    2024-04-04 [1] RSPM
- htmlwidgets      1.6.4      2023-12-06 [1] RSPM
- httpuv           1.6.16     2025-04-16 [1] RSPM
- igraph           2.1.4      2025-01-23 [1] RSPM
- inline           0.3.21     2025-01-09 [1] RSPM
- jsonlite         2.0.0      2025-03-27 [1] RSPM
- knitr            1.50       2025-03-16 [1] RSPM
- later            1.4.2      2025-04-08 [1] RSPM
- lattice          0.22-5     2023-10-24 [4] CRAN (R 4.3.3)
- lifecycle        1.0.4      2023-11-07 [1] RSPM
- lme4             1.1-37     2025-03-26 [1] RSPM
- loo            * 2.8.0      2024-07-03 [1] RSPM
- lubridate      * 1.9.4      2024-12-08 [1] RSPM
- magrittr         2.0.3      2022-03-30 [1] RSPM
- markdown         2.0        2025-03-23 [1] RSPM
- MASS             7.3-65     2025-02-28 [4] CRAN (R 4.4.3)
- Matrix           1.7-3      2025-03-11 [4] CRAN (R 4.4.3)
- matrixStats      1.5.0      2025-01-07 [1] RSPM
- memoise          2.0.1      2021-11-26 [1] RSPM
- mime             0.13       2025-03-17 [1] RSPM
- miniUI           0.1.2      2025-04-17 [1] RSPM
- minqa            1.2.8      2024-08-17 [1] RSPM
- nlme             3.1-168    2025-03-31 [4] CRAN (R 4.4.3)
- nloptr           2.2.1      2025-03-17 [1] RSPM
- pillar           1.10.2     2025-04-05 [1] RSPM
- pkgbuild         1.4.7      2025-03-24 [1] RSPM
- pkgconfig        2.0.3      2019-09-22 [1] RSPM
- pkgload          1.4.0      2024-06-28 [1] RSPM
- plyr             1.8.9      2023-10-02 [1] RSPM
- posterior      * 1.6.1      2025-02-27 [1] RSPM
- profvis          0.4.0      2024-09-20 [1] RSPM
- promises         1.3.2      2024-11-28 [1] RSPM
- purrr          * 1.0.4      2025-02-05 [1] RSPM
- QuickJSR         1.7.0      2025-03-31 [1] RSPM
- R6               2.6.1      2025-02-15 [1] RSPM
- rbibutils        2.3        2024-10-04 [1] RSPM
- RColorBrewer     1.1-3      2022-04-03 [1] RSPM
- Rcpp           * 1.0.14     2025-01-12 [1] RSPM
- RcppParallel     5.1.10     2025-01-24 [1] RSPM
- Rdpack           2.6.4      2025-04-09 [1] RSPM
- readr          * 2.1.5      2024-01-10 [1] RSPM
- reformulas       0.4.1      2025-04-30 [1] RSPM
- remotes          2.5.0      2024-03-17 [1] RSPM
- reshape2         1.4.4      2020-04-09 [1] RSPM
- rlang            1.1.6      2025-04-11 [1] RSPM
- rmarkdown        2.29       2024-11-04 [1] RSPM
- rprojroot        2.0.4      2023-11-05 [1] RSPM
- rstan            2.32.7     2025-03-10 [1] RSPM
- rstanarm         2.32.1     2024-01-18 [1] RSPM
- rstanemax      * 0.1.9      2025-02-17 [1] RSPM
- rstantools       2.4.0      2024-01-31 [1] RSPM
- scales           1.4.0      2025-04-24 [1] RSPM
- sessioninfo      1.2.3      2025-02-05 [1] RSPM
- shiny            1.10.0     2024-12-14 [1] RSPM
- shinyjs          2.1.0      2021-12-23 [1] RSPM
- shinystan        2.6.0      2022-03-03 [1] RSPM
- shinythemes      1.2.0      2021-01-25 [1] RSPM
- StanHeaders      2.32.10    2024-07-15 [1] RSPM
- stringi          1.8.7      2025-03-27 [1] RSPM (R 4.5.0)
- stringr        * 1.5.1      2023-11-14 [1] RSPM
- survival         3.8-3      2024-12-17 [4] CRAN (R 4.4.2)
- svUnit           1.0.6      2021-04-19 [1] RSPM
- tensorA          0.36.2.1   2023-12-13 [1] RSPM
- threejs          0.3.4      2025-04-21 [1] RSPM
- tibble         * 3.2.1      2023-03-20 [1] RSPM
- tidybayes      * 3.0.7      2024-09-15 [1] RSPM
- tidyr          * 1.3.1      2024-01-24 [1] RSPM
- tidyselect       1.2.1      2024-03-11 [1] RSPM
- tidyverse      * 2.0.0      2023-02-22 [1] RSPM
- timechange       0.3.0      2024-01-18 [1] RSPM
- tzdb             0.5.0      2025-03-15 [1] RSPM
- urlchecker       1.0.1      2021-11-30 [1] RSPM
- usethis          3.1.0      2024-11-26 [1] RSPM
- V8               6.0.3      2025-03-26 [1] RSPM
- vctrs            0.6.5      2023-12-01 [1] RSPM
- withr            3.0.2      2024-10-28 [1] RSPM
- xfun             0.52       2025-04-02 [1] RSPM
- xml2             1.3.8      2025-03-14 [1] RSPM
- xtable           1.8-4      2019-04-21 [1] RSPM
- xts              0.14.1     2024-10-15 [1] RSPM
- yaml             2.3.10     2024-07-26 [1] RSPM
- zoo              1.8-14     2025-04-10 [1] RSPM
+ abind            1.4-8      2024-09-12 [1] CRAN (R 4.3.3)
+ arrayhelpers     1.1-0      2020-02-04 [1] CRAN (R 4.3.0)
+ backports        1.5.0      2024-05-23 [1] CRAN (R 4.3.3)
+ base64enc        0.1-3      2015-07-28 [1] RSPM (R 4.3.0)
+ BayesERtools   * 0.2.2.1001 2025-06-07 [1] local
+ bayesplot      * 1.11.1     2024-02-15 [1] CRAN (R 4.3.1)
+ boot             1.3-28.1   2022-11-22 [1] RSPM (R 4.3.0)
+ cachem           1.1.0      2024-05-16 [1] CRAN (R 4.3.3)
+ checkmate        2.3.2      2024-07-29 [1] CRAN (R 4.3.3)
+ cli              3.6.4      2025-02-13 [1] CRAN (R 4.3.3)
+ coda             0.19-4.1   2024-01-31 [1] CRAN (R 4.3.1)
+ codetools        0.2-19     2023-02-01 [1] CRAN (R 4.3.3)
+ colorspace       2.1-1      2024-07-26 [1] CRAN (R 4.3.3)
+ colourpicker     1.3.0      2023-08-21 [1] CRAN (R 4.3.0)
+ crosstalk        1.2.1      2023-11-23 [1] RSPM (R 4.3.0)
+ curl             5.2.0      2023-12-08 [1] RSPM (R 4.3.0)
+ devtools         2.4.5      2022-10-11 [1] CRAN (R 4.3.0)
+ digest           0.6.37     2024-08-19 [1] CRAN (R 4.3.3)
+ distributional   0.5.0      2024-09-17 [1] CRAN (R 4.3.3)
+ dplyr          * 1.1.4      2023-11-17 [1] CRAN (R 4.3.1)
+ DT               0.31       2023-12-09 [1] RSPM (R 4.3.0)
+ dygraphs         1.1.1.6    2018-07-11 [1] CRAN (R 4.3.0)
+ ellipsis         0.3.2      2021-04-29 [1] RSPM (R 4.3.0)
+ evaluate         0.24.0     2024-06-10 [1] CRAN (R 4.3.3)
+ fastmap          1.2.0      2024-05-15 [1] CRAN (R 4.3.3)
+ forcats        * 1.0.0      2023-01-29 [1] RSPM (R 4.3.0)
+ fs               1.6.5      2024-10-30 [1] CRAN (R 4.3.3)
+ generics         0.1.3      2022-07-05 [1] RSPM (R 4.3.0)
+ ggdist           3.3.2      2024-03-05 [1] CRAN (R 4.3.1)
+ ggplot2        * 3.5.2      2025-04-09 [1] CRAN (R 4.3.3)
+ glue             1.8.0      2024-09-30 [1] CRAN (R 4.3.3)
+ gridExtra        2.3        2017-09-09 [1] CRAN (R 4.3.0)
+ gt             * 1.0.0      2025-04-05 [1] CRAN (R 4.3.3)
+ gtable           0.3.6      2024-10-25 [1] CRAN (R 4.3.3)
+ gtools           3.9.5      2023-11-20 [1] CRAN (R 4.3.1)
+ here           * 1.0.1      2020-12-13 [1] RSPM (R 4.3.0)
+ hms              1.1.3      2023-03-21 [1] RSPM (R 4.3.0)
+ htmltools        0.5.8.1    2024-04-04 [1] CRAN (R 4.3.1)
+ htmlwidgets      1.6.4      2023-12-06 [1] RSPM (R 4.3.0)
+ httpuv           1.6.15     2024-03-26 [1] CRAN (R 4.3.1)
+ igraph           2.0.3      2024-03-13 [1] CRAN (R 4.3.1)
+ inline           0.3.19     2021-05-31 [1] CRAN (R 4.3.0)
+ jsonlite         1.9.0      2025-02-19 [1] CRAN (R 4.3.3)
+ knitr            1.48       2024-07-07 [1] CRAN (R 4.3.3)
+ later            1.3.2      2023-12-06 [1] RSPM (R 4.3.0)
+ lattice          0.22-5     2023-10-24 [1] CRAN (R 4.3.3)
+ lifecycle        1.0.4      2023-11-07 [1] RSPM (R 4.3.0)
+ lme4             1.1-35.5   2024-07-03 [1] CRAN (R 4.3.3)
+ loo            * 2.7.0      2024-02-24 [1] CRAN (R 4.3.1)
+ lubridate      * 1.9.4      2024-12-08 [1] CRAN (R 4.3.3)
+ magrittr         2.0.3      2022-03-30 [1] RSPM (R 4.3.0)
+ markdown         1.13       2024-06-04 [1] CRAN (R 4.3.3)
+ MASS             7.3-60.0.1 2024-01-13 [1] RSPM (R 4.3.0)
+ Matrix           1.6-5      2024-01-11 [1] CRAN (R 4.3.3)
+ matrixStats      1.5.0      2025-01-07 [1] CRAN (R 4.3.3)
+ memoise          2.0.1      2021-11-26 [1] RSPM (R 4.3.0)
+ mime             0.12       2021-09-28 [1] RSPM (R 4.3.0)
+ miniUI           0.1.1.1    2018-05-18 [1] RSPM (R 4.3.0)
+ minqa            1.2.7      2024-05-20 [1] CRAN (R 4.3.3)
+ munsell          0.5.1      2024-04-01 [1] CRAN (R 4.3.1)
+ nlme             3.1-164    2023-11-27 [1] CRAN (R 4.3.3)
+ nloptr           2.1.1      2024-06-25 [1] CRAN (R 4.3.3)
+ pillar           1.10.1     2025-01-07 [1] CRAN (R 4.3.3)
+ pkgbuild         1.4.3      2023-12-10 [1] RSPM (R 4.3.0)
+ pkgconfig        2.0.3      2019-09-22 [1] RSPM (R 4.3.0)
+ pkgload          1.3.4      2024-01-16 [1] RSPM (R 4.3.0)
+ plyr             1.8.9      2023-10-02 [1] RSPM (R 4.3.0)
+ posterior      * 1.6.1      2025-02-27 [1] https://stan-dev.r-universe.dev (R 4.3.3)
+ profvis          0.3.8      2023-05-02 [1] CRAN (R 4.3.0)
+ promises         1.3.0      2024-04-05 [1] CRAN (R 4.3.1)
+ purrr          * 1.0.4      2025-02-05 [1] CRAN (R 4.3.3)
+ QuickJSR         1.3.1      2024-07-14 [1] CRAN (R 4.3.3)
+ R6               2.6.1      2025-02-15 [1] CRAN (R 4.3.3)
+ Rcpp           * 1.0.13     2024-07-17 [1] CRAN (R 4.3.3)
+ RcppParallel     5.1.9      2024-08-19 [1] CRAN (R 4.3.3)
+ readr          * 2.1.5      2024-01-10 [1] RSPM (R 4.3.0)
+ remotes          2.5.0      2024-03-17 [1] CRAN (R 4.3.1)
+ reshape2         1.4.4      2020-04-09 [1] RSPM (R 4.3.0)
+ rlang            1.1.5      2025-01-17 [1] CRAN (R 4.3.3)
+ rmarkdown        2.27       2024-05-17 [1] CRAN (R 4.3.3)
+ rprojroot        2.0.4      2023-11-05 [1] RSPM (R 4.3.0)
+ rstan            2.32.6     2024-03-05 [1] CRAN (R 4.3.1)
+ rstanarm         2.32.1     2024-01-18 [1] CRAN (R 4.3.1)
+ rstanemax      * 0.1.9.1001 2025-02-17 [1] local
+ rstantools       2.4.0      2024-01-31 [1] CRAN (R 4.3.1)
+ rstudioapi       0.16.0     2024-03-24 [1] CRAN (R 4.3.1)
+ scales           1.3.0      2023-11-28 [1] RSPM (R 4.3.0)
+ sessioninfo      1.2.2      2021-12-06 [1] CRAN (R 4.3.0)
+ shiny            1.9.1      2024-08-01 [1] CRAN (R 4.3.3)
+ shinyjs          2.1.0      2021-12-23 [1] RSPM (R 4.3.0)
+ shinystan        2.6.0      2022-03-03 [1] CRAN (R 4.3.0)
+ shinythemes      1.2.0      2021-01-25 [1] CRAN (R 4.3.0)
+ StanHeaders      2.32.9     2024-05-29 [1] CRAN (R 4.3.3)
+ stringi          1.8.4      2024-05-06 [1] CRAN (R 4.3.1)
+ stringr        * 1.5.1      2023-11-14 [1] RSPM (R 4.3.0)
+ survival         3.7-0      2024-06-05 [1] CRAN (R 4.3.3)
+ svUnit           1.0.6      2021-04-19 [1] CRAN (R 4.3.0)
+ tensorA          0.36.2.1   2023-12-13 [1] CRAN (R 4.3.1)
+ threejs          0.3.3      2020-01-21 [1] CRAN (R 4.3.0)
+ tibble         * 3.2.1      2023-03-20 [1] RSPM (R 4.3.0)
+ tidybayes      * 3.0.6      2023-08-12 [1] CRAN (R 4.3.0)
+ tidyr          * 1.3.1      2024-01-24 [1] RSPM (R 4.3.0)
+ tidyselect       1.2.1      2024-03-11 [1] CRAN (R 4.3.1)
+ tidyverse      * 2.0.0      2023-02-22 [1] RSPM (R 4.3.0)
+ timechange       0.3.0      2024-01-18 [1] RSPM (R 4.3.0)
+ tzdb             0.4.0      2023-05-12 [1] RSPM (R 4.3.0)
+ urlchecker       1.0.1      2021-11-30 [1] CRAN (R 4.3.0)
+ usethis          2.2.3      2024-02-19 [1] CRAN (R 4.3.1)
+ V8               5.0.0      2024-08-16 [1] CRAN (R 4.3.3)
+ vctrs            0.6.5      2023-12-01 [1] RSPM (R 4.3.0)
+ withr            3.0.2      2024-10-28 [1] CRAN (R 4.3.3)
+ xfun             0.46       2024-07-18 [1] CRAN (R 4.3.3)
+ xml2             1.3.6      2023-12-04 [1] RSPM (R 4.3.0)
+ xtable           1.8-4      2019-04-21 [1] RSPM (R 4.3.0)
+ xts              0.14.1     2024-10-15 [1] CRAN (R 4.3.3)
+ yaml             2.3.10     2024-07-26 [1] CRAN (R 4.3.3)
+ zoo              1.8-13     2025-02-22 [1] CRAN (R 4.3.3)
 
- [1] /home/danielle/R/x86_64-pc-linux-gnu-library/4.5
- [2] /usr/local/lib/R/site-library
- [3] /usr/lib/R/site-library
- [4] /usr/lib/R/library
- * ── Packages attached to the search path.
+ [1] /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library
 
 ──────────────────────────────────────────────────────────────────────────────</code></pre>
 </div>
@@ -1106,34 +1122,34 @@ Linear
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu"># Welcome {.unnumbered}</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>{{&lt; include README.md &gt;}}</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## Session info</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, include = FALSE}</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary libraries to show in session_info</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BayesERtools)</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstanemax)</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(posterior)</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidybayes)</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bayesplot)</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(loo)</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">session_info</span>()</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<div class="sourceCode" id="cb5" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu"># Welcome {.unnumbered}</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>{{&lt; include README.md &gt;}}</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## Session info</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, include = FALSE}</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary libraries to show in session_info</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BayesERtools)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstanemax)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(posterior)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidybayes)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bayesplot)</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(loo)</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">session_info</span>()</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
