@@ -25,6 +25,8 @@ install.packages('BayesERtools')
 
 ``` r
 library(BayesERtools)
+library(dplyr)
+ggplot2::theme_set(ggplot2::theme_bw(base_size = 12))
 
 # Data
 data(d_sim_binom_cov)

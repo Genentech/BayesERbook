@@ -15,8 +15,6 @@ knitr::opts_chunk$set(
 library(dplyr)
 library(tidyr)
 library(gt)
-
-ggplot2::theme_set(ggplot2::theme_bw(base_size = 12))
 ```
 
 
@@ -41,6 +39,8 @@ install.packages('BayesERtools')
 
 ```{r quick-ex, fig.width = 6, fig.height = 4.5, dpi = 150}
 library(BayesERtools)
+library(dplyr)
+ggplot2::theme_set(ggplot2::theme_bw(base_size = 12))
 
 # Data
 data(d_sim_binom_cov)
