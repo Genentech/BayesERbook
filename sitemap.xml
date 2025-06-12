@@ -2,50 +2,50 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://genentech.github.io/BayesERbook/index.html</loc>
-    <lastmod>2025-06-08T06:39:35.367Z</lastmod>
+    <lastmod>2025-06-12T06:48:57.560Z</lastmod>
   </url>
   <url>
     <loc>https://genentech.github.io/BayesERbook/notebook/binary/basic_workflow.html</loc>
-    <lastmod>2025-06-08T06:39:35.368Z</lastmod>
+    <lastmod>2025-06-12T06:48:57.561Z</lastmod>
   </url>
   <url>
     <loc>https://genentech.github.io/BayesERbook/notebook/binary/simulation.html</loc>
-    <lastmod>2025-06-08T06:39:35.368Z</lastmod>
+    <lastmod>2025-06-12T06:48:57.561Z</lastmod>
   </url>
   <url>
     <loc>https://genentech.github.io/BayesERbook/notebook/binary/model_diagnostics.html</loc>
-    <lastmod>2025-06-08T06:39:35.368Z</lastmod>
+    <lastmod>2025-06-12T06:48:57.561Z</lastmod>
   </url>
   <url>
     <loc>https://genentech.github.io/BayesERbook/notebook/binary/mod_structure_comparison.html</loc>
-    <lastmod>2025-06-08T06:39:35.368Z</lastmod>
+    <lastmod>2025-06-12T06:48:57.561Z</lastmod>
   </url>
   <url>
     <loc>https://genentech.github.io/BayesERbook/notebook/binary/coveff_customize.html</loc>
-    <lastmod>2025-06-08T06:39:35.368Z</lastmod>
+    <lastmod>2025-06-12T06:48:57.561Z</lastmod>
   </url>
   <url>
     <loc>https://genentech.github.io/BayesERbook/notebook/binary/workflow_wo_package.html</loc>
-    <lastmod>2025-06-08T06:39:35.368Z</lastmod>
+    <lastmod>2025-06-12T06:48:57.562Z</lastmod>
   </url>
   <url>
     <loc>https://genentech.github.io/BayesERbook/notebook/emax/basic_workflow.html</loc>
-    <lastmod>2025-06-08T06:39:35.368Z</lastmod>
+    <lastmod>2025-06-12T06:48:57.562Z</lastmod>
   </url>
   <url>
     <loc>https://genentech.github.io/BayesERbook/notebook/emax/model_diagnostics.html</loc>
-    <lastmod>2025-06-08T06:39:35.368Z</lastmod>
+    <lastmod>2025-06-12T06:48:57.562Z</lastmod>
   </url>
   <url>
     <loc>https://genentech.github.io/BayesERbook/notebook/emax/simulation.html</loc>
-    <lastmod>2025-06-08T06:39:35.368Z</lastmod>
+    <lastmod>2025-06-12T06:48:57.562Z</lastmod>
   </url>
   <url>
     <loc>https://genentech.github.io/BayesERbook/notebook/emax/basic_workflow_brms.html</loc>
-    <lastmod>2025-06-08T06:39:35.368Z</lastmod>
+    <lastmod>2025-06-12T06:48:57.562Z</lastmod>
   </url>
   <url>
     <loc>https://genentech.github.io/BayesERbook/notebook/emax/covariate_modeling.html</loc>
-    <lastmod>2025-06-08T06:39:35.368Z</lastmod>
+    <lastmod>2025-06-12T06:48:57.562Z</lastmod>
   </url>
 </urlset>
