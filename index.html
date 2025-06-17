@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Kenta Yoshida">
 <meta name="author" content="Danielle Navarro">
 <meta name="author" content="François Mercier">
-<meta name="dcterms.date" content="2025-06-12">
+<meta name="dcterms.date" content="2025-06-17">
 
 <title>BayesERbook: Exposure-response analysis with Bayesian approaches</title>
 <style>
@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-e35bcb26613d83c022512f159c7ed19d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -287,7 +287,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-06-12</p>
+      <p class="date">2025-06-17</p>
     </div>
   </div>
   
@@ -318,24 +318,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="quick-example" class="level2">
 <h2 class="anchored" data-anchor-id="quick-example">Quick Example</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BayesERtools)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Data</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(d_sim_binom_cov)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>df_er_ae_hgly2 <span class="ot">&lt;-</span> </span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  d_sim_binom_cov <span class="sc">|&gt;</span> </span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">AUCss_1000 =</span> AUCss <span class="sc">/</span> <span class="dv">1000</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(AETYPE <span class="sc">==</span> <span class="st">"hgly2"</span>)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a model</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>ermod <span class="ot">&lt;-</span> <span class="fu">dev_ermod_bin</span>(</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> df_er_ae_hgly2,</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_resp =</span> <span class="st">"AEFLAG"</span>,</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_exposure =</span> <span class="st">"AUCss_1000"</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Goodness-of-fit plot</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_er_gof</span>(ermod, <span class="at">var_group =</span> <span class="st">"Dose_mg"</span>, <span class="at">show_coef_exp =</span> <span class="cn">TRUE</span>) <span class="sc">*</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  xgxr<span class="sc">::</span><span class="fu">xgx_scale_x_log10</span>(<span class="at">guide =</span> ggplot2<span class="sc">::</span><span class="fu">guide_axis</span>(<span class="at">minor.ticks =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">theme_set</span>(ggplot2<span class="sc">::</span><span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Data</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(d_sim_binom_cov)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>df_er_ae_hgly2 <span class="ot">&lt;-</span> </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  d_sim_binom_cov <span class="sc">|&gt;</span> </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">AUCss_1000 =</span> AUCss <span class="sc">/</span> <span class="dv">1000</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(AETYPE <span class="sc">==</span> <span class="st">"hgly2"</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a model</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>ermod <span class="ot">&lt;-</span> <span class="fu">dev_ermod_bin</span>(</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> df_er_ae_hgly2,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_resp =</span> <span class="st">"AEFLAG"</span>,</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_exposure =</span> <span class="st">"AUCss_1000"</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Goodness-of-fit plot</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_er_gof</span>(ermod, <span class="at">var_group =</span> <span class="st">"Dose_mg"</span>, <span class="at">show_coef_exp =</span> <span class="cn">TRUE</span>) <span class="sc">*</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  xgxr<span class="sc">::</span><span class="fu">xgx_scale_x_log10</span>(<span class="at">guide =</span> ggplot2<span class="sc">::</span><span class="fu">guide_axis</span>(<span class="at">minor.ticks =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><img src="man/figures/README-quick-ex-1.png" width="75%"></p>
 </section>
 <section id="model-types-supported-by-bayesertools" class="level2">
@@ -520,14 +522,14 @@ Linear
 <pre><code>─ Session info ───────────────────────────────────────────────────────────────
  setting  value
  version  R version 4.3.3 (2024-02-29)
- os       macOS Sonoma 14.7.5
+ os       macOS Sonoma 14.7.6
  system   aarch64, darwin20
  ui       X11
  language (EN)
  collate  en_US.UTF-8
  ctype    en_US.UTF-8
- tz       Europe/Athens
- date     2025-06-08
+ tz       Europe/Zurich
+ date     2025-06-17
  pandoc   3.4 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/aarch64/ (via rmarkdown)
 
 ─ Packages ───────────────────────────────────────────────────────────────────
@@ -536,7 +538,7 @@ Linear
  arrayhelpers     1.1-0      2020-02-04 [1] CRAN (R 4.3.0)
  backports        1.5.0      2024-05-23 [1] CRAN (R 4.3.3)
  base64enc        0.1-3      2015-07-28 [1] RSPM (R 4.3.0)
- BayesERtools   * 0.2.2.1001 2025-06-07 [1] local
+ BayesERtools   * 0.2.2      2025-06-06 [1] CRAN (R 4.3.3)
  bayesplot      * 1.11.1     2024-02-15 [1] CRAN (R 4.3.1)
  boot             1.3-28.1   2022-11-22 [1] RSPM (R 4.3.0)
  cachem           1.1.0      2024-05-16 [1] CRAN (R 4.3.3)
@@ -556,12 +558,13 @@ Linear
  dygraphs         1.1.1.6    2018-07-11 [1] CRAN (R 4.3.0)
  ellipsis         0.3.2      2021-04-29 [1] RSPM (R 4.3.0)
  evaluate         0.24.0     2024-06-10 [1] CRAN (R 4.3.3)
+ farver           2.1.2      2024-05-13 [1] CRAN (R 4.3.3)
  fastmap          1.2.0      2024-05-15 [1] CRAN (R 4.3.3)
  forcats        * 1.0.0      2023-01-29 [1] RSPM (R 4.3.0)
  fs               1.6.5      2024-10-30 [1] CRAN (R 4.3.3)
  generics         0.1.3      2022-07-05 [1] RSPM (R 4.3.0)
  ggdist           3.3.2      2024-03-05 [1] CRAN (R 4.3.1)
- ggplot2        * 3.5.2      2025-04-09 [1] CRAN (R 4.3.3)
+ ggplot2        * 3.5.2.9001 2025-06-16 [1] Github (tidyverse/ggplot2@a2d0181)
  glue             1.8.0      2024-09-30 [1] CRAN (R 4.3.3)
  gridExtra        2.3        2017-09-09 [1] CRAN (R 4.3.0)
  gt             * 1.0.0      2025-04-05 [1] CRAN (R 4.3.3)
@@ -591,7 +594,6 @@ Linear
  mime             0.12       2021-09-28 [1] RSPM (R 4.3.0)
  miniUI           0.1.1.1    2018-05-18 [1] RSPM (R 4.3.0)
  minqa            1.2.7      2024-05-20 [1] CRAN (R 4.3.3)
- munsell          0.5.1      2024-04-01 [1] CRAN (R 4.3.1)
  nlme             3.1-164    2023-11-27 [1] CRAN (R 4.3.3)
  nloptr           2.1.1      2024-06-25 [1] CRAN (R 4.3.3)
  pillar           1.10.1     2025-01-07 [1] CRAN (R 4.3.3)
@@ -605,6 +607,7 @@ Linear
  purrr          * 1.0.4      2025-02-05 [1] CRAN (R 4.3.3)
  QuickJSR         1.3.1      2024-07-14 [1] CRAN (R 4.3.3)
  R6               2.6.1      2025-02-15 [1] CRAN (R 4.3.3)
+ RColorBrewer     1.1-3      2022-04-03 [1] RSPM (R 4.3.0)
  Rcpp           * 1.0.13     2024-07-17 [1] CRAN (R 4.3.3)
  RcppParallel     5.1.9      2024-08-19 [1] CRAN (R 4.3.3)
  readr          * 2.1.5      2024-01-10 [1] RSPM (R 4.3.0)
@@ -618,7 +621,8 @@ Linear
  rstanemax      * 0.1.9.1001 2025-02-17 [1] local
  rstantools       2.4.0      2024-01-31 [1] CRAN (R 4.3.1)
  rstudioapi       0.16.0     2024-03-24 [1] CRAN (R 4.3.1)
- scales           1.3.0      2023-11-28 [1] RSPM (R 4.3.0)
+ S7               0.2.0      2024-11-07 [1] CRAN (R 4.3.3)
+ scales           1.4.0      2025-04-24 [1] CRAN (R 4.3.3)
  sessioninfo      1.2.2      2021-12-06 [1] CRAN (R 4.3.0)
  shiny            1.9.1      2024-08-01 [1] CRAN (R 4.3.3)
  shinyjs          2.1.0      2021-12-23 [1] RSPM (R 4.3.0)
