@@ -203,13 +203,19 @@ ersim_sigemax_med_qi <- sim_er(ermod_sigemax, output_type = "median_qi")
 
 ersim_sigemax_med_qi |>
   ggplot(aes(x = .epred, y = response_1)) +
+  geom_smooth(method = "loess", formula = y ~ x) +
   geom_abline(linetype = 2, color = "grey") +
   geom_point() +
-  geom_errorbarh(aes(xmin = .epred.lower, xmax = .epred.upper), height = 0) +
-  labs(title = "Observed vs Predicted",
+  geom_errorbar(
+    mapping = aes(xmin = .epred.lower, xmax = .epred.upper), 
+    orientation = "y"
+  ) +
+  labs(
+    title = "Observed vs Predicted",
     x = "Predicted",
     y = "Observed",
-    caption = "Symbol: median and 95% credible interval")
+    caption = "Symbol: median and 95% credible interval"
+  )
 ```
 
 #### Residuals
@@ -222,14 +228,19 @@ ersim_sigemax_med_qi |>
 ersim_sigemax_w_resid <-
   sim_er(ermod_sigemax) |>
   mutate(.residual = response_1 - .epred) # Add residuals for plotting
+
 ersim_sigemax_w_resid_med_qi <- median_qi(ersim_sigemax_w_resid)
 
 ersim_sigemax_w_resid_med_qi |>
   ggplot(aes(x = .epred, y = .residual)) +
   xlab("Predicted (linear)") +
   ylab("Residuals") +
+  geom_smooth(method = "loess", formula = y ~ x) +
   geom_point() +
-  geom_errorbar(aes(ymin = .residual.lower, ymax = .residual.upper), width = 0) +
+  geom_errorbar(
+    mapping = aes(ymin = .residual.lower, ymax = .residual.upper), 
+    width = 0
+  ) +
   geom_hline(aes(yintercept = 2), lty = 2, colour = "grey70") +
   geom_hline(aes(yintercept = -2), lty = 2, colour = "grey70")
 ```
@@ -246,8 +257,7 @@ ersim_sigemax_w_resid_med_qi |>
   geom_qq() +
   geom_qq_line(colour = "steelblue", lty = 2, alpha = 0.4) +
   coord_equal() +
-  xlab("Theoretical") +
-  ylab("Sample")
+  labs(x = "Theoretical", y = "Sample")
 ```
 
 :::
