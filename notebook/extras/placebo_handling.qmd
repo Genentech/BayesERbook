@@ -41,7 +41,7 @@ d_sim_placebo |>
   facet_wrap(~ variable, scales = "free_x")
 ```
 
-## Univariate models with placebo data
+## Models with placebo data
 
 There are several ways the analyst might wish to analyse and visualize E-R data that include a placebo group. This section considers the case in which:
 
@@ -50,7 +50,7 @@ There are several ways the analyst might wish to analyse and visualize E-R data 
 
 ### Continuous response
 
-Linear model:
+In the simplest case, a linear E-R model is estimated for continuous response data. The workflow is no different to the usual case when no placebo data is present:
 
 ```{r}
 #| label: linear-er-placebo-included
@@ -68,7 +68,7 @@ plot_er(
 )
 ```
 
-Emax model:
+In the example above, the model does not account for the data very well. An Emax model provides a better description of the exposure-response relationship:
 
 ```{r}
 #| label: emax-er-placebo-included
@@ -88,7 +88,7 @@ plot_er(
 
 ### Binary response
 
-Logistic regression:
+For binary response data that include a placebo group, plotting is slightly more complicated because it is typical to plot binned data and confidence intervals by exposure quantile. When placebo data is present, it is necessary to set the bin breaks so that the placebo data fall in a distinct bin. This is supported using the `bin_breaks` option to manually specify the bin edges, as shown for a logistic regression model below:
 
 ```{r}
 #| label: binary-er-placebo-included
@@ -109,7 +109,7 @@ plot_er(
 )
 ```
 
-Binary Emax regression:
+For a binary Emax regression model, the code is very similar: 
 
 ```{r}
 #| label: binary-emax-er-placebo-included
@@ -128,5 +128,41 @@ plot_er(
     bin_breaks = c(0, 0.001, 6018, 10265, 16964, 44568) 
   )
 )
+```
+
+## Alternative scenarios
+
+In some cases it is more useful to exclude the placebo group from the model fitting. An example would be when estimating a linear model to determine if the E-R relationship is flat over the dosed range. In this scenario, the workflow is to filter the data prior to estimating the model, and then fit and plot the data as normal:
+
+```{r}
+#| label: linear-er-placebo-excluded
+set.seed(1234)
+
+ermod_lin_noplacebo <- d_sim_placebo |> 
+  filter(dose != 0) |> 
+  dev_ermod_lin(
+    var_resp = "rsp_1",
+    var_exposure = "exp_1"
+  )
+
+plot_er(
+  ermod_lin_noplacebo, 
+  show_orig_data = TRUE,
+  options_orig_data = list(var_group = "dose")
+)
+```
+
+Sometimes it is useful to include the placebo data in the plot even though it did not contribute to the modeling. In this situation, a two-step approach is required to construct the plot: a base plot is constructed by plotting the E-R model without showing the original data, and then overlaying the data manually by adding geoms to the plot:
+
+```{r}
+#| label: linear-er-placebo-in-plot
+plot_er(
+  ermod_lin_noplacebo, 
+  show_orig_data = FALSE,
+) + 
+  geom_point(
+    mapping = aes(exp_1, rsp_1, color = factor(dose)),
+    data = d_sim_placebo
+  )
 ```
 
