@@ -1,0 +1,309 @@
+# Customize ER plots
+
+This page demonstrates the options available in `plot_er_gof()` and how to 
+customize ER plots beyond the built-in options.
+
+See also the [function reference](https://genentech.github.io/BayesERtools/reference/plot_er_gof.html)
+for complete documentation.
+
+## Setup
+
+```{r}
+#| output: FALSE
+#| message: FALSE
+
+library(tidyverse)
+library(BayesERtools)
+library(here)
+
+theme_set(theme_bw(base_size = 12))
+```
+
+```{r}
+#| include: FALSE
+source(here("R", "cli_color_text.R"))
+```
+
+## Data and model
+
+```{r}
+data(d_sim_binom_cov)
+
+d_sim_binom_cov_2 <-
+  d_sim_binom_cov |>
+  mutate(
+    AUCss_1000 = AUCss / 1000,
+    Dose = glue::glue("{Dose_mg} mg")
+  )
+
+df_er_ae_hgly2 <- d_sim_binom_cov_2 |> filter(AETYPE == "hgly2")
+```
+
+```{r}
+set.seed(1234)
+ermod_bin <- dev_ermod_bin(
+  data = df_er_ae_hgly2,
+  var_resp = "AEFLAG",
+  var_exposure = "AUCss_1000"
+)
+```
+
+## `plot_er_gof()` options
+
+### Default plot
+
+```{r}
+#| label: fig-default
+#| fig-width: 7
+#| fig-height: 5
+
+plot_er_gof(ermod_bin)
+```
+
+### Grouping by dose (`var_group`)
+  
+Color data points and add boxplot by dose group:
+
+```{r}
+#| label: fig-var-group
+#| fig-width: 7
+#| fig-height: 5
+
+plot_er_gof(ermod_bin, var_group = "Dose")
+```
+
+### Show exposure coefficient CI (`show_coef_exp`)
+
+Display the credible interval for the exposure coefficient:
+
+```{r}
+#| label: fig-coef-exp
+#| fig-width: 7
+#| fig-height: 5
+
+plot_er_gof(ermod_bin, var_group = "Dose", show_coef_exp = TRUE)
+```
+
+Customize the position and size of the coefficient label:
+
+```{r}
+#| label: fig-coef-exp-pos
+#| fig-width: 7
+#| fig-height: 5
+
+plot_er_gof(
+  ermod_bin, 
+  var_group = "Dose", 
+  show_coef_exp = TRUE,
+  coef_pos_x = 5.5, coef_pos_y = 0.2, coef_size = 5
+)
+```
+
+### Number of bins for observed probability (`n_bins`)
+
+Change the number of bins used to summarize observed event rates:
+
+```{r}
+#| label: fig-n-bins
+#| fig-width: 7
+#| fig-height: 5
+
+plot_er_gof(ermod_bin, var_group = "Dose", n_bins = 6)
+```
+
+### Confidence interval widths
+
+Control CI widths for observed data summary (`qi_width_obs`), simulated curve 
+(`qi_width_sim`), and coefficient (`qi_width_coef`):
+
+```{r}
+#| label: fig-qi-width
+#| fig-width: 7
+#| fig-height: 5
+
+plot_er_gof(
+  ermod_bin, 
+  var_group = "Dose",
+  show_coef_exp = TRUE,
+  qi_width_obs = 0.9,
+  qi_width_sim = 0.9,
+  qi_width_coef = 0.9
+)
+```
+
+### Boxplot options
+
+Control boxplot visibility and appearance:
+
+```{r}
+#| label: fig-boxplot-options
+#| fig-width: 7
+#| fig-height: 5
+
+# Explicitly add boxplot without var_group
+plot_er_gof(ermod_bin, add_boxplot = TRUE)
+```
+
+Adjust boxplot height and show y-axis title:
+
+```{r}
+#| label: fig-boxplot-height
+#| fig-width: 7
+#| fig-height: 5
+
+plot_er_gof(
+  ermod_bin, 
+  var_group = "Dose",
+  boxplot_height = 0.25,
+  show_boxplot_y_title = TRUE
+)
+```
+
+### Caption (`show_caption`)
+
+The caption is shown by default. Hide it with `show_caption = FALSE`:
+
+```{r}
+#| label: fig-no-caption
+#| fig-width: 7
+#| fig-height: 5
+
+plot_er_gof(ermod_bin, var_group = "Dose", show_caption = FALSE)
+```
+
+### Using log scale for exposure
+
+Use `*` instead of `+` to apply scales to all panels in the combined plot:
+
+```{r}
+#| label: fig-log-scale
+#| fig-width: 7
+#| fig-height: 5
+
+plot_er_gof(ermod_bin, var_group = "Dose", show_coef_exp = TRUE) *
+  xgxr::xgx_scale_x_log10(guide = guide_axis(minor.ticks = TRUE))
+```
+
+## Customize each element of GOF plot
+
+For deeper customization (titles, themes, colors, shapes), use 
+`return_components = TRUE` to get modifiable ggplot objects, then recombine 
+with `combine_er_components()`.
+
+### Basic workflow
+
+```{r}
+#| label: fig-return-components
+#| fig-width: 7
+#| fig-height: 5
+
+# Get components
+comps <- plot_er_gof(ermod_bin, var_group = "Dose", return_components = TRUE)
+
+# Modify the main plot
+comps$main <- comps$main +
+  labs(title = "Exposure-Response Analysis", x = "AUC (ng·h/mL / 1000)")
+
+# Recombine
+combine_er_components(comps)
+```
+
+### Customizing themes, colors, and shapes
+
+```{r}
+#| label: fig-custom-theme
+#| fig-width: 7
+#| fig-height: 5
+
+comps <- plot_er_gof(ermod_bin, var_group = "Dose", return_components = TRUE)
+
+# Extract original data for custom point layer
+origdata <- extract_data(ermod_bin) |>
+  mutate(Dose = glue::glue("{Dose_mg} mg"))
+
+comps$main <- comps$main +
+  # Add points with custom shapes by dose
+  geom_jitter(
+    data = origdata,
+    aes(x = AUCss_1000, y = AEFLAG, color = Dose, shape = Dose),
+    width = 0, height = 0.05, alpha = 0.7
+  ) +
+  scale_shape_manual(values = c(16, 17, 15)) +
+  scale_color_brewer(palette = "Set1", guide = guide_legend(reverse = TRUE)) +
+  labs(title = "Custom Theme with Shapes", color = "Dose", shape = "Dose") +
+  theme_minimal()
+
+comps$boxplot <- comps$boxplot +
+  scale_fill_brewer(palette = "Pastel1") +
+  scale_color_brewer(palette = "Set1") +
+  theme_minimal()
+
+combine_er_components(comps)
+```
+
+### Adjusting heights and caption
+
+```{r}
+#| label: fig-combine-options
+#| fig-width: 7
+#| fig-height: 5
+
+comps <- plot_er_gof(
+  ermod_bin, 
+  var_group = "Dose", 
+  show_caption = TRUE,
+  return_components = TRUE
+)
+
+comps$main <- comps$main + labs(title = "Adjusted Layout")
+
+# Custom heights and suppress caption
+combine_er_components(comps, heights = c(0.7, 0.3), add_caption = FALSE)
+```
+
+### Applying log scale to components
+
+```{r}
+#| label: fig-log-scale-components
+#| fig-width: 7
+#| fig-height: 5
+
+comps <- plot_er_gof(ermod_bin, var_group = "Dose", return_components = TRUE)
+
+log_scale <- xgxr::xgx_scale_x_log10(guide = guide_axis(minor.ticks = TRUE))
+
+comps$main <- comps$main + log_scale + labs(title = "Log Scale")
+comps$boxplot <- comps$boxplot + log_scale
+
+combine_er_components(comps)
+```
+
+## Summary
+
+For complete documentation, see the 
+[`plot_er_gof()` reference](https://genentech.github.io/BayesERtools/reference/plot_er_gof.html).
+
+**`plot_er_gof()` options:**
+
+| Option | Description | Default |
+|--------|-------------|---------|
+| `var_group` | Group data by column | `NULL` |
+| `add_boxplot` | Add exposure boxplot | `TRUE` if `var_group` set |
+| `boxplot_height` | Relative height of boxplot | `0.15` |
+| `show_boxplot_y_title` | Show boxplot y-axis title | `FALSE` |
+| `n_bins` | Bins for observed probability | `4` |
+| `qi_width_obs` | CI width for observed data | `0.95` |
+| `qi_width_sim` | CI width for model curve | `0.95` |
+| `show_coef_exp` | Show coefficient CI | `FALSE` |
+| `coef_pos_x/y` | Coefficient label position | Auto |
+| `coef_size` | Coefficient label size | `4` |
+| `qi_width_coef` | CI width for coefficient | `0.95` |
+| `show_caption` | Show plot caption | `TRUE` |
+| `return_components` | Return components for customization | `FALSE` |
+
+**Tips:**
+
+- Use `*` instead of `+` to apply scales to all panels
+- Use `return_components = TRUE` for titles, themes, colors, and shapes
+- Components: `$main` (ER plot), `$boxplot`, `$caption`
+- Use `combine_er_components()` to recombine after modification

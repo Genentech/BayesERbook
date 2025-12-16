@@ -6,3 +6,5 @@
 /.quarto/
 /_book/
 /_brms-cache/
+
+.DS_Store

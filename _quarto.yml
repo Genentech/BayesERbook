@@ -20,6 +20,7 @@ book:
         - notebook/binary/simulation.qmd
         - notebook/binary/model_diagnostics.qmd
         - notebook/binary/mod_structure_comparison.qmd
+        - notebook/binary/plot_customize.qmd
         - notebook/binary/coveff_customize.qmd
         - notebook/binary/workflow_wo_package.qmd
     - part: "Emax model"
