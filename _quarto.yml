@@ -30,6 +30,9 @@ book:
         - notebook/emax/simulation.qmd
         - notebook/emax/basic_workflow_brms.qmd
         - notebook/emax/covariate_modeling.qmd
+    - part: "Additional topics"
+      chapters:
+        - notebook/extras/placebo_handling.qmd
 
 format:
   html:
