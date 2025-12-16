@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; Workflow without using BayesERtools – BayesERbook: Exposure-response analysis with Bayesian approaches</title>
+<title>7&nbsp; Workflow without using BayesERtools – BayesERbook: Exposure-response analysis with Bayesian approaches</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -69,14 +69,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../notebook/binary/coveff_customize.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-e35bcb26613d83c022512f159c7ed19d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-b091dd3c12a5fa8ad5181305bec49a82.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -117,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../notebook/binary/basic_workflow.html">ER for binary endpoint</a></li><li class="breadcrumb-item"><a href="../../notebook/binary/workflow_wo_package.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Workflow without using <code>BayesERtools</code></span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../notebook/binary/basic_workflow.html">ER for binary endpoint</a></li><li class="breadcrumb-item"><a href="../../notebook/binary/workflow_wo_package.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Workflow without using <code>BayesERtools</code></span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -186,14 +187,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../notebook/binary/plot_customize.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Customize ER plots</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../notebook/binary/coveff_customize.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Customize covariate effect plots</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Customize covariate effect plots</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../notebook/binary/workflow_wo_package.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Workflow without using <code>BayesERtools</code></span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Workflow without using <code>BayesERtools</code></span></span></a>
   </div>
 </li>
       </ul>
@@ -210,31 +217,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../notebook/emax/basic_workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Basic workflow</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Basic workflow</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../notebook/emax/model_diagnostics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model diagnostics &amp; comparison</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Model diagnostics &amp; comparison</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../notebook/emax/simulation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Simulation from fitted model</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Simulation from fitted model</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../notebook/emax/basic_workflow_brms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Basic workflow with brms</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Basic workflow with brms</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../notebook/emax/covariate_modeling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Covariate modeling with brms</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Covariate modeling with brms</span></span></a>
   </div>
 </li>
       </ul>
@@ -249,26 +256,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#setup-and-load" id="toc-setup-and-load" class="nav-link active" data-scroll-target="#setup-and-load"><span class="header-section-number">6.1</span> Setup and load</a></li>
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="header-section-number">6.2</span> Data</a></li>
-  <li><a href="#basic-model-development" id="toc-basic-model-development" class="nav-link" data-scroll-target="#basic-model-development"><span class="header-section-number">6.3</span> Basic model development</a></li>
-  <li><a href="#selection-of-exposure-metrics" id="toc-selection-of-exposure-metrics" class="nav-link" data-scroll-target="#selection-of-exposure-metrics"><span class="header-section-number">6.4</span> Selection of exposure metrics</a></li>
-  <li><a href="#selection-of-covariates" id="toc-selection-of-covariates" class="nav-link" data-scroll-target="#selection-of-covariates"><span class="header-section-number">6.5</span> Selection of covariates</a>
+  <li><a href="#setup-and-load" id="toc-setup-and-load" class="nav-link active" data-scroll-target="#setup-and-load"><span class="header-section-number">7.1</span> Setup and load</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="header-section-number">7.2</span> Data</a></li>
+  <li><a href="#basic-model-development" id="toc-basic-model-development" class="nav-link" data-scroll-target="#basic-model-development"><span class="header-section-number">7.3</span> Basic model development</a></li>
+  <li><a href="#selection-of-exposure-metrics" id="toc-selection-of-exposure-metrics" class="nav-link" data-scroll-target="#selection-of-exposure-metrics"><span class="header-section-number">7.4</span> Selection of exposure metrics</a></li>
+  <li><a href="#selection-of-covariates" id="toc-selection-of-covariates" class="nav-link" data-scroll-target="#selection-of-covariates"><span class="header-section-number">7.5</span> Selection of covariates</a>
   <ul class="collapse">
-  <li><a href="#step-1-full-reference-model-fit" id="toc-step-1-full-reference-model-fit" class="nav-link" data-scroll-target="#step-1-full-reference-model-fit"><span class="header-section-number">6.5.1</span> Step 1: Full reference model fit</a></li>
-  <li><a href="#step-2-variable-selection" id="toc-step-2-variable-selection" class="nav-link" data-scroll-target="#step-2-variable-selection"><span class="header-section-number">6.5.2</span> Step 2: Variable selection</a></li>
-  <li><a href="#step-3-final-model-fit" id="toc-step-3-final-model-fit" class="nav-link" data-scroll-target="#step-3-final-model-fit"><span class="header-section-number">6.5.3</span> Step 3: Final model fit</a></li>
+  <li><a href="#step-1-full-reference-model-fit" id="toc-step-1-full-reference-model-fit" class="nav-link" data-scroll-target="#step-1-full-reference-model-fit"><span class="header-section-number">7.5.1</span> Step 1: Full reference model fit</a></li>
+  <li><a href="#step-2-variable-selection" id="toc-step-2-variable-selection" class="nav-link" data-scroll-target="#step-2-variable-selection"><span class="header-section-number">7.5.2</span> Step 2: Variable selection</a></li>
+  <li><a href="#step-3-final-model-fit" id="toc-step-3-final-model-fit" class="nav-link" data-scroll-target="#step-3-final-model-fit"><span class="header-section-number">7.5.3</span> Step 3: Final model fit</a></li>
   </ul></li>
-  <li><a href="#marginal-er-prediction" id="toc-marginal-er-prediction" class="nav-link" data-scroll-target="#marginal-er-prediction"><span class="header-section-number">6.6</span> Marginal ER prediction</a></li>
+  <li><a href="#marginal-er-prediction" id="toc-marginal-er-prediction" class="nav-link" data-scroll-target="#marginal-er-prediction"><span class="header-section-number">7.6</span> Marginal ER prediction</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/genentech/BayesERbook/edit/main/notebook/binary/workflow_wo_package.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../notebook/binary/basic_workflow.html">ER for binary endpoint</a></li><li class="breadcrumb-item"><a href="../../notebook/binary/workflow_wo_package.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Workflow without using <code>BayesERtools</code></span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../notebook/binary/basic_workflow.html">ER for binary endpoint</a></li><li class="breadcrumb-item"><a href="../../notebook/binary/workflow_wo_package.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Workflow without using <code>BayesERtools</code></span></a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Workflow without using <code>BayesERtools</code></span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Workflow without using <code>BayesERtools</code></span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 </div>
 
 
@@ -290,25 +297,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Understand the internal workings of the package</li>
 <li>Flexibility to customize the analysis</li>
 </ul>
-<section id="setup-and-load" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="setup-and-load"><span class="header-section-number">6.1</span> Setup and load</h2>
+<section id="setup-and-load" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="setup-and-load"><span class="header-section-number">7.1</span> Setup and load</h2>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
-<section id="data" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="data"><span class="header-section-number">6.2</span> Data</h2>
+<section id="data" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="data"><span class="header-section-number">7.2</span> Data</h2>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(d_sim_binom_cov, <span class="at">package =</span> <span class="st">"BayesERtools"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(d_sim_binom_cov, <span class="at">package =</span> <span class="st">"BayesERtools"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>d_sim_binom_cov_2 <span class="ot">&lt;-</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  d_sim_binom_cov <span class="sc">|&gt;</span></span>
@@ -322,17 +329,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>var_exposure <span class="ot">&lt;-</span> <span class="st">"AUCss_1000"</span></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>var_resp <span class="ot">&lt;-</span> <span class="st">"AEFLAG"</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>var_cov_ae_hgly2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"BAGE_10"</span>, <span class="st">"BWT_10"</span>, <span class="st">"RACE"</span>, <span class="st">"VISC"</span>, <span class="st">"BHBA1C_5"</span>, <span class="st">"BGLUC"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>var_cov_ae_hgly2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"BAGE_10"</span>, <span class="st">"BWT_10"</span>, <span class="st">"RACE"</span>, <span class="st">"VISC"</span>, <span class="st">"BHBA1C_5"</span>, <span class="st">"BGLUC"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
-<section id="basic-model-development" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="basic-model-development"><span class="header-section-number">6.3</span> Basic model development</h2>
+<section id="basic-model-development" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="basic-model-development"><span class="header-section-number">7.3</span> Basic model development</h2>
 <p><code>dev_ermod_bin()</code> function can be used to develop basic ER model. (Note that this function can also be used for models with covariates, if you already know the covariates to be included.)</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>var_all <span class="ot">&lt;-</span> <span class="fu">c</span>(var_exposure) <span class="co"># If you have covariates, you can add here</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -349,7 +356,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">refresh =</span> <span class="dv">0</span>, <span class="co"># Suppress output</span></span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>ermod_bin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>ermod_bin</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <pre class="r-output"><code>stan_glm
  family:       binomial [logit]
@@ -370,7 +377,7 @@ AUCss_1000   0.4    0.1
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>exposure_range <span class="ot">&lt;-</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>exposure_range <span class="ot">&lt;-</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">range</span>(df_er_ae_hgly2[[var_exposure]])</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>exposure_to_sim_vec <span class="ot">&lt;-</span></span>
@@ -382,14 +389,14 @@ AUCss_1000   0.4    0.1
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>sim_epred_med_qi <span class="ot">&lt;-</span></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  tidybayes<span class="sc">::</span><span class="fu">add_epred_draws</span>(data_for_sim, ermod_bin) <span class="sc">|&gt;</span></span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  tidybayes<span class="sc">::</span><span class="fu">median_qi</span>() <span class="sc">|&gt;</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">as_tibble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">as_tibble</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Observed vs model predicted plot:</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sim_epred_med_qi, <span class="fu">aes</span>(<span class="at">x =</span> .data[[var_exposure]], <span class="at">y =</span> .epred)) <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sim_epred_med_qi, <span class="fu">aes</span>(<span class="at">x =</span> .data[[var_exposure]], <span class="at">y =</span> .epred)) <span class="sc">+</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> .lower, <span class="at">ymax =</span> .upper), <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Observed data plots</span></span>
@@ -416,7 +423,7 @@ AUCss_1000   0.4    0.1
 <span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">5</span>, <span class="dv">1</span>),</span>
 <span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> scales<span class="sc">::</span>percent</span>
 <span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> var_exposure, <span class="at">y =</span> <span class="st">"Probability of event"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> var_exposure, <span class="at">y =</span> <span class="st">"Probability of event"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-plot-er" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
@@ -425,7 +432,7 @@ AUCss_1000   0.4    0.1
 <img src="workflow_wo_package_files/figure-html/fig-plot-er-1.png" id="fig-plot-er" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-plot-er-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.1
+Figure&nbsp;7.1
 </figcaption>
 </figure>
 </div>
@@ -435,14 +442,14 @@ Figure&nbsp;6.1
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>draws_df <span class="ot">&lt;-</span> posterior<span class="sc">::</span><span class="fu">as_draws_df</span>(ermod_bin)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>draws_df <span class="ot">&lt;-</span> posterior<span class="sc">::</span><span class="fu">as_draws_df</span>(ermod_bin)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>draws_df_summary <span class="ot">&lt;-</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  posterior<span class="sc">::</span><span class="fu">summarize_draws</span>(draws_df)</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>draws_df_summary <span class="sc">|&gt;</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(<span class="at">n_sigfig =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(<span class="at">n_sigfig =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <pre class="r-output"><code>
@@ -897,7 +904,7 @@ Figure&nbsp;6.1
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings header">
 <th id="variable" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">variable</th>
@@ -946,13 +953,13 @@ Figure&nbsp;6.1
 </div>
 </div>
 </section>
-<section id="selection-of-exposure-metrics" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="selection-of-exposure-metrics"><span class="header-section-number">6.4</span> Selection of exposure metrics</h2>
+<section id="selection-of-exposure-metrics" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="selection-of-exposure-metrics"><span class="header-section-number">7.4</span> Selection of exposure metrics</h2>
 <p>First you fit models with all the candidate exposure metrics and then compare the models using leave-one-out cross-validation (LOO).</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Run models with all the candidate exposure metrics</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>l_mod_exposures <span class="ot">&lt;-</span></span>
@@ -975,7 +982,7 @@ Figure&nbsp;6.1
 <span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate loo (leave-one-out cross-validation) for each model</span></span>
 <span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co"># and compare the models</span></span>
 <span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>l_loo_exposures <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(l_mod_exposures, loo<span class="sc">::</span>loo)</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>loo<span class="sc">::</span><span class="fu">loo_compare</span>(l_loo_exposures)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>loo<span class="sc">::</span><span class="fu">loo_compare</span>(l_loo_exposures)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <pre class="r-output"><code>           elpd_diff se_diff
 AUCss_1000  0.0       0.0   
@@ -984,15 +991,15 @@ Cmaxss     -5.1       2.9
 </code></pre>
 </div>
 </section>
-<section id="selection-of-covariates" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="selection-of-covariates"><span class="header-section-number">6.5</span> Selection of covariates</h2>
+<section id="selection-of-covariates" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="selection-of-covariates"><span class="header-section-number">7.5</span> Selection of covariates</h2>
 <p>Selection of covariates are be done with <code>projpred</code> package in <code>BayesERtools</code>.</p>
-<section id="step-1-full-reference-model-fit" class="level3" data-number="6.5.1">
-<h3 data-number="6.5.1" class="anchored" data-anchor-id="step-1-full-reference-model-fit"><span class="header-section-number">6.5.1</span> Step 1: Full reference model fit</h3>
+<section id="step-1-full-reference-model-fit" class="level3" data-number="7.5.1">
+<h3 data-number="7.5.1" class="anchored" data-anchor-id="step-1-full-reference-model-fit"><span class="header-section-number">7.5.1</span> Step 1: Full reference model fit</h3>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>varnames <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">c</span>(var_exposure, var_cov_ae_hgly2), <span class="at">collapse =</span> <span class="st">" + "</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>varnames <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">c</span>(var_exposure, var_cov_ae_hgly2), <span class="at">collapse =</span> <span class="st">" + "</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>formula_full <span class="ot">&lt;-</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  stats<span class="sc">::</span><span class="fu">formula</span>(</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    glue<span class="sc">::</span><span class="fu">glue</span>(</span>
@@ -1009,17 +1016,17 @@ Cmaxss     -5.1       2.9
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">refresh =</span> <span class="dv">0</span>)</span>
 <span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>fit_ref <span class="ot">&lt;-</span> <span class="fu">eval</span>(call_fit_ref)</span>
 <span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>refm_obj <span class="ot">&lt;-</span> projpred<span class="sc">::</span><span class="fu">get_refmodel</span>(fit_ref)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>refm_obj <span class="ot">&lt;-</span> projpred<span class="sc">::</span><span class="fu">get_refmodel</span>(fit_ref)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
-<section id="step-2-variable-selection" class="level3" data-number="6.5.2">
-<h3 data-number="6.5.2" class="anchored" data-anchor-id="step-2-variable-selection"><span class="header-section-number">6.5.2</span> Step 2: Variable selection</h3>
+<section id="step-2-variable-selection" class="level3" data-number="7.5.2">
+<h3 data-number="7.5.2" class="anchored" data-anchor-id="step-2-variable-selection"><span class="header-section-number">7.5.2</span> Step 2: Variable selection</h3>
 <p>The code below shows example of variable selection with K-fold cross-validation approach.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Force exposure metric to be always included first</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Force exposure metric to be always included first</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>search_terms <span class="ot">&lt;-</span> projpred<span class="sc">::</span><span class="fu">force_search_terms</span>(</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">forced_terms =</span> var_exposure,</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">optional_terms =</span> var_cov_ae_hgly2</span>
@@ -1032,7 +1039,7 @@ Cmaxss     -5.1       2.9
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"forward"</span>,</span>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">validate_search =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">refit_prj =</span> <span class="cn">TRUE</span> <span class="co"># Evaluation often look strange without refit</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <pre class="r-output"><code>-----
 Running the search using the full dataset ...
@@ -1077,27 +1084,27 @@ Running the search and the performance evaluation with `refit_prj = TRUE` for ea
 </code></pre>
 <details open="" class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>rk <span class="ot">&lt;-</span> projpred<span class="sc">::</span><span class="fu">ranking</span>(cvvs)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>rk <span class="ot">&lt;-</span> projpred<span class="sc">::</span><span class="fu">ranking</span>(cvvs)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>n_var_select <span class="ot">&lt;-</span> projpred<span class="sc">::</span><span class="fu">suggest_size</span>(cvvs)</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>n_var_select <span class="ot">&lt;-</span> <span class="fu">max</span>(<span class="dv">1</span>, n_var_select) <span class="co"># At least exposure metric should be included</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>var_selected <span class="ot">&lt;-</span> <span class="fu">head</span>(rk[[<span class="st">"fulldata"</span>]], n_var_select)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>var_selected <span class="ot">&lt;-</span> <span class="fu">head</span>(rk[[<span class="st">"fulldata"</span>]], n_var_select)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<section id="output" class="level4" data-number="6.5.2.1">
-<h4 data-number="6.5.2.1" class="anchored" data-anchor-id="output"><span class="header-section-number">6.5.2.1</span> Output</h4>
+<section id="output" class="level4" data-number="7.5.2.1">
+<h4 data-number="7.5.2.1" class="anchored" data-anchor-id="output"><span class="header-section-number">7.5.2.1</span> Output</h4>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>var_selected</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>var_selected</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <pre class="r-output"><code>[1] "AUCss_1000" "BHBA1C_5"   "BGLUC"     
 </code></pre>
 <details open="" class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cvvs, <span class="at">text_angle =</span> <span class="dv">45</span>, <span class="at">show_cv_proportions =</span> <span class="cn">FALSE</span>, <span class="at">deltas =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rk) <span class="co"># This only works when cv_method = "kfold" and validate_search = TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cvvs, <span class="at">text_angle =</span> <span class="dv">45</span>, <span class="at">show_cv_proportions =</span> <span class="cn">FALSE</span>, <span class="at">deltas =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rk) <span class="co"># This only works when cv_method = "kfold" and validate_search = TRUE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-covsel-1" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
@@ -1106,7 +1113,7 @@ Running the search and the performance evaluation with `refit_prj = TRUE` for ea
 <img src="workflow_wo_package_files/figure-html/fig-covsel-1.png" id="fig-covsel-1" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-covsel-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.2
+Figure&nbsp;7.2
 </figcaption>
 </figure>
 </div>
@@ -1118,7 +1125,7 @@ Figure&nbsp;6.2
 <img src="workflow_wo_package_files/figure-html/fig-covsel-2.png" id="fig-covsel-2" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-covsel-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.3
+Figure&nbsp;7.3
 </figcaption>
 </figure>
 </div>
@@ -1126,12 +1133,12 @@ Figure&nbsp;6.3
 </div>
 </section>
 </section>
-<section id="step-3-final-model-fit" class="level3" data-number="6.5.3">
-<h3 data-number="6.5.3" class="anchored" data-anchor-id="step-3-final-model-fit"><span class="header-section-number">6.5.3</span> Step 3: Final model fit</h3>
+<section id="step-3-final-model-fit" class="level3" data-number="7.5.3">
+<h3 data-number="7.5.3" class="anchored" data-anchor-id="step-3-final-model-fit"><span class="header-section-number">7.5.3</span> Step 3: Final model fit</h3>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>ermod_bin_cov <span class="ot">&lt;-</span> rstanarm<span class="sc">::</span><span class="fu">stan_glm</span>(</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  stats<span class="sc">::</span><span class="fu">formula</span>(glue<span class="sc">::</span><span class="fu">glue</span>(</span>
@@ -1143,7 +1150,7 @@ Figure&nbsp;6.3
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">refresh =</span> <span class="dv">0</span>, <span class="co"># Suppress output</span></span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>ermod_bin_cov</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>ermod_bin_cov</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <pre class="r-output"><code>stan_glm
  family:       binomial [logit]
@@ -1164,13 +1171,13 @@ BGLUC         0.7    0.1
 </div>
 </section>
 </section>
-<section id="marginal-er-prediction" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="marginal-er-prediction"><span class="header-section-number">6.6</span> Marginal ER prediction</h2>
+<section id="marginal-er-prediction" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="marginal-er-prediction"><span class="header-section-number">7.6</span> Marginal ER prediction</h2>
 <p>The example below simulate the marginal ER relationship, i.e.&nbsp; ER relationships for “marginalized”, or averaged, response for the population of interest, using the covariate distribution is from the original data.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>exposure_to_sim <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>exposure_to_sim <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>data_cov <span class="ot">&lt;-</span> df_er_ae_hgly2 <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-!!</span>var_exposure)</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -1200,7 +1207,7 @@ BGLUC         0.7    0.1
 <span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>sim_epred_marg_med_qi <span class="sc">|&gt;</span></span>
 <span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
 <span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(<span class="at">n_sigfig =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
-<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_integer</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">".id_exposure"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_integer</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">".id_exposure"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div id="fig-marginal-er" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1657,7 +1664,7 @@ BGLUC         0.7    0.1
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_col_headings header">
 <th id="a.id_exposure" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">.id_exposure</th>
@@ -1729,7 +1736,7 @@ BGLUC         0.7    0.1
 </code></pre>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-marginal-er-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.4
+Figure&nbsp;7.4
 </figcaption>
 </figure>
 </div>
@@ -1792,13 +1799,14 @@ Figure&nbsp;6.4
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -2194,16 +2202,16 @@ Figure&nbsp;6.4
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../../notebook/binary/coveff_customize.html" class="pagination-link" aria-label="Customize covariate effect plots">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Customize covariate effect plots</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Customize covariate effect plots</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../../notebook/emax/basic_workflow.html" class="pagination-link" aria-label="Basic workflow">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Basic workflow</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Basic workflow</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb15" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Workflow without using `BayesERtools`</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Workflow without using `BayesERtools`</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>This page shows how to perform ER analysis without using <span class="in">`BayesERtools`</span> package</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>to help:</span>
@@ -2512,7 +2520,7 @@ Figure&nbsp;6.4
 <span id="cb15-333"><a href="#cb15-333" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(<span class="at">n_sigfig =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
 <span id="cb15-334"><a href="#cb15-334" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_integer</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">".id_exposure"</span>))</span>
 <span id="cb15-335"><a href="#cb15-335" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
