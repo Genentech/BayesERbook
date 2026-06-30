@@ -102,7 +102,7 @@ Let's say we want to customize in a follwoing way:
 - Re-calculate percentiles of BGLUC from new distribution (example below uses
   uniform distribution between 4 and 8) and change the width of the quantile
   interval to 0.8.
-- Use specific values for BHBA1C (30, 35, 45, 50) and label with the original 
+- Use specific values for BHBA1C (30, 35, 45, 50) and label with the original
   scale rather than those devided by 5 (used in the model).
 - Use Asian as the reference level
 - Show the plots in the order of BGLUC, BHBA1C, and then RACE
@@ -134,8 +134,11 @@ spec_new_race <-
   select(-var_order, -is_covariate)
 
 spec_coveff_new_1 <-
-  replace_spec_coveff(spec_coveff, bind_rows(spec_new_bgluc, spec_new_bhba1c)) |>
-  # spec_new_race is separately provided as we want to change the reference level
+  replace_spec_coveff(
+    spec_coveff, bind_rows(spec_new_bgluc, spec_new_bhba1c)
+  ) |>
+  # spec_new_race is separately provided
+  # as we want to change the reference level
   replace_spec_coveff(spec_new_race, replace_ref_value = TRUE)
 
 d_new_var_order <-

@@ -1,6 +1,6 @@
 # Model diagnostics & comparison
 
-This page showcase the model diagnosis and comparison for the E~max~ model 
+This page showcase the model diagnosis and comparison for the E~max~ model
 
 ```{r}
 #| output: FALSE
@@ -9,7 +9,7 @@ This page showcase the model diagnosis and comparison for the E~max~ model
 library(tidyverse)
 library(BayesERtools)
 library(posterior)
-library(tidybayes)
+library(ggdist)
 library(bayesplot)
 library(loo)
 library(here)
@@ -93,8 +93,7 @@ See [here](https://mjskay.github.io/ggdist/reference/point_interval.html) for mo
 ```{r}
 # HDCI of median.ED50
 as_draws_df(ermod_sigemax) |>
-  tidybayes::spread_rvars(ec50) |>
-  tidybayes::median_hdci()
+  median_hdci(ec50)
 ```
 
 :::
@@ -127,8 +126,8 @@ ersim_sigemax_med_qi |>
 
 ## Diagnostic plots
 
-We use the [`bayesplot` package](https://mc-stan.org/bayesplot/) 
-([Cheat sheet](https://rstudio.github.io/cheatsheets/bayesplot.pdf)) 
+We use the [`bayesplot` package](https://mc-stan.org/bayesplot/)
+([Cheat sheet](https://rstudio.github.io/cheatsheets/bayesplot.pdf))
 to visualize the model fit.
 
 ### Convergence
@@ -207,7 +206,7 @@ ersim_sigemax_med_qi |>
   geom_abline(linetype = 2, color = "grey") +
   geom_point() +
   geom_errorbar(
-    mapping = aes(xmin = .epred.lower, xmax = .epred.upper), 
+    mapping = aes(xmin = .epred.lower, xmax = .epred.upper),
     orientation = "y"
   ) +
   labs(
@@ -229,7 +228,12 @@ ersim_sigemax_w_resid <-
   sim_er(ermod_sigemax) |>
   mutate(.residual = response_1 - .epred) # Add residuals for plotting
 
-ersim_sigemax_w_resid_med_qi <- median_qi(ersim_sigemax_w_resid)
+ersim_sigemax_w_resid_med_qi <-
+  ersim_sigemax_w_resid |>
+  group_by(across(!c(
+    .chain, .iteration, .draw, .epred, .linpred, .prediction, .residual
+  ))) |>
+  median_qi(.epred, .residual)
 
 ersim_sigemax_w_resid_med_qi |>
   ggplot(aes(x = .epred, y = .residual)) +
@@ -238,7 +242,7 @@ ersim_sigemax_w_resid_med_qi |>
   geom_smooth(method = "loess", formula = y ~ x) +
   geom_point() +
   geom_errorbar(
-    mapping = aes(ymin = .residual.lower, ymax = .residual.upper), 
+    mapping = aes(ymin = .residual.lower, ymax = .residual.upper),
     width = 0
   ) +
   geom_hline(aes(yintercept = 2), lty = 2, colour = "grey70") +

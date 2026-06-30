@@ -9,7 +9,7 @@ This page showcase the model simulation using the ER model for binary endpoint.
 library(tidyverse)
 library(BayesERtools)
 library(posterior)
-library(tidybayes)
+library(ggdist)
 library(bayesplot)
 library(here)
 library(gt)
@@ -93,22 +93,30 @@ d_sim_curve |>
     alpha = 0.3, fill = "deepskyblue") +
   geom_line(aes(y = .epred), color = "deepskyblue") +
   # Prediction at the specified doses
-  geom_point(data = d_sim_new_conc, aes(y = .epred), color = "tomato", size = 3) +
-  geom_errorbar(data = d_sim_new_conc,
+  geom_point(
+    data = d_sim_new_conc,
+    aes(y = .epred), color = "tomato", size = 3
+  ) +
+  geom_errorbar(
+    data = d_sim_new_conc,
     aes(y = .epred, ymin = .epred.lower, ymax = .epred.upper),
-    width = 0.03, color = "tomato") +
-  coord_cartesian(ylim = c(0, 1)) +
+    width = 0.03, color = "tomato"
+  ) +
+  ggplot2::coord_transform(x = "log10", ylim = c(0, 1)) +
   scale_y_continuous(
     breaks = c(0, .5, 1),
     labels = scales::percent
+  ) +
+  ggplot2::scale_x_continuous(
+    breaks = xgxr::xgx_breaks_log10,
+    minor_breaks = xgxr::xgx_minor_breaks_log10
   ) +
   labs(
     x = "AUC~ss~ / 1000", y = "Probability of event",
     title = "ER model predictions at new exposure levels",
     caption = "Area: 95% credible interval"
   ) +
-  theme(axis.title.x = ggtext::element_markdown()) +
-  xgxr::xgx_scale_x_log10(guide = ggplot2::guide_axis(minor.ticks = TRUE))
+  theme(axis.title.x = ggtext::element_markdown())
 ```
 
 ## Prediction for new dose
@@ -141,7 +149,11 @@ ggplot(d_new_dose_pk, aes(x = AUCss_1000, fill = Dose)) +
   ) +
   theme(plot.title = ggtext::element_markdown(),
     axis.title.x = ggtext::element_markdown()) +
-  xgxr::xgx_scale_x_log10(guide = ggplot2::guide_axis(minor.ticks = TRUE))
+  ggplot2::coord_transform(x = "log10") +
+  ggplot2::scale_x_continuous(
+    breaks = xgxr::xgx_breaks_log10,
+    minor_breaks = xgxr::xgx_minor_breaks_log10
+  )
 ```
 
 ### Sim and plot
@@ -175,17 +187,29 @@ d_sim_curve |>
     alpha = 0.3, fill = "grey") +
   geom_line(aes(y = .epred), color = "grey") +
   # Prediction at the specified doses
-  geom_point(data = d_sim_new_dose_per_dose, aes(y = prob, color = Dose), size = 3) +
-  geom_errorbar(data = d_sim_new_dose_per_dose,
-    aes(y = prob, ymin = .lower, ymax = .upper, color = Dose), width = 0.03) +
-  geom_boxplot(data = d_new_dose_pk,
-    aes(x = AUCss_1000, y = -0.1, fill = Dose, color = Dose), width = 0.1, alpha = 0.5,
-    inherit.aes = FALSE) +
+  geom_point(
+    data = d_sim_new_dose_per_dose,
+    aes(y = prob, color = Dose), size = 3
+  ) +
+  geom_errorbar(
+    data = d_sim_new_dose_per_dose,
+    aes(y = prob, ymin = .lower, ymax = .upper, color = Dose),
+    width = 0.03
+  ) +
+  geom_boxplot(
+    data = d_new_dose_pk,
+    aes(x = AUCss_1000, y = -0.1, fill = Dose, color = Dose),
+    width = 0.1, alpha = 0.5, inherit.aes = FALSE
+  ) +
   geom_hline(yintercept = 0, linetype = "solid", linewidth = 0.2) +
-  coord_cartesian(ylim = c(-0.15, 1)) +
+  ggplot2::coord_transform(x = "log10", ylim = c(-0.15, 1)) +
   scale_y_continuous(
     breaks = c(0, .5, 1),
     labels = scales::percent
+  ) +
+  ggplot2::scale_x_continuous(
+    breaks = xgxr::xgx_breaks_log10,
+    minor_breaks = xgxr::xgx_minor_breaks_log10
   ) +
   labs(
     x = "AUC~ss~ / 1000", y = "Probability of event",
@@ -193,13 +217,12 @@ d_sim_curve |>
     caption = "Area: 95% credible interval
     Boxplot: Observed exposure levels
     Symbols: Predicted mean probability for each dose and 95% CI"
-  )  +
+  ) +
   guides(
     fill = guide_legend(reverse = TRUE),
     color = guide_legend(reverse = TRUE)
   ) +
-  theme(axis.title.x = ggtext::element_markdown()) +
-  xgxr::xgx_scale_x_log10(guide = ggplot2::guide_axis(minor.ticks = TRUE))
+  theme(axis.title.x = ggtext::element_markdown())
 ```
 
 ## PK boxplot on ER plot
@@ -215,12 +238,17 @@ See below the example of adding exposure boxplot to any ER plot.
 #| fig-height: 5
 
 plot_er(ermod_bin_hgly2, show_orig_data = TRUE) +
-  geom_boxplot(data = d_new_dose_pk,
-    aes(x = AUCss_1000, y = -0.2, fill = Dose, color = Dose), width = 0.1, alpha = 0.5,
-    inherit.aes = FALSE) +
+  geom_boxplot(
+    data = d_new_dose_pk,
+    aes(x = AUCss_1000, y = -0.2, fill = Dose, color = Dose),
+    width = 0.1, alpha = 0.5, inherit.aes = FALSE
+  ) +
   geom_hline(yintercept = -0.1, linetype = "solid", linewidth = 0.2) +
-  coord_cartesian(ylim = c(-0.25, 1)) +
-  xgxr::xgx_scale_x_log10(guide = ggplot2::guide_axis(minor.ticks = TRUE)) +
+  ggplot2::coord_transform(x = "log10", ylim = c(-0.25, 1)) +
+  ggplot2::scale_x_continuous(
+    breaks = xgxr::xgx_breaks_log10,
+    minor_breaks = xgxr::xgx_minor_breaks_log10
+  ) +
   guides(
     fill = guide_legend(reverse = TRUE),
     color = guide_legend(reverse = TRUE)

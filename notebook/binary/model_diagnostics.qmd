@@ -1,6 +1,6 @@
 # Model diagnostics and performance evaluation
 
-This page showcase the model diagnosis and performance evaluation on the 
+This page showcase the model diagnosis and performance evaluation on the
 ER model for binary endpoint.
 
 ```{r}
@@ -11,7 +11,6 @@ library(tidyverse)
 library(BayesERtools)
 library(here)
 library(posterior)
-library(tidybayes)
 library(bayesplot)
 library(gt)
 
@@ -48,7 +47,7 @@ var_exposure <- "AUCss_1000"
 
 ## Fit models
 
-There is clear trend of E-R for hyperglycemia (95% CI doesn't include 0) 
+There is clear trend of E-R for hyperglycemia (95% CI doesn't include 0)
 while the evidence of E-R is not seen for diarrhea (95% CI includes 0).
 
 ::: {.panel-tabset}
@@ -117,7 +116,7 @@ ermod_bin_dr2 |>
 
 ## Predictive performance evaluation
 
-We can calculate predictive performance metrics such as AUC-ROC with 
+We can calculate predictive performance metrics such as AUC-ROC with
 `eval_ermod()` function. Options for evaluation data are:
 
 - `eval_type = "training"`: training data
@@ -162,7 +161,7 @@ metrics_hgly2_kfold |>
 
 Although credible intervals are preferred, there is a concept called
 the probability of direction which is somewhat similar to the p-value, in which
-the probability of the effect being far from NULL (usually set to 0) is 
+the probability of the effect being far from NULL (usually set to 0) is
 calculated.
 
 See `?p_direction` and [vignette](https://easystats.github.io/bayestestR/articles/probability_of_direction.html)
@@ -172,10 +171,10 @@ for detail.
 
 ### Hyperglycemia
 
-The exposure effect is so clear that none of the MCMC sample is below 0, 
-leading to a "p-value" of 0. 
+The exposure effect is so clear that none of the MCMC sample is below 0,
+leading to a "p-value" of 0.
 Since there were 4000 MCMC samples (`nrow(as_draws_df(ermod_bin_hgly2))`),
-it is expected that the p-value is less than 1/4000 * 2, i.e. < 0.0005 
+it is expected that the p-value is less than 1/4000 * 2, i.e. < 0.0005
 (multiplication with 2 corresponds to two-sided test).
 
 ```{r}
@@ -195,8 +194,8 @@ mean(as_draws(ermod_bin_dr2)$AUCss_1000 < 0) * 2
 
 ## Diagnostic plots
 
-We use the [`bayesplot` package](https://mc-stan.org/bayesplot/) 
-([Cheat sheet](https://rstudio.github.io/cheatsheets/bayesplot.pdf)) 
+We use the [`bayesplot` package](https://mc-stan.org/bayesplot/)
+([Cheat sheet](https://rstudio.github.io/cheatsheets/bayesplot.pdf))
 to visualize the model fit.
 
 ### Convergence

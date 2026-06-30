@@ -1,6 +1,6 @@
 # Customize ER plots
 
-This page demonstrates the options available in `plot_er_gof()` and how to 
+This page demonstrates the options available in `plot_er_gof()` and how to
 customize ER plots beyond the built-in options.
 
 See also the [function reference](https://genentech.github.io/BayesERtools/reference/plot_er_gof.html)
@@ -61,7 +61,7 @@ plot_er_gof(ermod_bin)
 ```
 
 ### Grouping by dose (`var_group`)
-  
+
 Color data points and add boxplot by dose group:
 
 ```{r}
@@ -92,8 +92,8 @@ Customize the position and size of the coefficient label:
 #| fig-height: 5
 
 plot_er_gof(
-  ermod_bin, 
-  var_group = "Dose", 
+  ermod_bin,
+  var_group = "Dose",
   show_coef_exp = TRUE,
   coef_pos_x = 5.5, coef_pos_y = 0.2, coef_size = 5
 )
@@ -113,7 +113,7 @@ plot_er_gof(ermod_bin, var_group = "Dose", n_bins = 6)
 
 ### Confidence interval widths
 
-Control CI widths for observed data summary (`qi_width_obs`), simulated curve 
+Control CI widths for observed data summary (`qi_width_obs`), simulated curve
 (`qi_width_sim`), and coefficient (`qi_width_coef`):
 
 ```{r}
@@ -122,7 +122,7 @@ Control CI widths for observed data summary (`qi_width_obs`), simulated curve
 #| fig-height: 5
 
 plot_er_gof(
-  ermod_bin, 
+  ermod_bin,
   var_group = "Dose",
   show_coef_exp = TRUE,
   qi_width_obs = 0.9,
@@ -152,7 +152,7 @@ Adjust boxplot height and show y-axis title:
 #| fig-height: 5
 
 plot_er_gof(
-  ermod_bin, 
+  ermod_bin,
   var_group = "Dose",
   boxplot_height = 0.25,
   show_boxplot_y_title = TRUE
@@ -181,13 +181,17 @@ Use `*` instead of `+` to apply scales to all panels in the combined plot:
 #| fig-height: 5
 
 plot_er_gof(ermod_bin, var_group = "Dose", show_coef_exp = TRUE) *
-  xgxr::xgx_scale_x_log10(guide = guide_axis(minor.ticks = TRUE))
+  ggplot2::coord_transform(x = "log10") *
+  ggplot2::scale_x_continuous(
+    breaks = xgxr::xgx_breaks_log10,
+    minor_breaks = xgxr::xgx_minor_breaks_log10
+  )
 ```
 
 ## Customize each element of GOF plot
 
-For deeper customization (titles, themes, colors, shapes), use 
-`return_components = TRUE` to get modifiable ggplot objects, then recombine 
+For deeper customization (titles, themes, colors, shapes), use
+`return_components = TRUE` to get modifiable ggplot objects, then recombine
 with `combine_er_components()`.
 
 ### Basic workflow
@@ -249,8 +253,8 @@ combine_er_components(comps)
 #| fig-height: 5
 
 comps <- plot_er_gof(
-  ermod_bin, 
-  var_group = "Dose", 
+  ermod_bin,
+  var_group = "Dose",
   show_caption = TRUE,
   return_components = TRUE
 )
@@ -270,17 +274,23 @@ combine_er_components(comps, heights = c(0.7, 0.3), add_caption = FALSE)
 
 comps <- plot_er_gof(ermod_bin, var_group = "Dose", return_components = TRUE)
 
-log_scale <- xgxr::xgx_scale_x_log10(guide = guide_axis(minor.ticks = TRUE))
+log_x <- list(
+  ggplot2::coord_transform(x = "log10"),
+  ggplot2::scale_x_continuous(
+    breaks = xgxr::xgx_breaks_log10,
+    minor_breaks = xgxr::xgx_minor_breaks_log10
+  )
+)
 
-comps$main <- comps$main + log_scale + labs(title = "Log Scale")
-comps$boxplot <- comps$boxplot + log_scale
+comps$main <- comps$main + log_x + labs(title = "Log Scale")
+comps$boxplot <- comps$boxplot + log_x
 
 combine_er_components(comps)
 ```
 
 ## Summary
 
-For complete documentation, see the 
+For complete documentation, see the
 [`plot_er_gof()` reference](https://genentech.github.io/BayesERtools/reference/plot_er_gof.html).
 
 **`plot_er_gof()` options:**
