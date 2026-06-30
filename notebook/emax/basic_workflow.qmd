@@ -1,6 +1,6 @@
 # Basic workflow
 
-In this section, we will show a basic workflow for performing an E~max~ model 
+In this section, we will show a basic workflow for performing an E~max~ model
 analysis for continuous endpoint.
 
 ## Setup and load
@@ -12,7 +12,6 @@ analysis for continuous endpoint.
 library(tidyverse)
 library(BayesERtools)
 library(posterior)
-library(tidybayes)
 library(here)
 library(gt)
 

@@ -9,7 +9,7 @@ The [brms](https://paulbuerkner.com/brms/) package provides a flexible framework
 library(tidyverse)
 library(brms)
 library(posterior)
-library(tidybayes)
+library(ggdist)
 library(here)
 library(BayesERtools)
 
@@ -106,7 +106,7 @@ hyperbolic_model_fit <- brm(
 )
 ```
 
-When this code is executed a Stan model is compiled and run, and detailed information on the sampling is printed during the run. 
+When this code is executed a Stan model is compiled and run, and detailed information on the sampling is printed during the run.
 
 After the sampling is complete the user can inspect the brms model object to obtain a summary of the model, the sampling, and the parameter estimates:
 
@@ -114,12 +114,24 @@ After the sampling is complete the user can inspect the brms model object to obt
 hyperbolic_model_fit
 ```
 
-The data can be visualized in many different ways. A simple example is shown below, using `epred_draws()` from `tidybayes` package to extract model predictions as a function of exposure, and `median_qi()` to calculate a 95% interval around the model predictions:
+The data can be visualized in many different ways. A simple example is shown below, using `posterior_epred()` from brms to extract model predictions as a function of exposure, and `median_qi()` from ggdist to calculate a 95% interval around the model predictions:
 
 ```{r}
-hyperbolic_model_fit |>
-  epred_draws(newdata = tibble(exposure = seq(0, 50000, 1000))) |>
-  median_qi() |>
+newdata_hyp <- tibble(exposure = seq(0, 50000, 1000))
+mat_hyp <- posterior_epred(hyperbolic_model_fit, newdata = newdata_hyp)
+
+newdata_hyp |>
+  mutate(.row = row_number()) |>
+  left_join(
+    tibble(
+      .row  = rep(seq_len(nrow(newdata_hyp)), each = nrow(mat_hyp)),
+      .draw = rep(seq_len(nrow(mat_hyp)), times = nrow(newdata_hyp)),
+      .epred = as.vector(mat_hyp)
+    ),
+    by = ".row"
+  ) |>
+  group_by(exposure) |>
+  median_qi(.epred, .width = 0.95) |>
   ggplot(mapping = aes(exposure, .epred)) +
   geom_path() +
   geom_ribbon(aes(ymin = .lower, ymax = .upper), alpha = 0.3) +
@@ -142,7 +154,7 @@ sigmoidal_model <- brmsformula(
 )
 ```
 
-Next, because `gamma` is now a model parameter, a prior for it must be specified. The prior specification may now look like this: 
+Next, because `gamma` is now a model parameter, a prior for it must be specified. The prior specification may now look like this:
 
 ```{r}
 sigmoidal_model_prior <- c(
@@ -153,7 +165,7 @@ sigmoidal_model_prior <- c(
 )
 ```
 
-No changes to the measurement model are required: like the hyperbolic E~max~ model, it is typical to fit the sigmoidal E~max~ model to continuous responses by assuming measurement errors are described by independent normal variates. 
+No changes to the measurement model are required: like the hyperbolic E~max~ model, it is typical to fit the sigmoidal E~max~ model to continuous responses by assuming measurement errors are described by independent normal variates.
 
 To fit the model, call `brm()`:
 
@@ -169,7 +181,7 @@ sigmoidal_model_fit <- brm(
 )
 ```
 
-Once the sampling is complete, printing the model object displays estimated model parameters, 95% credible intervals for those parameters, and diagnostic information about the sampling: 
+Once the sampling is complete, printing the model object displays estimated model parameters, 95% credible intervals for those parameters, and diagnostic information about the sampling:
 
 ```{r}
 sigmoidal_model_fit
@@ -177,7 +189,7 @@ sigmoidal_model_fit
 
 In this instance it is clear from inspection that a sigmoidal model is unnecessary: the posterior mean for `gamma` is `r round(summary(sigmoidal_model_fit)$fixed[4, 1], 2)` with 95% credible interval from `r round(summary(sigmoidal_model_fit)$fixed[4, 3], 2)` to `r round(summary(sigmoidal_model_fit)$fixed[4, 4], 2)`. A hyperbolic model is the more natural choice here. If explicit model comparison is required, cross-validation methods such as LOO-CV can be used to compare the performance of different brms models estimated from the same data. This is discussed in the next chapter.
 
-## Binary E~max~ models 
+## Binary E~max~ models
 
 Now consider the case where the response is binary. Again, the imulated data set `d_sim_emax` is used. For this analysis the `response_2` variable is used, a binary outcome that is 0 or 1 for each subject:
 
@@ -212,7 +224,7 @@ bernoulli_measurement <- brmsfamily(
 This is the only respect in which the binary model differs from its continuous counterpart. The model formula and prior specification is the same as for the original model at the start of the chapter.
 
 Note that as the modeling is perfomed on logit scale, normal(0, 1.5) priors are
-considered as a good starting point for e0 and emax. There is a good [discussion of these priors](https://discourse.mc-stan.org/t/default-priors-for-logistic-regression-coefficients-in-brms/13742/2) on the Stan website. 
+considered as a good starting point for e0 and emax. There is a good [discussion of these priors](https://discourse.mc-stan.org/t/default-priors-for-logistic-regression-coefficients-in-brms/13742/2) on the Stan website.
 
 ```{r}
 binary_model <- brmsformula(
@@ -253,9 +265,21 @@ binary_base_fit
 The predictions of the fitted model are visualized below:
 
 ```{r}
-binary_base_fit |>
-  epred_draws(newdata = tibble(exposure = seq(0, 50000, 1000))) |>
-  median_qi() |>
+newdata_bin <- tibble(exposure = seq(0, 50000, 1000))
+mat_bin <- posterior_epred(binary_base_fit, newdata = newdata_bin)
+
+newdata_bin |>
+  mutate(.row = row_number()) |>
+  left_join(
+    tibble(
+      .row  = rep(seq_len(nrow(newdata_bin)), each = nrow(mat_bin)),
+      .draw = rep(seq_len(nrow(mat_bin)), times = nrow(newdata_bin)),
+      .epred = as.vector(mat_bin)
+    ),
+    by = ".row"
+  ) |>
+  group_by(exposure) |>
+  median_qi(.epred, .width = 0.95) |>
   ggplot(mapping = aes(exposure, .epred)) +
   geom_path() +
   geom_ribbon(

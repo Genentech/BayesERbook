@@ -40,13 +40,14 @@ install.packages('BayesERtools')
 ```{r quick-ex, fig.width = 6, fig.height = 4.5, dpi = 150}
 library(BayesERtools)
 library(dplyr)
-ggplot2::theme_set(ggplot2::theme_bw(base_size = 12))
+library(ggplot2)
+theme_set(theme_bw(base_size = 12))
 
 # Data
 data(d_sim_binom_cov)
-df_er_ae_hgly2 <- 
-  d_sim_binom_cov |> 
-  mutate(AUCss_1000 = AUCss / 1000) |> 
+df_er_ae_hgly2 <-
+  d_sim_binom_cov |>
+  mutate(AUCss_1000 = AUCss / 1000) |>
   filter(AETYPE == "hgly2")
 
 # Fit a model
@@ -58,7 +59,11 @@ ermod <- dev_ermod_bin(
 
 # Goodness-of-fit plot
 plot_er_gof(ermod, var_group = "Dose_mg", show_coef_exp = TRUE) *
-  xgxr::xgx_scale_x_log10(guide = ggplot2::guide_axis(minor.ticks = TRUE))
+  coord_transform(x = "log10") *
+  scale_x_continuous(
+    breaks = xgxr::xgx_breaks_log10,
+    minor_breaks = xgxr::xgx_minor_breaks_log10
+  )
 ```
 
 
@@ -88,15 +93,15 @@ tab_mod_raw <- tibble(
   `simulate & plot ER` = c("✅", "✅", "✅", "✅"),
   `exposure metrics selection` = c("✅", "✅", "✅", "✅"),
   `covariate selection` = c("✅", "❌", "✅", "❌"),
-  `covariate forest plot` = c("✅", "❌", "🟡", "❌")
+  `covariate forest plot` = c("✅", "❌", "✅", "❌")
 )
 
 # Transpose the table for display
-tab_mod <- tab_mod_raw %>%
+tab_mod <- tab_mod_raw |>
   pivot_longer(
     cols = -feature,
     names_to = "feature_name", values_to = "value"
-  ) %>%
+  ) |>
   pivot_wider(names_from = feature, values_from = value) |>
   mutate(.row_id = row_number())
 

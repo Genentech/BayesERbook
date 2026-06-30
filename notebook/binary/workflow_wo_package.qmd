@@ -13,6 +13,7 @@ to help:
 #| message: FALSE
 
 library(tidyverse)
+library(ggdist)
 library(here)
 library(gt)
 
@@ -86,9 +87,22 @@ exposure_to_sim_vec <-
 data_for_sim <-
   tibble(!!var_exposure := exposure_to_sim_vec)
 
+set.seed(1234)
+mat_epred <- rstanarm::posterior_epred(ermod_bin, newdata = data_for_sim)
+
 sim_epred_med_qi <-
-  tidybayes::add_epred_draws(data_for_sim, ermod_bin) |>
-  tidybayes::median_qi() |>
+  data_for_sim |>
+  dplyr::mutate(.row = dplyr::row_number()) |>
+  dplyr::left_join(
+    tibble::tibble(
+      .row   = rep(seq_len(nrow(data_for_sim)), each = nrow(mat_epred)),
+      .draw  = rep(seq_len(nrow(mat_epred)), times = nrow(data_for_sim)),
+      .epred = as.vector(mat_epred)
+    ),
+    by = ".row"
+  ) |>
+  dplyr::group_by(dplyr::across(!c(.row, .draw, .epred))) |>
+  ggdist::median_qi(.epred, .width = 0.95) |>
   dplyr::as_tibble()
 ```
 
@@ -228,7 +242,8 @@ cvvs <- projpred::cv_varsel(
 rk <- projpred::ranking(cvvs)
 
 n_var_select <- projpred::suggest_size(cvvs)
-n_var_select <- max(1, n_var_select) # At least exposure metric should be included
+# At least exposure metric should be included
+n_var_select <- max(1, n_var_select)
 
 var_selected <- head(rk[["fulldata"]], n_var_select)
 ```
@@ -266,8 +281,8 @@ ermod_bin_cov
 
 ## Marginal ER prediction
 
-The example below simulate the marginal ER relationship, i.e. 
-ER relationships for "marginalized", or averaged, response for the population 
+The example below simulate the marginal ER relationship, i.e.
+ER relationships for "marginalized", or averaged, response for the population
 of interest, using the covariate distribution is from the original data.
 
 ```{r}
@@ -284,8 +299,22 @@ data_for_sim <-
   mutate(.id_exposure = row_number()) |>
   expand_grid(data_cov)
 
+set.seed(1234)
+mat_epred_cov <- rstanarm::posterior_epred(
+  ermod_bin_cov, newdata = data_for_sim
+)
+
 sim_epred_raw <-
-  tidybayes::add_epred_draws(data_for_sim, ermod_bin_cov)
+  data_for_sim |>
+  dplyr::mutate(.row = dplyr::row_number()) |>
+  dplyr::left_join(
+    tibble::tibble(
+      .row   = rep(seq_len(nrow(data_for_sim)), each = nrow(mat_epred_cov)),
+      .draw  = rep(seq_len(nrow(mat_epred_cov)), times = nrow(data_for_sim)),
+      .epred = as.vector(mat_epred_cov)
+    ),
+    by = ".row"
+  )
 
 # Calculate marginal expected response for each exposure value and draw
 sim_epred_marg <-
@@ -299,7 +328,7 @@ sim_epred_marg <-
 sim_epred_marg_med_qi <-
   sim_epred_marg |>
   dplyr::group_by(.id_exposure, !!sym(var_exposure)) |>
-  tidybayes::median_qi() |>
+  ggdist::median_qi() |>
   dplyr::as_tibble()
 
 sim_epred_marg_med_qi |>

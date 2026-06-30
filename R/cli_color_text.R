@@ -2,6 +2,7 @@
 # https://blog.djnavarro.net/posts/2021-04-18_pretty-little-clis/
 
 ansi_aware_handler <- function(x, options) {
+  if (inherits(x, "knit_asis")) return(x)
   paste0(
     "<pre class=\"r-output\"><code>",
     fansi::sgr_to_html(x = x, warn = FALSE, term.cap = "256"),

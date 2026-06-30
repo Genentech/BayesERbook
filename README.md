@@ -26,13 +26,14 @@ install.packages('BayesERtools')
 ``` r
 library(BayesERtools)
 library(dplyr)
-ggplot2::theme_set(ggplot2::theme_bw(base_size = 12))
+library(ggplot2)
+theme_set(theme_bw(base_size = 12))
 
 # Data
 data(d_sim_binom_cov)
-df_er_ae_hgly2 <- 
-  d_sim_binom_cov |> 
-  mutate(AUCss_1000 = AUCss / 1000) |> 
+df_er_ae_hgly2 <-
+  d_sim_binom_cov |>
+  mutate(AUCss_1000 = AUCss / 1000) |>
   filter(AETYPE == "hgly2")
 
 # Fit a model
@@ -44,10 +45,14 @@ ermod <- dev_ermod_bin(
 
 # Goodness-of-fit plot
 plot_er_gof(ermod, var_group = "Dose_mg", show_coef_exp = TRUE) *
-  xgxr::xgx_scale_x_log10(guide = ggplot2::guide_axis(minor.ticks = TRUE))
+  coord_transform(x = "log10") *
+  scale_x_continuous(
+    breaks = xgxr::xgx_breaks_log10,
+    minor_breaks = xgxr::xgx_minor_breaks_log10
+  )
 ```
 
-<img src="man/figures/README-quick-ex-1.png" width="75%" />
+<img src="man/figures/README-quick-ex-1.png" alt="" width="75%" />
 
 ## Model types supported by `BayesERtools`
 
@@ -104,11 +109,11 @@ plot_er_gof(ermod, var_group = "Dose_mg", show_coef_exp = TRUE) *
     <tr><td headers="feature_name" class="gt_row gt_left" style="text-align: right; vertical-align: middle;"><span class='gt_from_md'>covariate forest plot</span></td>
 <td headers="lin_logit" class="gt_row gt_left" style="text-align: center; vertical-align: middle;"><span class='gt_from_md'>✅</span></td>
 <td headers="emax_logit" class="gt_row gt_left" style="text-align: center; vertical-align: middle;"><span class='gt_from_md'>❌</span></td>
-<td headers="linear" class="gt_row gt_left" style="text-align: center; vertical-align: middle;"><span class='gt_from_md'>🟡</span></td>
+<td headers="linear" class="gt_row gt_left" style="text-align: center; vertical-align: middle;"><span class='gt_from_md'>✅</span></td>
 <td headers="emax" class="gt_row gt_left" style="text-align: center; vertical-align: middle;"><span class='gt_from_md'>❌</span></td></tr>
   </tbody>
-  &#10;  <tfoot class="gt_footnotes">
-    <tr>
+  <tfoot>
+    <tr class="gt_footnotes">
       <td class="gt_footnote" colspan="5"> ✅ Available, 🟡 In plan/under development, ❌ Not in a current plan</td>
     </tr>
   </tfoot>

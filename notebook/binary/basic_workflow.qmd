@@ -27,7 +27,7 @@ source(here("R", "cli_color_text.R"))
 
 ## Data
 
-We will use an example simulated dataset included in `BayesERtools` package 
+We will use an example simulated dataset included in `BayesERtools` package
 (`d_sim_binom_cov`) for the analysis.
 In this document we use hypoglycemia (hgly2) as an example AE. Another example
 AE is diarrhea (dr2), where you would see fairly flat ER curve.
@@ -84,7 +84,7 @@ ermod_bin <- dev_ermod_bin(
 ermod_bin
 ```
 
-You can compare the observed data with the model fit using `plot_er_gof()` 
+You can compare the observed data with the model fit using `plot_er_gof()`
 function.
 
 ```{r}
@@ -95,7 +95,11 @@ function.
 # Using `*` instead of `+` so that scale can be
 # applied for both panels (main plot and boxplot)
 plot_er_gof(ermod_bin, var_group = "Dose", show_coef_exp = TRUE) *
-  xgxr::xgx_scale_x_log10(guide = ggplot2::guide_axis(minor.ticks = TRUE))
+  ggplot2::coord_transform(x = "log10") *
+  ggplot2::scale_x_continuous(
+    breaks = xgxr::xgx_breaks_log10,
+    minor_breaks = xgxr::xgx_minor_breaks_log10
+  )
 ```
 
 MCMC samples can be obtained with `as_draws()` family of functions, such as
@@ -106,8 +110,10 @@ draws_df <- as_draws_df(ermod_bin)
 
 draws_df_summary <-
   draws_df |>
-  summarize_draws(mean, median, sd, ~ quantile2(.x, probs = c(0.025, 0.975)),
-    default_convergence_measures())
+  summarize_draws(
+    mean, median, sd, ~ quantile2(.x, probs = c(0.025, 0.975)),
+    default_convergence_measures()
+  )
 
 draws_df_summary |>
   gt() |>
@@ -118,17 +124,17 @@ draws_df_summary |>
 You can predict the probability of events for a given exposure level with
 `sim_er_new_exp()` function.
 
-Here, the prediction is done for AUCss_1000 of 1, 1.5, 2, 3 (AUCss of 1000, 
-1500, 2000, 3000), and the output is the median and 95% CI of the predicted 
+Here, the prediction is done for AUCss_1000 of 1, 1.5, 2, 3 (AUCss of 1000,
+1500, 2000, 3000), and the output is the median and 95% CI of the predicted
 probability.
 You can set `output_type = "draw"` to get the raw posterior draws.
 
 There are two types of outputs here, `.epred` and `.linpred`, as follows:
 
 - `.epred`: Expected response on the probability scale (% of event)
-- `.linpred`: Expected response on the linear predictor scale (logit scale, 
+- `.linpred`: Expected response on the linear predictor scale (logit scale,
   i.e. log-odds)
-  
+
 See `?BayesERtools::sim_er` for more details.
 
 
@@ -148,7 +154,7 @@ ersim_med_qi |>
 
 `dev_ermod_bin_exp_sel()` function can be used to select the best exposure
 metric(s) from a list of candidate exposure metrics. In this case, AUCss_1000
-is selected as the best exposure metric, as it had the highest elpd (expected 
+is selected as the best exposure metric, as it had the highest elpd (expected
 log predictive density).[^1]
 
 [^1]: Some references about elpd: \code{?loo::`loo-glossary`}, [What is the interpretation of ELPD / elpd_loo / elpd_diff?](https://mc-stan.org/loo/articles/online-only/faq.html#elpd_interpretation)
@@ -172,7 +178,7 @@ ermod_bin_exp_sel <-
 ermod_bin_exp_sel
 ```
 
-The ER curve for all the evaluated exposure metrics can be generated with 
+The ER curve for all the evaluated exposure metrics can be generated with
 `plot_er_exp_sel()` function.
 
 ```{r}
@@ -181,7 +187,11 @@ The ER curve for all the evaluated exposure metrics can be generated with
 #| fig-height: 5
 
 plot_er_exp_sel(ermod_bin_exp_sel) +
-  xgxr::xgx_scale_x_log10(guide = ggplot2::guide_axis(minor.ticks = TRUE))
+  ggplot2::coord_transform(x = "log10") +
+  ggplot2::scale_x_continuous(
+    breaks = xgxr::xgx_breaks_log10,
+    minor_breaks = xgxr::xgx_minor_breaks_log10
+  )
 ```
 
 
@@ -189,7 +199,7 @@ plot_er_exp_sel(ermod_bin_exp_sel) +
 
 `dev_ermod_bin_cov_sel()` function can be used to select the best covariates
 from a list of candidate covariates. In this case, HbA1c (BHBA1C_5) and glucose
-(BGLUC) are selected, in addition to the exposure metric AUCss_1000 as 
+(BGLUC) are selected, in addition to the exposure metric AUCss_1000 as
 predictors.
 
 ```{r}
@@ -224,7 +234,7 @@ ermod_bin_cov_sel <- readRDS(here("output", "ermod_bin_cov_sel.rds"))
 ermod_bin_cov_sel
 ```
 
-The plot below shows that AUCss_1000, BHBA1C_5, and BGLUC contributes to 
+The plot below shows that AUCss_1000, BHBA1C_5, and BGLUC contributes to
 improving the model performance, and after then the inclusion of no other
 covariates improves the model performance.
 
@@ -241,17 +251,17 @@ approximation of leave-one-out cross-validation performance (PSIS-LOO) is not
 reliable.
 
 ```
-Warning: In the recalculation of the reference model's PSIS-LOO CV weights for 
-the performance evaluation, ... Pareto k-values are in the interval...`. 
+Warning: In the recalculation of the reference model's PSIS-LOO CV weights for
+the performance evaluation, ... Pareto k-values are in the interval...`.
 ```
 
-Alternatively to the default `cv_method = "LOO"`, you can use k-fold 
-cross-validation by setting`cv_method = "kfold"` in `dev_ermod_bin_cov_sel()` 
+Alternatively to the default `cv_method = "LOO"`, you can use k-fold
+cross-validation by setting`cv_method = "kfold"` in `dev_ermod_bin_cov_sel()`
 function. This can take longer time to run, but it can be more reliable in
 the cases where LOO is not reliable. You can also set `validate_search = TRUE`
 to let the function perform the variable selection for each fold separately,
 rather than using the selected variable sequence from the full dataset
-evaluation. 
+evaluation.
 
 ```{r}
 #| eval: FALSE
@@ -274,16 +284,21 @@ ermod_bin_cov_sel_kfold <-
 #| include: FALSE
 
 # Save the output in vignettes/data to avoid running it during the build.
-saveRDS(ermod_bin_cov_sel_kfold, file = here("output", "ermod_bin_cov_sel_kfold.rds"))
+saveRDS(
+  ermod_bin_cov_sel_kfold,
+  file = here("output", "ermod_bin_cov_sel_kfold.rds")
+)
 ```
 
 ```{r}
 #| include: FALSE
 
-ermod_bin_cov_sel_kfold <- readRDS(here("output", "ermod_bin_cov_sel_kfold.rds"))
+ermod_bin_cov_sel_kfold <- readRDS(
+  here("output", "ermod_bin_cov_sel_kfold.rds")
+)
 ```
 
-Added bonus of using k-fold cv is that you can visualize how often each 
+Added bonus of using k-fold cv is that you can visualize how often each
 variable is selected in the model. Here, as you can see (and as expected),
 HbA1c (BHBA1C_5) and glucose (BGLUC) are highly related and they are almost
 interchangeably selected in the 2nd and 3rd positions. Note that the function
@@ -327,7 +342,7 @@ plot_er(ersim_new_exp_marg_med_qi, marginal = TRUE)
 ## Evaluation of covariate effects
 
 You can visualize the effect of the covariates with `sim_coveff()` and
-`plot_coveff()` functions. You can see that all three predictors have 
+`plot_coveff()` functions. You can see that all three predictors have
 fairly strong effects on the odds ratio of hypoglycemia.
 
 ```{r}

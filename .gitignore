@@ -8,3 +8,5 @@
 /_brms-cache/
 
 .DS_Store
+
+**/*.quarto_ipynb

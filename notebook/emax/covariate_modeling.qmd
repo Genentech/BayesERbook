@@ -9,7 +9,7 @@ The previous chapter introduced the brms approach to Bayesian E~max~ modeling, w
 library(tidyverse)
 library(brms)
 library(posterior)
-library(tidybayes)
+library(ggdist)
 library(here)
 library(BayesERtools)
 
@@ -37,7 +37,7 @@ if (require(cmdstanr)) {
 
 ## Continuous response with covariates
 
-The simulated data set contains three continuous covariates (`cnt_a`, `cnt_b`, and `cnt_c`) that may be related to the continuous oucome `response_1`. The univariate relationships between each covariate and the response are shown below, along with the relationship between `exposure` and `reponse_1`: 
+The simulated data set contains three continuous covariates (`cnt_a`, `cnt_b`, and `cnt_c`) that may be related to the continuous oucome `response_1`. The univariate relationships between each covariate and the response are shown below, along with the relationship between `exposure` and `reponse_1`:
 
 ```{r}
 #| label: show-continuous-emax-data
@@ -84,7 +84,7 @@ parameter_prior <- c(
 )
 ```
 
-When interpreting the prior, it is important to remember that there are covariates on `e0`: the `normal(0, 1.5)` prior is applied to all regression coefficients. That means that this prior is applied independently to `e0_Intercept`, `e0_cnt_a`, `e0_cnt_b`, and `e0_cnt_c`. 
+When interpreting the prior, it is important to remember that there are covariates on `e0`: the `normal(0, 1.5)` prior is applied to all regression coefficients. That means that this prior is applied independently to `e0_Intercept`, `e0_cnt_a`, `e0_cnt_b`, and `e0_cnt_c`.
 
 To apply this model to the continuous data, pass all three of these to `brm()`:
 
@@ -115,15 +115,27 @@ cnt_a_map <-
     cnt_a_group = c("2 (<3.5)", "5 (3.5~6.5)", "8 (≥6.5)")
   )
 
+newdata_cnt_a <- expand_grid(
+  exposure = seq(0, 50000, 1000),
+  cnt_a = c(2, 5, 8),
+  cnt_b = 5,
+  cnt_c = 5
+)
+mat_cnt_a <- posterior_epred(continuous_covariate_fit, newdata = newdata_cnt_a)
+
 sim_exposure_cnt_a <-
-  continuous_covariate_fit |>
-  epred_draws(newdata = expand_grid(
-    exposure = seq(0, 50000, 1000),
-    cnt_a = c(2, 5, 8),
-    cnt_b = 5,
-    cnt_c = 5
-  )) |>
-  median_qi() |>
+  newdata_cnt_a |>
+  mutate(.row = row_number()) |>
+  left_join(
+    tibble(
+      .row  = rep(seq_len(nrow(newdata_cnt_a)), each = nrow(mat_cnt_a)),
+      .draw = rep(seq_len(nrow(mat_cnt_a)), times = nrow(newdata_cnt_a)),
+      .epred = as.vector(mat_cnt_a)
+    ),
+    by = ".row"
+  ) |>
+  group_by(exposure, cnt_a, cnt_b, cnt_c) |>
+  median_qi(.epred, .width = 0.95) |>
   left_join(cnt_a_map, by = join_by(cnt_a))
 
 d_for_plot <-
@@ -197,7 +209,7 @@ covariate_model_2 <- brmsformula(
 )
 ```
 
-The `parameter_prior` is the same as before. All three are passed to `brm()`, as shown below: 
+The `parameter_prior` is the same as before. All three are passed to `brm()`, as shown below:
 
 ```{r}
 #| label: run-binary-emax-model-with-covariates
@@ -226,15 +238,33 @@ cnt_a_map <-
     cnt_a_group = c("2 (<3.5)", "5 (3.5~6.5)", "8 (≥6.5)")
   )
 
+newdata_cnt_a_bin <- expand_grid(
+  exposure = seq(0, 50000, 1000),
+  cnt_a = c(2, 5, 8),
+  cnt_b = 5,
+  cnt_c = 5
+)
+mat_cnt_a_bin <- posterior_epred(
+  binary_covariate_fit, newdata = newdata_cnt_a_bin
+)
+
 sim_exposure_cnt_a <-
-  binary_covariate_fit |>
-  epred_draws(newdata = expand_grid(
-    exposure = seq(0, 50000, 1000),
-    cnt_a = c(2, 5, 8),
-    cnt_b = 5,
-    cnt_c = 5
-  )) |>
-  median_qi() |>
+  newdata_cnt_a_bin |>
+  mutate(.row = row_number()) |>
+  left_join(
+    tibble(
+      .row = rep(
+        seq_len(nrow(newdata_cnt_a_bin)), each = nrow(mat_cnt_a_bin)
+      ),
+      .draw = rep(
+        seq_len(nrow(mat_cnt_a_bin)), times = nrow(newdata_cnt_a_bin)
+      ),
+      .epred = as.vector(mat_cnt_a_bin)
+    ),
+    by = ".row"
+  ) |>
+  group_by(exposure, cnt_a, cnt_b, cnt_c) |>
+  median_qi(.epred, .width = 0.95) |>
   left_join(cnt_a_map, by = join_by(cnt_a))
 
 d_for_plot <-
@@ -301,7 +331,7 @@ other_covariates_fit
 
 ## Model comparison
 
-The brms package provides a flexible interface for model comparison using LOO-CV and WAIC, using the [loo](http://mc-stan.org/loo/) package internally. One workflow for calling this interface is illustrated in this section, using the three possible E~max~ models as examples: 
+The brms package provides a flexible interface for model comparison using LOO-CV and WAIC, using the [loo](http://mc-stan.org/loo/) package internally. One workflow for calling this interface is illustrated in this section, using the three possible E~max~ models as examples:
 
 ```{r}
 # no covariates
@@ -374,7 +404,7 @@ model_comparison <- loo_compare(
 model_comparison
 ```
 
-In this example, `cnt_a_fit` model outperforms the other two models. 
+In this example, `cnt_a_fit` model outperforms the other two models.
 
 By default the printed output shows the most important columns, but the return value from `loo_compare()` contains additional information relevant to the model comparison. To view all columns, call the print method with `simplify = FALSE`:
 
