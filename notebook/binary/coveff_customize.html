@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>6&nbsp; Customize covariate effect plots – BayesERbook: Exposure-response analysis with Bayesian approaches</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -69,15 +72,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../notebook/binary/plot_customize.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-b091dd3c12a5fa8ad5181305bec49a82.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-ec5dacfbc85b6aa211765d4aa5962a23.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -395,23 +397,23 @@ Figure&nbsp;6.2
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_integer</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"value_order"</span>, <span class="st">"var_order"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="nnknajtwbo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#nnknajtwbo table {
+<div id="mqnnknajtw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mqnnknajtw table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#nnknajtwbo thead, #nnknajtwbo tbody, #nnknajtwbo tfoot, #nnknajtwbo tr, #nnknajtwbo td, #nnknajtwbo th {
+#mqnnknajtw thead, #mqnnknajtw tbody, #mqnnknajtw tfoot, #mqnnknajtw tr, #mqnnknajtw td, #mqnnknajtw th {
   border-style: none;
 }
 
-#nnknajtwbo p {
+#mqnnknajtw p {
   margin: 0;
   padding: 0;
 }
 
-#nnknajtwbo .gt_table {
+#mqnnknajtw .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -437,12 +439,12 @@ Figure&nbsp;6.2
   border-left-color: #D3D3D3;
 }
 
-#nnknajtwbo .gt_caption {
+#mqnnknajtw .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#nnknajtwbo .gt_title {
+#mqnnknajtw .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -454,7 +456,7 @@ Figure&nbsp;6.2
   border-bottom-width: 0;
 }
 
-#nnknajtwbo .gt_subtitle {
+#mqnnknajtw .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -466,7 +468,7 @@ Figure&nbsp;6.2
   border-top-width: 0;
 }
 
-#nnknajtwbo .gt_heading {
+#mqnnknajtw .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -478,13 +480,13 @@ Figure&nbsp;6.2
   border-right-color: #D3D3D3;
 }
 
-#nnknajtwbo .gt_bottom_border {
+#mqnnknajtw .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#nnknajtwbo .gt_col_headings {
+#mqnnknajtw .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -499,7 +501,7 @@ Figure&nbsp;6.2
   border-right-color: #D3D3D3;
 }
 
-#nnknajtwbo .gt_col_heading {
+#mqnnknajtw .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -519,7 +521,7 @@ Figure&nbsp;6.2
   overflow-x: hidden;
 }
 
-#nnknajtwbo .gt_column_spanner_outer {
+#mqnnknajtw .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -531,15 +533,15 @@ Figure&nbsp;6.2
   padding-right: 4px;
 }
 
-#nnknajtwbo .gt_column_spanner_outer:first-child {
+#mqnnknajtw .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#nnknajtwbo .gt_column_spanner_outer:last-child {
+#mqnnknajtw .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#nnknajtwbo .gt_column_spanner {
+#mqnnknajtw .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -551,11 +553,11 @@ Figure&nbsp;6.2
   width: 100%;
 }
 
-#nnknajtwbo .gt_spanner_row {
+#mqnnknajtw .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#nnknajtwbo .gt_group_heading {
+#mqnnknajtw .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -581,7 +583,7 @@ Figure&nbsp;6.2
   text-align: left;
 }
 
-#nnknajtwbo .gt_empty_group_heading {
+#mqnnknajtw .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -596,15 +598,15 @@ Figure&nbsp;6.2
   vertical-align: middle;
 }
 
-#nnknajtwbo .gt_from_md > :first-child {
+#mqnnknajtw .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#nnknajtwbo .gt_from_md > :last-child {
+#mqnnknajtw .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#nnknajtwbo .gt_row {
+#mqnnknajtw .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -623,7 +625,7 @@ Figure&nbsp;6.2
   overflow-x: hidden;
 }
 
-#nnknajtwbo .gt_stub {
+#mqnnknajtw .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -636,7 +638,7 @@ Figure&nbsp;6.2
   padding-right: 5px;
 }
 
-#nnknajtwbo .gt_stub_row_group {
+#mqnnknajtw .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -650,15 +652,15 @@ Figure&nbsp;6.2
   vertical-align: top;
 }
 
-#nnknajtwbo .gt_row_group_first td {
+#mqnnknajtw .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#nnknajtwbo .gt_row_group_first th {
+#mqnnknajtw .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#nnknajtwbo .gt_summary_row {
+#mqnnknajtw .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -668,16 +670,16 @@ Figure&nbsp;6.2
   padding-right: 5px;
 }
 
-#nnknajtwbo .gt_first_summary_row {
+#mqnnknajtw .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#nnknajtwbo .gt_first_summary_row.thick {
+#mqnnknajtw .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#nnknajtwbo .gt_last_summary_row {
+#mqnnknajtw .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -687,7 +689,7 @@ Figure&nbsp;6.2
   border-bottom-color: #D3D3D3;
 }
 
-#nnknajtwbo .gt_grand_summary_row {
+#mqnnknajtw .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -697,7 +699,7 @@ Figure&nbsp;6.2
   padding-right: 5px;
 }
 
-#nnknajtwbo .gt_first_grand_summary_row {
+#mqnnknajtw .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -707,7 +709,7 @@ Figure&nbsp;6.2
   border-top-color: #D3D3D3;
 }
 
-#nnknajtwbo .gt_last_grand_summary_row_top {
+#mqnnknajtw .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -717,11 +719,11 @@ Figure&nbsp;6.2
   border-bottom-color: #D3D3D3;
 }
 
-#nnknajtwbo .gt_striped {
+#mqnnknajtw .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#nnknajtwbo .gt_table_body {
+#mqnnknajtw .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -730,7 +732,7 @@ Figure&nbsp;6.2
   border-bottom-color: #D3D3D3;
 }
 
-#nnknajtwbo .gt_footnotes {
+#mqnnknajtw .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -744,7 +746,7 @@ Figure&nbsp;6.2
   border-right-color: #D3D3D3;
 }
 
-#nnknajtwbo .gt_footnote {
+#mqnnknajtw .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -753,7 +755,7 @@ Figure&nbsp;6.2
   padding-right: 5px;
 }
 
-#nnknajtwbo .gt_sourcenotes {
+#mqnnknajtw .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -767,7 +769,7 @@ Figure&nbsp;6.2
   border-right-color: #D3D3D3;
 }
 
-#nnknajtwbo .gt_sourcenote {
+#mqnnknajtw .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -775,72 +777,72 @@ Figure&nbsp;6.2
   padding-right: 5px;
 }
 
-#nnknajtwbo .gt_left {
+#mqnnknajtw .gt_left {
   text-align: left;
 }
 
-#nnknajtwbo .gt_center {
+#mqnnknajtw .gt_center {
   text-align: center;
 }
 
-#nnknajtwbo .gt_right {
+#mqnnknajtw .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#nnknajtwbo .gt_font_normal {
+#mqnnknajtw .gt_font_normal {
   font-weight: normal;
 }
 
-#nnknajtwbo .gt_font_bold {
+#mqnnknajtw .gt_font_bold {
   font-weight: bold;
 }
 
-#nnknajtwbo .gt_font_italic {
+#mqnnknajtw .gt_font_italic {
   font-style: italic;
 }
 
-#nnknajtwbo .gt_super {
+#mqnnknajtw .gt_super {
   font-size: 65%;
 }
 
-#nnknajtwbo .gt_footnote_marks {
+#mqnnknajtw .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#nnknajtwbo .gt_asterisk {
+#mqnnknajtw .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#nnknajtwbo .gt_indent_1 {
+#mqnnknajtw .gt_indent_1 {
   text-indent: 5px;
 }
 
-#nnknajtwbo .gt_indent_2 {
+#mqnnknajtw .gt_indent_2 {
   text-indent: 10px;
 }
 
-#nnknajtwbo .gt_indent_3 {
+#mqnnknajtw .gt_indent_3 {
   text-indent: 15px;
 }
 
-#nnknajtwbo .gt_indent_4 {
+#mqnnknajtw .gt_indent_4 {
   text-indent: 20px;
 }
 
-#nnknajtwbo .gt_indent_5 {
+#mqnnknajtw .gt_indent_5 {
   text-indent: 25px;
 }
 
-#nnknajtwbo .katex-display {
+#mqnnknajtw .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#nnknajtwbo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#mqnnknajtw div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1060,42 +1062,45 @@ Figure&nbsp;6.2
 <span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>var_order, <span class="sc">-</span>is_covariate)</span>
 <span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>spec_coveff_new_1 <span class="ot">&lt;-</span></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replace_spec_coveff</span>(spec_coveff, <span class="fu">bind_rows</span>(spec_new_bgluc, spec_new_bhba1c)) <span class="sc">|&gt;</span></span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># spec_new_race is separately provided as we want to change the reference level</span></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replace_spec_coveff</span>(spec_new_race, <span class="at">replace_ref_value =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>d_new_var_order <span class="ot">&lt;-</span></span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">var_name =</span> <span class="fu">c</span>(<span class="st">"AUCss_1000"</span>, <span class="st">"BGLUC"</span>, <span class="st">"BHBA1C_5"</span>, <span class="st">"RACE"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">var_order =</span> <span class="fu">row_number</span>())</span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>spec_coveff_new <span class="ot">&lt;-</span></span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>  spec_coveff_new_1 <span class="sc">|&gt;</span></span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>var_order) <span class="sc">|&gt;</span></span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(d_new_var_order, <span class="at">by =</span> <span class="st">"var_name"</span>)</span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>spec_coveff_new <span class="sc">|&gt;</span></span>
-<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">n_sigfig =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
-<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_integer</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"value_order"</span>, <span class="st">"var_order"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replace_spec_coveff</span>(</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    spec_coveff, <span class="fu">bind_rows</span>(spec_new_bgluc, spec_new_bhba1c)</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># spec_new_race is separately provided</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>  <span class="co"># as we want to change the reference level</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replace_spec_coveff</span>(spec_new_race, <span class="at">replace_ref_value =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>d_new_var_order <span class="ot">&lt;-</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">var_name =</span> <span class="fu">c</span>(<span class="st">"AUCss_1000"</span>, <span class="st">"BGLUC"</span>, <span class="st">"BHBA1C_5"</span>, <span class="st">"RACE"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">var_order =</span> <span class="fu">row_number</span>())</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>spec_coveff_new <span class="ot">&lt;-</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>  spec_coveff_new_1 <span class="sc">|&gt;</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>var_order) <span class="sc">|&gt;</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(d_new_var_order, <span class="at">by =</span> <span class="st">"var_name"</span>)</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>spec_coveff_new <span class="sc">|&gt;</span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">n_sigfig =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_integer</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"value_order"</span>, <span class="st">"var_order"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="joslyshlwz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#joslyshlwz table {
+<div id="bojoslyshl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#bojoslyshl table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#joslyshlwz thead, #joslyshlwz tbody, #joslyshlwz tfoot, #joslyshlwz tr, #joslyshlwz td, #joslyshlwz th {
+#bojoslyshl thead, #bojoslyshl tbody, #bojoslyshl tfoot, #bojoslyshl tr, #bojoslyshl td, #bojoslyshl th {
   border-style: none;
 }
 
-#joslyshlwz p {
+#bojoslyshl p {
   margin: 0;
   padding: 0;
 }
 
-#joslyshlwz .gt_table {
+#bojoslyshl .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1121,12 +1126,12 @@ Figure&nbsp;6.2
   border-left-color: #D3D3D3;
 }
 
-#joslyshlwz .gt_caption {
+#bojoslyshl .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#joslyshlwz .gt_title {
+#bojoslyshl .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1138,7 +1143,7 @@ Figure&nbsp;6.2
   border-bottom-width: 0;
 }
 
-#joslyshlwz .gt_subtitle {
+#bojoslyshl .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1150,7 +1155,7 @@ Figure&nbsp;6.2
   border-top-width: 0;
 }
 
-#joslyshlwz .gt_heading {
+#bojoslyshl .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1162,13 +1167,13 @@ Figure&nbsp;6.2
   border-right-color: #D3D3D3;
 }
 
-#joslyshlwz .gt_bottom_border {
+#bojoslyshl .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#joslyshlwz .gt_col_headings {
+#bojoslyshl .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1183,7 +1188,7 @@ Figure&nbsp;6.2
   border-right-color: #D3D3D3;
 }
 
-#joslyshlwz .gt_col_heading {
+#bojoslyshl .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1203,7 +1208,7 @@ Figure&nbsp;6.2
   overflow-x: hidden;
 }
 
-#joslyshlwz .gt_column_spanner_outer {
+#bojoslyshl .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1215,15 +1220,15 @@ Figure&nbsp;6.2
   padding-right: 4px;
 }
 
-#joslyshlwz .gt_column_spanner_outer:first-child {
+#bojoslyshl .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#joslyshlwz .gt_column_spanner_outer:last-child {
+#bojoslyshl .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#joslyshlwz .gt_column_spanner {
+#bojoslyshl .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1235,11 +1240,11 @@ Figure&nbsp;6.2
   width: 100%;
 }
 
-#joslyshlwz .gt_spanner_row {
+#bojoslyshl .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#joslyshlwz .gt_group_heading {
+#bojoslyshl .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1265,7 +1270,7 @@ Figure&nbsp;6.2
   text-align: left;
 }
 
-#joslyshlwz .gt_empty_group_heading {
+#bojoslyshl .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1280,15 +1285,15 @@ Figure&nbsp;6.2
   vertical-align: middle;
 }
 
-#joslyshlwz .gt_from_md > :first-child {
+#bojoslyshl .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#joslyshlwz .gt_from_md > :last-child {
+#bojoslyshl .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#joslyshlwz .gt_row {
+#bojoslyshl .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1307,7 +1312,7 @@ Figure&nbsp;6.2
   overflow-x: hidden;
 }
 
-#joslyshlwz .gt_stub {
+#bojoslyshl .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1320,7 +1325,7 @@ Figure&nbsp;6.2
   padding-right: 5px;
 }
 
-#joslyshlwz .gt_stub_row_group {
+#bojoslyshl .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1334,15 +1339,15 @@ Figure&nbsp;6.2
   vertical-align: top;
 }
 
-#joslyshlwz .gt_row_group_first td {
+#bojoslyshl .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#joslyshlwz .gt_row_group_first th {
+#bojoslyshl .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#joslyshlwz .gt_summary_row {
+#bojoslyshl .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1352,16 +1357,16 @@ Figure&nbsp;6.2
   padding-right: 5px;
 }
 
-#joslyshlwz .gt_first_summary_row {
+#bojoslyshl .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#joslyshlwz .gt_first_summary_row.thick {
+#bojoslyshl .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#joslyshlwz .gt_last_summary_row {
+#bojoslyshl .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1371,7 +1376,7 @@ Figure&nbsp;6.2
   border-bottom-color: #D3D3D3;
 }
 
-#joslyshlwz .gt_grand_summary_row {
+#bojoslyshl .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1381,7 +1386,7 @@ Figure&nbsp;6.2
   padding-right: 5px;
 }
 
-#joslyshlwz .gt_first_grand_summary_row {
+#bojoslyshl .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1391,7 +1396,7 @@ Figure&nbsp;6.2
   border-top-color: #D3D3D3;
 }
 
-#joslyshlwz .gt_last_grand_summary_row_top {
+#bojoslyshl .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1401,11 +1406,11 @@ Figure&nbsp;6.2
   border-bottom-color: #D3D3D3;
 }
 
-#joslyshlwz .gt_striped {
+#bojoslyshl .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#joslyshlwz .gt_table_body {
+#bojoslyshl .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1414,7 +1419,7 @@ Figure&nbsp;6.2
   border-bottom-color: #D3D3D3;
 }
 
-#joslyshlwz .gt_footnotes {
+#bojoslyshl .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1428,7 +1433,7 @@ Figure&nbsp;6.2
   border-right-color: #D3D3D3;
 }
 
-#joslyshlwz .gt_footnote {
+#bojoslyshl .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1437,7 +1442,7 @@ Figure&nbsp;6.2
   padding-right: 5px;
 }
 
-#joslyshlwz .gt_sourcenotes {
+#bojoslyshl .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1451,7 +1456,7 @@ Figure&nbsp;6.2
   border-right-color: #D3D3D3;
 }
 
-#joslyshlwz .gt_sourcenote {
+#bojoslyshl .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1459,72 +1464,72 @@ Figure&nbsp;6.2
   padding-right: 5px;
 }
 
-#joslyshlwz .gt_left {
+#bojoslyshl .gt_left {
   text-align: left;
 }
 
-#joslyshlwz .gt_center {
+#bojoslyshl .gt_center {
   text-align: center;
 }
 
-#joslyshlwz .gt_right {
+#bojoslyshl .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#joslyshlwz .gt_font_normal {
+#bojoslyshl .gt_font_normal {
   font-weight: normal;
 }
 
-#joslyshlwz .gt_font_bold {
+#bojoslyshl .gt_font_bold {
   font-weight: bold;
 }
 
-#joslyshlwz .gt_font_italic {
+#bojoslyshl .gt_font_italic {
   font-style: italic;
 }
 
-#joslyshlwz .gt_super {
+#bojoslyshl .gt_super {
   font-size: 65%;
 }
 
-#joslyshlwz .gt_footnote_marks {
+#bojoslyshl .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#joslyshlwz .gt_asterisk {
+#bojoslyshl .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#joslyshlwz .gt_indent_1 {
+#bojoslyshl .gt_indent_1 {
   text-indent: 5px;
 }
 
-#joslyshlwz .gt_indent_2 {
+#bojoslyshl .gt_indent_2 {
   text-indent: 10px;
 }
 
-#joslyshlwz .gt_indent_3 {
+#bojoslyshl .gt_indent_3 {
   text-indent: 15px;
 }
 
-#joslyshlwz .gt_indent_4 {
+#bojoslyshl .gt_indent_4 {
   text-indent: 20px;
 }
 
-#joslyshlwz .gt_indent_5 {
+#bojoslyshl .gt_indent_5 {
   text-indent: 25px;
 }
 
-#joslyshlwz .katex-display {
+#bojoslyshl .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#joslyshlwz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#bojoslyshl div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2341,7 +2346,7 @@ Figure&nbsp;6.3
 <span id="cb9-116"><a href="#cb9-116" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Re-calculate percentiles of BGLUC from new distribution (example below uses</span>
 <span id="cb9-117"><a href="#cb9-117" aria-hidden="true" tabindex="-1"></a>  uniform distribution between 4 and 8) and change the width of the quantile</span>
 <span id="cb9-118"><a href="#cb9-118" aria-hidden="true" tabindex="-1"></a>  interval to 0.8.</span>
-<span id="cb9-119"><a href="#cb9-119" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use specific values for BHBA1C (30, 35, 45, 50) and label with the original </span>
+<span id="cb9-119"><a href="#cb9-119" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use specific values for BHBA1C (30, 35, 45, 50) and label with the original</span>
 <span id="cb9-120"><a href="#cb9-120" aria-hidden="true" tabindex="-1"></a>  scale rather than those devided by 5 (used in the model).</span>
 <span id="cb9-121"><a href="#cb9-121" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use Asian as the reference level</span>
 <span id="cb9-122"><a href="#cb9-122" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Show the plots in the order of BGLUC, BHBA1C, and then RACE</span>
@@ -2373,37 +2378,40 @@ Figure&nbsp;6.3
 <span id="cb9-150"><a href="#cb9-150" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>var_order, <span class="sc">-</span>is_covariate)</span>
 <span id="cb9-151"><a href="#cb9-151" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-152"><a href="#cb9-152" aria-hidden="true" tabindex="-1"></a>spec_coveff_new_1 <span class="ot">&lt;-</span></span>
-<span id="cb9-153"><a href="#cb9-153" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replace_spec_coveff</span>(spec_coveff, <span class="fu">bind_rows</span>(spec_new_bgluc, spec_new_bhba1c)) <span class="sc">|&gt;</span></span>
-<span id="cb9-154"><a href="#cb9-154" aria-hidden="true" tabindex="-1"></a>  <span class="co"># spec_new_race is separately provided as we want to change the reference level</span></span>
-<span id="cb9-155"><a href="#cb9-155" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replace_spec_coveff</span>(spec_new_race, <span class="at">replace_ref_value =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb9-156"><a href="#cb9-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-157"><a href="#cb9-157" aria-hidden="true" tabindex="-1"></a>d_new_var_order <span class="ot">&lt;-</span></span>
-<span id="cb9-158"><a href="#cb9-158" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">var_name =</span> <span class="fu">c</span>(<span class="st">"AUCss_1000"</span>, <span class="st">"BGLUC"</span>, <span class="st">"BHBA1C_5"</span>, <span class="st">"RACE"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb9-159"><a href="#cb9-159" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">var_order =</span> <span class="fu">row_number</span>())</span>
-<span id="cb9-160"><a href="#cb9-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-161"><a href="#cb9-161" aria-hidden="true" tabindex="-1"></a>spec_coveff_new <span class="ot">&lt;-</span></span>
-<span id="cb9-162"><a href="#cb9-162" aria-hidden="true" tabindex="-1"></a>  spec_coveff_new_1 <span class="sc">|&gt;</span></span>
-<span id="cb9-163"><a href="#cb9-163" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>var_order) <span class="sc">|&gt;</span></span>
-<span id="cb9-164"><a href="#cb9-164" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(d_new_var_order, <span class="at">by =</span> <span class="st">"var_name"</span>)</span>
-<span id="cb9-165"><a href="#cb9-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-166"><a href="#cb9-166" aria-hidden="true" tabindex="-1"></a>spec_coveff_new <span class="sc">|&gt;</span></span>
-<span id="cb9-167"><a href="#cb9-167" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb9-168"><a href="#cb9-168" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">n_sigfig =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
-<span id="cb9-169"><a href="#cb9-169" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_integer</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"value_order"</span>, <span class="st">"var_order"</span>))</span>
-<span id="cb9-170"><a href="#cb9-170" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-171"><a href="#cb9-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-172"><a href="#cb9-172" aria-hidden="true" tabindex="-1"></a>The customized covariate effect plots can be generated using the <span class="in">`plot_coveff()`</span></span>
-<span id="cb9-173"><a href="#cb9-173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-176"><a href="#cb9-176" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-177"><a href="#cb9-177" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-cov-eff-custom</span></span>
-<span id="cb9-178"><a href="#cb9-178" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 6</span></span>
-<span id="cb9-179"><a href="#cb9-179" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
-<span id="cb9-180"><a href="#cb9-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-181"><a href="#cb9-181" aria-hidden="true" tabindex="-1"></a>coveffsim_spec <span class="ot">&lt;-</span> <span class="fu">sim_coveff</span>(ermod_bin_hgly2_cov, <span class="at">spec_coveff =</span> spec_coveff_new)</span>
-<span id="cb9-182"><a href="#cb9-182" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_coveff</span>(coveffsim_spec)</span>
-<span id="cb9-183"><a href="#cb9-183" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-184"><a href="#cb9-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-185"><a href="#cb9-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-153"><a href="#cb9-153" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replace_spec_coveff</span>(</span>
+<span id="cb9-154"><a href="#cb9-154" aria-hidden="true" tabindex="-1"></a>    spec_coveff, <span class="fu">bind_rows</span>(spec_new_bgluc, spec_new_bhba1c)</span>
+<span id="cb9-155"><a href="#cb9-155" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb9-156"><a href="#cb9-156" aria-hidden="true" tabindex="-1"></a>  <span class="co"># spec_new_race is separately provided</span></span>
+<span id="cb9-157"><a href="#cb9-157" aria-hidden="true" tabindex="-1"></a>  <span class="co"># as we want to change the reference level</span></span>
+<span id="cb9-158"><a href="#cb9-158" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replace_spec_coveff</span>(spec_new_race, <span class="at">replace_ref_value =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-159"><a href="#cb9-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-160"><a href="#cb9-160" aria-hidden="true" tabindex="-1"></a>d_new_var_order <span class="ot">&lt;-</span></span>
+<span id="cb9-161"><a href="#cb9-161" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">var_name =</span> <span class="fu">c</span>(<span class="st">"AUCss_1000"</span>, <span class="st">"BGLUC"</span>, <span class="st">"BHBA1C_5"</span>, <span class="st">"RACE"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb9-162"><a href="#cb9-162" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">var_order =</span> <span class="fu">row_number</span>())</span>
+<span id="cb9-163"><a href="#cb9-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-164"><a href="#cb9-164" aria-hidden="true" tabindex="-1"></a>spec_coveff_new <span class="ot">&lt;-</span></span>
+<span id="cb9-165"><a href="#cb9-165" aria-hidden="true" tabindex="-1"></a>  spec_coveff_new_1 <span class="sc">|&gt;</span></span>
+<span id="cb9-166"><a href="#cb9-166" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>var_order) <span class="sc">|&gt;</span></span>
+<span id="cb9-167"><a href="#cb9-167" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(d_new_var_order, <span class="at">by =</span> <span class="st">"var_name"</span>)</span>
+<span id="cb9-168"><a href="#cb9-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-169"><a href="#cb9-169" aria-hidden="true" tabindex="-1"></a>spec_coveff_new <span class="sc">|&gt;</span></span>
+<span id="cb9-170"><a href="#cb9-170" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb9-171"><a href="#cb9-171" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">n_sigfig =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-172"><a href="#cb9-172" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_integer</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"value_order"</span>, <span class="st">"var_order"</span>))</span>
+<span id="cb9-173"><a href="#cb9-173" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-174"><a href="#cb9-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-175"><a href="#cb9-175" aria-hidden="true" tabindex="-1"></a>The customized covariate effect plots can be generated using the <span class="in">`plot_coveff()`</span></span>
+<span id="cb9-176"><a href="#cb9-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-179"><a href="#cb9-179" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-180"><a href="#cb9-180" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-cov-eff-custom</span></span>
+<span id="cb9-181"><a href="#cb9-181" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 6</span></span>
+<span id="cb9-182"><a href="#cb9-182" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
+<span id="cb9-183"><a href="#cb9-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-184"><a href="#cb9-184" aria-hidden="true" tabindex="-1"></a>coveffsim_spec <span class="ot">&lt;-</span> <span class="fu">sim_coveff</span>(ermod_bin_hgly2_cov, <span class="at">spec_coveff =</span> spec_coveff_new)</span>
+<span id="cb9-185"><a href="#cb9-185" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_coveff</span>(coveffsim_spec)</span>
+<span id="cb9-186"><a href="#cb9-186" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-187"><a href="#cb9-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-188"><a href="#cb9-188" aria-hidden="true" tabindex="-1"></a></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

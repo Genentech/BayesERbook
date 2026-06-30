@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>3&nbsp; Model diagnostics and performance evaluation – BayesERbook: Exposure-response analysis with Bayesian approaches</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -69,15 +72,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../notebook/binary/simulation.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-b091dd3c12a5fa8ad5181305bec49a82.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-ec5dacfbc85b6aa211765d4aa5962a23.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -299,11 +301,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BayesERtools)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(posterior)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidybayes)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bayesplot)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bayesplot)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <section id="load-data" class="level2" data-number="3.1">
@@ -409,25 +410,23 @@ Figure&nbsp;3.2
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">n_sigfig =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<pre class="r-output"><code>
-```{=html}
-<div id="nnknajtwbo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#nnknajtwbo table {
+<div id="irbqdctpiv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#irbqdctpiv table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#nnknajtwbo thead, #nnknajtwbo tbody, #nnknajtwbo tfoot, #nnknajtwbo tr, #nnknajtwbo td, #nnknajtwbo th {
+#irbqdctpiv thead, #irbqdctpiv tbody, #irbqdctpiv tfoot, #irbqdctpiv tr, #irbqdctpiv td, #irbqdctpiv th {
   border-style: none;
 }
 
-#nnknajtwbo p {
+#irbqdctpiv p {
   margin: 0;
   padding: 0;
 }
 
-#nnknajtwbo .gt_table {
+#irbqdctpiv .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -453,12 +452,12 @@ Figure&nbsp;3.2
   border-left-color: #D3D3D3;
 }
 
-#nnknajtwbo .gt_caption {
+#irbqdctpiv .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#nnknajtwbo .gt_title {
+#irbqdctpiv .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -470,7 +469,7 @@ Figure&nbsp;3.2
   border-bottom-width: 0;
 }
 
-#nnknajtwbo .gt_subtitle {
+#irbqdctpiv .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -482,7 +481,7 @@ Figure&nbsp;3.2
   border-top-width: 0;
 }
 
-#nnknajtwbo .gt_heading {
+#irbqdctpiv .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -494,13 +493,13 @@ Figure&nbsp;3.2
   border-right-color: #D3D3D3;
 }
 
-#nnknajtwbo .gt_bottom_border {
+#irbqdctpiv .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#nnknajtwbo .gt_col_headings {
+#irbqdctpiv .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -515,7 +514,7 @@ Figure&nbsp;3.2
   border-right-color: #D3D3D3;
 }
 
-#nnknajtwbo .gt_col_heading {
+#irbqdctpiv .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -535,7 +534,7 @@ Figure&nbsp;3.2
   overflow-x: hidden;
 }
 
-#nnknajtwbo .gt_column_spanner_outer {
+#irbqdctpiv .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -547,15 +546,15 @@ Figure&nbsp;3.2
   padding-right: 4px;
 }
 
-#nnknajtwbo .gt_column_spanner_outer:first-child {
+#irbqdctpiv .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#nnknajtwbo .gt_column_spanner_outer:last-child {
+#irbqdctpiv .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#nnknajtwbo .gt_column_spanner {
+#irbqdctpiv .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -567,11 +566,11 @@ Figure&nbsp;3.2
   width: 100%;
 }
 
-#nnknajtwbo .gt_spanner_row {
+#irbqdctpiv .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#nnknajtwbo .gt_group_heading {
+#irbqdctpiv .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -597,7 +596,7 @@ Figure&nbsp;3.2
   text-align: left;
 }
 
-#nnknajtwbo .gt_empty_group_heading {
+#irbqdctpiv .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -612,15 +611,15 @@ Figure&nbsp;3.2
   vertical-align: middle;
 }
 
-#nnknajtwbo .gt_from_md > :first-child {
+#irbqdctpiv .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#nnknajtwbo .gt_from_md > :last-child {
+#irbqdctpiv .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#nnknajtwbo .gt_row {
+#irbqdctpiv .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -639,7 +638,7 @@ Figure&nbsp;3.2
   overflow-x: hidden;
 }
 
-#nnknajtwbo .gt_stub {
+#irbqdctpiv .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -652,7 +651,7 @@ Figure&nbsp;3.2
   padding-right: 5px;
 }
 
-#nnknajtwbo .gt_stub_row_group {
+#irbqdctpiv .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -666,15 +665,15 @@ Figure&nbsp;3.2
   vertical-align: top;
 }
 
-#nnknajtwbo .gt_row_group_first td {
+#irbqdctpiv .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#nnknajtwbo .gt_row_group_first th {
+#irbqdctpiv .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#nnknajtwbo .gt_summary_row {
+#irbqdctpiv .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -684,16 +683,16 @@ Figure&nbsp;3.2
   padding-right: 5px;
 }
 
-#nnknajtwbo .gt_first_summary_row {
+#irbqdctpiv .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#nnknajtwbo .gt_first_summary_row.thick {
+#irbqdctpiv .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#nnknajtwbo .gt_last_summary_row {
+#irbqdctpiv .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -703,7 +702,7 @@ Figure&nbsp;3.2
   border-bottom-color: #D3D3D3;
 }
 
-#nnknajtwbo .gt_grand_summary_row {
+#irbqdctpiv .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -713,7 +712,7 @@ Figure&nbsp;3.2
   padding-right: 5px;
 }
 
-#nnknajtwbo .gt_first_grand_summary_row {
+#irbqdctpiv .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -723,7 +722,7 @@ Figure&nbsp;3.2
   border-top-color: #D3D3D3;
 }
 
-#nnknajtwbo .gt_last_grand_summary_row_top {
+#irbqdctpiv .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -733,11 +732,11 @@ Figure&nbsp;3.2
   border-bottom-color: #D3D3D3;
 }
 
-#nnknajtwbo .gt_striped {
+#irbqdctpiv .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#nnknajtwbo .gt_table_body {
+#irbqdctpiv .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -746,7 +745,7 @@ Figure&nbsp;3.2
   border-bottom-color: #D3D3D3;
 }
 
-#nnknajtwbo .gt_footnotes {
+#irbqdctpiv .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -760,7 +759,7 @@ Figure&nbsp;3.2
   border-right-color: #D3D3D3;
 }
 
-#nnknajtwbo .gt_footnote {
+#irbqdctpiv .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -769,7 +768,7 @@ Figure&nbsp;3.2
   padding-right: 5px;
 }
 
-#nnknajtwbo .gt_sourcenotes {
+#irbqdctpiv .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -783,7 +782,7 @@ Figure&nbsp;3.2
   border-right-color: #D3D3D3;
 }
 
-#nnknajtwbo .gt_sourcenote {
+#irbqdctpiv .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -791,72 +790,72 @@ Figure&nbsp;3.2
   padding-right: 5px;
 }
 
-#nnknajtwbo .gt_left {
+#irbqdctpiv .gt_left {
   text-align: left;
 }
 
-#nnknajtwbo .gt_center {
+#irbqdctpiv .gt_center {
   text-align: center;
 }
 
-#nnknajtwbo .gt_right {
+#irbqdctpiv .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#nnknajtwbo .gt_font_normal {
+#irbqdctpiv .gt_font_normal {
   font-weight: normal;
 }
 
-#nnknajtwbo .gt_font_bold {
+#irbqdctpiv .gt_font_bold {
   font-weight: bold;
 }
 
-#nnknajtwbo .gt_font_italic {
+#irbqdctpiv .gt_font_italic {
   font-style: italic;
 }
 
-#nnknajtwbo .gt_super {
+#irbqdctpiv .gt_super {
   font-size: 65%;
 }
 
-#nnknajtwbo .gt_footnote_marks {
+#irbqdctpiv .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#nnknajtwbo .gt_asterisk {
+#irbqdctpiv .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#nnknajtwbo .gt_indent_1 {
+#irbqdctpiv .gt_indent_1 {
   text-indent: 5px;
 }
 
-#nnknajtwbo .gt_indent_2 {
+#irbqdctpiv .gt_indent_2 {
   text-indent: 10px;
 }
 
-#nnknajtwbo .gt_indent_3 {
+#irbqdctpiv .gt_indent_3 {
   text-indent: 15px;
 }
 
-#nnknajtwbo .gt_indent_4 {
+#irbqdctpiv .gt_indent_4 {
   text-indent: 20px;
 }
 
-#nnknajtwbo .gt_indent_5 {
+#irbqdctpiv .gt_indent_5 {
   text-indent: 25px;
 }
 
-#nnknajtwbo .katex-display {
+#irbqdctpiv .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#nnknajtwbo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#irbqdctpiv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -902,8 +901,6 @@ Figure&nbsp;3.2
 </table>
 
 </div>
-```
-</code></pre>
 </div>
 </div>
 </div>
@@ -918,25 +915,23 @@ Figure&nbsp;3.2
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">n_sigfig =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<pre class="r-output"><code>
-```{=html}
-<div id="joslyshlwz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#joslyshlwz table {
+<div id="zfdokmkwwe" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zfdokmkwwe table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#joslyshlwz thead, #joslyshlwz tbody, #joslyshlwz tfoot, #joslyshlwz tr, #joslyshlwz td, #joslyshlwz th {
+#zfdokmkwwe thead, #zfdokmkwwe tbody, #zfdokmkwwe tfoot, #zfdokmkwwe tr, #zfdokmkwwe td, #zfdokmkwwe th {
   border-style: none;
 }
 
-#joslyshlwz p {
+#zfdokmkwwe p {
   margin: 0;
   padding: 0;
 }
 
-#joslyshlwz .gt_table {
+#zfdokmkwwe .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -962,12 +957,12 @@ Figure&nbsp;3.2
   border-left-color: #D3D3D3;
 }
 
-#joslyshlwz .gt_caption {
+#zfdokmkwwe .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#joslyshlwz .gt_title {
+#zfdokmkwwe .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -979,7 +974,7 @@ Figure&nbsp;3.2
   border-bottom-width: 0;
 }
 
-#joslyshlwz .gt_subtitle {
+#zfdokmkwwe .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -991,7 +986,7 @@ Figure&nbsp;3.2
   border-top-width: 0;
 }
 
-#joslyshlwz .gt_heading {
+#zfdokmkwwe .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1003,13 +998,13 @@ Figure&nbsp;3.2
   border-right-color: #D3D3D3;
 }
 
-#joslyshlwz .gt_bottom_border {
+#zfdokmkwwe .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#joslyshlwz .gt_col_headings {
+#zfdokmkwwe .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1024,7 +1019,7 @@ Figure&nbsp;3.2
   border-right-color: #D3D3D3;
 }
 
-#joslyshlwz .gt_col_heading {
+#zfdokmkwwe .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1044,7 +1039,7 @@ Figure&nbsp;3.2
   overflow-x: hidden;
 }
 
-#joslyshlwz .gt_column_spanner_outer {
+#zfdokmkwwe .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1056,15 +1051,15 @@ Figure&nbsp;3.2
   padding-right: 4px;
 }
 
-#joslyshlwz .gt_column_spanner_outer:first-child {
+#zfdokmkwwe .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#joslyshlwz .gt_column_spanner_outer:last-child {
+#zfdokmkwwe .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#joslyshlwz .gt_column_spanner {
+#zfdokmkwwe .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1076,11 +1071,11 @@ Figure&nbsp;3.2
   width: 100%;
 }
 
-#joslyshlwz .gt_spanner_row {
+#zfdokmkwwe .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#joslyshlwz .gt_group_heading {
+#zfdokmkwwe .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1106,7 +1101,7 @@ Figure&nbsp;3.2
   text-align: left;
 }
 
-#joslyshlwz .gt_empty_group_heading {
+#zfdokmkwwe .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1121,15 +1116,15 @@ Figure&nbsp;3.2
   vertical-align: middle;
 }
 
-#joslyshlwz .gt_from_md > :first-child {
+#zfdokmkwwe .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#joslyshlwz .gt_from_md > :last-child {
+#zfdokmkwwe .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#joslyshlwz .gt_row {
+#zfdokmkwwe .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1148,7 +1143,7 @@ Figure&nbsp;3.2
   overflow-x: hidden;
 }
 
-#joslyshlwz .gt_stub {
+#zfdokmkwwe .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1161,7 +1156,7 @@ Figure&nbsp;3.2
   padding-right: 5px;
 }
 
-#joslyshlwz .gt_stub_row_group {
+#zfdokmkwwe .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1175,15 +1170,15 @@ Figure&nbsp;3.2
   vertical-align: top;
 }
 
-#joslyshlwz .gt_row_group_first td {
+#zfdokmkwwe .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#joslyshlwz .gt_row_group_first th {
+#zfdokmkwwe .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#joslyshlwz .gt_summary_row {
+#zfdokmkwwe .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1193,16 +1188,16 @@ Figure&nbsp;3.2
   padding-right: 5px;
 }
 
-#joslyshlwz .gt_first_summary_row {
+#zfdokmkwwe .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#joslyshlwz .gt_first_summary_row.thick {
+#zfdokmkwwe .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#joslyshlwz .gt_last_summary_row {
+#zfdokmkwwe .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1212,7 +1207,7 @@ Figure&nbsp;3.2
   border-bottom-color: #D3D3D3;
 }
 
-#joslyshlwz .gt_grand_summary_row {
+#zfdokmkwwe .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1222,7 +1217,7 @@ Figure&nbsp;3.2
   padding-right: 5px;
 }
 
-#joslyshlwz .gt_first_grand_summary_row {
+#zfdokmkwwe .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1232,7 +1227,7 @@ Figure&nbsp;3.2
   border-top-color: #D3D3D3;
 }
 
-#joslyshlwz .gt_last_grand_summary_row_top {
+#zfdokmkwwe .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1242,11 +1237,11 @@ Figure&nbsp;3.2
   border-bottom-color: #D3D3D3;
 }
 
-#joslyshlwz .gt_striped {
+#zfdokmkwwe .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#joslyshlwz .gt_table_body {
+#zfdokmkwwe .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1255,7 +1250,7 @@ Figure&nbsp;3.2
   border-bottom-color: #D3D3D3;
 }
 
-#joslyshlwz .gt_footnotes {
+#zfdokmkwwe .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1269,7 +1264,7 @@ Figure&nbsp;3.2
   border-right-color: #D3D3D3;
 }
 
-#joslyshlwz .gt_footnote {
+#zfdokmkwwe .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1278,7 +1273,7 @@ Figure&nbsp;3.2
   padding-right: 5px;
 }
 
-#joslyshlwz .gt_sourcenotes {
+#zfdokmkwwe .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1292,7 +1287,7 @@ Figure&nbsp;3.2
   border-right-color: #D3D3D3;
 }
 
-#joslyshlwz .gt_sourcenote {
+#zfdokmkwwe .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1300,72 +1295,72 @@ Figure&nbsp;3.2
   padding-right: 5px;
 }
 
-#joslyshlwz .gt_left {
+#zfdokmkwwe .gt_left {
   text-align: left;
 }
 
-#joslyshlwz .gt_center {
+#zfdokmkwwe .gt_center {
   text-align: center;
 }
 
-#joslyshlwz .gt_right {
+#zfdokmkwwe .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#joslyshlwz .gt_font_normal {
+#zfdokmkwwe .gt_font_normal {
   font-weight: normal;
 }
 
-#joslyshlwz .gt_font_bold {
+#zfdokmkwwe .gt_font_bold {
   font-weight: bold;
 }
 
-#joslyshlwz .gt_font_italic {
+#zfdokmkwwe .gt_font_italic {
   font-style: italic;
 }
 
-#joslyshlwz .gt_super {
+#zfdokmkwwe .gt_super {
   font-size: 65%;
 }
 
-#joslyshlwz .gt_footnote_marks {
+#zfdokmkwwe .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#joslyshlwz .gt_asterisk {
+#zfdokmkwwe .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#joslyshlwz .gt_indent_1 {
+#zfdokmkwwe .gt_indent_1 {
   text-indent: 5px;
 }
 
-#joslyshlwz .gt_indent_2 {
+#zfdokmkwwe .gt_indent_2 {
   text-indent: 10px;
 }
 
-#joslyshlwz .gt_indent_3 {
+#zfdokmkwwe .gt_indent_3 {
   text-indent: 15px;
 }
 
-#joslyshlwz .gt_indent_4 {
+#zfdokmkwwe .gt_indent_4 {
   text-indent: 20px;
 }
 
-#joslyshlwz .gt_indent_5 {
+#zfdokmkwwe .gt_indent_5 {
   text-indent: 25px;
 }
 
-#joslyshlwz .katex-display {
+#zfdokmkwwe .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#joslyshlwz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#zfdokmkwwe div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1411,8 +1406,6 @@ Figure&nbsp;3.2
 </table>
 
 </div>
-```
-</code></pre>
 </div>
 </div>
 </div>
@@ -1442,25 +1435,23 @@ Figure&nbsp;3.2
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">n_sigfig =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<pre class="r-output"><code>
-```{=html}
-<div id="gnfhchswdo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#gnfhchswdo table {
+<div id="ojzbztjjjq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ojzbztjjjq table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#gnfhchswdo thead, #gnfhchswdo tbody, #gnfhchswdo tfoot, #gnfhchswdo tr, #gnfhchswdo td, #gnfhchswdo th {
+#ojzbztjjjq thead, #ojzbztjjjq tbody, #ojzbztjjjq tfoot, #ojzbztjjjq tr, #ojzbztjjjq td, #ojzbztjjjq th {
   border-style: none;
 }
 
-#gnfhchswdo p {
+#ojzbztjjjq p {
   margin: 0;
   padding: 0;
 }
 
-#gnfhchswdo .gt_table {
+#ojzbztjjjq .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1486,12 +1477,12 @@ Figure&nbsp;3.2
   border-left-color: #D3D3D3;
 }
 
-#gnfhchswdo .gt_caption {
+#ojzbztjjjq .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#gnfhchswdo .gt_title {
+#ojzbztjjjq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1503,7 +1494,7 @@ Figure&nbsp;3.2
   border-bottom-width: 0;
 }
 
-#gnfhchswdo .gt_subtitle {
+#ojzbztjjjq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1515,7 +1506,7 @@ Figure&nbsp;3.2
   border-top-width: 0;
 }
 
-#gnfhchswdo .gt_heading {
+#ojzbztjjjq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1527,13 +1518,13 @@ Figure&nbsp;3.2
   border-right-color: #D3D3D3;
 }
 
-#gnfhchswdo .gt_bottom_border {
+#ojzbztjjjq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#gnfhchswdo .gt_col_headings {
+#ojzbztjjjq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1548,7 +1539,7 @@ Figure&nbsp;3.2
   border-right-color: #D3D3D3;
 }
 
-#gnfhchswdo .gt_col_heading {
+#ojzbztjjjq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1568,7 +1559,7 @@ Figure&nbsp;3.2
   overflow-x: hidden;
 }
 
-#gnfhchswdo .gt_column_spanner_outer {
+#ojzbztjjjq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1580,15 +1571,15 @@ Figure&nbsp;3.2
   padding-right: 4px;
 }
 
-#gnfhchswdo .gt_column_spanner_outer:first-child {
+#ojzbztjjjq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#gnfhchswdo .gt_column_spanner_outer:last-child {
+#ojzbztjjjq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#gnfhchswdo .gt_column_spanner {
+#ojzbztjjjq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1600,11 +1591,11 @@ Figure&nbsp;3.2
   width: 100%;
 }
 
-#gnfhchswdo .gt_spanner_row {
+#ojzbztjjjq .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#gnfhchswdo .gt_group_heading {
+#ojzbztjjjq .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1630,7 +1621,7 @@ Figure&nbsp;3.2
   text-align: left;
 }
 
-#gnfhchswdo .gt_empty_group_heading {
+#ojzbztjjjq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1645,15 +1636,15 @@ Figure&nbsp;3.2
   vertical-align: middle;
 }
 
-#gnfhchswdo .gt_from_md > :first-child {
+#ojzbztjjjq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#gnfhchswdo .gt_from_md > :last-child {
+#ojzbztjjjq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#gnfhchswdo .gt_row {
+#ojzbztjjjq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1672,7 +1663,7 @@ Figure&nbsp;3.2
   overflow-x: hidden;
 }
 
-#gnfhchswdo .gt_stub {
+#ojzbztjjjq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1685,7 +1676,7 @@ Figure&nbsp;3.2
   padding-right: 5px;
 }
 
-#gnfhchswdo .gt_stub_row_group {
+#ojzbztjjjq .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1699,15 +1690,15 @@ Figure&nbsp;3.2
   vertical-align: top;
 }
 
-#gnfhchswdo .gt_row_group_first td {
+#ojzbztjjjq .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#gnfhchswdo .gt_row_group_first th {
+#ojzbztjjjq .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#gnfhchswdo .gt_summary_row {
+#ojzbztjjjq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1717,16 +1708,16 @@ Figure&nbsp;3.2
   padding-right: 5px;
 }
 
-#gnfhchswdo .gt_first_summary_row {
+#ojzbztjjjq .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#gnfhchswdo .gt_first_summary_row.thick {
+#ojzbztjjjq .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#gnfhchswdo .gt_last_summary_row {
+#ojzbztjjjq .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1736,7 +1727,7 @@ Figure&nbsp;3.2
   border-bottom-color: #D3D3D3;
 }
 
-#gnfhchswdo .gt_grand_summary_row {
+#ojzbztjjjq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1746,7 +1737,7 @@ Figure&nbsp;3.2
   padding-right: 5px;
 }
 
-#gnfhchswdo .gt_first_grand_summary_row {
+#ojzbztjjjq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1756,7 +1747,7 @@ Figure&nbsp;3.2
   border-top-color: #D3D3D3;
 }
 
-#gnfhchswdo .gt_last_grand_summary_row_top {
+#ojzbztjjjq .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1766,11 +1757,11 @@ Figure&nbsp;3.2
   border-bottom-color: #D3D3D3;
 }
 
-#gnfhchswdo .gt_striped {
+#ojzbztjjjq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#gnfhchswdo .gt_table_body {
+#ojzbztjjjq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1779,7 +1770,7 @@ Figure&nbsp;3.2
   border-bottom-color: #D3D3D3;
 }
 
-#gnfhchswdo .gt_footnotes {
+#ojzbztjjjq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1793,7 +1784,7 @@ Figure&nbsp;3.2
   border-right-color: #D3D3D3;
 }
 
-#gnfhchswdo .gt_footnote {
+#ojzbztjjjq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1802,7 +1793,7 @@ Figure&nbsp;3.2
   padding-right: 5px;
 }
 
-#gnfhchswdo .gt_sourcenotes {
+#ojzbztjjjq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1816,7 +1807,7 @@ Figure&nbsp;3.2
   border-right-color: #D3D3D3;
 }
 
-#gnfhchswdo .gt_sourcenote {
+#ojzbztjjjq .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1824,72 +1815,72 @@ Figure&nbsp;3.2
   padding-right: 5px;
 }
 
-#gnfhchswdo .gt_left {
+#ojzbztjjjq .gt_left {
   text-align: left;
 }
 
-#gnfhchswdo .gt_center {
+#ojzbztjjjq .gt_center {
   text-align: center;
 }
 
-#gnfhchswdo .gt_right {
+#ojzbztjjjq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#gnfhchswdo .gt_font_normal {
+#ojzbztjjjq .gt_font_normal {
   font-weight: normal;
 }
 
-#gnfhchswdo .gt_font_bold {
+#ojzbztjjjq .gt_font_bold {
   font-weight: bold;
 }
 
-#gnfhchswdo .gt_font_italic {
+#ojzbztjjjq .gt_font_italic {
   font-style: italic;
 }
 
-#gnfhchswdo .gt_super {
+#ojzbztjjjq .gt_super {
   font-size: 65%;
 }
 
-#gnfhchswdo .gt_footnote_marks {
+#ojzbztjjjq .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#gnfhchswdo .gt_asterisk {
+#ojzbztjjjq .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#gnfhchswdo .gt_indent_1 {
+#ojzbztjjjq .gt_indent_1 {
   text-indent: 5px;
 }
 
-#gnfhchswdo .gt_indent_2 {
+#ojzbztjjjq .gt_indent_2 {
   text-indent: 10px;
 }
 
-#gnfhchswdo .gt_indent_3 {
+#ojzbztjjjq .gt_indent_3 {
   text-indent: 15px;
 }
 
-#gnfhchswdo .gt_indent_4 {
+#ojzbztjjjq .gt_indent_4 {
   text-indent: 20px;
 }
 
-#gnfhchswdo .gt_indent_5 {
+#ojzbztjjjq .gt_indent_5 {
   text-indent: 25px;
 }
 
-#gnfhchswdo .katex-display {
+#ojzbztjjjq .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#gnfhchswdo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ojzbztjjjq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1917,8 +1908,6 @@ Figure&nbsp;3.2
 </table>
 
 </div>
-```
-</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Show the code</summary>
@@ -1928,25 +1917,23 @@ Figure&nbsp;3.2
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_integer</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"fold_id"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<pre class="r-output"><code>
-```{=html}
-<div id="fvqnzjrnoe" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#fvqnzjrnoe table {
+<div id="aftxcntcbp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#aftxcntcbp table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#fvqnzjrnoe thead, #fvqnzjrnoe tbody, #fvqnzjrnoe tfoot, #fvqnzjrnoe tr, #fvqnzjrnoe td, #fvqnzjrnoe th {
+#aftxcntcbp thead, #aftxcntcbp tbody, #aftxcntcbp tfoot, #aftxcntcbp tr, #aftxcntcbp td, #aftxcntcbp th {
   border-style: none;
 }
 
-#fvqnzjrnoe p {
+#aftxcntcbp p {
   margin: 0;
   padding: 0;
 }
 
-#fvqnzjrnoe .gt_table {
+#aftxcntcbp .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1972,12 +1959,12 @@ Figure&nbsp;3.2
   border-left-color: #D3D3D3;
 }
 
-#fvqnzjrnoe .gt_caption {
+#aftxcntcbp .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#fvqnzjrnoe .gt_title {
+#aftxcntcbp .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1989,7 +1976,7 @@ Figure&nbsp;3.2
   border-bottom-width: 0;
 }
 
-#fvqnzjrnoe .gt_subtitle {
+#aftxcntcbp .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2001,7 +1988,7 @@ Figure&nbsp;3.2
   border-top-width: 0;
 }
 
-#fvqnzjrnoe .gt_heading {
+#aftxcntcbp .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2013,13 +2000,13 @@ Figure&nbsp;3.2
   border-right-color: #D3D3D3;
 }
 
-#fvqnzjrnoe .gt_bottom_border {
+#aftxcntcbp .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#fvqnzjrnoe .gt_col_headings {
+#aftxcntcbp .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2034,7 +2021,7 @@ Figure&nbsp;3.2
   border-right-color: #D3D3D3;
 }
 
-#fvqnzjrnoe .gt_col_heading {
+#aftxcntcbp .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2054,7 +2041,7 @@ Figure&nbsp;3.2
   overflow-x: hidden;
 }
 
-#fvqnzjrnoe .gt_column_spanner_outer {
+#aftxcntcbp .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2066,15 +2053,15 @@ Figure&nbsp;3.2
   padding-right: 4px;
 }
 
-#fvqnzjrnoe .gt_column_spanner_outer:first-child {
+#aftxcntcbp .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#fvqnzjrnoe .gt_column_spanner_outer:last-child {
+#aftxcntcbp .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#fvqnzjrnoe .gt_column_spanner {
+#aftxcntcbp .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2086,11 +2073,11 @@ Figure&nbsp;3.2
   width: 100%;
 }
 
-#fvqnzjrnoe .gt_spanner_row {
+#aftxcntcbp .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#fvqnzjrnoe .gt_group_heading {
+#aftxcntcbp .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2116,7 +2103,7 @@ Figure&nbsp;3.2
   text-align: left;
 }
 
-#fvqnzjrnoe .gt_empty_group_heading {
+#aftxcntcbp .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2131,15 +2118,15 @@ Figure&nbsp;3.2
   vertical-align: middle;
 }
 
-#fvqnzjrnoe .gt_from_md > :first-child {
+#aftxcntcbp .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#fvqnzjrnoe .gt_from_md > :last-child {
+#aftxcntcbp .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#fvqnzjrnoe .gt_row {
+#aftxcntcbp .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2158,7 +2145,7 @@ Figure&nbsp;3.2
   overflow-x: hidden;
 }
 
-#fvqnzjrnoe .gt_stub {
+#aftxcntcbp .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2171,7 +2158,7 @@ Figure&nbsp;3.2
   padding-right: 5px;
 }
 
-#fvqnzjrnoe .gt_stub_row_group {
+#aftxcntcbp .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2185,15 +2172,15 @@ Figure&nbsp;3.2
   vertical-align: top;
 }
 
-#fvqnzjrnoe .gt_row_group_first td {
+#aftxcntcbp .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#fvqnzjrnoe .gt_row_group_first th {
+#aftxcntcbp .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#fvqnzjrnoe .gt_summary_row {
+#aftxcntcbp .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2203,16 +2190,16 @@ Figure&nbsp;3.2
   padding-right: 5px;
 }
 
-#fvqnzjrnoe .gt_first_summary_row {
+#aftxcntcbp .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#fvqnzjrnoe .gt_first_summary_row.thick {
+#aftxcntcbp .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#fvqnzjrnoe .gt_last_summary_row {
+#aftxcntcbp .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2222,7 +2209,7 @@ Figure&nbsp;3.2
   border-bottom-color: #D3D3D3;
 }
 
-#fvqnzjrnoe .gt_grand_summary_row {
+#aftxcntcbp .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2232,7 +2219,7 @@ Figure&nbsp;3.2
   padding-right: 5px;
 }
 
-#fvqnzjrnoe .gt_first_grand_summary_row {
+#aftxcntcbp .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2242,7 +2229,7 @@ Figure&nbsp;3.2
   border-top-color: #D3D3D3;
 }
 
-#fvqnzjrnoe .gt_last_grand_summary_row_top {
+#aftxcntcbp .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2252,11 +2239,11 @@ Figure&nbsp;3.2
   border-bottom-color: #D3D3D3;
 }
 
-#fvqnzjrnoe .gt_striped {
+#aftxcntcbp .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#fvqnzjrnoe .gt_table_body {
+#aftxcntcbp .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2265,7 +2252,7 @@ Figure&nbsp;3.2
   border-bottom-color: #D3D3D3;
 }
 
-#fvqnzjrnoe .gt_footnotes {
+#aftxcntcbp .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2279,7 +2266,7 @@ Figure&nbsp;3.2
   border-right-color: #D3D3D3;
 }
 
-#fvqnzjrnoe .gt_footnote {
+#aftxcntcbp .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2288,7 +2275,7 @@ Figure&nbsp;3.2
   padding-right: 5px;
 }
 
-#fvqnzjrnoe .gt_sourcenotes {
+#aftxcntcbp .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2302,7 +2289,7 @@ Figure&nbsp;3.2
   border-right-color: #D3D3D3;
 }
 
-#fvqnzjrnoe .gt_sourcenote {
+#aftxcntcbp .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2310,72 +2297,72 @@ Figure&nbsp;3.2
   padding-right: 5px;
 }
 
-#fvqnzjrnoe .gt_left {
+#aftxcntcbp .gt_left {
   text-align: left;
 }
 
-#fvqnzjrnoe .gt_center {
+#aftxcntcbp .gt_center {
   text-align: center;
 }
 
-#fvqnzjrnoe .gt_right {
+#aftxcntcbp .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#fvqnzjrnoe .gt_font_normal {
+#aftxcntcbp .gt_font_normal {
   font-weight: normal;
 }
 
-#fvqnzjrnoe .gt_font_bold {
+#aftxcntcbp .gt_font_bold {
   font-weight: bold;
 }
 
-#fvqnzjrnoe .gt_font_italic {
+#aftxcntcbp .gt_font_italic {
   font-style: italic;
 }
 
-#fvqnzjrnoe .gt_super {
+#aftxcntcbp .gt_super {
   font-size: 65%;
 }
 
-#fvqnzjrnoe .gt_footnote_marks {
+#aftxcntcbp .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#fvqnzjrnoe .gt_asterisk {
+#aftxcntcbp .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#fvqnzjrnoe .gt_indent_1 {
+#aftxcntcbp .gt_indent_1 {
   text-indent: 5px;
 }
 
-#fvqnzjrnoe .gt_indent_2 {
+#aftxcntcbp .gt_indent_2 {
   text-indent: 10px;
 }
 
-#fvqnzjrnoe .gt_indent_3 {
+#aftxcntcbp .gt_indent_3 {
   text-indent: 15px;
 }
 
-#fvqnzjrnoe .gt_indent_4 {
+#aftxcntcbp .gt_indent_4 {
   text-indent: 20px;
 }
 
-#fvqnzjrnoe .gt_indent_5 {
+#aftxcntcbp .gt_indent_5 {
   text-indent: 25px;
 }
 
-#fvqnzjrnoe .katex-display {
+#aftxcntcbp .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#fvqnzjrnoe div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#aftxcntcbp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2454,8 +2441,6 @@ Figure&nbsp;3.2
 </table>
 
 </div>
-```
-</code></pre>
 </div>
 </div>
 </section>
@@ -2571,7 +2556,7 @@ Figure&nbsp;3.5
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_hist</span>(d_draws_bin_hgly2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<pre class="r-output"><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+<pre class="r-output"><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.
 </code></pre>
 <div class="cell-output-display">
 <div id="fig-mcmc_hist" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
@@ -3083,7 +3068,7 @@ Figure&nbsp;3.7
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Model diagnostics and performance evaluation</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>This page showcase the model diagnosis and performance evaluation on the </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>This page showcase the model diagnosis and performance evaluation on the</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>ER model for binary endpoint.</span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
@@ -3094,240 +3079,239 @@ Figure&nbsp;3.7
 <span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BayesERtools)</span>
 <span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
 <span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(posterior)</span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidybayes)</span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bayesplot)</span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>))</span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: FALSE</span></span>
-<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Enable colored outputs</span></span>
-<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"R"</span>, <span class="st">"cli_color_text.R"</span>))</span>
-<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a><span class="fu">## Load data</span></span>
-<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(d_sim_binom_cov)</span>
-<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>d_sim_binom_cov_2 <span class="ot">&lt;-</span></span>
-<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a>  d_sim_binom_cov <span class="sc">|&gt;</span></span>
-<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">AUCss_1000 =</span> AUCss <span class="sc">/</span> <span class="dv">1000</span>, <span class="at">BAGE_10 =</span> BAGE <span class="sc">/</span> <span class="dv">10</span>,</span>
-<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">BWT_10 =</span> BWT <span class="sc">/</span> <span class="dv">10</span>, <span class="at">BHBA1C_5 =</span> BHBA1C <span class="sc">/</span> <span class="dv">5</span>,</span>
-<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">Dose =</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"{Dose_mg} mg"</span>)</span>
-<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Grade 2+ hypoglycemia</span></span>
-<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a>df_er_ae_hgly2 <span class="ot">&lt;-</span> d_sim_binom_cov_2 <span class="sc">|&gt;</span> <span class="fu">filter</span>(AETYPE <span class="sc">==</span> <span class="st">"hgly2"</span>)</span>
-<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Grade 2+ diarrhea</span></span>
-<span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a>df_er_ae_dr2 <span class="ot">&lt;-</span> d_sim_binom_cov_2 <span class="sc">|&gt;</span> <span class="fu">filter</span>(AETYPE <span class="sc">==</span> <span class="st">"dr2"</span>)</span>
-<span id="cb17-50"><a href="#cb17-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-51"><a href="#cb17-51" aria-hidden="true" tabindex="-1"></a>var_resp <span class="ot">&lt;-</span> <span class="st">"AEFLAG"</span></span>
-<span id="cb17-52"><a href="#cb17-52" aria-hidden="true" tabindex="-1"></a>var_exposure <span class="ot">&lt;-</span> <span class="st">"AUCss_1000"</span></span>
-<span id="cb17-53"><a href="#cb17-53" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-54"><a href="#cb17-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-55"><a href="#cb17-55" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fit models</span></span>
-<span id="cb17-56"><a href="#cb17-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-57"><a href="#cb17-57" aria-hidden="true" tabindex="-1"></a>There is clear trend of E-R for hyperglycemia (95% CI doesn't include 0) </span>
-<span id="cb17-58"><a href="#cb17-58" aria-hidden="true" tabindex="-1"></a>while the evidence of E-R is not seen for diarrhea (95% CI includes 0).</span>
-<span id="cb17-59"><a href="#cb17-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-60"><a href="#cb17-60" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset}</span>
-<span id="cb17-61"><a href="#cb17-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-62"><a href="#cb17-62" aria-hidden="true" tabindex="-1"></a><span class="fu">### Hyperglycemia</span></span>
-<span id="cb17-63"><a href="#cb17-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-66"><a href="#cb17-66" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-67"><a href="#cb17-67" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-data-fit-hgly2</span></span>
-<span id="cb17-68"><a href="#cb17-68" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 7</span></span>
-<span id="cb17-69"><a href="#cb17-69" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
-<span id="cb17-70"><a href="#cb17-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-71"><a href="#cb17-71" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb17-72"><a href="#cb17-72" aria-hidden="true" tabindex="-1"></a>ermod_bin_hgly2 <span class="ot">&lt;-</span> <span class="fu">dev_ermod_bin</span>(</span>
-<span id="cb17-73"><a href="#cb17-73" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> df_er_ae_hgly2,</span>
-<span id="cb17-74"><a href="#cb17-74" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_resp =</span> var_resp,</span>
-<span id="cb17-75"><a href="#cb17-75" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_exposure =</span> var_exposure</span>
-<span id="cb17-76"><a href="#cb17-76" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb17-77"><a href="#cb17-77" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_er_gof</span>(ermod_bin_hgly2, <span class="at">var_group =</span> <span class="st">"Dose"</span>, <span class="at">show_coef_exp =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb17-78"><a href="#cb17-78" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-79"><a href="#cb17-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-80"><a href="#cb17-80" aria-hidden="true" tabindex="-1"></a><span class="fu">### Diarrhea</span></span>
-<span id="cb17-81"><a href="#cb17-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-84"><a href="#cb17-84" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-85"><a href="#cb17-85" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-data-fit-dr2</span></span>
-<span id="cb17-86"><a href="#cb17-86" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 7</span></span>
-<span id="cb17-87"><a href="#cb17-87" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
-<span id="cb17-88"><a href="#cb17-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-89"><a href="#cb17-89" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb17-90"><a href="#cb17-90" aria-hidden="true" tabindex="-1"></a>ermod_bin_dr2 <span class="ot">&lt;-</span> <span class="fu">dev_ermod_bin</span>(</span>
-<span id="cb17-91"><a href="#cb17-91" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> df_er_ae_dr2,</span>
-<span id="cb17-92"><a href="#cb17-92" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_resp =</span> var_resp,</span>
-<span id="cb17-93"><a href="#cb17-93" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_exposure =</span> var_exposure</span>
-<span id="cb17-94"><a href="#cb17-94" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb17-95"><a href="#cb17-95" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_er_gof</span>(ermod_bin_dr2, <span class="at">var_group =</span> <span class="st">"Dose"</span>, <span class="at">show_coef_exp =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb17-96"><a href="#cb17-96" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-97"><a href="#cb17-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-98"><a href="#cb17-98" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb17-99"><a href="#cb17-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-100"><a href="#cb17-100" aria-hidden="true" tabindex="-1"></a><span class="fu">## Parameter summary</span></span>
-<span id="cb17-101"><a href="#cb17-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-102"><a href="#cb17-102" aria-hidden="true" tabindex="-1"></a>You can see that AUCss effect is much stronger for hyperglycemia than diarrhea.</span>
-<span id="cb17-103"><a href="#cb17-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-104"><a href="#cb17-104" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset}</span>
-<span id="cb17-105"><a href="#cb17-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-106"><a href="#cb17-106" aria-hidden="true" tabindex="-1"></a><span class="fu">### Hyperglycemia</span></span>
-<span id="cb17-107"><a href="#cb17-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-110"><a href="#cb17-110" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-111"><a href="#cb17-111" aria-hidden="true" tabindex="-1"></a>ermod_bin_hgly2 <span class="sc">|&gt;</span></span>
-<span id="cb17-112"><a href="#cb17-112" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_draws</span>(mean, median, sd, <span class="sc">~</span> <span class="fu">quantile2</span>(.x, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>)),</span>
-<span id="cb17-113"><a href="#cb17-113" aria-hidden="true" tabindex="-1"></a>    <span class="fu">default_convergence_measures</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb17-114"><a href="#cb17-114" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb17-115"><a href="#cb17-115" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">n_sigfig =</span> <span class="dv">3</span>)</span>
-<span id="cb17-116"><a href="#cb17-116" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-117"><a href="#cb17-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-118"><a href="#cb17-118" aria-hidden="true" tabindex="-1"></a><span class="fu">### Diarrhea</span></span>
-<span id="cb17-119"><a href="#cb17-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-122"><a href="#cb17-122" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-123"><a href="#cb17-123" aria-hidden="true" tabindex="-1"></a>ermod_bin_dr2 <span class="sc">|&gt;</span></span>
-<span id="cb17-124"><a href="#cb17-124" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_draws</span>(mean, median, sd, <span class="sc">~</span> <span class="fu">quantile2</span>(.x, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>)),</span>
-<span id="cb17-125"><a href="#cb17-125" aria-hidden="true" tabindex="-1"></a>    <span class="fu">default_convergence_measures</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb17-126"><a href="#cb17-126" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb17-127"><a href="#cb17-127" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">n_sigfig =</span> <span class="dv">3</span>)</span>
-<span id="cb17-128"><a href="#cb17-128" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-129"><a href="#cb17-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-130"><a href="#cb17-130" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb17-131"><a href="#cb17-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-132"><a href="#cb17-132" aria-hidden="true" tabindex="-1"></a><span class="fu">## Predictive performance evaluation</span></span>
-<span id="cb17-133"><a href="#cb17-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-134"><a href="#cb17-134" aria-hidden="true" tabindex="-1"></a>We can calculate predictive performance metrics such as AUC-ROC with </span>
-<span id="cb17-135"><a href="#cb17-135" aria-hidden="true" tabindex="-1"></a><span class="in">`eval_ermod()`</span> function. Options for evaluation data are:</span>
-<span id="cb17-136"><a href="#cb17-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-137"><a href="#cb17-137" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`eval_type = "training"`</span>: training data</span>
-<span id="cb17-138"><a href="#cb17-138" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`eval_type = "test"`</span>: test data (supply to <span class="in">`newdata`</span> argument)</span>
-<span id="cb17-139"><a href="#cb17-139" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`eval_type = "kfold"`</span>: k-fold cross-validation</span>
-<span id="cb17-140"><a href="#cb17-140" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-143"><a href="#cb17-143" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-144"><a href="#cb17-144" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: FALSE</span></span>
-<span id="cb17-145"><a href="#cb17-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-146"><a href="#cb17-146" aria-hidden="true" tabindex="-1"></a>metrics_hgly2_train <span class="ot">&lt;-</span> <span class="fu">eval_ermod</span>(ermod_bin_hgly2, <span class="at">eval_type =</span> <span class="st">"training"</span>)</span>
-<span id="cb17-147"><a href="#cb17-147" aria-hidden="true" tabindex="-1"></a>metrics_hgly2_kfold <span class="ot">&lt;-</span> <span class="fu">eval_ermod</span>(ermod_bin_hgly2, <span class="at">eval_type =</span> <span class="st">"kfold"</span>)</span>
-<span id="cb17-148"><a href="#cb17-148" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-149"><a href="#cb17-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-152"><a href="#cb17-152" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-153"><a href="#cb17-153" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: FALSE</span></span>
-<span id="cb17-154"><a href="#cb17-154" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: FALSE</span></span>
-<span id="cb17-155"><a href="#cb17-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-156"><a href="#cb17-156" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the output in vignettes/data to avoid running it during the build.</span></span>
-<span id="cb17-157"><a href="#cb17-157" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(metrics_hgly2_train, <span class="at">file =</span> <span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"metrics_hgly2_train.rds"</span>))</span>
-<span id="cb17-158"><a href="#cb17-158" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(metrics_hgly2_kfold, <span class="at">file =</span> <span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"metrics_hgly2_kfold.rds"</span>))</span>
-<span id="cb17-159"><a href="#cb17-159" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-160"><a href="#cb17-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-163"><a href="#cb17-163" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-164"><a href="#cb17-164" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: FALSE</span></span>
-<span id="cb17-165"><a href="#cb17-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-166"><a href="#cb17-166" aria-hidden="true" tabindex="-1"></a>metrics_hgly2_train <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"metrics_hgly2_train.rds"</span>))</span>
-<span id="cb17-167"><a href="#cb17-167" aria-hidden="true" tabindex="-1"></a>metrics_hgly2_kfold <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"metrics_hgly2_kfold.rds"</span>))</span>
-<span id="cb17-168"><a href="#cb17-168" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-169"><a href="#cb17-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-172"><a href="#cb17-172" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-173"><a href="#cb17-173" aria-hidden="true" tabindex="-1"></a>metrics_hgly2_train <span class="sc">|&gt;</span></span>
-<span id="cb17-174"><a href="#cb17-174" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb17-175"><a href="#cb17-175" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">n_sigfig =</span> <span class="dv">3</span>)</span>
-<span id="cb17-176"><a href="#cb17-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-177"><a href="#cb17-177" aria-hidden="true" tabindex="-1"></a>metrics_hgly2_kfold <span class="sc">|&gt;</span></span>
-<span id="cb17-178"><a href="#cb17-178" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb17-179"><a href="#cb17-179" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">n_sigfig =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
-<span id="cb17-180"><a href="#cb17-180" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_integer</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"fold_id"</span>))</span>
-<span id="cb17-181"><a href="#cb17-181" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-182"><a href="#cb17-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-183"><a href="#cb17-183" aria-hidden="true" tabindex="-1"></a><span class="fu">## Probability of direction</span></span>
-<span id="cb17-184"><a href="#cb17-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-185"><a href="#cb17-185" aria-hidden="true" tabindex="-1"></a>Although credible intervals are preferred, there is a concept called</span>
-<span id="cb17-186"><a href="#cb17-186" aria-hidden="true" tabindex="-1"></a>the probability of direction which is somewhat similar to the p-value, in which</span>
-<span id="cb17-187"><a href="#cb17-187" aria-hidden="true" tabindex="-1"></a>the probability of the effect being far from NULL (usually set to 0) is </span>
-<span id="cb17-188"><a href="#cb17-188" aria-hidden="true" tabindex="-1"></a>calculated.</span>
-<span id="cb17-189"><a href="#cb17-189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-190"><a href="#cb17-190" aria-hidden="true" tabindex="-1"></a>See <span class="in">`?p_direction`</span> and <span class="co">[</span><span class="ot">vignette</span><span class="co">](https://easystats.github.io/bayestestR/articles/probability_of_direction.html)</span></span>
-<span id="cb17-191"><a href="#cb17-191" aria-hidden="true" tabindex="-1"></a>for detail.</span>
-<span id="cb17-192"><a href="#cb17-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-193"><a href="#cb17-193" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset}</span>
-<span id="cb17-194"><a href="#cb17-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-195"><a href="#cb17-195" aria-hidden="true" tabindex="-1"></a><span class="fu">### Hyperglycemia</span></span>
-<span id="cb17-196"><a href="#cb17-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-197"><a href="#cb17-197" aria-hidden="true" tabindex="-1"></a>The exposure effect is so clear that none of the MCMC sample is below 0, </span>
-<span id="cb17-198"><a href="#cb17-198" aria-hidden="true" tabindex="-1"></a>leading to a "p-value" of 0. </span>
-<span id="cb17-199"><a href="#cb17-199" aria-hidden="true" tabindex="-1"></a>Since there were 4000 MCMC samples (<span class="in">`nrow(as_draws_df(ermod_bin_hgly2))`</span>),</span>
-<span id="cb17-200"><a href="#cb17-200" aria-hidden="true" tabindex="-1"></a>it is expected that the p-value is less than 1/4000 * 2, i.e. &lt; 0.0005 </span>
-<span id="cb17-201"><a href="#cb17-201" aria-hidden="true" tabindex="-1"></a>(multiplication with 2 corresponds to two-sided test).</span>
-<span id="cb17-202"><a href="#cb17-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-205"><a href="#cb17-205" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-206"><a href="#cb17-206" aria-hidden="true" tabindex="-1"></a>bayestestR<span class="sc">::</span><span class="fu">p_direction</span>(ermod_bin_hgly2, <span class="at">as_p =</span> <span class="cn">TRUE</span>, <span class="at">as_num =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb17-207"><a href="#cb17-207" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">/</span> <span class="fu">length</span>(<span class="fu">as_draws</span>(ermod_bin_hgly2)<span class="sc">$</span>AUCss_1000) <span class="sc">*</span> <span class="dv">2</span></span>
-<span id="cb17-208"><a href="#cb17-208" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-209"><a href="#cb17-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-210"><a href="#cb17-210" aria-hidden="true" tabindex="-1"></a><span class="fu">### Diarrhea</span></span>
-<span id="cb17-211"><a href="#cb17-211" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-214"><a href="#cb17-214" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-215"><a href="#cb17-215" aria-hidden="true" tabindex="-1"></a>bayestestR<span class="sc">::</span><span class="fu">p_direction</span>(ermod_bin_dr2, <span class="at">as_p =</span> <span class="cn">TRUE</span>, <span class="at">as_num =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb17-216"><a href="#cb17-216" aria-hidden="true" tabindex="-1"></a><span class="co"># Below is a direct calculation of this value</span></span>
-<span id="cb17-217"><a href="#cb17-217" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">as_draws</span>(ermod_bin_dr2)<span class="sc">$</span>AUCss_1000 <span class="sc">&lt;</span> <span class="dv">0</span>) <span class="sc">*</span> <span class="dv">2</span></span>
-<span id="cb17-218"><a href="#cb17-218" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-219"><a href="#cb17-219" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bayesplot)</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>))</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: FALSE</span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Enable colored outputs</span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"R"</span>, <span class="st">"cli_color_text.R"</span>))</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## Load data</span></span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(d_sim_binom_cov)</span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>d_sim_binom_cov_2 <span class="ot">&lt;-</span></span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>  d_sim_binom_cov <span class="sc">|&gt;</span></span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">AUCss_1000 =</span> AUCss <span class="sc">/</span> <span class="dv">1000</span>, <span class="at">BAGE_10 =</span> BAGE <span class="sc">/</span> <span class="dv">10</span>,</span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">BWT_10 =</span> BWT <span class="sc">/</span> <span class="dv">10</span>, <span class="at">BHBA1C_5 =</span> BHBA1C <span class="sc">/</span> <span class="dv">5</span>,</span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">Dose =</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"{Dose_mg} mg"</span>)</span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Grade 2+ hypoglycemia</span></span>
+<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a>df_er_ae_hgly2 <span class="ot">&lt;-</span> d_sim_binom_cov_2 <span class="sc">|&gt;</span> <span class="fu">filter</span>(AETYPE <span class="sc">==</span> <span class="st">"hgly2"</span>)</span>
+<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Grade 2+ diarrhea</span></span>
+<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a>df_er_ae_dr2 <span class="ot">&lt;-</span> d_sim_binom_cov_2 <span class="sc">|&gt;</span> <span class="fu">filter</span>(AETYPE <span class="sc">==</span> <span class="st">"dr2"</span>)</span>
+<span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-50"><a href="#cb17-50" aria-hidden="true" tabindex="-1"></a>var_resp <span class="ot">&lt;-</span> <span class="st">"AEFLAG"</span></span>
+<span id="cb17-51"><a href="#cb17-51" aria-hidden="true" tabindex="-1"></a>var_exposure <span class="ot">&lt;-</span> <span class="st">"AUCss_1000"</span></span>
+<span id="cb17-52"><a href="#cb17-52" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-53"><a href="#cb17-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-54"><a href="#cb17-54" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fit models</span></span>
+<span id="cb17-55"><a href="#cb17-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-56"><a href="#cb17-56" aria-hidden="true" tabindex="-1"></a>There is clear trend of E-R for hyperglycemia (95% CI doesn't include 0)</span>
+<span id="cb17-57"><a href="#cb17-57" aria-hidden="true" tabindex="-1"></a>while the evidence of E-R is not seen for diarrhea (95% CI includes 0).</span>
+<span id="cb17-58"><a href="#cb17-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-59"><a href="#cb17-59" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset}</span>
+<span id="cb17-60"><a href="#cb17-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-61"><a href="#cb17-61" aria-hidden="true" tabindex="-1"></a><span class="fu">### Hyperglycemia</span></span>
+<span id="cb17-62"><a href="#cb17-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-65"><a href="#cb17-65" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-66"><a href="#cb17-66" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-data-fit-hgly2</span></span>
+<span id="cb17-67"><a href="#cb17-67" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 7</span></span>
+<span id="cb17-68"><a href="#cb17-68" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
+<span id="cb17-69"><a href="#cb17-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-70"><a href="#cb17-70" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb17-71"><a href="#cb17-71" aria-hidden="true" tabindex="-1"></a>ermod_bin_hgly2 <span class="ot">&lt;-</span> <span class="fu">dev_ermod_bin</span>(</span>
+<span id="cb17-72"><a href="#cb17-72" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> df_er_ae_hgly2,</span>
+<span id="cb17-73"><a href="#cb17-73" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_resp =</span> var_resp,</span>
+<span id="cb17-74"><a href="#cb17-74" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_exposure =</span> var_exposure</span>
+<span id="cb17-75"><a href="#cb17-75" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-76"><a href="#cb17-76" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_er_gof</span>(ermod_bin_hgly2, <span class="at">var_group =</span> <span class="st">"Dose"</span>, <span class="at">show_coef_exp =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-77"><a href="#cb17-77" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-78"><a href="#cb17-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-79"><a href="#cb17-79" aria-hidden="true" tabindex="-1"></a><span class="fu">### Diarrhea</span></span>
+<span id="cb17-80"><a href="#cb17-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-83"><a href="#cb17-83" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-84"><a href="#cb17-84" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-data-fit-dr2</span></span>
+<span id="cb17-85"><a href="#cb17-85" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 7</span></span>
+<span id="cb17-86"><a href="#cb17-86" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
+<span id="cb17-87"><a href="#cb17-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-88"><a href="#cb17-88" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb17-89"><a href="#cb17-89" aria-hidden="true" tabindex="-1"></a>ermod_bin_dr2 <span class="ot">&lt;-</span> <span class="fu">dev_ermod_bin</span>(</span>
+<span id="cb17-90"><a href="#cb17-90" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> df_er_ae_dr2,</span>
+<span id="cb17-91"><a href="#cb17-91" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_resp =</span> var_resp,</span>
+<span id="cb17-92"><a href="#cb17-92" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_exposure =</span> var_exposure</span>
+<span id="cb17-93"><a href="#cb17-93" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-94"><a href="#cb17-94" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_er_gof</span>(ermod_bin_dr2, <span class="at">var_group =</span> <span class="st">"Dose"</span>, <span class="at">show_coef_exp =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-95"><a href="#cb17-95" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-96"><a href="#cb17-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-97"><a href="#cb17-97" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb17-98"><a href="#cb17-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-99"><a href="#cb17-99" aria-hidden="true" tabindex="-1"></a><span class="fu">## Parameter summary</span></span>
+<span id="cb17-100"><a href="#cb17-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-101"><a href="#cb17-101" aria-hidden="true" tabindex="-1"></a>You can see that AUCss effect is much stronger for hyperglycemia than diarrhea.</span>
+<span id="cb17-102"><a href="#cb17-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-103"><a href="#cb17-103" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset}</span>
+<span id="cb17-104"><a href="#cb17-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-105"><a href="#cb17-105" aria-hidden="true" tabindex="-1"></a><span class="fu">### Hyperglycemia</span></span>
+<span id="cb17-106"><a href="#cb17-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-109"><a href="#cb17-109" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-110"><a href="#cb17-110" aria-hidden="true" tabindex="-1"></a>ermod_bin_hgly2 <span class="sc">|&gt;</span></span>
+<span id="cb17-111"><a href="#cb17-111" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_draws</span>(mean, median, sd, <span class="sc">~</span> <span class="fu">quantile2</span>(.x, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>)),</span>
+<span id="cb17-112"><a href="#cb17-112" aria-hidden="true" tabindex="-1"></a>    <span class="fu">default_convergence_measures</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb17-113"><a href="#cb17-113" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb17-114"><a href="#cb17-114" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">n_sigfig =</span> <span class="dv">3</span>)</span>
+<span id="cb17-115"><a href="#cb17-115" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-116"><a href="#cb17-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-117"><a href="#cb17-117" aria-hidden="true" tabindex="-1"></a><span class="fu">### Diarrhea</span></span>
+<span id="cb17-118"><a href="#cb17-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-121"><a href="#cb17-121" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-122"><a href="#cb17-122" aria-hidden="true" tabindex="-1"></a>ermod_bin_dr2 <span class="sc">|&gt;</span></span>
+<span id="cb17-123"><a href="#cb17-123" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_draws</span>(mean, median, sd, <span class="sc">~</span> <span class="fu">quantile2</span>(.x, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>)),</span>
+<span id="cb17-124"><a href="#cb17-124" aria-hidden="true" tabindex="-1"></a>    <span class="fu">default_convergence_measures</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb17-125"><a href="#cb17-125" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb17-126"><a href="#cb17-126" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">n_sigfig =</span> <span class="dv">3</span>)</span>
+<span id="cb17-127"><a href="#cb17-127" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-128"><a href="#cb17-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-129"><a href="#cb17-129" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb17-130"><a href="#cb17-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-131"><a href="#cb17-131" aria-hidden="true" tabindex="-1"></a><span class="fu">## Predictive performance evaluation</span></span>
+<span id="cb17-132"><a href="#cb17-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-133"><a href="#cb17-133" aria-hidden="true" tabindex="-1"></a>We can calculate predictive performance metrics such as AUC-ROC with</span>
+<span id="cb17-134"><a href="#cb17-134" aria-hidden="true" tabindex="-1"></a><span class="in">`eval_ermod()`</span> function. Options for evaluation data are:</span>
+<span id="cb17-135"><a href="#cb17-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-136"><a href="#cb17-136" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`eval_type = "training"`</span>: training data</span>
+<span id="cb17-137"><a href="#cb17-137" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`eval_type = "test"`</span>: test data (supply to <span class="in">`newdata`</span> argument)</span>
+<span id="cb17-138"><a href="#cb17-138" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`eval_type = "kfold"`</span>: k-fold cross-validation</span>
+<span id="cb17-139"><a href="#cb17-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-142"><a href="#cb17-142" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-143"><a href="#cb17-143" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: FALSE</span></span>
+<span id="cb17-144"><a href="#cb17-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-145"><a href="#cb17-145" aria-hidden="true" tabindex="-1"></a>metrics_hgly2_train <span class="ot">&lt;-</span> <span class="fu">eval_ermod</span>(ermod_bin_hgly2, <span class="at">eval_type =</span> <span class="st">"training"</span>)</span>
+<span id="cb17-146"><a href="#cb17-146" aria-hidden="true" tabindex="-1"></a>metrics_hgly2_kfold <span class="ot">&lt;-</span> <span class="fu">eval_ermod</span>(ermod_bin_hgly2, <span class="at">eval_type =</span> <span class="st">"kfold"</span>)</span>
+<span id="cb17-147"><a href="#cb17-147" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-148"><a href="#cb17-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-151"><a href="#cb17-151" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-152"><a href="#cb17-152" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: FALSE</span></span>
+<span id="cb17-153"><a href="#cb17-153" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: FALSE</span></span>
+<span id="cb17-154"><a href="#cb17-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-155"><a href="#cb17-155" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the output in vignettes/data to avoid running it during the build.</span></span>
+<span id="cb17-156"><a href="#cb17-156" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(metrics_hgly2_train, <span class="at">file =</span> <span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"metrics_hgly2_train.rds"</span>))</span>
+<span id="cb17-157"><a href="#cb17-157" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(metrics_hgly2_kfold, <span class="at">file =</span> <span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"metrics_hgly2_kfold.rds"</span>))</span>
+<span id="cb17-158"><a href="#cb17-158" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-159"><a href="#cb17-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-162"><a href="#cb17-162" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-163"><a href="#cb17-163" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: FALSE</span></span>
+<span id="cb17-164"><a href="#cb17-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-165"><a href="#cb17-165" aria-hidden="true" tabindex="-1"></a>metrics_hgly2_train <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"metrics_hgly2_train.rds"</span>))</span>
+<span id="cb17-166"><a href="#cb17-166" aria-hidden="true" tabindex="-1"></a>metrics_hgly2_kfold <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"metrics_hgly2_kfold.rds"</span>))</span>
+<span id="cb17-167"><a href="#cb17-167" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-168"><a href="#cb17-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-171"><a href="#cb17-171" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-172"><a href="#cb17-172" aria-hidden="true" tabindex="-1"></a>metrics_hgly2_train <span class="sc">|&gt;</span></span>
+<span id="cb17-173"><a href="#cb17-173" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb17-174"><a href="#cb17-174" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">n_sigfig =</span> <span class="dv">3</span>)</span>
+<span id="cb17-175"><a href="#cb17-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-176"><a href="#cb17-176" aria-hidden="true" tabindex="-1"></a>metrics_hgly2_kfold <span class="sc">|&gt;</span></span>
+<span id="cb17-177"><a href="#cb17-177" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb17-178"><a href="#cb17-178" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">n_sigfig =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb17-179"><a href="#cb17-179" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_integer</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">"fold_id"</span>))</span>
+<span id="cb17-180"><a href="#cb17-180" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-181"><a href="#cb17-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-182"><a href="#cb17-182" aria-hidden="true" tabindex="-1"></a><span class="fu">## Probability of direction</span></span>
+<span id="cb17-183"><a href="#cb17-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-184"><a href="#cb17-184" aria-hidden="true" tabindex="-1"></a>Although credible intervals are preferred, there is a concept called</span>
+<span id="cb17-185"><a href="#cb17-185" aria-hidden="true" tabindex="-1"></a>the probability of direction which is somewhat similar to the p-value, in which</span>
+<span id="cb17-186"><a href="#cb17-186" aria-hidden="true" tabindex="-1"></a>the probability of the effect being far from NULL (usually set to 0) is</span>
+<span id="cb17-187"><a href="#cb17-187" aria-hidden="true" tabindex="-1"></a>calculated.</span>
+<span id="cb17-188"><a href="#cb17-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-189"><a href="#cb17-189" aria-hidden="true" tabindex="-1"></a>See <span class="in">`?p_direction`</span> and <span class="co">[</span><span class="ot">vignette</span><span class="co">](https://easystats.github.io/bayestestR/articles/probability_of_direction.html)</span></span>
+<span id="cb17-190"><a href="#cb17-190" aria-hidden="true" tabindex="-1"></a>for detail.</span>
+<span id="cb17-191"><a href="#cb17-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-192"><a href="#cb17-192" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset}</span>
+<span id="cb17-193"><a href="#cb17-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-194"><a href="#cb17-194" aria-hidden="true" tabindex="-1"></a><span class="fu">### Hyperglycemia</span></span>
+<span id="cb17-195"><a href="#cb17-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-196"><a href="#cb17-196" aria-hidden="true" tabindex="-1"></a>The exposure effect is so clear that none of the MCMC sample is below 0,</span>
+<span id="cb17-197"><a href="#cb17-197" aria-hidden="true" tabindex="-1"></a>leading to a "p-value" of 0.</span>
+<span id="cb17-198"><a href="#cb17-198" aria-hidden="true" tabindex="-1"></a>Since there were 4000 MCMC samples (<span class="in">`nrow(as_draws_df(ermod_bin_hgly2))`</span>),</span>
+<span id="cb17-199"><a href="#cb17-199" aria-hidden="true" tabindex="-1"></a>it is expected that the p-value is less than 1/4000 * 2, i.e. &lt; 0.0005</span>
+<span id="cb17-200"><a href="#cb17-200" aria-hidden="true" tabindex="-1"></a>(multiplication with 2 corresponds to two-sided test).</span>
+<span id="cb17-201"><a href="#cb17-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-204"><a href="#cb17-204" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-205"><a href="#cb17-205" aria-hidden="true" tabindex="-1"></a>bayestestR<span class="sc">::</span><span class="fu">p_direction</span>(ermod_bin_hgly2, <span class="at">as_p =</span> <span class="cn">TRUE</span>, <span class="at">as_num =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-206"><a href="#cb17-206" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">/</span> <span class="fu">length</span>(<span class="fu">as_draws</span>(ermod_bin_hgly2)<span class="sc">$</span>AUCss_1000) <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb17-207"><a href="#cb17-207" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-208"><a href="#cb17-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-209"><a href="#cb17-209" aria-hidden="true" tabindex="-1"></a><span class="fu">### Diarrhea</span></span>
+<span id="cb17-210"><a href="#cb17-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-213"><a href="#cb17-213" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-214"><a href="#cb17-214" aria-hidden="true" tabindex="-1"></a>bayestestR<span class="sc">::</span><span class="fu">p_direction</span>(ermod_bin_dr2, <span class="at">as_p =</span> <span class="cn">TRUE</span>, <span class="at">as_num =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-215"><a href="#cb17-215" aria-hidden="true" tabindex="-1"></a><span class="co"># Below is a direct calculation of this value</span></span>
+<span id="cb17-216"><a href="#cb17-216" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">as_draws</span>(ermod_bin_dr2)<span class="sc">$</span>AUCss_1000 <span class="sc">&lt;</span> <span class="dv">0</span>) <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb17-217"><a href="#cb17-217" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-218"><a href="#cb17-218" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb17-219"><a href="#cb17-219" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-220"><a href="#cb17-220" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-221"><a href="#cb17-221" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-222"><a href="#cb17-222" aria-hidden="true" tabindex="-1"></a><span class="fu">## Diagnostic plots</span></span>
-<span id="cb17-223"><a href="#cb17-223" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-224"><a href="#cb17-224" aria-hidden="true" tabindex="-1"></a>We use the <span class="co">[</span><span class="ot">`bayesplot` package</span><span class="co">](https://mc-stan.org/bayesplot/)</span> </span>
-<span id="cb17-225"><a href="#cb17-225" aria-hidden="true" tabindex="-1"></a>(<span class="co">[</span><span class="ot">Cheat sheet</span><span class="co">](https://rstudio.github.io/cheatsheets/bayesplot.pdf)</span>) </span>
-<span id="cb17-226"><a href="#cb17-226" aria-hidden="true" tabindex="-1"></a>to visualize the model fit.</span>
-<span id="cb17-227"><a href="#cb17-227" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-228"><a href="#cb17-228" aria-hidden="true" tabindex="-1"></a><span class="fu">### Convergence</span></span>
-<span id="cb17-229"><a href="#cb17-229" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-230"><a href="#cb17-230" aria-hidden="true" tabindex="-1"></a>Good fit results in:</span>
-<span id="cb17-231"><a href="#cb17-231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-232"><a href="#cb17-232" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Parameter distributions from MCMC chains should overlap</span>
-<span id="cb17-233"><a href="#cb17-233" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Trace plots should not show any trend</span>
-<span id="cb17-234"><a href="#cb17-234" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`Rhat`</span> close to 1 (e.g. &lt; 1.1)</span>
-<span id="cb17-235"><a href="#cb17-235" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-238"><a href="#cb17-238" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-239"><a href="#cb17-239" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-convergence</span></span>
-<span id="cb17-240"><a href="#cb17-240" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 7</span></span>
-<span id="cb17-241"><a href="#cb17-241" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4</span></span>
-<span id="cb17-242"><a href="#cb17-242" aria-hidden="true" tabindex="-1"></a><span class="co">#| results: hold</span></span>
-<span id="cb17-243"><a href="#cb17-243" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-244"><a href="#cb17-244" aria-hidden="true" tabindex="-1"></a>d_draws_bin_hgly2 <span class="ot">&lt;-</span> <span class="fu">as_draws_df</span>(ermod_bin_hgly2)</span>
-<span id="cb17-245"><a href="#cb17-245" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_dens_overlay</span>(d_draws_bin_hgly2)</span>
-<span id="cb17-246"><a href="#cb17-246" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_trace</span>(d_draws_bin_hgly2)</span>
-<span id="cb17-247"><a href="#cb17-247" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_rhat</span>(<span class="fu">rhat</span>(ermod_bin_hgly2<span class="sc">$</span>mod<span class="sc">$</span>stanfit))</span>
-<span id="cb17-248"><a href="#cb17-248" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-249"><a href="#cb17-249" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-250"><a href="#cb17-250" aria-hidden="true" tabindex="-1"></a><span class="fu">### Parameter estimates distribution</span></span>
-<span id="cb17-251"><a href="#cb17-251" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-252"><a href="#cb17-252" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset}</span>
-<span id="cb17-253"><a href="#cb17-253" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-254"><a href="#cb17-254" aria-hidden="true" tabindex="-1"></a><span class="fu">#### `mcmc_hist`</span></span>
-<span id="cb17-255"><a href="#cb17-255" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-258"><a href="#cb17-258" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-259"><a href="#cb17-259" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-mcmc_hist</span></span>
-<span id="cb17-260"><a href="#cb17-260" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 7</span></span>
-<span id="cb17-261"><a href="#cb17-261" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
-<span id="cb17-262"><a href="#cb17-262" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-263"><a href="#cb17-263" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_hist</span>(d_draws_bin_hgly2)</span>
-<span id="cb17-264"><a href="#cb17-264" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-265"><a href="#cb17-265" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-266"><a href="#cb17-266" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Parameter covariance</span></span>
-<span id="cb17-267"><a href="#cb17-267" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-270"><a href="#cb17-270" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb17-271"><a href="#cb17-271" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-mcmc_pairs</span></span>
-<span id="cb17-272"><a href="#cb17-272" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.width: 7</span></span>
-<span id="cb17-273"><a href="#cb17-273" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.height: 5</span></span>
-<span id="cb17-274"><a href="#cb17-274" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-275"><a href="#cb17-275" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_pairs</span>(d_draws_bin_hgly2,</span>
-<span id="cb17-276"><a href="#cb17-276" aria-hidden="true" tabindex="-1"></a>  <span class="at">off_diag_args =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">alpha =</span> <span class="fl">0.25</span>))</span>
-<span id="cb17-277"><a href="#cb17-277" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-278"><a href="#cb17-278" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-279"><a href="#cb17-279" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb17-221"><a href="#cb17-221" aria-hidden="true" tabindex="-1"></a><span class="fu">## Diagnostic plots</span></span>
+<span id="cb17-222"><a href="#cb17-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-223"><a href="#cb17-223" aria-hidden="true" tabindex="-1"></a>We use the <span class="co">[</span><span class="ot">`bayesplot` package</span><span class="co">](https://mc-stan.org/bayesplot/)</span></span>
+<span id="cb17-224"><a href="#cb17-224" aria-hidden="true" tabindex="-1"></a>(<span class="co">[</span><span class="ot">Cheat sheet</span><span class="co">](https://rstudio.github.io/cheatsheets/bayesplot.pdf)</span>)</span>
+<span id="cb17-225"><a href="#cb17-225" aria-hidden="true" tabindex="-1"></a>to visualize the model fit.</span>
+<span id="cb17-226"><a href="#cb17-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-227"><a href="#cb17-227" aria-hidden="true" tabindex="-1"></a><span class="fu">### Convergence</span></span>
+<span id="cb17-228"><a href="#cb17-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-229"><a href="#cb17-229" aria-hidden="true" tabindex="-1"></a>Good fit results in:</span>
+<span id="cb17-230"><a href="#cb17-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-231"><a href="#cb17-231" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Parameter distributions from MCMC chains should overlap</span>
+<span id="cb17-232"><a href="#cb17-232" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Trace plots should not show any trend</span>
+<span id="cb17-233"><a href="#cb17-233" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`Rhat`</span> close to 1 (e.g. &lt; 1.1)</span>
+<span id="cb17-234"><a href="#cb17-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-237"><a href="#cb17-237" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-238"><a href="#cb17-238" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-convergence</span></span>
+<span id="cb17-239"><a href="#cb17-239" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 7</span></span>
+<span id="cb17-240"><a href="#cb17-240" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4</span></span>
+<span id="cb17-241"><a href="#cb17-241" aria-hidden="true" tabindex="-1"></a><span class="co">#| results: hold</span></span>
+<span id="cb17-242"><a href="#cb17-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-243"><a href="#cb17-243" aria-hidden="true" tabindex="-1"></a>d_draws_bin_hgly2 <span class="ot">&lt;-</span> <span class="fu">as_draws_df</span>(ermod_bin_hgly2)</span>
+<span id="cb17-244"><a href="#cb17-244" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_dens_overlay</span>(d_draws_bin_hgly2)</span>
+<span id="cb17-245"><a href="#cb17-245" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_trace</span>(d_draws_bin_hgly2)</span>
+<span id="cb17-246"><a href="#cb17-246" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_rhat</span>(<span class="fu">rhat</span>(ermod_bin_hgly2<span class="sc">$</span>mod<span class="sc">$</span>stanfit))</span>
+<span id="cb17-247"><a href="#cb17-247" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-248"><a href="#cb17-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-249"><a href="#cb17-249" aria-hidden="true" tabindex="-1"></a><span class="fu">### Parameter estimates distribution</span></span>
+<span id="cb17-250"><a href="#cb17-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-251"><a href="#cb17-251" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset}</span>
+<span id="cb17-252"><a href="#cb17-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-253"><a href="#cb17-253" aria-hidden="true" tabindex="-1"></a><span class="fu">#### `mcmc_hist`</span></span>
+<span id="cb17-254"><a href="#cb17-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-257"><a href="#cb17-257" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-258"><a href="#cb17-258" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-mcmc_hist</span></span>
+<span id="cb17-259"><a href="#cb17-259" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 7</span></span>
+<span id="cb17-260"><a href="#cb17-260" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
+<span id="cb17-261"><a href="#cb17-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-262"><a href="#cb17-262" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_hist</span>(d_draws_bin_hgly2)</span>
+<span id="cb17-263"><a href="#cb17-263" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-264"><a href="#cb17-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-265"><a href="#cb17-265" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Parameter covariance</span></span>
+<span id="cb17-266"><a href="#cb17-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-269"><a href="#cb17-269" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-270"><a href="#cb17-270" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-mcmc_pairs</span></span>
+<span id="cb17-271"><a href="#cb17-271" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.width: 7</span></span>
+<span id="cb17-272"><a href="#cb17-272" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.height: 5</span></span>
+<span id="cb17-273"><a href="#cb17-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-274"><a href="#cb17-274" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_pairs</span>(d_draws_bin_hgly2,</span>
+<span id="cb17-275"><a href="#cb17-275" aria-hidden="true" tabindex="-1"></a>  <span class="at">off_diag_args =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">alpha =</span> <span class="fl">0.25</span>))</span>
+<span id="cb17-276"><a href="#cb17-276" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-277"><a href="#cb17-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-278"><a href="#cb17-278" aria-hidden="true" tabindex="-1"></a>:::</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

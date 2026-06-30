@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>1&nbsp; Basic workflow – BayesERbook: Exposure-response analysis with Bayesian approaches</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -69,15 +72,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../index.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-b091dd3c12a5fa8ad5181305bec49a82.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-ec5dacfbc85b6aa211765d4aa5962a23.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -331,23 +333,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>df_er_ae_dr2 <span class="ot">&lt;-</span> d_sim_binom_cov_2 <span class="sc">|&gt;</span> <span class="fu">filter</span>(AETYPE <span class="sc">==</span> <span class="st">"dr2"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="hrrudjpepr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#hrrudjpepr table {
+<div id="nnjnrpqnmg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#nnjnrpqnmg table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#hrrudjpepr thead, #hrrudjpepr tbody, #hrrudjpepr tfoot, #hrrudjpepr tr, #hrrudjpepr td, #hrrudjpepr th {
+#nnjnrpqnmg thead, #nnjnrpqnmg tbody, #nnjnrpqnmg tfoot, #nnjnrpqnmg tr, #nnjnrpqnmg td, #nnjnrpqnmg th {
   border-style: none;
 }
 
-#hrrudjpepr p {
+#nnjnrpqnmg p {
   margin: 0;
   padding: 0;
 }
 
-#hrrudjpepr .gt_table {
+#nnjnrpqnmg .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -373,12 +375,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#hrrudjpepr .gt_caption {
+#nnjnrpqnmg .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#hrrudjpepr .gt_title {
+#nnjnrpqnmg .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -390,7 +392,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#hrrudjpepr .gt_subtitle {
+#nnjnrpqnmg .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -402,7 +404,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#hrrudjpepr .gt_heading {
+#nnjnrpqnmg .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -414,13 +416,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#hrrudjpepr .gt_bottom_border {
+#nnjnrpqnmg .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#hrrudjpepr .gt_col_headings {
+#nnjnrpqnmg .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -435,7 +437,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#hrrudjpepr .gt_col_heading {
+#nnjnrpqnmg .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -455,7 +457,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#hrrudjpepr .gt_column_spanner_outer {
+#nnjnrpqnmg .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -467,15 +469,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#hrrudjpepr .gt_column_spanner_outer:first-child {
+#nnjnrpqnmg .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#hrrudjpepr .gt_column_spanner_outer:last-child {
+#nnjnrpqnmg .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#hrrudjpepr .gt_column_spanner {
+#nnjnrpqnmg .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -487,11 +489,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#hrrudjpepr .gt_spanner_row {
+#nnjnrpqnmg .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#hrrudjpepr .gt_group_heading {
+#nnjnrpqnmg .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -517,7 +519,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#hrrudjpepr .gt_empty_group_heading {
+#nnjnrpqnmg .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -532,15 +534,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#hrrudjpepr .gt_from_md > :first-child {
+#nnjnrpqnmg .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#hrrudjpepr .gt_from_md > :last-child {
+#nnjnrpqnmg .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#hrrudjpepr .gt_row {
+#nnjnrpqnmg .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -559,7 +561,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#hrrudjpepr .gt_stub {
+#nnjnrpqnmg .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -572,7 +574,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#hrrudjpepr .gt_stub_row_group {
+#nnjnrpqnmg .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -586,15 +588,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#hrrudjpepr .gt_row_group_first td {
+#nnjnrpqnmg .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#hrrudjpepr .gt_row_group_first th {
+#nnjnrpqnmg .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#hrrudjpepr .gt_summary_row {
+#nnjnrpqnmg .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -604,16 +606,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#hrrudjpepr .gt_first_summary_row {
+#nnjnrpqnmg .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#hrrudjpepr .gt_first_summary_row.thick {
+#nnjnrpqnmg .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#hrrudjpepr .gt_last_summary_row {
+#nnjnrpqnmg .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -623,7 +625,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#hrrudjpepr .gt_grand_summary_row {
+#nnjnrpqnmg .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -633,7 +635,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#hrrudjpepr .gt_first_grand_summary_row {
+#nnjnrpqnmg .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -643,7 +645,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#hrrudjpepr .gt_last_grand_summary_row_top {
+#nnjnrpqnmg .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -653,11 +655,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#hrrudjpepr .gt_striped {
+#nnjnrpqnmg .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#hrrudjpepr .gt_table_body {
+#nnjnrpqnmg .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -666,7 +668,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#hrrudjpepr .gt_footnotes {
+#nnjnrpqnmg .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -680,7 +682,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#hrrudjpepr .gt_footnote {
+#nnjnrpqnmg .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -689,7 +691,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#hrrudjpepr .gt_sourcenotes {
+#nnjnrpqnmg .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -703,7 +705,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#hrrudjpepr .gt_sourcenote {
+#nnjnrpqnmg .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -711,72 +713,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#hrrudjpepr .gt_left {
+#nnjnrpqnmg .gt_left {
   text-align: left;
 }
 
-#hrrudjpepr .gt_center {
+#nnjnrpqnmg .gt_center {
   text-align: center;
 }
 
-#hrrudjpepr .gt_right {
+#nnjnrpqnmg .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#hrrudjpepr .gt_font_normal {
+#nnjnrpqnmg .gt_font_normal {
   font-weight: normal;
 }
 
-#hrrudjpepr .gt_font_bold {
+#nnjnrpqnmg .gt_font_bold {
   font-weight: bold;
 }
 
-#hrrudjpepr .gt_font_italic {
+#nnjnrpqnmg .gt_font_italic {
   font-style: italic;
 }
 
-#hrrudjpepr .gt_super {
+#nnjnrpqnmg .gt_super {
   font-size: 65%;
 }
 
-#hrrudjpepr .gt_footnote_marks {
+#nnjnrpqnmg .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#hrrudjpepr .gt_asterisk {
+#nnjnrpqnmg .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#hrrudjpepr .gt_indent_1 {
+#nnjnrpqnmg .gt_indent_1 {
   text-indent: 5px;
 }
 
-#hrrudjpepr .gt_indent_2 {
+#nnjnrpqnmg .gt_indent_2 {
   text-indent: 10px;
 }
 
-#hrrudjpepr .gt_indent_3 {
+#nnjnrpqnmg .gt_indent_3 {
   text-indent: 15px;
 }
 
-#hrrudjpepr .gt_indent_4 {
+#nnjnrpqnmg .gt_indent_4 {
   text-indent: 20px;
 }
 
-#hrrudjpepr .gt_indent_5 {
+#nnjnrpqnmg .gt_indent_5 {
   text-indent: 25px;
 }
 
-#hrrudjpepr .katex-display {
+#nnjnrpqnmg .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#hrrudjpepr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#nnjnrpqnmg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -950,7 +952,11 @@ AUCss_1000   0.41   0.08
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using `*` instead of `+` so that scale can be</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># applied for both panels (main plot and boxplot)</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_er_gof</span>(ermod_bin, <span class="at">var_group =</span> <span class="st">"Dose"</span>, <span class="at">show_coef_exp =</span> <span class="cn">TRUE</span>) <span class="sc">*</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  xgxr<span class="sc">::</span><span class="fu">xgx_scale_x_log10</span>(<span class="at">guide =</span> ggplot2<span class="sc">::</span><span class="fu">guide_axis</span>(<span class="at">minor.ticks =</span> <span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">coord_transform</span>(<span class="at">x =</span> <span class="st">"log10"</span>) <span class="sc">*</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">scale_x_continuous</span>(</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> xgxr<span class="sc">::</span>xgx_breaks_log10,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">minor_breaks =</span> xgxr<span class="sc">::</span>xgx_minor_breaks_log10</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-plot-er" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
@@ -973,31 +979,33 @@ Figure&nbsp;1.1
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>draws_df_summary <span class="ot">&lt;-</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  draws_df <span class="sc">|&gt;</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_draws</span>(mean, median, sd, <span class="sc">~</span> <span class="fu">quantile2</span>(.x, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>)),</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">default_convergence_measures</span>())</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>draws_df_summary <span class="sc">|&gt;</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">n_sigfig =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_draws</span>(</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    mean, median, sd, <span class="sc">~</span> <span class="fu">quantile2</span>(.x, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>)),</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">default_convergence_measures</span>()</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>draws_df_summary <span class="sc">|&gt;</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">n_sigfig =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="nnknajtwbo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#nnknajtwbo table {
+<div id="irbqdctpiv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#irbqdctpiv table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#nnknajtwbo thead, #nnknajtwbo tbody, #nnknajtwbo tfoot, #nnknajtwbo tr, #nnknajtwbo td, #nnknajtwbo th {
+#irbqdctpiv thead, #irbqdctpiv tbody, #irbqdctpiv tfoot, #irbqdctpiv tr, #irbqdctpiv td, #irbqdctpiv th {
   border-style: none;
 }
 
-#nnknajtwbo p {
+#irbqdctpiv p {
   margin: 0;
   padding: 0;
 }
 
-#nnknajtwbo .gt_table {
+#irbqdctpiv .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1023,12 +1031,12 @@ Figure&nbsp;1.1
   border-left-color: #D3D3D3;
 }
 
-#nnknajtwbo .gt_caption {
+#irbqdctpiv .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#nnknajtwbo .gt_title {
+#irbqdctpiv .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1040,7 +1048,7 @@ Figure&nbsp;1.1
   border-bottom-width: 0;
 }
 
-#nnknajtwbo .gt_subtitle {
+#irbqdctpiv .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1052,7 +1060,7 @@ Figure&nbsp;1.1
   border-top-width: 0;
 }
 
-#nnknajtwbo .gt_heading {
+#irbqdctpiv .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1064,13 +1072,13 @@ Figure&nbsp;1.1
   border-right-color: #D3D3D3;
 }
 
-#nnknajtwbo .gt_bottom_border {
+#irbqdctpiv .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#nnknajtwbo .gt_col_headings {
+#irbqdctpiv .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1085,7 +1093,7 @@ Figure&nbsp;1.1
   border-right-color: #D3D3D3;
 }
 
-#nnknajtwbo .gt_col_heading {
+#irbqdctpiv .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1105,7 +1113,7 @@ Figure&nbsp;1.1
   overflow-x: hidden;
 }
 
-#nnknajtwbo .gt_column_spanner_outer {
+#irbqdctpiv .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1117,15 +1125,15 @@ Figure&nbsp;1.1
   padding-right: 4px;
 }
 
-#nnknajtwbo .gt_column_spanner_outer:first-child {
+#irbqdctpiv .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#nnknajtwbo .gt_column_spanner_outer:last-child {
+#irbqdctpiv .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#nnknajtwbo .gt_column_spanner {
+#irbqdctpiv .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1137,11 +1145,11 @@ Figure&nbsp;1.1
   width: 100%;
 }
 
-#nnknajtwbo .gt_spanner_row {
+#irbqdctpiv .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#nnknajtwbo .gt_group_heading {
+#irbqdctpiv .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1167,7 +1175,7 @@ Figure&nbsp;1.1
   text-align: left;
 }
 
-#nnknajtwbo .gt_empty_group_heading {
+#irbqdctpiv .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1182,15 +1190,15 @@ Figure&nbsp;1.1
   vertical-align: middle;
 }
 
-#nnknajtwbo .gt_from_md > :first-child {
+#irbqdctpiv .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#nnknajtwbo .gt_from_md > :last-child {
+#irbqdctpiv .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#nnknajtwbo .gt_row {
+#irbqdctpiv .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1209,7 +1217,7 @@ Figure&nbsp;1.1
   overflow-x: hidden;
 }
 
-#nnknajtwbo .gt_stub {
+#irbqdctpiv .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1222,7 +1230,7 @@ Figure&nbsp;1.1
   padding-right: 5px;
 }
 
-#nnknajtwbo .gt_stub_row_group {
+#irbqdctpiv .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1236,15 +1244,15 @@ Figure&nbsp;1.1
   vertical-align: top;
 }
 
-#nnknajtwbo .gt_row_group_first td {
+#irbqdctpiv .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#nnknajtwbo .gt_row_group_first th {
+#irbqdctpiv .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#nnknajtwbo .gt_summary_row {
+#irbqdctpiv .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1254,16 +1262,16 @@ Figure&nbsp;1.1
   padding-right: 5px;
 }
 
-#nnknajtwbo .gt_first_summary_row {
+#irbqdctpiv .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#nnknajtwbo .gt_first_summary_row.thick {
+#irbqdctpiv .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#nnknajtwbo .gt_last_summary_row {
+#irbqdctpiv .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1273,7 +1281,7 @@ Figure&nbsp;1.1
   border-bottom-color: #D3D3D3;
 }
 
-#nnknajtwbo .gt_grand_summary_row {
+#irbqdctpiv .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1283,7 +1291,7 @@ Figure&nbsp;1.1
   padding-right: 5px;
 }
 
-#nnknajtwbo .gt_first_grand_summary_row {
+#irbqdctpiv .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1293,7 +1301,7 @@ Figure&nbsp;1.1
   border-top-color: #D3D3D3;
 }
 
-#nnknajtwbo .gt_last_grand_summary_row_top {
+#irbqdctpiv .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1303,11 +1311,11 @@ Figure&nbsp;1.1
   border-bottom-color: #D3D3D3;
 }
 
-#nnknajtwbo .gt_striped {
+#irbqdctpiv .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#nnknajtwbo .gt_table_body {
+#irbqdctpiv .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1316,7 +1324,7 @@ Figure&nbsp;1.1
   border-bottom-color: #D3D3D3;
 }
 
-#nnknajtwbo .gt_footnotes {
+#irbqdctpiv .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1330,7 +1338,7 @@ Figure&nbsp;1.1
   border-right-color: #D3D3D3;
 }
 
-#nnknajtwbo .gt_footnote {
+#irbqdctpiv .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1339,7 +1347,7 @@ Figure&nbsp;1.1
   padding-right: 5px;
 }
 
-#nnknajtwbo .gt_sourcenotes {
+#irbqdctpiv .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1353,7 +1361,7 @@ Figure&nbsp;1.1
   border-right-color: #D3D3D3;
 }
 
-#nnknajtwbo .gt_sourcenote {
+#irbqdctpiv .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1361,72 +1369,72 @@ Figure&nbsp;1.1
   padding-right: 5px;
 }
 
-#nnknajtwbo .gt_left {
+#irbqdctpiv .gt_left {
   text-align: left;
 }
 
-#nnknajtwbo .gt_center {
+#irbqdctpiv .gt_center {
   text-align: center;
 }
 
-#nnknajtwbo .gt_right {
+#irbqdctpiv .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#nnknajtwbo .gt_font_normal {
+#irbqdctpiv .gt_font_normal {
   font-weight: normal;
 }
 
-#nnknajtwbo .gt_font_bold {
+#irbqdctpiv .gt_font_bold {
   font-weight: bold;
 }
 
-#nnknajtwbo .gt_font_italic {
+#irbqdctpiv .gt_font_italic {
   font-style: italic;
 }
 
-#nnknajtwbo .gt_super {
+#irbqdctpiv .gt_super {
   font-size: 65%;
 }
 
-#nnknajtwbo .gt_footnote_marks {
+#irbqdctpiv .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#nnknajtwbo .gt_asterisk {
+#irbqdctpiv .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#nnknajtwbo .gt_indent_1 {
+#irbqdctpiv .gt_indent_1 {
   text-indent: 5px;
 }
 
-#nnknajtwbo .gt_indent_2 {
+#irbqdctpiv .gt_indent_2 {
   text-indent: 10px;
 }
 
-#nnknajtwbo .gt_indent_3 {
+#irbqdctpiv .gt_indent_3 {
   text-indent: 15px;
 }
 
-#nnknajtwbo .gt_indent_4 {
+#irbqdctpiv .gt_indent_4 {
   text-indent: 20px;
 }
 
-#nnknajtwbo .gt_indent_5 {
+#irbqdctpiv .gt_indent_5 {
   text-indent: 25px;
 }
 
-#nnknajtwbo .katex-display {
+#irbqdctpiv .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#nnknajtwbo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#irbqdctpiv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1496,23 +1504,23 @@ Figure&nbsp;1.1
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_integer</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">".row"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="oslyshlwzm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#oslyshlwzm table {
+<div id="icbagcejuk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#icbagcejuk table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#oslyshlwzm thead, #oslyshlwzm tbody, #oslyshlwzm tfoot, #oslyshlwzm tr, #oslyshlwzm td, #oslyshlwzm th {
+#icbagcejuk thead, #icbagcejuk tbody, #icbagcejuk tfoot, #icbagcejuk tr, #icbagcejuk td, #icbagcejuk th {
   border-style: none;
 }
 
-#oslyshlwzm p {
+#icbagcejuk p {
   margin: 0;
   padding: 0;
 }
 
-#oslyshlwzm .gt_table {
+#icbagcejuk .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1538,12 +1546,12 @@ Figure&nbsp;1.1
   border-left-color: #D3D3D3;
 }
 
-#oslyshlwzm .gt_caption {
+#icbagcejuk .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#oslyshlwzm .gt_title {
+#icbagcejuk .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1555,7 +1563,7 @@ Figure&nbsp;1.1
   border-bottom-width: 0;
 }
 
-#oslyshlwzm .gt_subtitle {
+#icbagcejuk .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1567,7 +1575,7 @@ Figure&nbsp;1.1
   border-top-width: 0;
 }
 
-#oslyshlwzm .gt_heading {
+#icbagcejuk .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1579,13 +1587,13 @@ Figure&nbsp;1.1
   border-right-color: #D3D3D3;
 }
 
-#oslyshlwzm .gt_bottom_border {
+#icbagcejuk .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#oslyshlwzm .gt_col_headings {
+#icbagcejuk .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1600,7 +1608,7 @@ Figure&nbsp;1.1
   border-right-color: #D3D3D3;
 }
 
-#oslyshlwzm .gt_col_heading {
+#icbagcejuk .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1620,7 +1628,7 @@ Figure&nbsp;1.1
   overflow-x: hidden;
 }
 
-#oslyshlwzm .gt_column_spanner_outer {
+#icbagcejuk .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1632,15 +1640,15 @@ Figure&nbsp;1.1
   padding-right: 4px;
 }
 
-#oslyshlwzm .gt_column_spanner_outer:first-child {
+#icbagcejuk .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#oslyshlwzm .gt_column_spanner_outer:last-child {
+#icbagcejuk .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#oslyshlwzm .gt_column_spanner {
+#icbagcejuk .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1652,11 +1660,11 @@ Figure&nbsp;1.1
   width: 100%;
 }
 
-#oslyshlwzm .gt_spanner_row {
+#icbagcejuk .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#oslyshlwzm .gt_group_heading {
+#icbagcejuk .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1682,7 +1690,7 @@ Figure&nbsp;1.1
   text-align: left;
 }
 
-#oslyshlwzm .gt_empty_group_heading {
+#icbagcejuk .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1697,15 +1705,15 @@ Figure&nbsp;1.1
   vertical-align: middle;
 }
 
-#oslyshlwzm .gt_from_md > :first-child {
+#icbagcejuk .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#oslyshlwzm .gt_from_md > :last-child {
+#icbagcejuk .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#oslyshlwzm .gt_row {
+#icbagcejuk .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1724,7 +1732,7 @@ Figure&nbsp;1.1
   overflow-x: hidden;
 }
 
-#oslyshlwzm .gt_stub {
+#icbagcejuk .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1737,7 +1745,7 @@ Figure&nbsp;1.1
   padding-right: 5px;
 }
 
-#oslyshlwzm .gt_stub_row_group {
+#icbagcejuk .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1751,15 +1759,15 @@ Figure&nbsp;1.1
   vertical-align: top;
 }
 
-#oslyshlwzm .gt_row_group_first td {
+#icbagcejuk .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#oslyshlwzm .gt_row_group_first th {
+#icbagcejuk .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#oslyshlwzm .gt_summary_row {
+#icbagcejuk .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1769,16 +1777,16 @@ Figure&nbsp;1.1
   padding-right: 5px;
 }
 
-#oslyshlwzm .gt_first_summary_row {
+#icbagcejuk .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#oslyshlwzm .gt_first_summary_row.thick {
+#icbagcejuk .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#oslyshlwzm .gt_last_summary_row {
+#icbagcejuk .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1788,7 +1796,7 @@ Figure&nbsp;1.1
   border-bottom-color: #D3D3D3;
 }
 
-#oslyshlwzm .gt_grand_summary_row {
+#icbagcejuk .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1798,7 +1806,7 @@ Figure&nbsp;1.1
   padding-right: 5px;
 }
 
-#oslyshlwzm .gt_first_grand_summary_row {
+#icbagcejuk .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1808,7 +1816,7 @@ Figure&nbsp;1.1
   border-top-color: #D3D3D3;
 }
 
-#oslyshlwzm .gt_last_grand_summary_row_top {
+#icbagcejuk .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1818,11 +1826,11 @@ Figure&nbsp;1.1
   border-bottom-color: #D3D3D3;
 }
 
-#oslyshlwzm .gt_striped {
+#icbagcejuk .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#oslyshlwzm .gt_table_body {
+#icbagcejuk .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1831,7 +1839,7 @@ Figure&nbsp;1.1
   border-bottom-color: #D3D3D3;
 }
 
-#oslyshlwzm .gt_footnotes {
+#icbagcejuk .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1845,7 +1853,7 @@ Figure&nbsp;1.1
   border-right-color: #D3D3D3;
 }
 
-#oslyshlwzm .gt_footnote {
+#icbagcejuk .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1854,7 +1862,7 @@ Figure&nbsp;1.1
   padding-right: 5px;
 }
 
-#oslyshlwzm .gt_sourcenotes {
+#icbagcejuk .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1868,7 +1876,7 @@ Figure&nbsp;1.1
   border-right-color: #D3D3D3;
 }
 
-#oslyshlwzm .gt_sourcenote {
+#icbagcejuk .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1876,72 +1884,72 @@ Figure&nbsp;1.1
   padding-right: 5px;
 }
 
-#oslyshlwzm .gt_left {
+#icbagcejuk .gt_left {
   text-align: left;
 }
 
-#oslyshlwzm .gt_center {
+#icbagcejuk .gt_center {
   text-align: center;
 }
 
-#oslyshlwzm .gt_right {
+#icbagcejuk .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#oslyshlwzm .gt_font_normal {
+#icbagcejuk .gt_font_normal {
   font-weight: normal;
 }
 
-#oslyshlwzm .gt_font_bold {
+#icbagcejuk .gt_font_bold {
   font-weight: bold;
 }
 
-#oslyshlwzm .gt_font_italic {
+#icbagcejuk .gt_font_italic {
   font-style: italic;
 }
 
-#oslyshlwzm .gt_super {
+#icbagcejuk .gt_super {
   font-size: 65%;
 }
 
-#oslyshlwzm .gt_footnote_marks {
+#icbagcejuk .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#oslyshlwzm .gt_asterisk {
+#icbagcejuk .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#oslyshlwzm .gt_indent_1 {
+#icbagcejuk .gt_indent_1 {
   text-indent: 5px;
 }
 
-#oslyshlwzm .gt_indent_2 {
+#icbagcejuk .gt_indent_2 {
   text-indent: 10px;
 }
 
-#oslyshlwzm .gt_indent_3 {
+#icbagcejuk .gt_indent_3 {
   text-indent: 15px;
 }
 
-#oslyshlwzm .gt_indent_4 {
+#icbagcejuk .gt_indent_4 {
   text-indent: 20px;
 }
 
-#oslyshlwzm .gt_indent_5 {
+#icbagcejuk .gt_indent_5 {
   text-indent: 25px;
 }
 
-#oslyshlwzm .katex-display {
+#icbagcejuk .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#oslyshlwzm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#icbagcejuk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2079,8 +2087,15 @@ AUCss_1000   0.20   0.15
 <details open="" class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_er_exp_sel</span>(ermod_bin_exp_sel) <span class="sc">+</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  xgxr<span class="sc">::</span><span class="fu">xgx_scale_x_log10</span>(<span class="at">guide =</span> ggplot2<span class="sc">::</span><span class="fu">guide_axis</span>(<span class="at">minor.ticks =</span> <span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">coord_transform</span>(<span class="at">x =</span> <span class="st">"log10"</span>) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">scale_x_continuous</span>(</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> xgxr<span class="sc">::</span>xgx_breaks_log10,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">minor_breaks =</span> xgxr<span class="sc">::</span>xgx_minor_breaks_log10</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<pre class="r-output"><code>Coordinate system already present.
+<span style="color: #00BBBB;">ℹ</span> Adding new coordinate system, which will replace the existing one.
+</code></pre>
 <div class="cell-output-display">
 <div id="fig-exp-sel" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
 <figure class="quarto-float quarto-float-fig figure">
@@ -2160,8 +2175,8 @@ Figure&nbsp;1.3
 </div>
 </div>
 <p>In some cases, you might see a warning message like below. This indicates that approximation of leave-one-out cross-validation performance (PSIS-LOO) is not reliable.</p>
-<pre><code>Warning: In the recalculation of the reference model's PSIS-LOO CV weights for 
-the performance evaluation, ... Pareto k-values are in the interval...`. </code></pre>
+<pre><code>Warning: In the recalculation of the reference model's PSIS-LOO CV weights for
+the performance evaluation, ... Pareto k-values are in the interval...`.</code></pre>
 <p>Alternatively to the default <code>cv_method = "LOO"</code>, you can use k-fold cross-validation by setting<code>cv_method = "kfold"</code> in <code>dev_ermod_bin_cov_sel()</code> function. This can take longer time to run, but it can be more reliable in the cases where LOO is not reliable. You can also set <code>validate_search = TRUE</code> to let the function perform the variable selection for each fold separately, rather than using the selected variable sequence from the full dataset evaluation.</p>
 <div class="cell">
 <details open="" class="code-fold">
@@ -2257,11 +2272,11 @@ Figure&nbsp;1.5
 <pre class="r-output"><code><span style="color: #555555;"># A tibble: 5 × 14</span>
   .id_exposure AUCss_1000 .epred .epred.lower .epred.upper .linpred
          <span style="color: #555555; font-style: italic;"><int></int></span>      <span style="color: #555555; font-style: italic;"><int></int></span>  <span style="color: #555555; font-style: italic;"><dbl></dbl></span>        <span style="color: #555555; font-style: italic;"><dbl></dbl></span>        <span style="color: #555555; font-style: italic;"><dbl></dbl></span>    <span style="color: #555555; font-style: italic;"><dbl></dbl></span>
-<span style="color: #555555;">1</span>            1          2  0.226        0.190        0.263  -<span style="color: #BB0000;">1.50</span>  
-<span style="color: #555555;">2</span>            2          3  0.306        0.266        0.348  -<span style="color: #BB0000;">1.01</span>  
-<span style="color: #555555;">3</span>            3          4  0.399        0.338        0.457  -<span style="color: #BB0000;">0.518</span> 
-<span style="color: #555555;">4</span>            4          5  0.496        0.412        0.583  -<span style="color: #BB0000;">0.028</span><span style="color: #BB0000; text-decoration: underline;">8</span>
-<span style="color: #555555;">5</span>            5          6  0.595        0.482        0.701   0.470 
+<span style="color: #555555;">1</span>            1          2  0.226        0.192        0.262 -<span style="color: #BB0000;">1.52</span>   
+<span style="color: #555555;">2</span>            2          3  0.306        0.265        0.344 -<span style="color: #BB0000;">1.01</span>   
+<span style="color: #555555;">3</span>            3          4  0.397        0.342        0.454 -<span style="color: #BB0000;">0.504</span>  
+<span style="color: #555555;">4</span>            4          5  0.495        0.415        0.576 -<span style="color: #BB0000;">0.005</span><span style="color: #BB0000; text-decoration: underline;">55</span>
+<span style="color: #555555;">5</span>            5          6  0.594        0.490        0.696  0.493  
 <span style="color: #555555;"># ℹ 8 more variables: .linpred.lower <dbl>, .linpred.upper <dbl>,</dbl></dbl></span>
 <span style="color: #555555;">#   .prediction <dbl>, .prediction.lower <dbl>, .prediction.upper <dbl>,</dbl></dbl></dbl></span>
 <span style="color: #555555;">#   .width <dbl>, .point <chr>, .interval <chr></chr></chr></dbl></span>
@@ -2821,7 +2836,7 @@ Figure&nbsp;1.7
 <span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data</span></span>
 <span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>We will use an example simulated dataset included in <span class="in">`BayesERtools`</span> package </span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>We will use an example simulated dataset included in <span class="in">`BayesERtools`</span> package</span>
 <span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>(<span class="in">`d_sim_binom_cov`</span>) for the analysis.</span>
 <span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a>In this document we use hypoglycemia (hgly2) as an example AE. Another example</span>
 <span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a>AE is diarrhea (dr2), where you would see fairly flat ER curve.</span>
@@ -2878,7 +2893,7 @@ Figure&nbsp;1.7
 <span id="cb20-94"><a href="#cb20-94" aria-hidden="true" tabindex="-1"></a>ermod_bin</span>
 <span id="cb20-95"><a href="#cb20-95" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb20-96"><a href="#cb20-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-97"><a href="#cb20-97" aria-hidden="true" tabindex="-1"></a>You can compare the observed data with the model fit using <span class="in">`plot_er_gof()`</span> </span>
+<span id="cb20-97"><a href="#cb20-97" aria-hidden="true" tabindex="-1"></a>You can compare the observed data with the model fit using <span class="in">`plot_er_gof()`</span></span>
 <span id="cb20-98"><a href="#cb20-98" aria-hidden="true" tabindex="-1"></a>function.</span>
 <span id="cb20-99"><a href="#cb20-99" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-102"><a href="#cb20-102" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
@@ -2889,251 +2904,266 @@ Figure&nbsp;1.7
 <span id="cb20-107"><a href="#cb20-107" aria-hidden="true" tabindex="-1"></a><span class="co"># Using `*` instead of `+` so that scale can be</span></span>
 <span id="cb20-108"><a href="#cb20-108" aria-hidden="true" tabindex="-1"></a><span class="co"># applied for both panels (main plot and boxplot)</span></span>
 <span id="cb20-109"><a href="#cb20-109" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_er_gof</span>(ermod_bin, <span class="at">var_group =</span> <span class="st">"Dose"</span>, <span class="at">show_coef_exp =</span> <span class="cn">TRUE</span>) <span class="sc">*</span></span>
-<span id="cb20-110"><a href="#cb20-110" aria-hidden="true" tabindex="-1"></a>  xgxr<span class="sc">::</span><span class="fu">xgx_scale_x_log10</span>(<span class="at">guide =</span> ggplot2<span class="sc">::</span><span class="fu">guide_axis</span>(<span class="at">minor.ticks =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb20-111"><a href="#cb20-111" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb20-112"><a href="#cb20-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-113"><a href="#cb20-113" aria-hidden="true" tabindex="-1"></a>MCMC samples can be obtained with <span class="in">`as_draws()`</span> family of functions, such as</span>
-<span id="cb20-114"><a href="#cb20-114" aria-hidden="true" tabindex="-1"></a><span class="in">`as_draws_df()`</span>.</span>
-<span id="cb20-115"><a href="#cb20-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-118"><a href="#cb20-118" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb20-119"><a href="#cb20-119" aria-hidden="true" tabindex="-1"></a>draws_df <span class="ot">&lt;-</span> <span class="fu">as_draws_df</span>(ermod_bin)</span>
-<span id="cb20-120"><a href="#cb20-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-121"><a href="#cb20-121" aria-hidden="true" tabindex="-1"></a>draws_df_summary <span class="ot">&lt;-</span></span>
-<span id="cb20-122"><a href="#cb20-122" aria-hidden="true" tabindex="-1"></a>  draws_df <span class="sc">|&gt;</span></span>
-<span id="cb20-123"><a href="#cb20-123" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_draws</span>(mean, median, sd, <span class="sc">~</span> <span class="fu">quantile2</span>(.x, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>)),</span>
-<span id="cb20-124"><a href="#cb20-124" aria-hidden="true" tabindex="-1"></a>    <span class="fu">default_convergence_measures</span>())</span>
-<span id="cb20-125"><a href="#cb20-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-126"><a href="#cb20-126" aria-hidden="true" tabindex="-1"></a>draws_df_summary <span class="sc">|&gt;</span></span>
-<span id="cb20-127"><a href="#cb20-127" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb20-128"><a href="#cb20-128" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">n_sigfig =</span> <span class="dv">3</span>)</span>
-<span id="cb20-129"><a href="#cb20-129" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb20-130"><a href="#cb20-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-110"><a href="#cb20-110" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">coord_transform</span>(<span class="at">x =</span> <span class="st">"log10"</span>) <span class="sc">*</span></span>
+<span id="cb20-111"><a href="#cb20-111" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">scale_x_continuous</span>(</span>
+<span id="cb20-112"><a href="#cb20-112" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> xgxr<span class="sc">::</span>xgx_breaks_log10,</span>
+<span id="cb20-113"><a href="#cb20-113" aria-hidden="true" tabindex="-1"></a>    <span class="at">minor_breaks =</span> xgxr<span class="sc">::</span>xgx_minor_breaks_log10</span>
+<span id="cb20-114"><a href="#cb20-114" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb20-115"><a href="#cb20-115" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-116"><a href="#cb20-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-117"><a href="#cb20-117" aria-hidden="true" tabindex="-1"></a>MCMC samples can be obtained with <span class="in">`as_draws()`</span> family of functions, such as</span>
+<span id="cb20-118"><a href="#cb20-118" aria-hidden="true" tabindex="-1"></a><span class="in">`as_draws_df()`</span>.</span>
+<span id="cb20-119"><a href="#cb20-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-122"><a href="#cb20-122" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-123"><a href="#cb20-123" aria-hidden="true" tabindex="-1"></a>draws_df <span class="ot">&lt;-</span> <span class="fu">as_draws_df</span>(ermod_bin)</span>
+<span id="cb20-124"><a href="#cb20-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-125"><a href="#cb20-125" aria-hidden="true" tabindex="-1"></a>draws_df_summary <span class="ot">&lt;-</span></span>
+<span id="cb20-126"><a href="#cb20-126" aria-hidden="true" tabindex="-1"></a>  draws_df <span class="sc">|&gt;</span></span>
+<span id="cb20-127"><a href="#cb20-127" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_draws</span>(</span>
+<span id="cb20-128"><a href="#cb20-128" aria-hidden="true" tabindex="-1"></a>    mean, median, sd, <span class="sc">~</span> <span class="fu">quantile2</span>(.x, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>)),</span>
+<span id="cb20-129"><a href="#cb20-129" aria-hidden="true" tabindex="-1"></a>    <span class="fu">default_convergence_measures</span>()</span>
+<span id="cb20-130"><a href="#cb20-130" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb20-131"><a href="#cb20-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-132"><a href="#cb20-132" aria-hidden="true" tabindex="-1"></a>You can predict the probability of events for a given exposure level with</span>
-<span id="cb20-133"><a href="#cb20-133" aria-hidden="true" tabindex="-1"></a><span class="in">`sim_er_new_exp()`</span> function.</span>
-<span id="cb20-134"><a href="#cb20-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-135"><a href="#cb20-135" aria-hidden="true" tabindex="-1"></a>Here, the prediction is done for AUCss_1000 of 1, 1.5, 2, 3 (AUCss of 1000, </span>
-<span id="cb20-136"><a href="#cb20-136" aria-hidden="true" tabindex="-1"></a>1500, 2000, 3000), and the output is the median and 95% CI of the predicted </span>
-<span id="cb20-137"><a href="#cb20-137" aria-hidden="true" tabindex="-1"></a>probability.</span>
-<span id="cb20-138"><a href="#cb20-138" aria-hidden="true" tabindex="-1"></a>You can set <span class="in">`output_type = "draw"`</span> to get the raw posterior draws.</span>
-<span id="cb20-139"><a href="#cb20-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-140"><a href="#cb20-140" aria-hidden="true" tabindex="-1"></a>There are two types of outputs here, <span class="in">`.epred`</span> and <span class="in">`.linpred`</span>, as follows:</span>
-<span id="cb20-141"><a href="#cb20-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-142"><a href="#cb20-142" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`.epred`</span>: Expected response on the probability scale (% of event)</span>
-<span id="cb20-143"><a href="#cb20-143" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`.linpred`</span>: Expected response on the linear predictor scale (logit scale, </span>
-<span id="cb20-144"><a href="#cb20-144" aria-hidden="true" tabindex="-1"></a>  i.e. log-odds)</span>
-<span id="cb20-145"><a href="#cb20-145" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb20-146"><a href="#cb20-146" aria-hidden="true" tabindex="-1"></a>See <span class="in">`?BayesERtools::sim_er`</span> for more details.</span>
+<span id="cb20-132"><a href="#cb20-132" aria-hidden="true" tabindex="-1"></a>draws_df_summary <span class="sc">|&gt;</span></span>
+<span id="cb20-133"><a href="#cb20-133" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb20-134"><a href="#cb20-134" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">n_sigfig =</span> <span class="dv">3</span>)</span>
+<span id="cb20-135"><a href="#cb20-135" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-136"><a href="#cb20-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-137"><a href="#cb20-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-138"><a href="#cb20-138" aria-hidden="true" tabindex="-1"></a>You can predict the probability of events for a given exposure level with</span>
+<span id="cb20-139"><a href="#cb20-139" aria-hidden="true" tabindex="-1"></a><span class="in">`sim_er_new_exp()`</span> function.</span>
+<span id="cb20-140"><a href="#cb20-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-141"><a href="#cb20-141" aria-hidden="true" tabindex="-1"></a>Here, the prediction is done for AUCss_1000 of 1, 1.5, 2, 3 (AUCss of 1000,</span>
+<span id="cb20-142"><a href="#cb20-142" aria-hidden="true" tabindex="-1"></a>1500, 2000, 3000), and the output is the median and 95% CI of the predicted</span>
+<span id="cb20-143"><a href="#cb20-143" aria-hidden="true" tabindex="-1"></a>probability.</span>
+<span id="cb20-144"><a href="#cb20-144" aria-hidden="true" tabindex="-1"></a>You can set <span class="in">`output_type = "draw"`</span> to get the raw posterior draws.</span>
+<span id="cb20-145"><a href="#cb20-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-146"><a href="#cb20-146" aria-hidden="true" tabindex="-1"></a>There are two types of outputs here, <span class="in">`.epred`</span> and <span class="in">`.linpred`</span>, as follows:</span>
 <span id="cb20-147"><a href="#cb20-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-148"><a href="#cb20-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-151"><a href="#cb20-151" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb20-152"><a href="#cb20-152" aria-hidden="true" tabindex="-1"></a>ersim_med_qi <span class="ot">&lt;-</span> <span class="fu">sim_er_new_exp</span>(</span>
-<span id="cb20-153"><a href="#cb20-153" aria-hidden="true" tabindex="-1"></a>  ermod_bin,</span>
-<span id="cb20-154"><a href="#cb20-154" aria-hidden="true" tabindex="-1"></a>  <span class="at">exposure_to_sim_vec =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
-<span id="cb20-155"><a href="#cb20-155" aria-hidden="true" tabindex="-1"></a>  <span class="at">output_type =</span> <span class="st">"median_qi"</span></span>
-<span id="cb20-156"><a href="#cb20-156" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb20-157"><a href="#cb20-157" aria-hidden="true" tabindex="-1"></a>ersim_med_qi <span class="sc">|&gt;</span></span>
-<span id="cb20-158"><a href="#cb20-158" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb20-159"><a href="#cb20-159" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">n_sigfig =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
-<span id="cb20-160"><a href="#cb20-160" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_integer</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">".row"</span>))</span>
-<span id="cb20-161"><a href="#cb20-161" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb20-162"><a href="#cb20-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-163"><a href="#cb20-163" aria-hidden="true" tabindex="-1"></a><span class="fu">## Selection of exposure metrics</span></span>
-<span id="cb20-164"><a href="#cb20-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-165"><a href="#cb20-165" aria-hidden="true" tabindex="-1"></a><span class="in">`dev_ermod_bin_exp_sel()`</span> function can be used to select the best exposure</span>
-<span id="cb20-166"><a href="#cb20-166" aria-hidden="true" tabindex="-1"></a>metric(s) from a list of candidate exposure metrics. In this case, AUCss_1000</span>
-<span id="cb20-167"><a href="#cb20-167" aria-hidden="true" tabindex="-1"></a>is selected as the best exposure metric, as it had the highest elpd (expected </span>
-<span id="cb20-168"><a href="#cb20-168" aria-hidden="true" tabindex="-1"></a>log predictive density).<span class="ot">[^1]</span></span>
-<span id="cb20-169"><a href="#cb20-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-170"><a href="#cb20-170" aria-hidden="true" tabindex="-1"></a><span class="ot">[^1]: </span>Some references about elpd: \code{?loo::<span class="in">`loo-glossary`</span>}, <span class="co">[</span><span class="ot">What is the interpretation of ELPD / elpd_loo / elpd_diff?</span><span class="co">](https://mc-stan.org/loo/articles/online-only/faq.html#elpd_interpretation)</span></span>
-<span id="cb20-171"><a href="#cb20-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-172"><a href="#cb20-172" aria-hidden="true" tabindex="-1"></a>Note that whether you want to select exposure metrics using the statistical</span>
-<span id="cb20-173"><a href="#cb20-173" aria-hidden="true" tabindex="-1"></a>criteria (e.g. elpd) or pre-specify the exposure metric(s) depends on the</span>
-<span id="cb20-174"><a href="#cb20-174" aria-hidden="true" tabindex="-1"></a>contexts. Should you choose to pre-specify the exposure metric(s), you can</span>
-<span id="cb20-175"><a href="#cb20-175" aria-hidden="true" tabindex="-1"></a>skip this step.</span>
-<span id="cb20-176"><a href="#cb20-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-179"><a href="#cb20-179" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb20-180"><a href="#cb20-180" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb20-181"><a href="#cb20-181" aria-hidden="true" tabindex="-1"></a>ermod_bin_exp_sel <span class="ot">&lt;-</span></span>
-<span id="cb20-182"><a href="#cb20-182" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dev_ermod_bin_exp_sel</span>(</span>
-<span id="cb20-183"><a href="#cb20-183" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Use reduced N to make the example run faster</span></span>
-<span id="cb20-184"><a href="#cb20-184" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">slice_sample</span>(df_er_ae_hgly2, <span class="at">n =</span> <span class="dv">100</span>),</span>
-<span id="cb20-185"><a href="#cb20-185" aria-hidden="true" tabindex="-1"></a>    <span class="at">var_resp =</span> var_resp,</span>
-<span id="cb20-186"><a href="#cb20-186" aria-hidden="true" tabindex="-1"></a>    <span class="at">var_exp_candidates =</span> <span class="fu">c</span>(<span class="st">"AUCss_1000"</span>, <span class="st">"Cmaxss"</span>, <span class="st">"Cminss"</span>),</span>
-<span id="cb20-187"><a href="#cb20-187" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Use reduced iter to make the example run faster</span></span>
-<span id="cb20-188"><a href="#cb20-188" aria-hidden="true" tabindex="-1"></a>    <span class="at">iter =</span> <span class="dv">1000</span></span>
-<span id="cb20-189"><a href="#cb20-189" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb20-190"><a href="#cb20-190" aria-hidden="true" tabindex="-1"></a>ermod_bin_exp_sel</span>
-<span id="cb20-191"><a href="#cb20-191" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb20-192"><a href="#cb20-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-193"><a href="#cb20-193" aria-hidden="true" tabindex="-1"></a>The ER curve for all the evaluated exposure metrics can be generated with </span>
-<span id="cb20-194"><a href="#cb20-194" aria-hidden="true" tabindex="-1"></a><span class="in">`plot_er_exp_sel()`</span> function.</span>
-<span id="cb20-195"><a href="#cb20-195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-198"><a href="#cb20-198" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb20-199"><a href="#cb20-199" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-exp-sel</span></span>
-<span id="cb20-200"><a href="#cb20-200" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 7</span></span>
-<span id="cb20-201"><a href="#cb20-201" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
-<span id="cb20-202"><a href="#cb20-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-203"><a href="#cb20-203" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_er_exp_sel</span>(ermod_bin_exp_sel) <span class="sc">+</span></span>
-<span id="cb20-204"><a href="#cb20-204" aria-hidden="true" tabindex="-1"></a>  xgxr<span class="sc">::</span><span class="fu">xgx_scale_x_log10</span>(<span class="at">guide =</span> ggplot2<span class="sc">::</span><span class="fu">guide_axis</span>(<span class="at">minor.ticks =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb20-205"><a href="#cb20-205" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb20-206"><a href="#cb20-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-207"><a href="#cb20-207" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-208"><a href="#cb20-208" aria-hidden="true" tabindex="-1"></a><span class="fu">## Selection of covariates</span></span>
-<span id="cb20-209"><a href="#cb20-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-210"><a href="#cb20-210" aria-hidden="true" tabindex="-1"></a><span class="in">`dev_ermod_bin_cov_sel()`</span> function can be used to select the best covariates</span>
-<span id="cb20-211"><a href="#cb20-211" aria-hidden="true" tabindex="-1"></a>from a list of candidate covariates. In this case, HbA1c (BHBA1C_5) and glucose</span>
-<span id="cb20-212"><a href="#cb20-212" aria-hidden="true" tabindex="-1"></a>(BGLUC) are selected, in addition to the exposure metric AUCss_1000 as </span>
-<span id="cb20-213"><a href="#cb20-213" aria-hidden="true" tabindex="-1"></a>predictors.</span>
-<span id="cb20-214"><a href="#cb20-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-217"><a href="#cb20-217" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb20-218"><a href="#cb20-218" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: FALSE</span></span>
+<span id="cb20-148"><a href="#cb20-148" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`.epred`</span>: Expected response on the probability scale (% of event)</span>
+<span id="cb20-149"><a href="#cb20-149" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`.linpred`</span>: Expected response on the linear predictor scale (logit scale,</span>
+<span id="cb20-150"><a href="#cb20-150" aria-hidden="true" tabindex="-1"></a>  i.e. log-odds)</span>
+<span id="cb20-151"><a href="#cb20-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-152"><a href="#cb20-152" aria-hidden="true" tabindex="-1"></a>See <span class="in">`?BayesERtools::sim_er`</span> for more details.</span>
+<span id="cb20-153"><a href="#cb20-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-154"><a href="#cb20-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-157"><a href="#cb20-157" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-158"><a href="#cb20-158" aria-hidden="true" tabindex="-1"></a>ersim_med_qi <span class="ot">&lt;-</span> <span class="fu">sim_er_new_exp</span>(</span>
+<span id="cb20-159"><a href="#cb20-159" aria-hidden="true" tabindex="-1"></a>  ermod_bin,</span>
+<span id="cb20-160"><a href="#cb20-160" aria-hidden="true" tabindex="-1"></a>  <span class="at">exposure_to_sim_vec =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
+<span id="cb20-161"><a href="#cb20-161" aria-hidden="true" tabindex="-1"></a>  <span class="at">output_type =</span> <span class="st">"median_qi"</span></span>
+<span id="cb20-162"><a href="#cb20-162" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-163"><a href="#cb20-163" aria-hidden="true" tabindex="-1"></a>ersim_med_qi <span class="sc">|&gt;</span></span>
+<span id="cb20-164"><a href="#cb20-164" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb20-165"><a href="#cb20-165" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">n_sigfig =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb20-166"><a href="#cb20-166" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_integer</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">".row"</span>))</span>
+<span id="cb20-167"><a href="#cb20-167" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-168"><a href="#cb20-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-169"><a href="#cb20-169" aria-hidden="true" tabindex="-1"></a><span class="fu">## Selection of exposure metrics</span></span>
+<span id="cb20-170"><a href="#cb20-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-171"><a href="#cb20-171" aria-hidden="true" tabindex="-1"></a><span class="in">`dev_ermod_bin_exp_sel()`</span> function can be used to select the best exposure</span>
+<span id="cb20-172"><a href="#cb20-172" aria-hidden="true" tabindex="-1"></a>metric(s) from a list of candidate exposure metrics. In this case, AUCss_1000</span>
+<span id="cb20-173"><a href="#cb20-173" aria-hidden="true" tabindex="-1"></a>is selected as the best exposure metric, as it had the highest elpd (expected</span>
+<span id="cb20-174"><a href="#cb20-174" aria-hidden="true" tabindex="-1"></a>log predictive density).<span class="ot">[^1]</span></span>
+<span id="cb20-175"><a href="#cb20-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-176"><a href="#cb20-176" aria-hidden="true" tabindex="-1"></a><span class="ot">[^1]: </span>Some references about elpd: \code{?loo::<span class="in">`loo-glossary`</span>}, <span class="co">[</span><span class="ot">What is the interpretation of ELPD / elpd_loo / elpd_diff?</span><span class="co">](https://mc-stan.org/loo/articles/online-only/faq.html#elpd_interpretation)</span></span>
+<span id="cb20-177"><a href="#cb20-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-178"><a href="#cb20-178" aria-hidden="true" tabindex="-1"></a>Note that whether you want to select exposure metrics using the statistical</span>
+<span id="cb20-179"><a href="#cb20-179" aria-hidden="true" tabindex="-1"></a>criteria (e.g. elpd) or pre-specify the exposure metric(s) depends on the</span>
+<span id="cb20-180"><a href="#cb20-180" aria-hidden="true" tabindex="-1"></a>contexts. Should you choose to pre-specify the exposure metric(s), you can</span>
+<span id="cb20-181"><a href="#cb20-181" aria-hidden="true" tabindex="-1"></a>skip this step.</span>
+<span id="cb20-182"><a href="#cb20-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-185"><a href="#cb20-185" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-186"><a href="#cb20-186" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb20-187"><a href="#cb20-187" aria-hidden="true" tabindex="-1"></a>ermod_bin_exp_sel <span class="ot">&lt;-</span></span>
+<span id="cb20-188"><a href="#cb20-188" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dev_ermod_bin_exp_sel</span>(</span>
+<span id="cb20-189"><a href="#cb20-189" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Use reduced N to make the example run faster</span></span>
+<span id="cb20-190"><a href="#cb20-190" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">slice_sample</span>(df_er_ae_hgly2, <span class="at">n =</span> <span class="dv">100</span>),</span>
+<span id="cb20-191"><a href="#cb20-191" aria-hidden="true" tabindex="-1"></a>    <span class="at">var_resp =</span> var_resp,</span>
+<span id="cb20-192"><a href="#cb20-192" aria-hidden="true" tabindex="-1"></a>    <span class="at">var_exp_candidates =</span> <span class="fu">c</span>(<span class="st">"AUCss_1000"</span>, <span class="st">"Cmaxss"</span>, <span class="st">"Cminss"</span>),</span>
+<span id="cb20-193"><a href="#cb20-193" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Use reduced iter to make the example run faster</span></span>
+<span id="cb20-194"><a href="#cb20-194" aria-hidden="true" tabindex="-1"></a>    <span class="at">iter =</span> <span class="dv">1000</span></span>
+<span id="cb20-195"><a href="#cb20-195" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb20-196"><a href="#cb20-196" aria-hidden="true" tabindex="-1"></a>ermod_bin_exp_sel</span>
+<span id="cb20-197"><a href="#cb20-197" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-198"><a href="#cb20-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-199"><a href="#cb20-199" aria-hidden="true" tabindex="-1"></a>The ER curve for all the evaluated exposure metrics can be generated with</span>
+<span id="cb20-200"><a href="#cb20-200" aria-hidden="true" tabindex="-1"></a><span class="in">`plot_er_exp_sel()`</span> function.</span>
+<span id="cb20-201"><a href="#cb20-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-204"><a href="#cb20-204" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-205"><a href="#cb20-205" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-exp-sel</span></span>
+<span id="cb20-206"><a href="#cb20-206" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 7</span></span>
+<span id="cb20-207"><a href="#cb20-207" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
+<span id="cb20-208"><a href="#cb20-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-209"><a href="#cb20-209" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_er_exp_sel</span>(ermod_bin_exp_sel) <span class="sc">+</span></span>
+<span id="cb20-210"><a href="#cb20-210" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">coord_transform</span>(<span class="at">x =</span> <span class="st">"log10"</span>) <span class="sc">+</span></span>
+<span id="cb20-211"><a href="#cb20-211" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">scale_x_continuous</span>(</span>
+<span id="cb20-212"><a href="#cb20-212" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> xgxr<span class="sc">::</span>xgx_breaks_log10,</span>
+<span id="cb20-213"><a href="#cb20-213" aria-hidden="true" tabindex="-1"></a>    <span class="at">minor_breaks =</span> xgxr<span class="sc">::</span>xgx_minor_breaks_log10</span>
+<span id="cb20-214"><a href="#cb20-214" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb20-215"><a href="#cb20-215" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-216"><a href="#cb20-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-217"><a href="#cb20-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-218"><a href="#cb20-218" aria-hidden="true" tabindex="-1"></a><span class="fu">## Selection of covariates</span></span>
 <span id="cb20-219"><a href="#cb20-219" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-220"><a href="#cb20-220" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb20-221"><a href="#cb20-221" aria-hidden="true" tabindex="-1"></a>ermod_bin_cov_sel <span class="ot">&lt;-</span></span>
-<span id="cb20-222"><a href="#cb20-222" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dev_ermod_bin_cov_sel</span>(</span>
-<span id="cb20-223"><a href="#cb20-223" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> df_er_ae_hgly2,</span>
-<span id="cb20-224"><a href="#cb20-224" aria-hidden="true" tabindex="-1"></a>    <span class="at">var_resp =</span> var_resp,</span>
-<span id="cb20-225"><a href="#cb20-225" aria-hidden="true" tabindex="-1"></a>    <span class="at">var_exposure =</span> <span class="st">"AUCss_1000"</span>,</span>
-<span id="cb20-226"><a href="#cb20-226" aria-hidden="true" tabindex="-1"></a>    <span class="at">var_cov_candidate =</span> var_cov_ae_hgly2,</span>
-<span id="cb20-227"><a href="#cb20-227" aria-hidden="true" tabindex="-1"></a>    <span class="at">verbosity_level =</span> <span class="dv">2</span></span>
-<span id="cb20-228"><a href="#cb20-228" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb20-229"><a href="#cb20-229" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb20-230"><a href="#cb20-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-233"><a href="#cb20-233" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb20-234"><a href="#cb20-234" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: FALSE</span></span>
-<span id="cb20-235"><a href="#cb20-235" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: FALSE</span></span>
-<span id="cb20-236"><a href="#cb20-236" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-237"><a href="#cb20-237" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the output in vignettes/data to avoid running it during the build.</span></span>
-<span id="cb20-238"><a href="#cb20-238" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(ermod_bin_cov_sel, <span class="at">file =</span> <span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"ermod_bin_cov_sel.rds"</span>))</span>
+<span id="cb20-220"><a href="#cb20-220" aria-hidden="true" tabindex="-1"></a><span class="in">`dev_ermod_bin_cov_sel()`</span> function can be used to select the best covariates</span>
+<span id="cb20-221"><a href="#cb20-221" aria-hidden="true" tabindex="-1"></a>from a list of candidate covariates. In this case, HbA1c (BHBA1C_5) and glucose</span>
+<span id="cb20-222"><a href="#cb20-222" aria-hidden="true" tabindex="-1"></a>(BGLUC) are selected, in addition to the exposure metric AUCss_1000 as</span>
+<span id="cb20-223"><a href="#cb20-223" aria-hidden="true" tabindex="-1"></a>predictors.</span>
+<span id="cb20-224"><a href="#cb20-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-227"><a href="#cb20-227" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-228"><a href="#cb20-228" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: FALSE</span></span>
+<span id="cb20-229"><a href="#cb20-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-230"><a href="#cb20-230" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb20-231"><a href="#cb20-231" aria-hidden="true" tabindex="-1"></a>ermod_bin_cov_sel <span class="ot">&lt;-</span></span>
+<span id="cb20-232"><a href="#cb20-232" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dev_ermod_bin_cov_sel</span>(</span>
+<span id="cb20-233"><a href="#cb20-233" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> df_er_ae_hgly2,</span>
+<span id="cb20-234"><a href="#cb20-234" aria-hidden="true" tabindex="-1"></a>    <span class="at">var_resp =</span> var_resp,</span>
+<span id="cb20-235"><a href="#cb20-235" aria-hidden="true" tabindex="-1"></a>    <span class="at">var_exposure =</span> <span class="st">"AUCss_1000"</span>,</span>
+<span id="cb20-236"><a href="#cb20-236" aria-hidden="true" tabindex="-1"></a>    <span class="at">var_cov_candidate =</span> var_cov_ae_hgly2,</span>
+<span id="cb20-237"><a href="#cb20-237" aria-hidden="true" tabindex="-1"></a>    <span class="at">verbosity_level =</span> <span class="dv">2</span></span>
+<span id="cb20-238"><a href="#cb20-238" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb20-239"><a href="#cb20-239" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb20-240"><a href="#cb20-240" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-243"><a href="#cb20-243" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb20-244"><a href="#cb20-244" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: FALSE</span></span>
-<span id="cb20-245"><a href="#cb20-245" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-246"><a href="#cb20-246" aria-hidden="true" tabindex="-1"></a>ermod_bin_cov_sel <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"ermod_bin_cov_sel.rds"</span>))</span>
-<span id="cb20-247"><a href="#cb20-247" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb20-248"><a href="#cb20-248" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-251"><a href="#cb20-251" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb20-252"><a href="#cb20-252" aria-hidden="true" tabindex="-1"></a>ermod_bin_cov_sel</span>
-<span id="cb20-253"><a href="#cb20-253" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb20-254"><a href="#cb20-254" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-255"><a href="#cb20-255" aria-hidden="true" tabindex="-1"></a>The plot below shows that AUCss_1000, BHBA1C_5, and BGLUC contributes to </span>
-<span id="cb20-256"><a href="#cb20-256" aria-hidden="true" tabindex="-1"></a>improving the model performance, and after then the inclusion of no other</span>
-<span id="cb20-257"><a href="#cb20-257" aria-hidden="true" tabindex="-1"></a>covariates improves the model performance.</span>
+<span id="cb20-244"><a href="#cb20-244" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: FALSE</span></span>
+<span id="cb20-245"><a href="#cb20-245" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: FALSE</span></span>
+<span id="cb20-246"><a href="#cb20-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-247"><a href="#cb20-247" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the output in vignettes/data to avoid running it during the build.</span></span>
+<span id="cb20-248"><a href="#cb20-248" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(ermod_bin_cov_sel, <span class="at">file =</span> <span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"ermod_bin_cov_sel.rds"</span>))</span>
+<span id="cb20-249"><a href="#cb20-249" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-250"><a href="#cb20-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-253"><a href="#cb20-253" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-254"><a href="#cb20-254" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: FALSE</span></span>
+<span id="cb20-255"><a href="#cb20-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-256"><a href="#cb20-256" aria-hidden="true" tabindex="-1"></a>ermod_bin_cov_sel <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"ermod_bin_cov_sel.rds"</span>))</span>
+<span id="cb20-257"><a href="#cb20-257" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb20-258"><a href="#cb20-258" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-261"><a href="#cb20-261" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb20-262"><a href="#cb20-262" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-cov-sel</span></span>
-<span id="cb20-263"><a href="#cb20-263" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 7</span></span>
-<span id="cb20-264"><a href="#cb20-264" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
-<span id="cb20-265"><a href="#cb20-265" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-266"><a href="#cb20-266" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_submod_performance</span>(ermod_bin_cov_sel)</span>
-<span id="cb20-267"><a href="#cb20-267" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-262"><a href="#cb20-262" aria-hidden="true" tabindex="-1"></a>ermod_bin_cov_sel</span>
+<span id="cb20-263"><a href="#cb20-263" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-264"><a href="#cb20-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-265"><a href="#cb20-265" aria-hidden="true" tabindex="-1"></a>The plot below shows that AUCss_1000, BHBA1C_5, and BGLUC contributes to</span>
+<span id="cb20-266"><a href="#cb20-266" aria-hidden="true" tabindex="-1"></a>improving the model performance, and after then the inclusion of no other</span>
+<span id="cb20-267"><a href="#cb20-267" aria-hidden="true" tabindex="-1"></a>covariates improves the model performance.</span>
 <span id="cb20-268"><a href="#cb20-268" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-269"><a href="#cb20-269" aria-hidden="true" tabindex="-1"></a>In some cases, you might see a warning message like below. This indicates that</span>
-<span id="cb20-270"><a href="#cb20-270" aria-hidden="true" tabindex="-1"></a>approximation of leave-one-out cross-validation performance (PSIS-LOO) is not</span>
-<span id="cb20-271"><a href="#cb20-271" aria-hidden="true" tabindex="-1"></a>reliable.</span>
-<span id="cb20-272"><a href="#cb20-272" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-273"><a href="#cb20-273" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb20-274"><a href="#cb20-274" aria-hidden="true" tabindex="-1"></a><span class="in">Warning: In the recalculation of the reference model's PSIS-LOO CV weights for </span></span>
-<span id="cb20-275"><a href="#cb20-275" aria-hidden="true" tabindex="-1"></a><span class="in">the performance evaluation, ... Pareto k-values are in the interval...`. </span></span>
-<span id="cb20-276"><a href="#cb20-276" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb20-277"><a href="#cb20-277" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-278"><a href="#cb20-278" aria-hidden="true" tabindex="-1"></a>Alternatively to the default <span class="in">`cv_method = "LOO"`</span>, you can use k-fold </span>
-<span id="cb20-279"><a href="#cb20-279" aria-hidden="true" tabindex="-1"></a>cross-validation by setting<span class="in">`cv_method = "kfold"`</span> in <span class="in">`dev_ermod_bin_cov_sel()`</span> </span>
-<span id="cb20-280"><a href="#cb20-280" aria-hidden="true" tabindex="-1"></a>function. This can take longer time to run, but it can be more reliable in</span>
-<span id="cb20-281"><a href="#cb20-281" aria-hidden="true" tabindex="-1"></a>the cases where LOO is not reliable. You can also set <span class="in">`validate_search = TRUE`</span></span>
-<span id="cb20-282"><a href="#cb20-282" aria-hidden="true" tabindex="-1"></a>to let the function perform the variable selection for each fold separately,</span>
-<span id="cb20-283"><a href="#cb20-283" aria-hidden="true" tabindex="-1"></a>rather than using the selected variable sequence from the full dataset</span>
-<span id="cb20-284"><a href="#cb20-284" aria-hidden="true" tabindex="-1"></a>evaluation. </span>
-<span id="cb20-285"><a href="#cb20-285" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-288"><a href="#cb20-288" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb20-289"><a href="#cb20-289" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: FALSE</span></span>
-<span id="cb20-290"><a href="#cb20-290" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-291"><a href="#cb20-291" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb20-292"><a href="#cb20-292" aria-hidden="true" tabindex="-1"></a>ermod_bin_cov_sel_kfold <span class="ot">&lt;-</span></span>
-<span id="cb20-293"><a href="#cb20-293" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dev_ermod_bin_cov_sel</span>(</span>
-<span id="cb20-294"><a href="#cb20-294" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> df_er_ae_hgly2,</span>
-<span id="cb20-295"><a href="#cb20-295" aria-hidden="true" tabindex="-1"></a>    <span class="at">var_resp =</span> var_resp,</span>
-<span id="cb20-296"><a href="#cb20-296" aria-hidden="true" tabindex="-1"></a>    <span class="at">var_exposure =</span> <span class="st">"AUCss_1000"</span>,</span>
-<span id="cb20-297"><a href="#cb20-297" aria-hidden="true" tabindex="-1"></a>    <span class="at">var_cov_candidate =</span> var_cov_ae_hgly2,</span>
-<span id="cb20-298"><a href="#cb20-298" aria-hidden="true" tabindex="-1"></a>    <span class="at">cv_method =</span> <span class="st">"kfold"</span>,</span>
-<span id="cb20-299"><a href="#cb20-299" aria-hidden="true" tabindex="-1"></a>    <span class="at">validate_search =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb20-300"><a href="#cb20-300" aria-hidden="true" tabindex="-1"></a>    <span class="at">verbosity_level =</span> <span class="dv">2</span></span>
-<span id="cb20-301"><a href="#cb20-301" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb20-302"><a href="#cb20-302" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb20-303"><a href="#cb20-303" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-306"><a href="#cb20-306" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb20-307"><a href="#cb20-307" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: FALSE</span></span>
-<span id="cb20-308"><a href="#cb20-308" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: FALSE</span></span>
-<span id="cb20-309"><a href="#cb20-309" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-310"><a href="#cb20-310" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the output in vignettes/data to avoid running it during the build.</span></span>
-<span id="cb20-311"><a href="#cb20-311" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(ermod_bin_cov_sel_kfold, <span class="at">file =</span> <span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"ermod_bin_cov_sel_kfold.rds"</span>))</span>
+<span id="cb20-271"><a href="#cb20-271" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-272"><a href="#cb20-272" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-cov-sel</span></span>
+<span id="cb20-273"><a href="#cb20-273" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 7</span></span>
+<span id="cb20-274"><a href="#cb20-274" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
+<span id="cb20-275"><a href="#cb20-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-276"><a href="#cb20-276" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_submod_performance</span>(ermod_bin_cov_sel)</span>
+<span id="cb20-277"><a href="#cb20-277" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-278"><a href="#cb20-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-279"><a href="#cb20-279" aria-hidden="true" tabindex="-1"></a>In some cases, you might see a warning message like below. This indicates that</span>
+<span id="cb20-280"><a href="#cb20-280" aria-hidden="true" tabindex="-1"></a>approximation of leave-one-out cross-validation performance (PSIS-LOO) is not</span>
+<span id="cb20-281"><a href="#cb20-281" aria-hidden="true" tabindex="-1"></a>reliable.</span>
+<span id="cb20-282"><a href="#cb20-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-283"><a href="#cb20-283" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-284"><a href="#cb20-284" aria-hidden="true" tabindex="-1"></a><span class="in">Warning: In the recalculation of the reference model's PSIS-LOO CV weights for</span></span>
+<span id="cb20-285"><a href="#cb20-285" aria-hidden="true" tabindex="-1"></a><span class="in">the performance evaluation, ... Pareto k-values are in the interval...`.</span></span>
+<span id="cb20-286"><a href="#cb20-286" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-287"><a href="#cb20-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-288"><a href="#cb20-288" aria-hidden="true" tabindex="-1"></a>Alternatively to the default <span class="in">`cv_method = "LOO"`</span>, you can use k-fold</span>
+<span id="cb20-289"><a href="#cb20-289" aria-hidden="true" tabindex="-1"></a>cross-validation by setting<span class="in">`cv_method = "kfold"`</span> in <span class="in">`dev_ermod_bin_cov_sel()`</span></span>
+<span id="cb20-290"><a href="#cb20-290" aria-hidden="true" tabindex="-1"></a>function. This can take longer time to run, but it can be more reliable in</span>
+<span id="cb20-291"><a href="#cb20-291" aria-hidden="true" tabindex="-1"></a>the cases where LOO is not reliable. You can also set <span class="in">`validate_search = TRUE`</span></span>
+<span id="cb20-292"><a href="#cb20-292" aria-hidden="true" tabindex="-1"></a>to let the function perform the variable selection for each fold separately,</span>
+<span id="cb20-293"><a href="#cb20-293" aria-hidden="true" tabindex="-1"></a>rather than using the selected variable sequence from the full dataset</span>
+<span id="cb20-294"><a href="#cb20-294" aria-hidden="true" tabindex="-1"></a>evaluation.</span>
+<span id="cb20-295"><a href="#cb20-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-298"><a href="#cb20-298" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-299"><a href="#cb20-299" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: FALSE</span></span>
+<span id="cb20-300"><a href="#cb20-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-301"><a href="#cb20-301" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb20-302"><a href="#cb20-302" aria-hidden="true" tabindex="-1"></a>ermod_bin_cov_sel_kfold <span class="ot">&lt;-</span></span>
+<span id="cb20-303"><a href="#cb20-303" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dev_ermod_bin_cov_sel</span>(</span>
+<span id="cb20-304"><a href="#cb20-304" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> df_er_ae_hgly2,</span>
+<span id="cb20-305"><a href="#cb20-305" aria-hidden="true" tabindex="-1"></a>    <span class="at">var_resp =</span> var_resp,</span>
+<span id="cb20-306"><a href="#cb20-306" aria-hidden="true" tabindex="-1"></a>    <span class="at">var_exposure =</span> <span class="st">"AUCss_1000"</span>,</span>
+<span id="cb20-307"><a href="#cb20-307" aria-hidden="true" tabindex="-1"></a>    <span class="at">var_cov_candidate =</span> var_cov_ae_hgly2,</span>
+<span id="cb20-308"><a href="#cb20-308" aria-hidden="true" tabindex="-1"></a>    <span class="at">cv_method =</span> <span class="st">"kfold"</span>,</span>
+<span id="cb20-309"><a href="#cb20-309" aria-hidden="true" tabindex="-1"></a>    <span class="at">validate_search =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb20-310"><a href="#cb20-310" aria-hidden="true" tabindex="-1"></a>    <span class="at">verbosity_level =</span> <span class="dv">2</span></span>
+<span id="cb20-311"><a href="#cb20-311" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb20-312"><a href="#cb20-312" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb20-313"><a href="#cb20-313" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-316"><a href="#cb20-316" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb20-317"><a href="#cb20-317" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: FALSE</span></span>
-<span id="cb20-318"><a href="#cb20-318" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-319"><a href="#cb20-319" aria-hidden="true" tabindex="-1"></a>ermod_bin_cov_sel_kfold <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"ermod_bin_cov_sel_kfold.rds"</span>))</span>
-<span id="cb20-320"><a href="#cb20-320" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb20-321"><a href="#cb20-321" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-322"><a href="#cb20-322" aria-hidden="true" tabindex="-1"></a>Added bonus of using k-fold cv is that you can visualize how often each </span>
-<span id="cb20-323"><a href="#cb20-323" aria-hidden="true" tabindex="-1"></a>variable is selected in the model. Here, as you can see (and as expected),</span>
-<span id="cb20-324"><a href="#cb20-324" aria-hidden="true" tabindex="-1"></a>HbA1c (BHBA1C_5) and glucose (BGLUC) are highly related and they are almost</span>
-<span id="cb20-325"><a href="#cb20-325" aria-hidden="true" tabindex="-1"></a>interchangeably selected in the 2nd and 3rd positions. Note that the function</span>
-<span id="cb20-326"><a href="#cb20-326" aria-hidden="true" tabindex="-1"></a>enforces the exposure metric to be included first in the model.</span>
-<span id="cb20-327"><a href="#cb20-327" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-330"><a href="#cb20-330" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb20-331"><a href="#cb20-331" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-cov-sel-kfold</span></span>
-<span id="cb20-332"><a href="#cb20-332" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 7</span></span>
-<span id="cb20-333"><a href="#cb20-333" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
-<span id="cb20-334"><a href="#cb20-334" aria-hidden="true" tabindex="-1"></a><span class="co">#| results: hold</span></span>
-<span id="cb20-335"><a href="#cb20-335" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-336"><a href="#cb20-336" aria-hidden="true" tabindex="-1"></a>ermod_bin_cov_sel_kfold</span>
-<span id="cb20-337"><a href="#cb20-337" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_submod_performance</span>(ermod_bin_cov_sel_kfold)</span>
-<span id="cb20-338"><a href="#cb20-338" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_var_ranking</span>(ermod_bin_cov_sel_kfold)</span>
-<span id="cb20-339"><a href="#cb20-339" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb20-340"><a href="#cb20-340" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-341"><a href="#cb20-341" aria-hidden="true" tabindex="-1"></a><span class="fu">## Marginal ER prediction</span></span>
+<span id="cb20-317"><a href="#cb20-317" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: FALSE</span></span>
+<span id="cb20-318"><a href="#cb20-318" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: FALSE</span></span>
+<span id="cb20-319"><a href="#cb20-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-320"><a href="#cb20-320" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the output in vignettes/data to avoid running it during the build.</span></span>
+<span id="cb20-321"><a href="#cb20-321" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(</span>
+<span id="cb20-322"><a href="#cb20-322" aria-hidden="true" tabindex="-1"></a>  ermod_bin_cov_sel_kfold,</span>
+<span id="cb20-323"><a href="#cb20-323" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> <span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"ermod_bin_cov_sel_kfold.rds"</span>)</span>
+<span id="cb20-324"><a href="#cb20-324" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-325"><a href="#cb20-325" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-326"><a href="#cb20-326" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-329"><a href="#cb20-329" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-330"><a href="#cb20-330" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: FALSE</span></span>
+<span id="cb20-331"><a href="#cb20-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-332"><a href="#cb20-332" aria-hidden="true" tabindex="-1"></a>ermod_bin_cov_sel_kfold <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(</span>
+<span id="cb20-333"><a href="#cb20-333" aria-hidden="true" tabindex="-1"></a>  <span class="fu">here</span>(<span class="st">"output"</span>, <span class="st">"ermod_bin_cov_sel_kfold.rds"</span>)</span>
+<span id="cb20-334"><a href="#cb20-334" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-335"><a href="#cb20-335" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-336"><a href="#cb20-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-337"><a href="#cb20-337" aria-hidden="true" tabindex="-1"></a>Added bonus of using k-fold cv is that you can visualize how often each</span>
+<span id="cb20-338"><a href="#cb20-338" aria-hidden="true" tabindex="-1"></a>variable is selected in the model. Here, as you can see (and as expected),</span>
+<span id="cb20-339"><a href="#cb20-339" aria-hidden="true" tabindex="-1"></a>HbA1c (BHBA1C_5) and glucose (BGLUC) are highly related and they are almost</span>
+<span id="cb20-340"><a href="#cb20-340" aria-hidden="true" tabindex="-1"></a>interchangeably selected in the 2nd and 3rd positions. Note that the function</span>
+<span id="cb20-341"><a href="#cb20-341" aria-hidden="true" tabindex="-1"></a>enforces the exposure metric to be included first in the model.</span>
 <span id="cb20-342"><a href="#cb20-342" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-343"><a href="#cb20-343" aria-hidden="true" tabindex="-1"></a>You can simulate the marginal ER relationship, i.e. ER relationships for</span>
-<span id="cb20-344"><a href="#cb20-344" aria-hidden="true" tabindex="-1"></a>"marginalized", or averaged, response for the population of interest,</span>
-<span id="cb20-345"><a href="#cb20-345" aria-hidden="true" tabindex="-1"></a>using <span class="in">`sim_er_new_exp_marg()`</span> function.</span>
-<span id="cb20-346"><a href="#cb20-346" aria-hidden="true" tabindex="-1"></a>By default, the covariate distribution is from the original data, but you can</span>
-<span id="cb20-347"><a href="#cb20-347" aria-hidden="true" tabindex="-1"></a>also supply other distribution with <span class="in">`data_cov`</span> argument.</span>
-<span id="cb20-348"><a href="#cb20-348" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-351"><a href="#cb20-351" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb20-352"><a href="#cb20-352" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-marginal-er</span></span>
-<span id="cb20-353"><a href="#cb20-353" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 7</span></span>
-<span id="cb20-354"><a href="#cb20-354" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
-<span id="cb20-355"><a href="#cb20-355" aria-hidden="true" tabindex="-1"></a><span class="co">#| results: hold</span></span>
-<span id="cb20-356"><a href="#cb20-356" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-357"><a href="#cb20-357" aria-hidden="true" tabindex="-1"></a>ersim_new_exp_marg_med_qi <span class="ot">&lt;-</span> <span class="fu">sim_er_new_exp_marg</span>(</span>
-<span id="cb20-358"><a href="#cb20-358" aria-hidden="true" tabindex="-1"></a>  ermod_bin_cov_sel,</span>
-<span id="cb20-359"><a href="#cb20-359" aria-hidden="true" tabindex="-1"></a>  <span class="at">exposure_to_sim_vec =</span> <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>),</span>
-<span id="cb20-360"><a href="#cb20-360" aria-hidden="true" tabindex="-1"></a>  <span class="at">output_type =</span> <span class="st">"median_qi"</span></span>
-<span id="cb20-361"><a href="#cb20-361" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb20-362"><a href="#cb20-362" aria-hidden="true" tabindex="-1"></a>ersim_new_exp_marg_med_qi</span>
+<span id="cb20-345"><a href="#cb20-345" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-346"><a href="#cb20-346" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-cov-sel-kfold</span></span>
+<span id="cb20-347"><a href="#cb20-347" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 7</span></span>
+<span id="cb20-348"><a href="#cb20-348" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
+<span id="cb20-349"><a href="#cb20-349" aria-hidden="true" tabindex="-1"></a><span class="co">#| results: hold</span></span>
+<span id="cb20-350"><a href="#cb20-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-351"><a href="#cb20-351" aria-hidden="true" tabindex="-1"></a>ermod_bin_cov_sel_kfold</span>
+<span id="cb20-352"><a href="#cb20-352" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_submod_performance</span>(ermod_bin_cov_sel_kfold)</span>
+<span id="cb20-353"><a href="#cb20-353" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_var_ranking</span>(ermod_bin_cov_sel_kfold)</span>
+<span id="cb20-354"><a href="#cb20-354" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-355"><a href="#cb20-355" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-356"><a href="#cb20-356" aria-hidden="true" tabindex="-1"></a><span class="fu">## Marginal ER prediction</span></span>
+<span id="cb20-357"><a href="#cb20-357" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-358"><a href="#cb20-358" aria-hidden="true" tabindex="-1"></a>You can simulate the marginal ER relationship, i.e. ER relationships for</span>
+<span id="cb20-359"><a href="#cb20-359" aria-hidden="true" tabindex="-1"></a>"marginalized", or averaged, response for the population of interest,</span>
+<span id="cb20-360"><a href="#cb20-360" aria-hidden="true" tabindex="-1"></a>using <span class="in">`sim_er_new_exp_marg()`</span> function.</span>
+<span id="cb20-361"><a href="#cb20-361" aria-hidden="true" tabindex="-1"></a>By default, the covariate distribution is from the original data, but you can</span>
+<span id="cb20-362"><a href="#cb20-362" aria-hidden="true" tabindex="-1"></a>also supply other distribution with <span class="in">`data_cov`</span> argument.</span>
 <span id="cb20-363"><a href="#cb20-363" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-364"><a href="#cb20-364" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_er</span>(ersim_new_exp_marg_med_qi, <span class="at">marginal =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb20-365"><a href="#cb20-365" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb20-366"><a href="#cb20-366" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-367"><a href="#cb20-367" aria-hidden="true" tabindex="-1"></a><span class="fu">## Evaluation of covariate effects</span></span>
-<span id="cb20-368"><a href="#cb20-368" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-369"><a href="#cb20-369" aria-hidden="true" tabindex="-1"></a>You can visualize the effect of the covariates with <span class="in">`sim_coveff()`</span> and</span>
-<span id="cb20-370"><a href="#cb20-370" aria-hidden="true" tabindex="-1"></a><span class="in">`plot_coveff()`</span> functions. You can see that all three predictors have </span>
-<span id="cb20-371"><a href="#cb20-371" aria-hidden="true" tabindex="-1"></a>fairly strong effects on the odds ratio of hypoglycemia.</span>
-<span id="cb20-372"><a href="#cb20-372" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-375"><a href="#cb20-375" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb20-376"><a href="#cb20-376" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-cov-eff</span></span>
-<span id="cb20-377"><a href="#cb20-377" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 6</span></span>
-<span id="cb20-378"><a href="#cb20-378" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
-<span id="cb20-379"><a href="#cb20-379" aria-hidden="true" tabindex="-1"></a><span class="co">#| results: hold</span></span>
-<span id="cb20-380"><a href="#cb20-380" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-381"><a href="#cb20-381" aria-hidden="true" tabindex="-1"></a>coveffsim <span class="ot">&lt;-</span> <span class="fu">sim_coveff</span>(ermod_bin_cov_sel)</span>
-<span id="cb20-382"><a href="#cb20-382" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_coveff</span>(coveffsim)</span>
-<span id="cb20-383"><a href="#cb20-383" aria-hidden="true" tabindex="-1"></a><span class="fu">print_coveff</span>(coveffsim)</span>
-<span id="cb20-384"><a href="#cb20-384" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-366"><a href="#cb20-366" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-367"><a href="#cb20-367" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-marginal-er</span></span>
+<span id="cb20-368"><a href="#cb20-368" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 7</span></span>
+<span id="cb20-369"><a href="#cb20-369" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
+<span id="cb20-370"><a href="#cb20-370" aria-hidden="true" tabindex="-1"></a><span class="co">#| results: hold</span></span>
+<span id="cb20-371"><a href="#cb20-371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-372"><a href="#cb20-372" aria-hidden="true" tabindex="-1"></a>ersim_new_exp_marg_med_qi <span class="ot">&lt;-</span> <span class="fu">sim_er_new_exp_marg</span>(</span>
+<span id="cb20-373"><a href="#cb20-373" aria-hidden="true" tabindex="-1"></a>  ermod_bin_cov_sel,</span>
+<span id="cb20-374"><a href="#cb20-374" aria-hidden="true" tabindex="-1"></a>  <span class="at">exposure_to_sim_vec =</span> <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>),</span>
+<span id="cb20-375"><a href="#cb20-375" aria-hidden="true" tabindex="-1"></a>  <span class="at">output_type =</span> <span class="st">"median_qi"</span></span>
+<span id="cb20-376"><a href="#cb20-376" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-377"><a href="#cb20-377" aria-hidden="true" tabindex="-1"></a>ersim_new_exp_marg_med_qi</span>
+<span id="cb20-378"><a href="#cb20-378" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-379"><a href="#cb20-379" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_er</span>(ersim_new_exp_marg_med_qi, <span class="at">marginal =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb20-380"><a href="#cb20-380" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-381"><a href="#cb20-381" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-382"><a href="#cb20-382" aria-hidden="true" tabindex="-1"></a><span class="fu">## Evaluation of covariate effects</span></span>
+<span id="cb20-383"><a href="#cb20-383" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-384"><a href="#cb20-384" aria-hidden="true" tabindex="-1"></a>You can visualize the effect of the covariates with <span class="in">`sim_coveff()`</span> and</span>
+<span id="cb20-385"><a href="#cb20-385" aria-hidden="true" tabindex="-1"></a><span class="in">`plot_coveff()`</span> functions. You can see that all three predictors have</span>
+<span id="cb20-386"><a href="#cb20-386" aria-hidden="true" tabindex="-1"></a>fairly strong effects on the odds ratio of hypoglycemia.</span>
+<span id="cb20-387"><a href="#cb20-387" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-390"><a href="#cb20-390" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-391"><a href="#cb20-391" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-cov-eff</span></span>
+<span id="cb20-392"><a href="#cb20-392" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 6</span></span>
+<span id="cb20-393"><a href="#cb20-393" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
+<span id="cb20-394"><a href="#cb20-394" aria-hidden="true" tabindex="-1"></a><span class="co">#| results: hold</span></span>
+<span id="cb20-395"><a href="#cb20-395" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-396"><a href="#cb20-396" aria-hidden="true" tabindex="-1"></a>coveffsim <span class="ot">&lt;-</span> <span class="fu">sim_coveff</span>(ermod_bin_cov_sel)</span>
+<span id="cb20-397"><a href="#cb20-397" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_coveff</span>(coveffsim)</span>
+<span id="cb20-398"><a href="#cb20-398" aria-hidden="true" tabindex="-1"></a><span class="fu">print_coveff</span>(coveffsim)</span>
+<span id="cb20-399"><a href="#cb20-399" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

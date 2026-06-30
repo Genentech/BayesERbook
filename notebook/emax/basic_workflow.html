@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>8&nbsp; Basic workflow – BayesERbook: Exposure-response analysis with Bayesian approaches</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -69,15 +72,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../notebook/binary/workflow_wo_package.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-b091dd3c12a5fa8ad5181305bec49a82.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-ec5dacfbc85b6aa211765d4aa5962a23.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -296,11 +298,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BayesERtools)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(posterior)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidybayes)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -318,25 +319,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="fig-data-look-1" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-data-look-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<pre class="r-output"><code>
-```{=html}
-<div id="qkuczfcqoq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#qkuczfcqoq table {
+<div id="typvuoiebt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#typvuoiebt table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#qkuczfcqoq thead, #qkuczfcqoq tbody, #qkuczfcqoq tfoot, #qkuczfcqoq tr, #qkuczfcqoq td, #qkuczfcqoq th {
+#typvuoiebt thead, #typvuoiebt tbody, #typvuoiebt tfoot, #typvuoiebt tr, #typvuoiebt td, #typvuoiebt th {
   border-style: none;
 }
 
-#qkuczfcqoq p {
+#typvuoiebt p {
   margin: 0;
   padding: 0;
 }
 
-#qkuczfcqoq .gt_table {
+#typvuoiebt .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -362,12 +361,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#qkuczfcqoq .gt_caption {
+#typvuoiebt .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qkuczfcqoq .gt_title {
+#typvuoiebt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -379,7 +378,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#qkuczfcqoq .gt_subtitle {
+#typvuoiebt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -391,7 +390,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#qkuczfcqoq .gt_heading {
+#typvuoiebt .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -403,13 +402,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#qkuczfcqoq .gt_bottom_border {
+#typvuoiebt .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qkuczfcqoq .gt_col_headings {
+#typvuoiebt .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -424,7 +423,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#qkuczfcqoq .gt_col_heading {
+#typvuoiebt .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -444,7 +443,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#qkuczfcqoq .gt_column_spanner_outer {
+#typvuoiebt .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -456,15 +455,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#qkuczfcqoq .gt_column_spanner_outer:first-child {
+#typvuoiebt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qkuczfcqoq .gt_column_spanner_outer:last-child {
+#typvuoiebt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qkuczfcqoq .gt_column_spanner {
+#typvuoiebt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -476,11 +475,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#qkuczfcqoq .gt_spanner_row {
+#typvuoiebt .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#qkuczfcqoq .gt_group_heading {
+#typvuoiebt .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -506,7 +505,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#qkuczfcqoq .gt_empty_group_heading {
+#typvuoiebt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -521,15 +520,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#qkuczfcqoq .gt_from_md > :first-child {
+#typvuoiebt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qkuczfcqoq .gt_from_md > :last-child {
+#typvuoiebt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qkuczfcqoq .gt_row {
+#typvuoiebt .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -548,7 +547,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#qkuczfcqoq .gt_stub {
+#typvuoiebt .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -561,7 +560,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#qkuczfcqoq .gt_stub_row_group {
+#typvuoiebt .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -575,15 +574,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#qkuczfcqoq .gt_row_group_first td {
+#typvuoiebt .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qkuczfcqoq .gt_row_group_first th {
+#typvuoiebt .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#qkuczfcqoq .gt_summary_row {
+#typvuoiebt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -593,16 +592,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#qkuczfcqoq .gt_first_summary_row {
+#typvuoiebt .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qkuczfcqoq .gt_first_summary_row.thick {
+#typvuoiebt .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qkuczfcqoq .gt_last_summary_row {
+#typvuoiebt .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -612,7 +611,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#qkuczfcqoq .gt_grand_summary_row {
+#typvuoiebt .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -622,7 +621,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#qkuczfcqoq .gt_first_grand_summary_row {
+#typvuoiebt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -632,7 +631,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#qkuczfcqoq .gt_last_grand_summary_row_top {
+#typvuoiebt .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -642,11 +641,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#qkuczfcqoq .gt_striped {
+#typvuoiebt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qkuczfcqoq .gt_table_body {
+#typvuoiebt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -655,7 +654,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#qkuczfcqoq .gt_footnotes {
+#typvuoiebt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -669,7 +668,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#qkuczfcqoq .gt_footnote {
+#typvuoiebt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -678,7 +677,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#qkuczfcqoq .gt_sourcenotes {
+#typvuoiebt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -692,7 +691,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#qkuczfcqoq .gt_sourcenote {
+#typvuoiebt .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -700,72 +699,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#qkuczfcqoq .gt_left {
+#typvuoiebt .gt_left {
   text-align: left;
 }
 
-#qkuczfcqoq .gt_center {
+#typvuoiebt .gt_center {
   text-align: center;
 }
 
-#qkuczfcqoq .gt_right {
+#typvuoiebt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qkuczfcqoq .gt_font_normal {
+#typvuoiebt .gt_font_normal {
   font-weight: normal;
 }
 
-#qkuczfcqoq .gt_font_bold {
+#typvuoiebt .gt_font_bold {
   font-weight: bold;
 }
 
-#qkuczfcqoq .gt_font_italic {
+#typvuoiebt .gt_font_italic {
   font-style: italic;
 }
 
-#qkuczfcqoq .gt_super {
+#typvuoiebt .gt_super {
   font-size: 65%;
 }
 
-#qkuczfcqoq .gt_footnote_marks {
+#typvuoiebt .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#qkuczfcqoq .gt_asterisk {
+#typvuoiebt .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qkuczfcqoq .gt_indent_1 {
+#typvuoiebt .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qkuczfcqoq .gt_indent_2 {
+#typvuoiebt .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qkuczfcqoq .gt_indent_3 {
+#typvuoiebt .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qkuczfcqoq .gt_indent_4 {
+#typvuoiebt .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qkuczfcqoq .gt_indent_5 {
+#typvuoiebt .gt_indent_5 {
   text-indent: 25px;
 }
 
-#qkuczfcqoq .katex-display {
+#typvuoiebt .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#qkuczfcqoq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#typvuoiebt div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -855,8 +854,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 
 </div>
-```
-</code></pre>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-data-look-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;8.1
@@ -868,9 +865,9 @@ Figure&nbsp;8.1
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d_sim_emax, <span class="fu">aes</span>(exposure, response_1)) <span class="sc">+</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">formula =</span> y <span class="sc">~</span> x, </span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"loess"</span>, </span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">se =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">formula =</span> y <span class="sc">~</span> x,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"loess"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">se =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="st">"darkgrey"</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
@@ -912,11 +909,11 @@ Figure&nbsp;8.2
 
 ---- Emax model fit with rstanemax ----
          mean se_mean      sd   2.5%     25%     50%     75%    97.5%   n_eff
-emax    11.59    0.31    5.89   4.82    7.34   10.10   14.24    27.50  368.24
-e0       6.68    0.20    4.08  -3.67    4.78    7.68    9.71    11.48  436.14
-ec50  5254.72  193.00 4475.71 801.17 2974.18 4673.97 6385.68 15736.00  537.81
-gamma    1.06    0.02    0.50   0.32    0.70    0.97    1.33     2.26  543.20
-sigma    1.27    0.00    0.05   1.18    1.24    1.27    1.31     1.39 1375.87
+emax    11.70    0.29    5.84   4.65    7.35   10.19   14.52    27.20  414.18
+e0       6.45    0.21    4.40  -5.11    4.58    7.58    9.63    11.59  436.99
+ec50  4892.89  129.05 3858.03 649.97 2787.66 4537.64 6219.22 12022.48  893.78
+gamma    1.07    0.02    0.51   0.34    0.70    0.96    1.34     2.32  575.85
+sigma    1.27    0.00    0.05   1.18    1.24    1.27    1.31     1.38 1513.21
       Rhat
 emax  1.01
 e0    1.01
@@ -977,25 +974,23 @@ Figure&nbsp;8.3
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">decimals =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<pre class="r-output"><code>
-```{=html}
-<div id="qnnknajtwb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#qnnknajtwb table {
+<div id="qsbzsgxckj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#qsbzsgxckj table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#qnnknajtwb thead, #qnnknajtwb tbody, #qnnknajtwb tfoot, #qnnknajtwb tr, #qnnknajtwb td, #qnnknajtwb th {
+#qsbzsgxckj thead, #qsbzsgxckj tbody, #qsbzsgxckj tfoot, #qsbzsgxckj tr, #qsbzsgxckj td, #qsbzsgxckj th {
   border-style: none;
 }
 
-#qnnknajtwb p {
+#qsbzsgxckj p {
   margin: 0;
   padding: 0;
 }
 
-#qnnknajtwb .gt_table {
+#qsbzsgxckj .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1021,12 +1016,12 @@ Figure&nbsp;8.3
   border-left-color: #D3D3D3;
 }
 
-#qnnknajtwb .gt_caption {
+#qsbzsgxckj .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qnnknajtwb .gt_title {
+#qsbzsgxckj .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1038,7 +1033,7 @@ Figure&nbsp;8.3
   border-bottom-width: 0;
 }
 
-#qnnknajtwb .gt_subtitle {
+#qsbzsgxckj .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1050,7 +1045,7 @@ Figure&nbsp;8.3
   border-top-width: 0;
 }
 
-#qnnknajtwb .gt_heading {
+#qsbzsgxckj .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1062,13 +1057,13 @@ Figure&nbsp;8.3
   border-right-color: #D3D3D3;
 }
 
-#qnnknajtwb .gt_bottom_border {
+#qsbzsgxckj .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qnnknajtwb .gt_col_headings {
+#qsbzsgxckj .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1083,7 +1078,7 @@ Figure&nbsp;8.3
   border-right-color: #D3D3D3;
 }
 
-#qnnknajtwb .gt_col_heading {
+#qsbzsgxckj .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1103,7 +1098,7 @@ Figure&nbsp;8.3
   overflow-x: hidden;
 }
 
-#qnnknajtwb .gt_column_spanner_outer {
+#qsbzsgxckj .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1115,15 +1110,15 @@ Figure&nbsp;8.3
   padding-right: 4px;
 }
 
-#qnnknajtwb .gt_column_spanner_outer:first-child {
+#qsbzsgxckj .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qnnknajtwb .gt_column_spanner_outer:last-child {
+#qsbzsgxckj .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qnnknajtwb .gt_column_spanner {
+#qsbzsgxckj .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1135,11 +1130,11 @@ Figure&nbsp;8.3
   width: 100%;
 }
 
-#qnnknajtwb .gt_spanner_row {
+#qsbzsgxckj .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#qnnknajtwb .gt_group_heading {
+#qsbzsgxckj .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1165,7 +1160,7 @@ Figure&nbsp;8.3
   text-align: left;
 }
 
-#qnnknajtwb .gt_empty_group_heading {
+#qsbzsgxckj .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1180,15 +1175,15 @@ Figure&nbsp;8.3
   vertical-align: middle;
 }
 
-#qnnknajtwb .gt_from_md > :first-child {
+#qsbzsgxckj .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qnnknajtwb .gt_from_md > :last-child {
+#qsbzsgxckj .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qnnknajtwb .gt_row {
+#qsbzsgxckj .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1207,7 +1202,7 @@ Figure&nbsp;8.3
   overflow-x: hidden;
 }
 
-#qnnknajtwb .gt_stub {
+#qsbzsgxckj .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1220,7 +1215,7 @@ Figure&nbsp;8.3
   padding-right: 5px;
 }
 
-#qnnknajtwb .gt_stub_row_group {
+#qsbzsgxckj .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1234,15 +1229,15 @@ Figure&nbsp;8.3
   vertical-align: top;
 }
 
-#qnnknajtwb .gt_row_group_first td {
+#qsbzsgxckj .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qnnknajtwb .gt_row_group_first th {
+#qsbzsgxckj .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#qnnknajtwb .gt_summary_row {
+#qsbzsgxckj .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1252,16 +1247,16 @@ Figure&nbsp;8.3
   padding-right: 5px;
 }
 
-#qnnknajtwb .gt_first_summary_row {
+#qsbzsgxckj .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qnnknajtwb .gt_first_summary_row.thick {
+#qsbzsgxckj .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qnnknajtwb .gt_last_summary_row {
+#qsbzsgxckj .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1271,7 +1266,7 @@ Figure&nbsp;8.3
   border-bottom-color: #D3D3D3;
 }
 
-#qnnknajtwb .gt_grand_summary_row {
+#qsbzsgxckj .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1281,7 +1276,7 @@ Figure&nbsp;8.3
   padding-right: 5px;
 }
 
-#qnnknajtwb .gt_first_grand_summary_row {
+#qsbzsgxckj .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1291,7 +1286,7 @@ Figure&nbsp;8.3
   border-top-color: #D3D3D3;
 }
 
-#qnnknajtwb .gt_last_grand_summary_row_top {
+#qsbzsgxckj .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1301,11 +1296,11 @@ Figure&nbsp;8.3
   border-bottom-color: #D3D3D3;
 }
 
-#qnnknajtwb .gt_striped {
+#qsbzsgxckj .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qnnknajtwb .gt_table_body {
+#qsbzsgxckj .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1314,7 +1309,7 @@ Figure&nbsp;8.3
   border-bottom-color: #D3D3D3;
 }
 
-#qnnknajtwb .gt_footnotes {
+#qsbzsgxckj .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1328,7 +1323,7 @@ Figure&nbsp;8.3
   border-right-color: #D3D3D3;
 }
 
-#qnnknajtwb .gt_footnote {
+#qsbzsgxckj .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1337,7 +1332,7 @@ Figure&nbsp;8.3
   padding-right: 5px;
 }
 
-#qnnknajtwb .gt_sourcenotes {
+#qsbzsgxckj .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1351,7 +1346,7 @@ Figure&nbsp;8.3
   border-right-color: #D3D3D3;
 }
 
-#qnnknajtwb .gt_sourcenote {
+#qsbzsgxckj .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1359,72 +1354,72 @@ Figure&nbsp;8.3
   padding-right: 5px;
 }
 
-#qnnknajtwb .gt_left {
+#qsbzsgxckj .gt_left {
   text-align: left;
 }
 
-#qnnknajtwb .gt_center {
+#qsbzsgxckj .gt_center {
   text-align: center;
 }
 
-#qnnknajtwb .gt_right {
+#qsbzsgxckj .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qnnknajtwb .gt_font_normal {
+#qsbzsgxckj .gt_font_normal {
   font-weight: normal;
 }
 
-#qnnknajtwb .gt_font_bold {
+#qsbzsgxckj .gt_font_bold {
   font-weight: bold;
 }
 
-#qnnknajtwb .gt_font_italic {
+#qsbzsgxckj .gt_font_italic {
   font-style: italic;
 }
 
-#qnnknajtwb .gt_super {
+#qsbzsgxckj .gt_super {
   font-size: 65%;
 }
 
-#qnnknajtwb .gt_footnote_marks {
+#qsbzsgxckj .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#qnnknajtwb .gt_asterisk {
+#qsbzsgxckj .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qnnknajtwb .gt_indent_1 {
+#qsbzsgxckj .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qnnknajtwb .gt_indent_2 {
+#qsbzsgxckj .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qnnknajtwb .gt_indent_3 {
+#qsbzsgxckj .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qnnknajtwb .gt_indent_4 {
+#qsbzsgxckj .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qnnknajtwb .gt_indent_5 {
+#qsbzsgxckj .gt_indent_5 {
   text-indent: 25px;
 }
 
-#qnnknajtwb .katex-display {
+#qsbzsgxckj .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#qnnknajtwb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#qsbzsgxckj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1447,15 +1442,15 @@ Figure&nbsp;8.3
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_left" headers="variable">ec50</td>
-<td class="gt_row gt_right" headers="mean">5,254.72</td>
-<td class="gt_row gt_right" headers="median">4,673.97</td>
-<td class="gt_row gt_right" headers="sd">4,475.71</td>
-<td class="gt_row gt_right" headers="mad">2,534.11</td>
-<td class="gt_row gt_right" headers="q5">1,125.57</td>
-<td class="gt_row gt_right" headers="q95">9,837.30</td>
+<td class="gt_row gt_right" headers="mean">4,892.89</td>
+<td class="gt_row gt_right" headers="median">4,537.64</td>
+<td class="gt_row gt_right" headers="sd">3,858.03</td>
+<td class="gt_row gt_right" headers="mad">2,538.85</td>
+<td class="gt_row gt_right" headers="q5">949.54</td>
+<td class="gt_row gt_right" headers="q95">8,655.60</td>
 <td class="gt_row gt_right" headers="rhat">1.01</td>
-<td class="gt_row gt_right" headers="ess_bulk">614.40</td>
-<td class="gt_row gt_right" headers="ess_tail">541.30</td>
+<td class="gt_row gt_right" headers="ess_bulk">680.72</td>
+<td class="gt_row gt_right" headers="ess_tail">672.71</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="variable">sigma</td>
@@ -1466,51 +1461,49 @@ Figure&nbsp;8.3
 <td class="gt_row gt_right" headers="q5">1.19</td>
 <td class="gt_row gt_right" headers="q95">1.36</td>
 <td class="gt_row gt_right" headers="rhat">1.00</td>
-<td class="gt_row gt_right" headers="ess_bulk">1,379.24</td>
-<td class="gt_row gt_right" headers="ess_tail">1,505.63</td>
+<td class="gt_row gt_right" headers="ess_bulk">1,516.16</td>
+<td class="gt_row gt_right" headers="ess_tail">1,780.38</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="variable">gamma</td>
-<td class="gt_row gt_right" headers="mean">1.06</td>
-<td class="gt_row gt_right" headers="median">0.97</td>
-<td class="gt_row gt_right" headers="sd">0.50</td>
+<td class="gt_row gt_right" headers="mean">1.07</td>
+<td class="gt_row gt_right" headers="median">0.96</td>
+<td class="gt_row gt_right" headers="sd">0.51</td>
 <td class="gt_row gt_right" headers="mad">0.45</td>
-<td class="gt_row gt_right" headers="q5">0.40</td>
-<td class="gt_row gt_right" headers="q95">2.04</td>
+<td class="gt_row gt_right" headers="q5">0.41</td>
+<td class="gt_row gt_right" headers="q95">2.06</td>
 <td class="gt_row gt_right" headers="rhat">1.01</td>
-<td class="gt_row gt_right" headers="ess_bulk">459.99</td>
-<td class="gt_row gt_right" headers="ess_tail">555.58</td>
+<td class="gt_row gt_right" headers="ess_bulk">513.16</td>
+<td class="gt_row gt_right" headers="ess_tail">772.22</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="variable">e0</td>
-<td class="gt_row gt_right" headers="mean">6.68</td>
-<td class="gt_row gt_right" headers="median">7.68</td>
-<td class="gt_row gt_right" headers="sd">4.08</td>
-<td class="gt_row gt_right" headers="mad">3.42</td>
-<td class="gt_row gt_right" headers="q5">−1.45</td>
-<td class="gt_row gt_right" headers="q95">11.20</td>
+<td class="gt_row gt_right" headers="mean">6.45</td>
+<td class="gt_row gt_right" headers="median">7.58</td>
+<td class="gt_row gt_right" headers="sd">4.40</td>
+<td class="gt_row gt_right" headers="mad">3.49</td>
+<td class="gt_row gt_right" headers="q5">−2.57</td>
+<td class="gt_row gt_right" headers="q95">11.30</td>
 <td class="gt_row gt_right" headers="rhat">1.01</td>
-<td class="gt_row gt_right" headers="ess_bulk">480.68</td>
-<td class="gt_row gt_right" headers="ess_tail">788.66</td>
+<td class="gt_row gt_right" headers="ess_bulk">499.98</td>
+<td class="gt_row gt_right" headers="ess_tail">646.45</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="variable">emax</td>
-<td class="gt_row gt_right" headers="mean">11.59</td>
-<td class="gt_row gt_right" headers="median">10.10</td>
-<td class="gt_row gt_right" headers="sd">5.89</td>
-<td class="gt_row gt_right" headers="mad">4.79</td>
-<td class="gt_row gt_right" headers="q5">5.20</td>
-<td class="gt_row gt_right" headers="q95">23.06</td>
+<td class="gt_row gt_right" headers="mean">11.70</td>
+<td class="gt_row gt_right" headers="median">10.19</td>
+<td class="gt_row gt_right" headers="sd">5.84</td>
+<td class="gt_row gt_right" headers="mad">4.85</td>
+<td class="gt_row gt_right" headers="q5">5.10</td>
+<td class="gt_row gt_right" headers="q95">23.64</td>
 <td class="gt_row gt_right" headers="rhat">1.01</td>
-<td class="gt_row gt_right" headers="ess_bulk">429.41</td>
-<td class="gt_row gt_right" headers="ess_tail">533.51</td>
+<td class="gt_row gt_right" headers="ess_bulk">466.31</td>
+<td class="gt_row gt_right" headers="ess_tail">761.51</td>
 </tr>
 </tbody>
 </table>
 
 </div>
-```
-</code></pre>
 </div>
 </div>
 </section>
@@ -1535,25 +1528,23 @@ Figure&nbsp;8.3
 <div id="fig-plot-er-new-conc-1" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plot-er-new-conc-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<pre class="r-output"><code>
-```{=html}
-<div id="oslyshlwzm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#oslyshlwzm table {
+<div id="tmtidueoib" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#tmtidueoib table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#oslyshlwzm thead, #oslyshlwzm tbody, #oslyshlwzm tfoot, #oslyshlwzm tr, #oslyshlwzm td, #oslyshlwzm th {
+#tmtidueoib thead, #tmtidueoib tbody, #tmtidueoib tfoot, #tmtidueoib tr, #tmtidueoib td, #tmtidueoib th {
   border-style: none;
 }
 
-#oslyshlwzm p {
+#tmtidueoib p {
   margin: 0;
   padding: 0;
 }
 
-#oslyshlwzm .gt_table {
+#tmtidueoib .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1579,12 +1570,12 @@ Figure&nbsp;8.3
   border-left-color: #D3D3D3;
 }
 
-#oslyshlwzm .gt_caption {
+#tmtidueoib .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#oslyshlwzm .gt_title {
+#tmtidueoib .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1596,7 +1587,7 @@ Figure&nbsp;8.3
   border-bottom-width: 0;
 }
 
-#oslyshlwzm .gt_subtitle {
+#tmtidueoib .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1608,7 +1599,7 @@ Figure&nbsp;8.3
   border-top-width: 0;
 }
 
-#oslyshlwzm .gt_heading {
+#tmtidueoib .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1620,13 +1611,13 @@ Figure&nbsp;8.3
   border-right-color: #D3D3D3;
 }
 
-#oslyshlwzm .gt_bottom_border {
+#tmtidueoib .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#oslyshlwzm .gt_col_headings {
+#tmtidueoib .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1641,7 +1632,7 @@ Figure&nbsp;8.3
   border-right-color: #D3D3D3;
 }
 
-#oslyshlwzm .gt_col_heading {
+#tmtidueoib .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1661,7 +1652,7 @@ Figure&nbsp;8.3
   overflow-x: hidden;
 }
 
-#oslyshlwzm .gt_column_spanner_outer {
+#tmtidueoib .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1673,15 +1664,15 @@ Figure&nbsp;8.3
   padding-right: 4px;
 }
 
-#oslyshlwzm .gt_column_spanner_outer:first-child {
+#tmtidueoib .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#oslyshlwzm .gt_column_spanner_outer:last-child {
+#tmtidueoib .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#oslyshlwzm .gt_column_spanner {
+#tmtidueoib .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1693,11 +1684,11 @@ Figure&nbsp;8.3
   width: 100%;
 }
 
-#oslyshlwzm .gt_spanner_row {
+#tmtidueoib .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#oslyshlwzm .gt_group_heading {
+#tmtidueoib .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1723,7 +1714,7 @@ Figure&nbsp;8.3
   text-align: left;
 }
 
-#oslyshlwzm .gt_empty_group_heading {
+#tmtidueoib .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1738,15 +1729,15 @@ Figure&nbsp;8.3
   vertical-align: middle;
 }
 
-#oslyshlwzm .gt_from_md > :first-child {
+#tmtidueoib .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#oslyshlwzm .gt_from_md > :last-child {
+#tmtidueoib .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#oslyshlwzm .gt_row {
+#tmtidueoib .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1765,7 +1756,7 @@ Figure&nbsp;8.3
   overflow-x: hidden;
 }
 
-#oslyshlwzm .gt_stub {
+#tmtidueoib .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1778,7 +1769,7 @@ Figure&nbsp;8.3
   padding-right: 5px;
 }
 
-#oslyshlwzm .gt_stub_row_group {
+#tmtidueoib .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1792,15 +1783,15 @@ Figure&nbsp;8.3
   vertical-align: top;
 }
 
-#oslyshlwzm .gt_row_group_first td {
+#tmtidueoib .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#oslyshlwzm .gt_row_group_first th {
+#tmtidueoib .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#oslyshlwzm .gt_summary_row {
+#tmtidueoib .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1810,16 +1801,16 @@ Figure&nbsp;8.3
   padding-right: 5px;
 }
 
-#oslyshlwzm .gt_first_summary_row {
+#tmtidueoib .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#oslyshlwzm .gt_first_summary_row.thick {
+#tmtidueoib .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#oslyshlwzm .gt_last_summary_row {
+#tmtidueoib .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1829,7 +1820,7 @@ Figure&nbsp;8.3
   border-bottom-color: #D3D3D3;
 }
 
-#oslyshlwzm .gt_grand_summary_row {
+#tmtidueoib .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1839,7 +1830,7 @@ Figure&nbsp;8.3
   padding-right: 5px;
 }
 
-#oslyshlwzm .gt_first_grand_summary_row {
+#tmtidueoib .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1849,7 +1840,7 @@ Figure&nbsp;8.3
   border-top-color: #D3D3D3;
 }
 
-#oslyshlwzm .gt_last_grand_summary_row_top {
+#tmtidueoib .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1859,11 +1850,11 @@ Figure&nbsp;8.3
   border-bottom-color: #D3D3D3;
 }
 
-#oslyshlwzm .gt_striped {
+#tmtidueoib .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#oslyshlwzm .gt_table_body {
+#tmtidueoib .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1872,7 +1863,7 @@ Figure&nbsp;8.3
   border-bottom-color: #D3D3D3;
 }
 
-#oslyshlwzm .gt_footnotes {
+#tmtidueoib .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1886,7 +1877,7 @@ Figure&nbsp;8.3
   border-right-color: #D3D3D3;
 }
 
-#oslyshlwzm .gt_footnote {
+#tmtidueoib .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1895,7 +1886,7 @@ Figure&nbsp;8.3
   padding-right: 5px;
 }
 
-#oslyshlwzm .gt_sourcenotes {
+#tmtidueoib .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1909,7 +1900,7 @@ Figure&nbsp;8.3
   border-right-color: #D3D3D3;
 }
 
-#oslyshlwzm .gt_sourcenote {
+#tmtidueoib .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1917,72 +1908,72 @@ Figure&nbsp;8.3
   padding-right: 5px;
 }
 
-#oslyshlwzm .gt_left {
+#tmtidueoib .gt_left {
   text-align: left;
 }
 
-#oslyshlwzm .gt_center {
+#tmtidueoib .gt_center {
   text-align: center;
 }
 
-#oslyshlwzm .gt_right {
+#tmtidueoib .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#oslyshlwzm .gt_font_normal {
+#tmtidueoib .gt_font_normal {
   font-weight: normal;
 }
 
-#oslyshlwzm .gt_font_bold {
+#tmtidueoib .gt_font_bold {
   font-weight: bold;
 }
 
-#oslyshlwzm .gt_font_italic {
+#tmtidueoib .gt_font_italic {
   font-style: italic;
 }
 
-#oslyshlwzm .gt_super {
+#tmtidueoib .gt_super {
   font-size: 65%;
 }
 
-#oslyshlwzm .gt_footnote_marks {
+#tmtidueoib .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#oslyshlwzm .gt_asterisk {
+#tmtidueoib .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#oslyshlwzm .gt_indent_1 {
+#tmtidueoib .gt_indent_1 {
   text-indent: 5px;
 }
 
-#oslyshlwzm .gt_indent_2 {
+#tmtidueoib .gt_indent_2 {
   text-indent: 10px;
 }
 
-#oslyshlwzm .gt_indent_3 {
+#tmtidueoib .gt_indent_3 {
   text-indent: 15px;
 }
 
-#oslyshlwzm .gt_indent_4 {
+#tmtidueoib .gt_indent_4 {
   text-indent: 20px;
 }
 
-#oslyshlwzm .gt_indent_5 {
+#tmtidueoib .gt_indent_5 {
   text-indent: 25px;
 }
 
-#oslyshlwzm .katex-display {
+#tmtidueoib .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#oslyshlwzm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#tmtidueoib div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2005,46 +1996,44 @@ Figure&nbsp;8.3
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_right" headers="exposure">5,000.00</td>
-<td class="gt_row gt_right" headers=".epred">13.05</td>
-<td class="gt_row gt_right" headers=".epred.lower">12.79</td>
-<td class="gt_row gt_right" headers=".epred.upper">13.30</td>
-<td class="gt_row gt_right" headers=".prediction">13.04</td>
-<td class="gt_row gt_right" headers=".prediction.lower">10.49</td>
-<td class="gt_row gt_right" headers=".prediction.upper">15.57</td>
+<td class="gt_row gt_right" headers=".epred">13.06</td>
+<td class="gt_row gt_right" headers=".epred.lower">12.81</td>
+<td class="gt_row gt_right" headers=".epred.upper">13.28</td>
+<td class="gt_row gt_right" headers=".prediction">13.10</td>
+<td class="gt_row gt_right" headers=".prediction.lower">10.56</td>
+<td class="gt_row gt_right" headers=".prediction.upper">15.62</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="exposure">15,000.00</td>
 <td class="gt_row gt_right" headers=".epred">15.33</td>
-<td class="gt_row gt_right" headers=".epred.lower">15.12</td>
+<td class="gt_row gt_right" headers=".epred.lower">15.13</td>
 <td class="gt_row gt_right" headers=".epred.upper">15.54</td>
-<td class="gt_row gt_right" headers=".prediction">15.36</td>
-<td class="gt_row gt_right" headers=".prediction.lower">12.86</td>
-<td class="gt_row gt_right" headers=".prediction.upper">17.85</td>
+<td class="gt_row gt_right" headers=".prediction">15.35</td>
+<td class="gt_row gt_right" headers=".prediction.lower">12.81</td>
+<td class="gt_row gt_right" headers=".prediction.upper">17.93</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_right" headers="exposure">25,000.00</td>
 <td class="gt_row gt_right" headers=".epred">16.05</td>
-<td class="gt_row gt_right" headers=".epred.lower">15.75</td>
-<td class="gt_row gt_right" headers=".epred.upper">16.36</td>
-<td class="gt_row gt_right" headers=".prediction">16.05</td>
-<td class="gt_row gt_right" headers=".prediction.lower">13.57</td>
-<td class="gt_row gt_right" headers=".prediction.upper">18.56</td>
+<td class="gt_row gt_right" headers=".epred.lower">15.74</td>
+<td class="gt_row gt_right" headers=".epred.upper">16.34</td>
+<td class="gt_row gt_right" headers=".prediction">16.04</td>
+<td class="gt_row gt_right" headers=".prediction.lower">13.59</td>
+<td class="gt_row gt_right" headers=".prediction.upper">18.64</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_right" headers="exposure">35,000.00</td>
-<td class="gt_row gt_right" headers=".epred">16.40</td>
+<td class="gt_row gt_right" headers=".epred">16.39</td>
 <td class="gt_row gt_right" headers=".epred.lower">15.91</td>
-<td class="gt_row gt_right" headers=".epred.upper">16.95</td>
-<td class="gt_row gt_right" headers=".prediction">16.42</td>
-<td class="gt_row gt_right" headers=".prediction.lower">13.83</td>
-<td class="gt_row gt_right" headers=".prediction.upper">18.92</td>
+<td class="gt_row gt_right" headers=".epred.upper">16.93</td>
+<td class="gt_row gt_right" headers=".prediction">16.39</td>
+<td class="gt_row gt_right" headers=".prediction.lower">13.86</td>
+<td class="gt_row gt_right" headers=".prediction.upper">19.00</td>
 </tr>
 </tbody>
 </table>
 
 </div>
-```
-</code></pre>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-plot-er-new-conc-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;8.4
@@ -2057,43 +2046,43 @@ Figure&nbsp;8.4
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> exposure, <span class="at">y =</span> response_1)) <span class="sc">+</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Emax model curve</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">xintercept =</span> ec50_mean, </span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype =</span> <span class="st">"dashed"</span>, </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">xintercept =</span> ec50_mean,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype =</span> <span class="st">"dashed"</span>,</span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"deepskyblue"</span></span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(</span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> .epred, </span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">ymin =</span> .epred.lower, </span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> .epred,</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">ymin =</span> .epred.lower,</span>
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">ymax =</span> .epred.upper</span>
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.3</span>, </span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.3</span>,</span>
 <span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"deepskyblue"</span></span>
 <span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> .epred), </span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> .epred),</span>
 <span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"deepskyblue"</span></span>
 <span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Observed data</span></span>
 <span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> d_sim_emax, </span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> d_sim_emax,</span>
 <span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"grey"</span></span>
 <span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Prediction at the specified doses</span></span>
 <span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> d_sim_new_conc, </span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> .epred), </span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"tomato"</span>, </span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> d_sim_new_conc,</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> .epred),</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"tomato"</span>,</span>
 <span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">3</span></span>
 <span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(</span>
 <span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> d_sim_new_conc,</span>
 <span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
-<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> .epred, </span>
-<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>      <span class="at">ymin =</span> .epred.lower, </span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> .epred,</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>      <span class="at">ymin =</span> .epred.lower,</span>
 <span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>      <span class="at">ymax =</span> .epred.upper</span>
 <span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="dv">1</span>, </span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="dv">1</span>,</span>
 <span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"tomato"</span></span>
 <span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">21</span>)) <span class="sc">+</span></span>
@@ -2102,7 +2091,7 @@ Figure&nbsp;8.4
 <span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Sigmoidal E~max~ model predictions at new exposure levels"</span>,</span>
 <span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">paste</span>(</span>
 <span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>      <span class="st">"vertical dashed line: estimated EC~50~ value"</span>,</span>
-<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>      <span class="st">"area: 95% credible interval"</span>, </span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>      <span class="st">"area: 95% credible interval"</span>,</span>
 <span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>      <span class="at">sep =</span> <span class="st">"&lt;br&gt;"</span></span>
 <span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
@@ -2596,7 +2585,7 @@ Figure&nbsp;8.5
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Basic workflow</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>In this section, we will show a basic workflow for performing an E~max~ model </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>In this section, we will show a basic workflow for performing an E~max~ model</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>analysis for continuous endpoint.</span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Setup and load</span></span>
@@ -2608,166 +2597,165 @@ Figure&nbsp;8.5
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BayesERtools)</span>
 <span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(posterior)</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidybayes)</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>))</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: FALSE</span></span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Enable colored outputs</span></span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"R"</span>, <span class="st">"cli_color_text.R"</span>))</span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="fu">## Load data</span></span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>The data for the example is included in the BayesERtools package, which contains a simulated data set <span class="in">`d_sim_emax`</span>. The analysis uses the <span class="in">`exposure`</span> variable to predict the continuous outcome <span class="in">`response_1`</span>. The data are illustrated below:</span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-data-look</span></span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: FALSE</span></span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>d_sim_emax <span class="sc">|&gt;</span></span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">|&gt;</span></span>
-<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">decimals =</span> <span class="dv">2</span>)</span>
-<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d_sim_emax, <span class="fu">aes</span>(exposure, response_1)) <span class="sc">+</span></span>
-<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(</span>
-<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">formula =</span> y <span class="sc">~</span> x,</span>
-<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"loess"</span>,</span>
-<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">se =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="st">"darkgrey"</span></span>
-<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sigmoidal E~max~ model</span></span>
-<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a>ermod_sigemax <span class="ot">&lt;-</span> <span class="fu">dev_ermod_emax</span>(</span>
-<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> d_sim_emax,</span>
-<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_resp =</span> <span class="st">"response_1"</span>,</span>
-<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_exposure =</span> <span class="st">"exposure"</span>,</span>
-<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>  <span class="at">gamma_fix =</span> <span class="cn">NULL</span></span>
-<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a>ermod_sigemax</span>
-<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a><span class="fu">## Observation vs model fit</span></span>
-<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-plot-er</span></span>
-<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 7</span></span>
-<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
-<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a>d_sim_ermod_sigemax <span class="ot">&lt;-</span></span>
-<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sim_er</span>(ermod_sigemax, <span class="at">output_type =</span> <span class="fu">c</span>(<span class="st">"median_qi"</span>))</span>
-<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_er_gof</span>(d_sim_ermod_sigemax)</span>
-<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-89"><a href="#cb9-89" aria-hidden="true" tabindex="-1"></a><span class="fu">## Parameter estimates</span></span>
-<span id="cb9-90"><a href="#cb9-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-93"><a href="#cb9-93" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-94"><a href="#cb9-94" aria-hidden="true" tabindex="-1"></a>d_draws_sigemax <span class="ot">&lt;-</span> <span class="fu">as_draws_df</span>(ermod_sigemax)</span>
-<span id="cb9-95"><a href="#cb9-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-96"><a href="#cb9-96" aria-hidden="true" tabindex="-1"></a>d_draws_sigemax_summary <span class="ot">&lt;-</span></span>
-<span id="cb9-97"><a href="#cb9-97" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_draws</span>(d_draws_sigemax)</span>
-<span id="cb9-98"><a href="#cb9-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-99"><a href="#cb9-99" aria-hidden="true" tabindex="-1"></a>ec50_mean <span class="ot">&lt;-</span></span>
-<span id="cb9-100"><a href="#cb9-100" aria-hidden="true" tabindex="-1"></a>  d_draws_sigemax_summary <span class="sc">|&gt;</span></span>
-<span id="cb9-101"><a href="#cb9-101" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(variable <span class="sc">==</span> <span class="st">"ec50"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb9-102"><a href="#cb9-102" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(mean)</span>
-<span id="cb9-103"><a href="#cb9-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-104"><a href="#cb9-104" aria-hidden="true" tabindex="-1"></a>d_draws_sigemax_summary <span class="sc">|&gt;</span></span>
-<span id="cb9-105"><a href="#cb9-105" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb9-106"><a href="#cb9-106" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">decimals =</span> <span class="dv">2</span>)</span>
-<span id="cb9-107"><a href="#cb9-107" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-108"><a href="#cb9-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-109"><a href="#cb9-109" aria-hidden="true" tabindex="-1"></a><span class="fu">## Prediction at a certain concentrations</span></span>
-<span id="cb9-110"><a href="#cb9-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-113"><a href="#cb9-113" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-114"><a href="#cb9-114" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-plot-er-new-conc</span></span>
-<span id="cb9-115"><a href="#cb9-115" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 7</span></span>
-<span id="cb9-116"><a href="#cb9-116" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
-<span id="cb9-117"><a href="#cb9-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-118"><a href="#cb9-118" aria-hidden="true" tabindex="-1"></a>d_sim_new_conc <span class="ot">&lt;-</span></span>
-<span id="cb9-119"><a href="#cb9-119" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sim_er_new_exp</span>(ermod_sigemax,</span>
-<span id="cb9-120"><a href="#cb9-120" aria-hidden="true" tabindex="-1"></a>    <span class="at">exposure_to_sim_vec  =</span> <span class="fu">c</span>(<span class="dv">5000</span>, <span class="dv">15000</span>, <span class="dv">25000</span>, <span class="dv">35000</span>),</span>
-<span id="cb9-121"><a href="#cb9-121" aria-hidden="true" tabindex="-1"></a>    <span class="at">output_type =</span> <span class="fu">c</span>(<span class="st">"median_qi"</span>))</span>
-<span id="cb9-122"><a href="#cb9-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-123"><a href="#cb9-123" aria-hidden="true" tabindex="-1"></a>d_sim_new_conc <span class="sc">|&gt;</span></span>
-<span id="cb9-124"><a href="#cb9-124" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">starts_with</span>(<span class="st">".linpred"</span>), <span class="sc">-</span><span class="fu">c</span>(.row, .width, .point, .interval)) <span class="sc">|&gt;</span></span>
-<span id="cb9-125"><a href="#cb9-125" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb9-126"><a href="#cb9-126" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">decimals =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
-<span id="cb9-127"><a href="#cb9-127" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
-<span id="cb9-128"><a href="#cb9-128" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">md</span>(<span class="st">"Prediction at specific concentrations"</span>)</span>
-<span id="cb9-129"><a href="#cb9-129" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb9-130"><a href="#cb9-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-131"><a href="#cb9-131" aria-hidden="true" tabindex="-1"></a>d_sim_ermod_sigemax <span class="sc">|&gt;</span></span>
-<span id="cb9-132"><a href="#cb9-132" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> exposure, <span class="at">y =</span> response_1)) <span class="sc">+</span></span>
-<span id="cb9-133"><a href="#cb9-133" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Emax model curve</span></span>
-<span id="cb9-134"><a href="#cb9-134" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(</span>
-<span id="cb9-135"><a href="#cb9-135" aria-hidden="true" tabindex="-1"></a>    <span class="at">xintercept =</span> ec50_mean,</span>
-<span id="cb9-136"><a href="#cb9-136" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype =</span> <span class="st">"dashed"</span>,</span>
-<span id="cb9-137"><a href="#cb9-137" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"deepskyblue"</span></span>
-<span id="cb9-138"><a href="#cb9-138" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb9-139"><a href="#cb9-139" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(</span>
-<span id="cb9-140"><a href="#cb9-140" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
-<span id="cb9-141"><a href="#cb9-141" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> .epred,</span>
-<span id="cb9-142"><a href="#cb9-142" aria-hidden="true" tabindex="-1"></a>      <span class="at">ymin =</span> .epred.lower,</span>
-<span id="cb9-143"><a href="#cb9-143" aria-hidden="true" tabindex="-1"></a>      <span class="at">ymax =</span> .epred.upper</span>
-<span id="cb9-144"><a href="#cb9-144" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb9-145"><a href="#cb9-145" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.3</span>,</span>
-<span id="cb9-146"><a href="#cb9-146" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"deepskyblue"</span></span>
-<span id="cb9-147"><a href="#cb9-147" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb9-148"><a href="#cb9-148" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(</span>
-<span id="cb9-149"><a href="#cb9-149" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> .epred),</span>
-<span id="cb9-150"><a href="#cb9-150" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"deepskyblue"</span></span>
-<span id="cb9-151"><a href="#cb9-151" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb9-152"><a href="#cb9-152" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Observed data</span></span>
-<span id="cb9-153"><a href="#cb9-153" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb9-154"><a href="#cb9-154" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> d_sim_emax,</span>
-<span id="cb9-155"><a href="#cb9-155" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"grey"</span></span>
-<span id="cb9-156"><a href="#cb9-156" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb9-157"><a href="#cb9-157" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Prediction at the specified doses</span></span>
-<span id="cb9-158"><a href="#cb9-158" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb9-159"><a href="#cb9-159" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> d_sim_new_conc,</span>
-<span id="cb9-160"><a href="#cb9-160" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> .epred),</span>
-<span id="cb9-161"><a href="#cb9-161" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"tomato"</span>,</span>
-<span id="cb9-162"><a href="#cb9-162" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">3</span></span>
-<span id="cb9-163"><a href="#cb9-163" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb9-164"><a href="#cb9-164" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(</span>
-<span id="cb9-165"><a href="#cb9-165" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> d_sim_new_conc,</span>
-<span id="cb9-166"><a href="#cb9-166" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
-<span id="cb9-167"><a href="#cb9-167" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> .epred,</span>
-<span id="cb9-168"><a href="#cb9-168" aria-hidden="true" tabindex="-1"></a>      <span class="at">ymin =</span> .epred.lower,</span>
-<span id="cb9-169"><a href="#cb9-169" aria-hidden="true" tabindex="-1"></a>      <span class="at">ymax =</span> .epred.upper</span>
-<span id="cb9-170"><a href="#cb9-170" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb9-171"><a href="#cb9-171" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="dv">1</span>,</span>
-<span id="cb9-172"><a href="#cb9-172" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"tomato"</span></span>
-<span id="cb9-173"><a href="#cb9-173" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb9-174"><a href="#cb9-174" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">21</span>)) <span class="sc">+</span></span>
-<span id="cb9-175"><a href="#cb9-175" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Greys"</span>) <span class="sc">+</span></span>
-<span id="cb9-176"><a href="#cb9-176" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb9-177"><a href="#cb9-177" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Sigmoidal E~max~ model predictions at new exposure levels"</span>,</span>
-<span id="cb9-178"><a href="#cb9-178" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">paste</span>(</span>
-<span id="cb9-179"><a href="#cb9-179" aria-hidden="true" tabindex="-1"></a>      <span class="st">"vertical dashed line: estimated EC~50~ value"</span>,</span>
-<span id="cb9-180"><a href="#cb9-180" aria-hidden="true" tabindex="-1"></a>      <span class="st">"area: 95% credible interval"</span>,</span>
-<span id="cb9-181"><a href="#cb9-181" aria-hidden="true" tabindex="-1"></a>      <span class="at">sep =</span> <span class="st">"&lt;br&gt;"</span></span>
-<span id="cb9-182"><a href="#cb9-182" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-183"><a href="#cb9-183" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb9-184"><a href="#cb9-184" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb9-185"><a href="#cb9-185" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> ggtext<span class="sc">::</span><span class="fu">element_markdown</span>(),</span>
-<span id="cb9-186"><a href="#cb9-186" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.caption =</span> ggtext<span class="sc">::</span><span class="fu">element_markdown</span>()</span>
-<span id="cb9-187"><a href="#cb9-187" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb9-188"><a href="#cb9-188" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">12</span>))</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: FALSE</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Enable colored outputs</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"R"</span>, <span class="st">"cli_color_text.R"</span>))</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="fu">## Load data</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>The data for the example is included in the BayesERtools package, which contains a simulated data set <span class="in">`d_sim_emax`</span>. The analysis uses the <span class="in">`exposure`</span> variable to predict the continuous outcome <span class="in">`response_1`</span>. The data are illustrated below:</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-data-look</span></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: FALSE</span></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>d_sim_emax <span class="sc">|&gt;</span></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">|&gt;</span></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">decimals =</span> <span class="dv">2</span>)</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d_sim_emax, <span class="fu">aes</span>(exposure, response_1)) <span class="sc">+</span></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">formula =</span> y <span class="sc">~</span> x,</span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"loess"</span>,</span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">se =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="st">"darkgrey"</span></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sigmoidal E~max~ model</span></span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a>ermod_sigemax <span class="ot">&lt;-</span> <span class="fu">dev_ermod_emax</span>(</span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> d_sim_emax,</span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_resp =</span> <span class="st">"response_1"</span>,</span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_exposure =</span> <span class="st">"exposure"</span>,</span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>  <span class="at">gamma_fix =</span> <span class="cn">NULL</span></span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a>ermod_sigemax</span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a><span class="fu">## Observation vs model fit</span></span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-plot-er</span></span>
+<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 7</span></span>
+<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
+<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a>d_sim_ermod_sigemax <span class="ot">&lt;-</span></span>
+<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sim_er</span>(ermod_sigemax, <span class="at">output_type =</span> <span class="fu">c</span>(<span class="st">"median_qi"</span>))</span>
+<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_er_gof</span>(d_sim_ermod_sigemax)</span>
+<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a><span class="fu">## Parameter estimates</span></span>
+<span id="cb9-89"><a href="#cb9-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-92"><a href="#cb9-92" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-93"><a href="#cb9-93" aria-hidden="true" tabindex="-1"></a>d_draws_sigemax <span class="ot">&lt;-</span> <span class="fu">as_draws_df</span>(ermod_sigemax)</span>
+<span id="cb9-94"><a href="#cb9-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-95"><a href="#cb9-95" aria-hidden="true" tabindex="-1"></a>d_draws_sigemax_summary <span class="ot">&lt;-</span></span>
+<span id="cb9-96"><a href="#cb9-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_draws</span>(d_draws_sigemax)</span>
+<span id="cb9-97"><a href="#cb9-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-98"><a href="#cb9-98" aria-hidden="true" tabindex="-1"></a>ec50_mean <span class="ot">&lt;-</span></span>
+<span id="cb9-99"><a href="#cb9-99" aria-hidden="true" tabindex="-1"></a>  d_draws_sigemax_summary <span class="sc">|&gt;</span></span>
+<span id="cb9-100"><a href="#cb9-100" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(variable <span class="sc">==</span> <span class="st">"ec50"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-101"><a href="#cb9-101" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(mean)</span>
+<span id="cb9-102"><a href="#cb9-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-103"><a href="#cb9-103" aria-hidden="true" tabindex="-1"></a>d_draws_sigemax_summary <span class="sc">|&gt;</span></span>
+<span id="cb9-104"><a href="#cb9-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb9-105"><a href="#cb9-105" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">decimals =</span> <span class="dv">2</span>)</span>
+<span id="cb9-106"><a href="#cb9-106" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-107"><a href="#cb9-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-108"><a href="#cb9-108" aria-hidden="true" tabindex="-1"></a><span class="fu">## Prediction at a certain concentrations</span></span>
+<span id="cb9-109"><a href="#cb9-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-112"><a href="#cb9-112" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-113"><a href="#cb9-113" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-plot-er-new-conc</span></span>
+<span id="cb9-114"><a href="#cb9-114" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 7</span></span>
+<span id="cb9-115"><a href="#cb9-115" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 5</span></span>
+<span id="cb9-116"><a href="#cb9-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-117"><a href="#cb9-117" aria-hidden="true" tabindex="-1"></a>d_sim_new_conc <span class="ot">&lt;-</span></span>
+<span id="cb9-118"><a href="#cb9-118" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sim_er_new_exp</span>(ermod_sigemax,</span>
+<span id="cb9-119"><a href="#cb9-119" aria-hidden="true" tabindex="-1"></a>    <span class="at">exposure_to_sim_vec  =</span> <span class="fu">c</span>(<span class="dv">5000</span>, <span class="dv">15000</span>, <span class="dv">25000</span>, <span class="dv">35000</span>),</span>
+<span id="cb9-120"><a href="#cb9-120" aria-hidden="true" tabindex="-1"></a>    <span class="at">output_type =</span> <span class="fu">c</span>(<span class="st">"median_qi"</span>))</span>
+<span id="cb9-121"><a href="#cb9-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-122"><a href="#cb9-122" aria-hidden="true" tabindex="-1"></a>d_sim_new_conc <span class="sc">|&gt;</span></span>
+<span id="cb9-123"><a href="#cb9-123" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">starts_with</span>(<span class="st">".linpred"</span>), <span class="sc">-</span><span class="fu">c</span>(.row, .width, .point, .interval)) <span class="sc">|&gt;</span></span>
+<span id="cb9-124"><a href="#cb9-124" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb9-125"><a href="#cb9-125" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">decimals =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-126"><a href="#cb9-126" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
+<span id="cb9-127"><a href="#cb9-127" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">md</span>(<span class="st">"Prediction at specific concentrations"</span>)</span>
+<span id="cb9-128"><a href="#cb9-128" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb9-129"><a href="#cb9-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-130"><a href="#cb9-130" aria-hidden="true" tabindex="-1"></a>d_sim_ermod_sigemax <span class="sc">|&gt;</span></span>
+<span id="cb9-131"><a href="#cb9-131" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> exposure, <span class="at">y =</span> response_1)) <span class="sc">+</span></span>
+<span id="cb9-132"><a href="#cb9-132" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Emax model curve</span></span>
+<span id="cb9-133"><a href="#cb9-133" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(</span>
+<span id="cb9-134"><a href="#cb9-134" aria-hidden="true" tabindex="-1"></a>    <span class="at">xintercept =</span> ec50_mean,</span>
+<span id="cb9-135"><a href="#cb9-135" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype =</span> <span class="st">"dashed"</span>,</span>
+<span id="cb9-136"><a href="#cb9-136" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"deepskyblue"</span></span>
+<span id="cb9-137"><a href="#cb9-137" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-138"><a href="#cb9-138" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(</span>
+<span id="cb9-139"><a href="#cb9-139" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
+<span id="cb9-140"><a href="#cb9-140" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> .epred,</span>
+<span id="cb9-141"><a href="#cb9-141" aria-hidden="true" tabindex="-1"></a>      <span class="at">ymin =</span> .epred.lower,</span>
+<span id="cb9-142"><a href="#cb9-142" aria-hidden="true" tabindex="-1"></a>      <span class="at">ymax =</span> .epred.upper</span>
+<span id="cb9-143"><a href="#cb9-143" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb9-144"><a href="#cb9-144" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.3</span>,</span>
+<span id="cb9-145"><a href="#cb9-145" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"deepskyblue"</span></span>
+<span id="cb9-146"><a href="#cb9-146" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-147"><a href="#cb9-147" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(</span>
+<span id="cb9-148"><a href="#cb9-148" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> .epred),</span>
+<span id="cb9-149"><a href="#cb9-149" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"deepskyblue"</span></span>
+<span id="cb9-150"><a href="#cb9-150" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-151"><a href="#cb9-151" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Observed data</span></span>
+<span id="cb9-152"><a href="#cb9-152" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb9-153"><a href="#cb9-153" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> d_sim_emax,</span>
+<span id="cb9-154"><a href="#cb9-154" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"grey"</span></span>
+<span id="cb9-155"><a href="#cb9-155" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-156"><a href="#cb9-156" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Prediction at the specified doses</span></span>
+<span id="cb9-157"><a href="#cb9-157" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb9-158"><a href="#cb9-158" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> d_sim_new_conc,</span>
+<span id="cb9-159"><a href="#cb9-159" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> .epred),</span>
+<span id="cb9-160"><a href="#cb9-160" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"tomato"</span>,</span>
+<span id="cb9-161"><a href="#cb9-161" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">3</span></span>
+<span id="cb9-162"><a href="#cb9-162" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-163"><a href="#cb9-163" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(</span>
+<span id="cb9-164"><a href="#cb9-164" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> d_sim_new_conc,</span>
+<span id="cb9-165"><a href="#cb9-165" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
+<span id="cb9-166"><a href="#cb9-166" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> .epred,</span>
+<span id="cb9-167"><a href="#cb9-167" aria-hidden="true" tabindex="-1"></a>      <span class="at">ymin =</span> .epred.lower,</span>
+<span id="cb9-168"><a href="#cb9-168" aria-hidden="true" tabindex="-1"></a>      <span class="at">ymax =</span> .epred.upper</span>
+<span id="cb9-169"><a href="#cb9-169" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb9-170"><a href="#cb9-170" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="dv">1</span>,</span>
+<span id="cb9-171"><a href="#cb9-171" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"tomato"</span></span>
+<span id="cb9-172"><a href="#cb9-172" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-173"><a href="#cb9-173" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">21</span>)) <span class="sc">+</span></span>
+<span id="cb9-174"><a href="#cb9-174" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Greys"</span>) <span class="sc">+</span></span>
+<span id="cb9-175"><a href="#cb9-175" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb9-176"><a href="#cb9-176" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Sigmoidal E~max~ model predictions at new exposure levels"</span>,</span>
+<span id="cb9-177"><a href="#cb9-177" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">paste</span>(</span>
+<span id="cb9-178"><a href="#cb9-178" aria-hidden="true" tabindex="-1"></a>      <span class="st">"vertical dashed line: estimated EC~50~ value"</span>,</span>
+<span id="cb9-179"><a href="#cb9-179" aria-hidden="true" tabindex="-1"></a>      <span class="st">"area: 95% credible interval"</span>,</span>
+<span id="cb9-180"><a href="#cb9-180" aria-hidden="true" tabindex="-1"></a>      <span class="at">sep =</span> <span class="st">"&lt;br&gt;"</span></span>
+<span id="cb9-181"><a href="#cb9-181" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-182"><a href="#cb9-182" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-183"><a href="#cb9-183" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb9-184"><a href="#cb9-184" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> ggtext<span class="sc">::</span><span class="fu">element_markdown</span>(),</span>
+<span id="cb9-185"><a href="#cb9-185" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.caption =</span> ggtext<span class="sc">::</span><span class="fu">element_markdown</span>()</span>
+<span id="cb9-186"><a href="#cb9-186" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb9-187"><a href="#cb9-187" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
